@@ -42,12 +42,19 @@
                     {% if belum %}
                     <tr>
                         <th scope="row">Dokumen</th>
-                        <td>Belum ada dokumen yang diupload</td>
+                        <td>Tidak ada dokumen yang diupload</td>
                     </tr>
                     {% else %}
                     <tr>
                         <th scope="row">Dokumen</th>
                         <td><a href="{{tugas.bukti}}" target="_blank">Dokumen</a></td>
+                    </tr>
+                    {% endif %}
+
+                    {% if ada_link %}
+                    <tr>
+                        <th scope="row">Link</th>
+                        <td><a href="{{tugas.link_bukti}}" target="_blank">Link</a></td>
                     </tr>
                     {% endif %}
 
@@ -64,7 +71,10 @@
                     </tbody>
                 </table>
                 <a class="btn btn-warning" href="{% url 'edit_tugas_proyek' tugas.id %}" role="button">Edit</a>
+
+                {% if nottuntas %}
                 <span><a class="btn btn-primary" href="{% url 'tuntas' tugas.id %}" role="button">Tuntas</a></span>
+                {% endif %}
 
           </div>
       </div>

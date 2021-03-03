@@ -16,19 +16,38 @@
         {% else %}      
             {% include 'eksekutif/sidebar.html' %}
         {% endif %}
+        
         <div class="col">
-            <h1>Upload Dokumentasi</h1>
+            <h1>Upload Bukti</h1>
+            <br>
+            <p>Pilihan bukti:</p>
+            <ul>
+                <li><a href="#" id="inilink">Link</a></li> 
+                <li><a href="#" id="inidokumen">Dokumen</a></li>
+            </ul>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
+            <div id="demo"></div>
+            </form>
+            <!-- <form method="post">
                 <br>
                 <div class="form-group kontainer-form">
-                    <label for="dokumen">Dokumen</label>
-                    <input type="file" class="form-control" id="dokumen" name="dokumen">
+                    <label for="linkbukti">Link:</label>
+                    <input type="text" class="form-control" id="linkbukti" name="linkbukti">
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+            </form> -->
         </div>
     </div>
-
 </div>
+
+<script>
+    document.getElementById("inilink").addEventListener("click", function() {
+    document.getElementById("demo").innerHTML = '<div class="form-group kontainer-form"><label for="linkbukti">Link:</label><input type="text" class="form-control" id="linkbukti" name="linkbukti"><input type="hidden" value="link" name="pilihan" /></div><button type="submit" class="btn btn-primary">Submit</button>';
+    });
+
+    document.getElementById("inidokumen").addEventListener("click", function() {
+    document.getElementById("demo").innerHTML = '<div class="form-group kontainer-form"><label for="dokumen">Dokumen</label><input type="file" class="form-control" id="dokumen" name="dokumen"><input type="hidden" value="dokumen" name="pilihan" /></div><button type="submit" class="btn btn-primary">Submit</button>';
+    });
+</script>
 {% endblock %}
