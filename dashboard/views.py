@@ -792,9 +792,15 @@ def upload_dokumentasi_tr(request, id_tugas):
 
         t = IsiTugasRutin.objects.get(pk=id_tugas)
 
-        uploaded_file = request.FILES['dokumen']
-        fs = FileSystemStorage()
-        nama = fs.save(uploaded_file.name, uploaded_file)
+        if request.POST.get('pilihan') == 'dokumen':
+            uploaded_file = request.FILES['dokumen']
+            fs = FileSystemStorage()
+            nama = fs.save(uploaded_file.name, uploaded_file)
+            alamat = fs.url(nama)
+            t.bukti = alamat
+            t.link_bukti = '#'
+        else:
+            t.link_bukti = request.POST.get('linkbukti')
 
         alamat = fs.url(nama)
 

@@ -55,6 +55,8 @@ class IsiTugasRutin(models.Model):
     bukti = models.CharField(max_length=100, null=True)
     penilaian = models.IntegerField(null=True)
     komentar = models.CharField(max_length=1000)
+    link_bukti = models.CharField(max_length=1000, null=True)
+    selesai_pada = models.DateTimeField('Selesai pada', null=True)
 
     judul = models.CharField(max_length=150, null=True)
     isi = models.CharField(max_length=1000, null=True)
