@@ -91,6 +91,32 @@ def profile(request):
 
     return render(request, 'profile.html', context)
 
+
+# ------------------------------- KLASEMEN ----------------------------------
+@login_required(login_url='login')
+def klasemen(request):
+
+    nama = request.user.first_name
+    bagian = request.user.last_name
+    usr = User.objects.all()
+
+    id_terlarang = [1, 5, 17, 18, 19]
+    user = []
+
+    for a in usr:
+        if a.id not in id_terlarang:
+            user.append((a,hitungskor(a.id)))
+
+    user.sort(key=lambda tup: tup[1])
+    user = user[::-1]
+
+    context = {'bagian': bagian, 'nama': nama, 'usr' : user}
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'klasemen.html', context)
+
 # ------------------------------- CEO ----------------------------------
 
 @login_required(login_url='login')
@@ -443,7 +469,7 @@ def mdetail_proyek(request, id_tugas):
     if t.status == 'Tuntas':
         context['tuntas'] = True
 
-    if not t.link_bukti == '#':
+    if not (t.link_bukti == '#') or (t.link_bukti == None):
         context['ada_link'] = True
 
     return render(request, 'manager/mdetail_proyek.html', context)
@@ -1087,3 +1113,22 @@ def ngecekdeadline():
 
 def apa_manager(user):
     return user.groups.filter(name='Manager').exists()
+
+def hitungskor(user_id):
+	pemilik = User.objects.get(id=user_id)
+	tp = TugasProyek.objects.filter(pemilik_tugas=pemilik)
+	tr = TugasRutin.objects.filter(pemilik_tugas=pemilik)
+	
+	total_skor_rutin = 0
+	for rutin in tr:
+		isi_tr = IsiTugasRutin.objects.filter(tugas_rutin = rutin)
+		for isi in isi_tr:
+			if isi.status == 'Tuntas':
+			    total_skor_rutin += isi.penilaian		
+
+	total_skor_proyek = 0
+	for tugas_proyek in tp:
+		if tugas_proyek.status == 'Tuntas':
+			total_skor_proyek += tugas_proyek.penilaian
+	
+	return total_skor_proyek + total_skor_rutin
