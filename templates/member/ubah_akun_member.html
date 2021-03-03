@@ -1,0 +1,98 @@
+{% extends 'member/main.html' %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    /* Add padding to containers */
+    .container {
+        padding: 16px;
+        background-color: white;
+        border-radius: 25px;
+    }
+
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+        border-radius: 15px;
+    }
+
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+        border-radius: 15px;
+    }
+
+    /* Overwrite default styles of hr */
+    .custom-hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    button {
+        background-color: #d20001;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    .registerbtn:hover {
+        opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+        color: dodgerblue;
+    }
+
+    .custom-form {
+        width: 75%;
+        margin-top: 25px;
+    }
+</style>
+<h1>Ubah Akun</h1>
+<hr>
+<a href="{% url 'index' %}" class="custom-tombol">Back</a>
+<div class="custom-form">
+    <form method="post">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Form Ubah Akun</h1>
+            <hr class="custom-hr">
+
+            <label for="username"><b>Ubah Username</b></label>
+            <input type="text" placeholder="Masukkan username" name="username" id="username" required>
+
+            <label for="password"><b>Ubah Password</b></label>
+            <input type="password" placeholder="Masukkan passowrd" name="password" id="password" required>
+
+            <hr class="custom-hr">
+
+            <button type="submit">Ubah</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

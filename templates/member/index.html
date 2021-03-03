@@ -1,0 +1,526 @@
+{% extends 'member/main.html' %}
+
+{% block content %}
+<style>
+    :root{
+        --lebar : 250px;
+        --custom-margin : 10px;
+        --lebar-promo: 21%;
+        --custom-margin: 10px;
+        --padding-kartu: 11px;
+    }
+
+    .membercard{
+        display: flex;
+        width: 60%;
+        /* max-width: 1000px; */
+        border: 1px solid black;
+        border-radius: 27px;
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        /* padding-left: 20px; */
+    }
+
+    .membercard .kol-1{
+        /* border: 1px solid black; */
+        flex-grow: 1;
+        text-align: right;
+        border-radius: 27px;
+        /* background-color: #72a4d6; */
+    }
+
+    .membercard .kol-2{
+        flex-grow: 3;
+        text-align: center;
+        /* background-color: #d67272; */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+    }
+
+    .kartumember{
+        border-radius: 100px;
+        /* padding-left: 10px; */
+    }
+
+    .sejajar{
+        display: inline;
+        padding-left: 13px;
+    }
+
+    .kol-2 .nama{
+        display: flex;
+        align-items: center;
+    }
+
+    .kol-2 .nohp{
+        display: flex;
+        align-items: center;
+    }
+
+    .kol-2 .kunjungan{
+        display: flex;
+        align-items: center;
+    }
+
+    .penuh{
+        width: 85%;
+    }
+
+    section{
+        padding-bottom: 25px;
+    }
+
+    .kontainer-promo{
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        background-color: #eee;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    .item-container{
+        width: var(--lebar-promo);
+        margin: var(--custom-margin);
+        padding: var(--padding-kartu);
+        background-color: white;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        border-radius: 10px;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item-container:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .custom-tombol-promo{
+        text-decoration: none;
+        align-self: center;
+        background-color: green;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .custom-tombol-promo:hover{
+        opacity: 0.8;
+    }
+
+    .custom-tombol-promo-nonaktif{
+        text-decoration: none;
+        align-self: center;
+        background-color: #bbb;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .custom-tombol-promo-nonaktif:hover{
+        opacity: 0.8;
+    }
+/*
+    .promo{
+        display: flex;
+        width: 100%;
+        border-radius: 27px;
+        justify-content: space-evenly;
+        flex-wrap : wrap;
+    }
+
+    .promo .promo1{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo1:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+    
+    .promo .promo2{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo2:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .promo .promo3{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo3:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .promo .promo4{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo4:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .promo .promo5{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo5:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .promo .promo6{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo6:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .promo .promo7{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo7:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .promo .promo8{
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        transition: 0.3s;
+        border-radius: 27px;
+        margin: var(--custom-margin);
+        background-color: #eee;
+        width: var(--lebar);
+    }
+
+    .promo .promo8:hover{
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    }
+
+    .kontainer-konten {
+        padding: 2px 16px;
+    }
+
+    .kontainer-gambar{
+        width: 100%;
+        height: 200px;
+        border-top-left-radius: 27px;
+        border-top-right-radius: 27px;
+    }
+
+    .custom-tombol-promo{
+        text-decoration: none;
+        border: 1px solid black;
+        margin-bottom: 60px;
+    } */
+
+    /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+    @media screen and (max-width: 950px) {
+    .membercard{
+        display: flex;
+        width: 75%;
+        border: 1px solid black;
+        border-radius: 27px;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    }
+
+    .item-container{
+        width: 70%;
+        margin: var(--custom-margin);
+        padding: var(--padding-kartu);
+
+        display: flex;
+        flex-direction: column;
+    }
+    /* 
+    .promo{
+        display: flex;
+        width: 100%;
+        border-radius: 27px;
+        justify-content: space-evenly;
+        flex-direction: column;
+        flex-wrap : nowrap;
+        /* background-color: #ccc; */
+    }  */
+
+    }
+
+    @media screen and (max-width: 850px) {
+        .membercard{
+            display: flex;
+            width: 90%;
+            border: 1px solid black;
+            border-radius: 27px;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        .item-container{
+            width: 90%;
+            margin: var(--custom-margin);
+            padding: var(--padding-kartu);
+
+            display: flex;
+            flex-direction: column;
+        }
+        /*
+        .promo .promo1{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo1:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        
+        .promo .promo2{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo2:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .promo .promo3{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo3:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .promo .promo4{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo4:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .promo .promo5{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo5:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .promo .promo6{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo6:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .promo .promo7{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo7:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+        .promo .promo8{
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 27px;
+            margin: 20px;
+            background-color: #eee;
+            width: 90%;
+        }
+
+        .promo .promo8:hover{
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        */
+    }
+
+    @media screen and (max-width: 720px) {
+        .membercard{
+        display: flex;
+        width: 100%;
+        border-radius: 27px;
+        flex-direction: column;
+        justify-content: center;
+        padding-bottom: 20px;
+        }
+        
+        .membercard .kol-1{
+            flex-grow: 1;
+            text-align: center;
+            border-radius: 27px;
+        } 
+
+        .membercard .kol-2{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .kol-2 .nama{
+            display: flex;
+            justify-content: center;
+            margin: 0px;
+        }
+
+        .kol-2 .nohp{
+            display: flex;
+            justify-content: center;
+            margin: 0px;
+        }
+
+        .kol-2 .kunjungan{
+            display: flex;
+            justify-content: center;
+            margin: 0px;
+        }
+
+        .item1{
+            width: 10%;
+            
+        }
+
+        .item2{
+            font-size: 30px;
+        }
+    }
+    </style>
+
+
+</style>
+<h1>Member Card</h1>
+<hr>
+
+<section id="kartumember">
+    <div class="membercard">
+        <div class="kol-1"><img class="penuh" style="border-radius: 30px;" src="../{{ detail_member.link_qrcode }}" alt="{{detail_member.customer_code}}"></div>
+        <div class="kol-2">
+            <div class="nama">
+                <img class="item1" src="../media/orang.png" alt="Icon Nama">
+                <h4 class="sejajar item2">Difa Surya Putra</h4>
+            </div>
+            <div class="nohp">
+                <img class="item1" src="../media/telfon.png" alt="Icon Nama">
+                <h4 class="sejajar item2">+6282215589774</h4>
+            </div>
+            <div class="kunjungan">
+                <img class="item1" src="../media/toko.png" alt="Icon Nama">
+                <h4 class="sejajar item2">Total Visits : 5</h4>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="sectionpromo">
+    <div class="kontainer-promo">
+        <div class="item-container">
+            <h3>Free Upgrade Milo</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 4</p>
+            <a href="#" class="custom-tombol-promo">Claim</a>
+        </div>
+        <div class="item-container">
+            <h3>Free Upgrade Crisbar Bantai</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 8</p>
+            <a href="#" class="custom-tombol-promo-nonaktif">Claim</a>
+        </div>
+        <div class="item-container">
+            <h3>Free Upgrade Sambal Mamah</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 12</p>
+            <a href="#" class="custom-tombol-promo-nonaktif">Claim</a>
+        </div>
+        <div class="item-container">
+            <h3>Free Perkedel</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 16</p>
+            <a href="#" class="custom-tombol-promo-nonaktif">Claim</a>
+        </div>
+        <div class="item-container">
+            <h3>Free 2 Side Dish</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 20</p>
+            <a href="#" class="custom-tombol-promo-nonaktif">Claim</a>
+        </div>
+        <div class="item-container">
+            <h3>Free Sigulmer</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 24</p>
+            <a href="#" class="custom-tombol-promo-nonaktif">Claim</a>
+        </div>
+        <div class="item-container">
+            <h3>Free Paket Bantai</h3>
+            <p>Kupon dapat diclaim pada kunjungan ke 28</p>
+            <a href="#" class="custom-tombol-promo-nonaktif">Claim</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

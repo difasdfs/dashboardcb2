@@ -1,0 +1,62 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+  .padding-proyek{
+    padding-bottom: 10px;
+  }
+</style>
+<hr>
+<div class="container">
+    <div class="row">
+        {% include 'eksekutif/sidebar.html' %}
+        <div class="col">
+            <h1>Tugas</h1>
+            <br>
+            <h2 class="padding-proyek">Proyek</h2>
+
+            <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Judul</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Deadline</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for isi in tugas_proyek %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'detail_tugas_proyek' isi.id %}">{{isi.judul}}</a></td>
+                    <td>{{isi.status}}</td>
+                    <td>{{isi.deadline|time:"H:i"}}, {{isi.deadline|date:"d M Y"}}</td>
+                  </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+              <br>
+              <h2 class="padding-proyek">Rutin</h2>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Judul</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for isi in tugas_rutin %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{% url 'daftar_tugas_rutin' isi.id %}">{{isi.judul}}</a></td>
+                  </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+              <br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

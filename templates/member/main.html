@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <style>
+        /* The side navigation menu */
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 200px;
+            background-color: rgb(231, 231, 231);
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        /* Sidebar links */
+        .sidebar a {
+            display: block;
+            color: black;
+            padding: 16px;
+            text-decoration: none;
+        }
+
+        /* Active/current link */
+        .sidebar a.active {
+            background-color: #d20001;
+            color: white;
+        }
+
+        /* Links on mouse-over */
+        .sidebar a:hover:not(.active) {
+            background-color: #d20001;
+            opacity: 0.4;
+            color: white;
+        }
+
+        /* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+        div.content {
+            margin-left: 200px;
+            padding: 1px 16px;
+            height: 1000px;
+            background-color: #f3e29c;
+        }
+
+        body {
+            background-color: #f3e29c;
+            font-family: arial, helvetica, sans-serif;
+        }
+
+        /* On screens that are less than 700px wide, make the sidebar into a topbar */
+        @media screen and (max-width: 700px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .sidebar a {
+                float: left;
+            }
+
+            div.content {
+                margin-left: 0;
+            }
+        }
+
+        /* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+        @media screen and (max-width: 400px) {
+            .sidebar a {
+                text-align: center;
+                float: none;
+            }
+        }
+
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        hr {
+            margin-bottom: 20px;
+        }
+
+        .custom-tombol {
+            padding: 10px;
+            border-radius: 15px;
+            background-color: rgb(54, 156, 240);
+            color: rgb(255, 233, 233);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .custom-tombol:hover {
+            background-color: rgb(139, 187, 226)
+        }
+    </style>
+</head>
+
+<body>
+    <!-- The sidebar -->
+    {% if home %}
+    <div class="sidebar">
+        <a class="active" href="{% url 'index' %}">Home</a>
+        <a href="{% url 'ubah_akun_member' %}">Ubah Akun</a>
+        <a href="#" onclick="keluar()"><strong>Logout</strong></a>
+    </div>
+    {% elif ubah_akun_member %}
+    <div class="sidebar">
+        <a href="{% url 'index' %}">Home</a>
+        <a class="active" href="{% url 'ubah_akun_member' %}">Ubah Akun</a>
+        <a href="#" onclick="keluar()"><strong>Logout</strong></a>
+    </div>
+    {% endif %}
+
+    <!-- Page content -->
+    <div class="content">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+    <script>
+        function keluar() {
+            // alert('home ditekan');
+            if (confirm('Yakin ingin keluar ?')) {
+                window.location = '../logout/';
+            }
+        }
+    </script>
+</body>
+
+</html>

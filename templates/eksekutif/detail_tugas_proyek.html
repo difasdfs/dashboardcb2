@@ -1,0 +1,53 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<hr>
+<div class="container">
+    <div class="row">
+        
+      {% if sidebar_manager %}
+        {% include 'manager/sidebar.html' %}
+      {% else %}      
+        {% include 'eksekutif/sidebar.html' %}
+      {% endif %}
+      
+
+        <div class="col">
+            <h1>Detail</h1>
+            <br>
+            <table class="table table-striped">
+                <tbody>
+                  <tr>
+                    <th scope="row">Judul</th>
+                    <td>{{tugas.judul}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Isi</th>
+                    <td>{{tugas.isi|linebreaks}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Deadline</th>
+                    <td>{{tugas.deadline|time:"H:i"}}, {{tugas.deadline|date:"d M Y"}}</td>
+                  </tr>
+                  <tr>
+                      <th scope="row">Status</th>
+                      <td>{{tugas.status}}</td>
+                  </tr>
+                  {% if tuntas %}
+                  <tr>
+                    <th scope="row">Komentar</th>
+                    <td>{{tugas.komentar}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Penilaian</th>
+                    <td>{{tugas.penilaian}}</td>
+                </tr>
+                  {% endif %}
+                </tbody>
+              </table>
+              <a class="btn btn-primary" href="{% url 'upload_dokumentasi_tp' tugas.id %}" role="button">Selesai</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

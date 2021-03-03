@@ -1,0 +1,89 @@
+{% extends 'IT/main.html' %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid black;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: white;
+    }
+
+    th {
+        background-color: #d20001;
+        opacity: 0.7;
+        color: white;
+    }
+
+    .custom-table {
+        width: 80%;
+        margin-top: 20px;
+        margin-right: auto;
+    }
+
+    .tabel {
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<h1>Akun Member</h1>
+<hr>
+
+<a href="{% url 'buat_akun_member' %}" class="custom-tombol">Buat Akun Member</a>
+
+<div class="custom-table">
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Kode Pelanggan</th>
+                <th>QR Code</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in akun %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+
+                {% if a.keaktifan %}
+                <td><a href="{% url 'detail_akun_member' a.id %}">{{a.username}}</a></td>
+                {% else %}
+                <td>{{a.username}}</td>
+                {% endif %}
+
+                <td>{{a.password}}</td>
+                <td>{{a.customer_code}}</td>
+                <td><img src="../{{ a.link_qrcode }}" alt="{{a.customer_code}}"></td>
+
+                {% if a.keaktifan %}
+                <td>Aktif</td>
+                {% else %}
+                <td>Nonaktif</td>
+                {% endif %}
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

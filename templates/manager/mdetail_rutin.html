@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .kontainer-form{
+      width: 500px;
+    }
+  </style>
+  
+  <hr>
+  <div class="container">
+      <div class="row">
+          
+        {% if sidebar_ceo %}
+            {% include 'ceo/sidebar.html' %}
+        {% else %}
+            {% include 'manager/sidebar.html' %}
+        {% endif %}
+
+          <div class="col">
+                <h1>Detail Tugas</h1>
+
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Judul</th>
+                        <td>{{tugas.judul}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Isi</th>
+                        <td>{{tugas.isi|linebreaks}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Deadline</th>
+                        <td>{{tugas.deadline|time:"H:i"}} | {{tugas.deadline|date:"l, d M Y"}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>{{tugas.status}}</td>
+                    </tr>
+                    {% if tugas.bukti %}
+                    
+                    <tr>
+                        <th scope="row">Dokumen</th>
+                        <td><a href="{{tugas.bukti}}" target="_blank">Dokumen</a></td>
+                    </tr>
+
+                    {% else %}
+                    <tr>
+                        <th scope="row">Dokumen</th>
+                        <td>Belum ada dokumen yang diupload</td>
+                    </tr>
+                    {% endif %}
+
+                    {% if tuntas %}
+                    <tr>
+                        <th scope="row">Komentar</th>
+                        <td>{{tugas.komentar}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Penilaian</th>
+                        <td>{{tugas.penilaian}}</td>
+                    </tr>
+                    {% endif %}
+                
+                    </tbody>
+                </table>
+                <a class="btn btn-warning" href="{% url 'edit_tugas_rutin' tugas.id %}" role="button">Edit</a>
+                <span><a class="btn btn-primary" href="{% url 'rutin_tuntas' tugas.id %}" role="button">Tuntas</a></span>
+
+          </div>
+      </div>
+  </div>
+
+{% endblock %}

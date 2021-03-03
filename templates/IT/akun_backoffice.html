@@ -1,0 +1,65 @@
+{% extends 'IT/main.html' %}
+
+{% block content %}
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        overflow-x: auto;
+        border: 1px solid black;
+    }
+
+    th,
+    td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid black;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(odd) {
+        background-color: white;
+    }
+
+    th {
+        background-color: #d20001;
+        opacity: 0.7;
+        color: white;
+    }
+
+    .custom-table {
+        width: 80%;
+        margin-top: 20px;
+        margin-right: auto;
+    }
+</style>
+<h1>Akun Backoffice</h1>
+<hr>
+
+<a href="{% url 'buat_akun_backoffice' %}" class="custom-tombol">Buat Akun Backoffice</a>
+
+<div class="custom-table">
+
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama</th>
+                <th>Username</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in akun %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{a.first_name}}</td>
+                <td>{{a.username}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

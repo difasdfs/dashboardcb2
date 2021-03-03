@@ -1,0 +1,32 @@
+<style>
+    .custom-sidebar {
+        border: 1px solid #50323893;
+        margin: 5px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+    }
+
+    .header-sidebar{
+        margin: 6px;
+        /* text-decoration: underline; */
+    }
+</style>
+
+<div class="col-sm-2">
+    <div class="custom-sidebar">
+        <nav class="nav flex-column pl-1">
+            <a class="nav-link" href="{% url 'lihat_tugas' %}">Tugas Aktif</a>
+            <a class="nav-link" href="{% url 'lihat_tugas_tuntas' %}">Tugas Tuntas</a>
+            <a class="nav-link" href="{% url 'daftar_eksekutif' %}">Eksekutif</a>
+            <a class="nav-link" href="{% url 'registrasi_eksekutif' %}">Registrasi</a>
+        </nav>
+    </div>
+
+    <div class="custom-sidebar">
+        <h4 class="header-sidebar">Tugas CEO</h4>
+        <nav>
+            <a class="nav-link" href="{% url 'tugas_aktif_manager' %}">Tugas Aktif</a>
+            <a class="nav-link" href="{% url 'tugas_tuntas_manager' %}">Tugas Tuntas</a>
+        </nav>
+    </div>
+</div>

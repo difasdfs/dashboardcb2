@@ -1,0 +1,29 @@
+{% extends 'IT/main.html' %}
+
+{% block content %}
+    <h1>Detail Akun Memberr</h1>
+    <hr>
+    <ul>
+        <li>Username : {{detail_member.username}}</li>
+        <li>Password : {{detail_member.password}}</li>
+        <li>ID Loyverse : {{detail_member.id_loyverse}}</li>
+        <li>Nama : {{detail_member.nama}}</li>
+        <li>Email : {{detail_member.email}}</li>
+        <li>Nomor Telfon : {{detail_member.phone_number}}</li>
+        <li>Alamat : {{detail_member.address}}</li>
+        <li>Kota : {{detail_member.city}}</li>
+        <li>Region : {{detail_member.region}}</li>
+        <li>Kode Pos : {{detail_member.postal_code}}</li>
+        <li>Kode Negara : {{detail_member.country_code}}</li>
+        <li>Kode Pelanggan : {{detail_member.customer_code}}</li>
+        <li>Note : {{detail_member.note}}</li>
+        <li>First Visit : {{detail_member.first_visit}}</li>
+        <li>Last Visit : {{detail_member.last_visit}}</li>
+        <li>Total Visit : {{detail_member.total_visit}}</li>
+        <li>Total Spent : {{detail_member.total_spent}}</li>
+        <li>Total Points : {{detail_member.total_points}}</li>
+        <li>Created at : {{detail_member.created_at}}</li>
+        <li>Updated at : {{detail_member.updated_at}}</li>
+        <li>Deleted at : {{detail_member.deleted_at}}</li>
+    </ul>
+{% endblock %}

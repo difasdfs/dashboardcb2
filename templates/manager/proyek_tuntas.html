@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .kontainer-penilaian{
+        width: 500px;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        {% if sidebar_ceo %}
+            {% include 'ceo/sidebar.html' %}
+        {% else %}
+            {% include 'manager/sidebar.html' %}
+        {% endif %}
+
+        <div class="col">
+            <h1>Proyek Tuntas</h1>
+            
+            <br>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th scope="row">Judul</th>
+                    <td>{{tugas.judul}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Isi</th>
+                    <td>{{tugas.isi|linebreaks}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Deadline</th>
+                    <td>{{tugas.deadline|time:"H:i"}}, {{tugas.deadline|date:"d M Y"}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Status</th>
+                    <td>{{tugas.status}}</td>
+                </tr>
+                {% if belum %}
+                
+                <tr>
+                    <th scope="row">Dokumen</th>
+                    <td>Belum ada dokumen yang diupload</td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <th scope="row">Dokumen</th>
+                    <td><a href="{{tugas.bukti}}" target="_blank">Dokumen</a></td>
+                </tr>
+                {% endif %}
+                </tbody>
+            </table>
+            <br>
+            <h2>Penilaian</h2>
+
+            <div class="kontainer-penilaian">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="komentar">Komentar</label>
+                    <textarea class="form-control" id="komentar" name="komentar" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="penilaian">Penilaian (0-10)</label>
+                    <input type="number" class="form-control" id="penilaian" name="penilaian" min="0" max="10">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            </div>
+
+            <br><br><br><br><br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

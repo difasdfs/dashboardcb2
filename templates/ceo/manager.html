@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        {% include 'ceo/sidebar.html' %}
+
+        <div class="col">
+            <h1>Manager</h1>
+            <br>
+            <table class="table">
+                <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">Bagian</th>
+                      <th scope="col">Input Tugas</th>
+                      <th scope="col">Delete</th>
+                    </tr>
+                  </thead>
+                {% for ang in anggota %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <th>{{ang.first_name}}</th>
+                    <th>{{ang.last_name}}</th>
+                    <th><a class="btn btn-outline-primary" href="{% url 'input_tugas_proyek' ang.id %}" role="button">Proyek</a> <a class="btn btn-outline-info" href="{% url 'input_tugas_rutin' ang.id %}" role="button">Rutin</a></th> 
+                    <th><a href="#">Delete</a></th>
+                    
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+  .padding-proyek{
+    padding-bottom: 10px;
+  }
+</style>
+<hr>
+<div class="container">
+    <div class="row">
+      {% if sidebar_manager %}
+        {% include 'manager/sidebar.html' %}
+      {% else %}      
+        {% include 'eksekutif/sidebar.html' %}
+      {% endif %}
+        <div class="col">
+            
+            <h2 class="padding-proyek">Tugas Rutin</h2>
+            <table class="table table-striped">
+              <tbody>
+                <tr>
+                  <th scope="row">Judul</th>
+                  <td>{{judul}}</td>
+                </tr>
+                <tr>
+                  <th scope="row">Isi</th>
+                  <td>{{isi|linebreaks}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Deadline</th>
+                    <th scope="col">Status</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for isi in tugas_rutin %}
+                  <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{isi.deadline|time:"H:i"}}, {{isi.deadline|date:"d M Y"}}</td>
+                    <td>{{isi.status}}</td>
+                    <td><a class="btn btn-warning" href="{% url 'upload_dokumentasi_tr' isi.id %}" role="button">Selesai</a></td>
+                  </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+              <br><br><br><br><br><br><br><br>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
