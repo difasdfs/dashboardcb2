@@ -13,6 +13,7 @@ class TugasProyek(models.Model):
         ('On Progress', 'On Progress'),
         ('Selesai', 'Selesai'),
         ('Deadline', 'Deadline'),
+        ('Terlambat', 'Terlambat')
     )
 
     pemilik_tugas = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -24,6 +25,8 @@ class TugasProyek(models.Model):
     penilaian = models.IntegerField(null=True)
     bagian = models.CharField(max_length = 100, null=True)
     komentar = models.CharField(max_length=1000)
+    selesai_pada = models.DateTimeField('Selesai pada', null=True)
+    link_bukti = models.CharField(max_length=1000, null=True)
 
     def __str__(self):
         return self.judul

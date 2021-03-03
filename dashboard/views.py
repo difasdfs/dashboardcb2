@@ -419,9 +419,18 @@ def mdetail_proyek(request, id_tugas):
     t = TugasProyek.objects.get(pk=id_tugas)
     dokumennya = t.bukti
 
+    if (t.status == 'Tuntas'):
+        nottuntas = False
+    else:
+        nottuntas = True
+
     ceo = request.user.groups.filter(name='CEO').exists()
 
-    context = {'nama' : nama, 'tugas' : t, 'dokumen' : dokumennya}
+    context = {'nama' : nama,
+                'tugas' : t,
+                'dokumen' : dokumennya,
+                'nottuntas' : nottuntas
+                }
 
     if ceo:
         context['sidebar_ceo'] = True
@@ -433,6 +442,9 @@ def mdetail_proyek(request, id_tugas):
         context['belum'] = True
     if t.status == 'Tuntas':
         context['tuntas'] = True
+
+    if not t.link_bukti == '#':
+        context['ada_link'] = True
 
     return render(request, 'manager/mdetail_proyek.html', context)
 
@@ -447,13 +459,17 @@ def tuntas(request, id_tugas):
         t.status = 'Tuntas'
         t.save()
 
-        return mdetail_proyek(request, id_tugas)
+        return redirect('lihat_tugas')
 
     nama = request.user.first_name
     t = TugasProyek.objects.get(pk=id_tugas)
     dokumennya = t.bukti
 
-    context = {'nama' : nama, 'tugas' : t, 'dokumen' : dokumennya}
+    context = {'nama' : nama, 
+                'tugas' : t,
+                'dokumen' : dokumennya,
+                'tuntas' : tuntas
+                }
 
     ceo = request.user.groups.filter(name='CEO').exists()
 
@@ -707,15 +723,24 @@ def upload_dokumentasi_tp(request, id_tugas):
     if request.method == 'POST':
 
         t = TugasProyek.objects.get(pk=id_tugas)
+
+        if request.POST.get('pilihan') == 'dokumen':
+            uploaded_file = request.FILES['dokumen']
+            fs = FileSystemStorage()
+            nama = fs.save(uploaded_file.name, uploaded_file)
+            alamat = fs.url(nama)
+            t.bukti = alamat
+            t.link_bukti = '#'
+        else:
+            t.link_bukti = request.POST.get('linkbukti')       
         
-        uploaded_file = request.FILES['dokumen']
-        fs = FileSystemStorage()
-        nama = fs.save(uploaded_file.name, uploaded_file)
+        t.selesai_pada = datetime.now()
 
-        alamat = fs.url(nama)
+        if t.status == 'Deadline':
+            t.status = 'Terlambat'
+        else:
+            t.status = 'Selesai'
 
-        t.bukti = alamat
-        t.status = 'Selesai'
         t.save()
         if manager:
             return redirect('tugas_aktif_manager')
@@ -748,7 +773,13 @@ def upload_dokumentasi_tr(request, id_tugas):
         alamat = fs.url(nama)
 
         t.bukti = alamat
-        t.status = 'Selesai'
+        t.selesai_pada = datetime.now()
+        
+        if t.status == 'Deadline':
+            t.status = 'Terlambat'
+        else:
+            t.status = 'Selesai'
+        
         t.save()
 
         if manager:
