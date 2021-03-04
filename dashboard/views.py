@@ -426,6 +426,9 @@ def mdetail_rutin(request, id_tugas):
     if t.status == 'Tuntas':
         context['tuntas'] = True
 
+    if not (t.link_bukti == '#') or (t.link_bukti == None):
+        context['ada_link'] = True
+
     return render(request, 'manager/mdetail_rutin.html', context)
 
 

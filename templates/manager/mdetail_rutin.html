@@ -52,6 +52,13 @@
                     </tr>
                     {% endif %}
 
+                    {% if ada_link %}
+                    <tr>
+                        <th scope="row">Link</th>
+                        <td><a href="{{tugas.link_bukti}}" target="_blank">Link</a></td>
+                    </tr>
+                    {% endif %}
+
                     {% if tuntas %}
                     <tr>
                         <th scope="row">Komentar</th>
