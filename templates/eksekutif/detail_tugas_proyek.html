@@ -45,7 +45,10 @@
                   {% endif %}
                 </tbody>
               </table>
+
+              {% if nottuntas %}
               <a class="btn btn-primary" href="{% url 'upload_dokumentasi_tp' tugas.id %}" role="button">Selesai</a>
+              {% endif %}
         </div>
     </div>
 
