@@ -18,6 +18,12 @@
         {% endif %}
         <div class="col">
             <h1>Upload Dokumentasi</h1>
+            <br>
+            <p>Pilihan bukti:</p>
+            <ul>
+                <li><a href="#" id="inilink">Link</a></li> 
+                <li><a href="#" id="inidokumen">Dokumen</a></li>
+            </ul>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
             <div id="demo"></div>
