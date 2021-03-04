@@ -7,6 +7,7 @@ from django.core.files.storage import FileSystemStorage
 
 from .decorators import unauthenticated_user
 from .logic import *
+from .hskor import hitungskor
 from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan
 
 from django.utils import timezone
@@ -1121,22 +1122,3 @@ def ngecekdeadline():
 
 def apa_manager(user):
     return user.groups.filter(name='Manager').exists()
-
-def hitungskor(user_id):
-	pemilik = User.objects.get(id=user_id)
-	tp = TugasProyek.objects.filter(pemilik_tugas=pemilik)
-	tr = TugasRutin.objects.filter(pemilik_tugas=pemilik)
-
-	total_skor_rutin = 0
-	for rutin in tr:
-		isi_tr = IsiTugasRutin.objects.filter(tugas_rutin = rutin)
-		for isi in isi_tr:
-			if isi.status == 'Tuntas':
-			    total_skor_rutin += isi.penilaian		
-
-	total_skor_proyek = 0
-	for tugas_proyek in tp:
-		if tugas_proyek.status == 'Tuntas':
-		    total_skor_proyek += tugas_proyek.penilaian
-
-	return total_skor_rutin + total_skor_proyek
