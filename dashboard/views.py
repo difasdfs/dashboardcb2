@@ -1139,4 +1139,4 @@ def hitungskor(user_id):
 		if tugas_proyek.status == 'Tuntas':
 			total_skor_proyek += tugas_proyek.penilaian
 	
-	return total_skor_proyek + total_skor_rutin
+	return (total_skor_proyek + total_skor_rutin)/(len(tp) + len(tr))
