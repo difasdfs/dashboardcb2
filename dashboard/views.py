@@ -791,11 +791,13 @@ def detail_tugas_proyek(request, id_tugas):
     manager = request.user.groups.filter(name='Manager').exists()
 
     context = {'nama' : nama, 'tugas' : t}
+    context['nottuntas'] = True
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
     if t.status == 'Tuntas':
         context['tuntas'] = True
+        context['nottuntas'] = False
     
     if manager:
         context['sidebar_manager'] = True
