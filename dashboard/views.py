@@ -791,10 +791,10 @@ def upload_dokumentasi_tr(request, id_tugas):
     if request.method == 'POST':
 
         t = IsiTugasRutin.objects.get(pk=id_tugas)
+        fs = FileSystemStorage()
 
         if request.POST.get('pilihan') == 'dokumen':
             uploaded_file = request.FILES['dokumen']
-            fs = FileSystemStorage()
             nama = fs.save(uploaded_file.name, uploaded_file)
             alamat = fs.url(nama)
             t.bukti = alamat
