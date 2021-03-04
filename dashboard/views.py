@@ -106,12 +106,24 @@ def klasemen(request):
 
     for a in usr:
         if a.id not in id_terlarang:
-            user.append((a,hitungskor(a.id)))
+            user.append(a)
 
-    user.sort(key=lambda tup: tup[1])
-    user = user[::-1]
+    id_orang_office = [6,3,23,25,8,22,2,24,4,31,21]
+    orang_office = []
+    non_office = []
 
-    context = {'bagian': bagian, 'nama': nama, 'usr' : user}
+    for a in user:
+        if a.id in id_orang_office:
+            orang_office.append( (a, hitungskor(a.id) ) )
+        else:
+            non_office.append( (a, hitungskor(a.id) ) )
+
+    orang_office.sort(key=lambda tup: tup[1])
+    non_office.sort(key=lambda tup: tup[1])
+    orang_office = orang_office[::-1]
+    non_office = non_office[::-1]
+
+    context = {'bagian': bagian, 'nama': nama, 'orang_office' : orang_office, 'non_office': non_office}
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
