@@ -12,8 +12,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <style>
-        .lebartabel{
-            width: 60%;
+        .kotak-flex{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .tabel1{
+            
+        }
+        .tabel2{
+            
         }
     </style>
 </head>
@@ -26,22 +34,45 @@
         <hr>
         <h1>Klasemen</h1>
         <br>
-    <table class="table lebartabel">
-    <thead>
-        <tr>
-          <th scope="col">Rank</th>
-          <th scope="col">Nama</th>
-          <th scope="col">Nilai Akhir</th>
-        </tr>
-    </thead>
-        {% for user in usr %}
-        <tr>
-            <th scope="row">{{forloop.counter}}</th>
-            <th>{{user.0.first_name}}</th>
-            <th>{{user.1}}</th>        
-        </tr>
-        {% endfor %}
-    </table>
+        <div class="kotak-flex">
+            <div class="tabel1">
+                <table class="table lebartabel">
+                    <thead>
+                        <tr>
+                          <th scope="col">Rank</th>
+                          <th scope="col">Nama</th>
+                          <th scope="col">Nilai Akhir</th>
+                        </tr>
+                    </thead>
+                        {% for user in orang_office %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <th>{{user.0.first_name}}</th>
+                            <th>{{user.1}}</th>        
+                        </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+            <div class="tabel2">
+                <table class="table lebartabel">
+                    <thead>
+                        <tr>
+                          <th scope="col">Rank</th>
+                          <th scope="col">Nama</th>
+                          <th scope="col">Nilai Akhir</th>
+                        </tr>
+                    </thead>
+                        {% for user in non_office %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <th>{{user.0.first_name}}</th>
+                            <th>{{user.1}}</th>        
+                        </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+        </div>
+    
     </div>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
