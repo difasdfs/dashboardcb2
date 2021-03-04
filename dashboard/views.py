@@ -799,12 +799,11 @@ def upload_dokumentasi_tr(request, id_tugas):
             alamat = fs.url(nama)
             t.bukti = alamat
             t.link_bukti = '#'
+            alamat = fs.url(nama)
+            t.bukti = alamat
         else:
             t.link_bukti = request.POST.get('linkbukti')
 
-        alamat = fs.url(nama)
-
-        t.bukti = alamat
         t.selesai_pada = datetime.now()
         
         if t.status == 'Deadline':
