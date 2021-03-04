@@ -12,23 +12,27 @@
 <div class="container">
     <div class="row">
         {% if sidebar_manager %}
-	{% include 'manager/sidebar.html' %}
-{% else %}      
-        {% include 'eksekutif/sidebar.html' %}
-{% endif %}
+            {% include 'manager/sidebar.html' %}
+        {% else %}      
+            {% include 'eksekutif/sidebar.html' %}
+        {% endif %}
         <div class="col">
             <h1>Upload Dokumentasi</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                <br>
-                <div class="form-group kontainer-form">
-                    <label for="dokumen">Dokumen</label>
-                    <input type="file" class="form-control" id="dokumen" name="dokumen">
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+            <div id="demo"></div>
             </form>
         </div>
     </div>
 
+    <script>
+        document.getElementById("inilink").addEventListener("click", function() {
+        document.getElementById("demo").innerHTML = '<div class="form-group kontainer-form"><label for="linkbukti">Link:</label><input type="text" class="form-control" id="linkbukti" name="linkbukti"><input type="hidden" value="link" name="pilihan" /></div><button type="submit" class="btn btn-primary">Submit</button>';
+        });
+    
+        document.getElementById("inidokumen").addEventListener("click", function() {
+        document.getElementById("demo").innerHTML = '<div class="form-group kontainer-form"><label for="dokumen">Dokumen</label><input type="file" class="form-control" id="dokumen" name="dokumen"><input type="hidden" value="dokumen" name="pilihan" /></div><button type="submit" class="btn btn-primary">Submit</button>';
+        });
+    </script>
 </div>
 {% endblock %}

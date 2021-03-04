@@ -1,6 +1,0 @@
-- bikin front end kuantitas buat manager
-- bikin modelsnya
-- bikin logika backendnya
-- bikin front end lihat tugas
-- tambahin selesai pada di semua tugas
-- alur tugas benerin ya!
