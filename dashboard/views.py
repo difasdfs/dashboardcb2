@@ -1126,8 +1126,6 @@ def hitungskor(user_id):
 	pemilik = User.objects.get(id=user_id)
 	tp = TugasProyek.objects.filter(pemilik_tugas=pemilik)
 	tr = TugasRutin.objects.filter(pemilik_tugas=pemilik)
-	
-    # tugas_rutin = [a for a in tr]
 
 	total_skor_rutin = 0
 	for rutin in tr:
@@ -1139,11 +1137,6 @@ def hitungskor(user_id):
 	total_skor_proyek = 0
 	for tugas_proyek in tp:
 		if tugas_proyek.status == 'Tuntas':
-			total_skor_proyek += tugas_proyek.penilaian
-	
-    if (total_skor_rutin == 0) or (total_skor_proyek == 0):
-        hasil = 0
-    else:
-        hasil = (total_skor_proyek + total_skor_rutin)/(len(tp) + len(tr))
+		    total_skor_proyek += tugas_proyek.penilaian
 
-	return hasil
+	return total_skor_rutin + total_skor_proyek
