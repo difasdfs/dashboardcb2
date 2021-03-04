@@ -31,6 +31,7 @@ urlpatterns = [
     path('progress_tugas_rutin/<int:id_tugas>', views.progress_tugas_rutin, name='progress_tugas_rutin'),
     path('tugas_aktif_manager/', views.tugas_aktif_manager, name="tugas_aktif_manager"),
     path('tugas_tuntas_manager/', views.tugas_tuntas_manager, name='tugas_tuntas_manager'),
+    path('duplikasi_tugas_proyek/<int:id_tugas>', views.duplikasi_tugas_proyek, name='duplikasi_tugas_proyek'),
     
     # EKSEKUTIF
     path('eksekutif/', views.eksekutif, name='eksekutif'),

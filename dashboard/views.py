@@ -478,7 +478,6 @@ def mdetail_proyek(request, id_tugas):
 
     return render(request, 'manager/mdetail_proyek.html', context)
 
-
 @login_required(login_url='login')
 def tuntas(request, id_tugas):
     
@@ -588,6 +587,52 @@ def edit_tugas_proyek(request, id_tugas):
         context['deadline'] = True
 
     return render(request, 'manager/edit_tugas_proyek.html', context)
+
+@login_required(login_url='login')
+def duplikasi_tugas_proyek(request, id_tugas):
+    
+    ceo = request.user.groups.filter(name='CEO').exists()
+    tugas = TugasProyek.objects.get(pk=id_tugas)
+
+    if request.method == 'POST':
+        data_judul = request.POST.get('judul')
+        data_isi = request.POST.get('isi')
+        data_deadline = request.POST.get('deadline')
+        pemilik = tugas.pemilik_tugas
+        
+        if ceo:
+            t = TugasProyek(
+                pemilik_tugas = pemilik,
+                judul = data_judul,
+                isi = data_isi,
+                deadline = data_deadline,
+                status = 'On Progress',
+                bagian = 'Management',
+                bukti = '#'
+            )
+        else:
+            t = TugasProyek(
+                pemilik_tugas = pemilik,
+                judul = data_judul,
+                isi = data_isi,
+                deadline = data_deadline,
+                status = 'On Progress',
+                bagian = request.user.last_name,
+                bukti = '#'
+            )
+        t.save()
+
+        return redirect('lihat_tugas')
+
+    nama = request.user.first_name
+    context = {'nama' : nama, 'tugas' : tugas}
+    if ceo:
+        context['sidebar_ceo'] = True
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True   
+
+    return render(request, 'manager/duplikasi_tugas_proyek.html', context)
 
 
 @login_required(login_url='login')
