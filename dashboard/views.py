@@ -633,6 +633,8 @@ def edit_tugas_proyek(request, id_tugas):
         context['selesai'] = True
     elif t.status == 'Deadline':
         context['deadline'] = True
+    elif t.status == 'Terlambat':
+        context['terlambat'] = True
 
     return render(request, 'manager/edit_tugas_proyek.html', context)
 
@@ -778,7 +780,7 @@ def daftar_tugas(request):
     ngecekdeadline()
     objek_user = User.objects.get(pk=request.user.id)
     t = TugasProyek.objects.filter(pemilik_tugas=objek_user).order_by('deadline').exclude(status="Tuntas")
-    tr = TugasRutin.objects.filter(pemilik_tugas=objek_user)
+    tr = TugasRutin.objects.filter(pemilik_tugas=objek_user).order_by('-id')
 
     context = {'nama' : nama, 'tugas_proyek' : t, 'tugas_rutin':tr}
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
@@ -926,7 +928,7 @@ def upload_dokumentasi_tr(request, id_tugas):
 
     return render(request, 'eksekutif/upload_dokumentasi_tr.html', context)
 
-    # ---------------------- DATA KARYAWAN -----------------------
+# ---------------------- DATA KARYAWAN -----------------------
 
 @login_required(login_url='login')
 def data_karyawan(request):
