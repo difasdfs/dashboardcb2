@@ -373,11 +373,11 @@ def lihat_tugas(request):
     # tugas proyek
 
     if ceo:
-        tp = TugasProyek.objects.filter(bagian='Management').exclude(status='Tuntas')
-        tr = TugasRutin.objects.filter(bagian='Management')
+        tp = TugasProyek.objects.filter(bagian='Management').exclude(status='Tuntas').order_by('-id')
+        tr = TugasRutin.objects.filter(bagian='Management').order_by('-id')
     else:
-        tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas')
-        tr = TugasRutin.objects.filter(bagian=request.user.last_name)
+        tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas').order_by('-id')
+        tr = TugasRutin.objects.filter(bagian=request.user.last_name).order_by('-id')
 
     context['tugas_proyek'] = tp
     context['tugas_rutin'] = tr
