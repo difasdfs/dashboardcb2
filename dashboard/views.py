@@ -399,9 +399,9 @@ def lihat_tugas_tuntas(request):
         context['data_kar'] = True
     
     if ceo:
-        tp = TugasProyek.objects.filter(bagian='Management', status='Tuntas')
+        tp = TugasProyek.objects.filter(bagian='Management', status='Tuntas').order_by('-id')
     else:
-        tp = TugasProyek.objects.filter(bagian=request.user.last_name, status='Tuntas')
+        tp = TugasProyek.objects.filter(bagian=request.user.last_name, status='Tuntas').order_by('-id')
     
     banyak_data_per_page = 10
     p = Paginator(tp, banyak_data_per_page)
@@ -419,6 +419,13 @@ def lihat_tugas_tuntas(request):
     # tr = TugasRutin.objects.filter(bagian=request.user.last_name, status='Tuntas')
     context['tugas_proyek'] = page
     # context['tugas_rutin'] = tr
+
+    # KHUSUS TUGAS RUTIN YANG UDAH TUNTAS
+    if ceo:
+        tr = TugasRutin.objects.filter(bagian='Management', status='Tuntas').order_by('-id')
+    else:
+        tr = TugasRutin.objects.filter(bagian=request.user.last_name).order_by('-id')
+    context['tugas_rutin'] = tr
 
     return render(request, 'manager/lihat_tugas_tuntas.html', context)
 
@@ -440,7 +447,7 @@ def progress_tugas_rutin(request, id_tugas):
     # objek tugas rutin
     t = TugasRutin.objects.get(pk=id_tugas)
 
-    tr = IsiTugasRutin.objects.filter(tugas_rutin=t)
+    tr = IsiTugasRutin.objects.filter(tugas_rutin=t).exclude(status='Tuntas')
     context['tugas_rutin'] = tr
     context['judul'] = t.judul
     context['isi'] = t.isi
