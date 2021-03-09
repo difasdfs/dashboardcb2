@@ -102,7 +102,7 @@ def klasemen(request):
     bagian = request.user.last_name
     usr = User.objects.all()
 
-    id_terlarang = [1, 5, 17, 18, 19]
+    id_terlarang = [1, 5, 17, 18, 19, 21]
     user = []
 
     for a in usr:
