@@ -756,7 +756,7 @@ def daftar_tugas(request):
 
     ngecekdeadline()
     objek_user = User.objects.get(pk=request.user.id)
-    t = TugasProyek.objects.filter(pemilik_tugas=objek_user).exclude(status="Tuntas")
+    t = TugasProyek.objects.filter(pemilik_tugas=objek_user).order_by('deadline').exclude(status="Tuntas")
     tr = TugasRutin.objects.filter(pemilik_tugas=objek_user)
 
     context = {'nama' : nama, 'tugas_proyek' : t, 'tugas_rutin':tr}
