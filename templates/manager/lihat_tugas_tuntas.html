@@ -18,14 +18,11 @@
         {% endif %}
 
           <div class="col">
-              <h1>Tugas</h1>
-              <br><br>
               <h2>Tugas Proyek</h2>
 
                 <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Tugas</th>
                         <th scope="col">Status</th>
@@ -34,7 +31,6 @@
                 </thead>
                 {% for isi in tugas_proyek %}
                 <tr>
-                    <th scope="row">{{forloop.counter}}</th>
                     <th>{{isi.pemilik_tugas.first_name}}</th>
                     <th><a href="{% url 'mdetail_proyek' isi.id %}">{{isi.judul}}</a></th> 
                     <th>{{isi.status}}</th>
@@ -42,6 +38,19 @@
                 </tr>
                 {% endfor %}
                 </table>
+                <ul class="pagination">
+                    {% for i in banyak_halaman %}
+                        {% if i == halaman_aktif %}
+                        <li class="page-item active">
+                            <a class="page-link" href="?page={{i}}">{{i}}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{i}}">{{i}}</a>
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
                 <br><br>
               <h2>Tugas Rutin</h2>
 
