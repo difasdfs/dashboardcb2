@@ -28,6 +28,7 @@ class TugasProyek(models.Model):
     selesai_pada = models.DateTimeField('Selesai pada', null=True)
     link_bukti = models.CharField(max_length=1000, null=True)
     archive = models.BooleanField(null=True, default=False)
+    ketuntasan = models.BooleanField(null=True, default=False)
 
     def __str__(self):
         return self.judul
@@ -59,6 +60,7 @@ class IsiTugasRutin(models.Model):
     komentar = models.CharField(max_length=1000)
     link_bukti = models.CharField(max_length=1000, null=True)
     selesai_pada = models.DateTimeField('Selesai pada', null=True)
+    ketuntasan = models.BooleanField(null=True, default=False)
 
     judul = models.CharField(max_length=150, null=True)
     isi = models.CharField(max_length=1000, null=True)

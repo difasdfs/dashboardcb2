@@ -250,7 +250,8 @@ def input_tugas_proyek(request, id_eksekutif):
                 deadline = data_deadline,
                 status = 'On Progress',
                 bagian = 'Management',
-                bukti = '#'
+                bukti = '#',
+                ketuntasan = False
             )
         else:
             t = TugasProyek(
@@ -260,7 +261,8 @@ def input_tugas_proyek(request, id_eksekutif):
                 deadline = data_deadline,
                 status = 'On Progress',
                 bagian = request.user.last_name,
-                bukti = '#'
+                bukti = '#',
+                ketuntasan = False
             )
         t.save()
         return redirect('lihat_tugas')
@@ -323,7 +325,8 @@ def input_tugas_rutin(request, id_eksekutif):
                     deadline = tanggal,
                     status = statusnya,
                     judul = data_judul,
-                    isi = data_isi
+                    isi = data_isi,
+                    ketuntasan = False
                 )
 
                 isitgs_rutin.save()
@@ -536,7 +539,10 @@ def tuntas(request, id_tugas):
         t = TugasProyek.objects.get(pk=id_tugas)
         t.komentar = request.POST.get('komentar')
         t.penilaian = request.POST.get('penilaian')
-        if not (t.status == 'Terlambat'):
+        t.ketuntasan = True
+        if (t.status == 'Terlambat'):
+            t.status = 'Terlambat'
+        else:
             t.status = 'Tuntas'
         t.save()
 
@@ -573,7 +579,11 @@ def rutin_tuntas(request, id_tugas):
         t = IsiTugasRutin.objects.get(pk=id_tugas)
         t.komentar = request.POST.get('komentar')
         t.penilaian = request.POST.get('penilaian')
-        t.status = 'Tuntas'
+        t.ketuntasan = True
+        if (t.status == 'Terlambat'):
+            t.status = 'Terlambat'
+        else:
+            t.status = 'Tuntas'
         t.save()
 
         return mdetail_rutin(request, id_tugas)
