@@ -536,7 +536,8 @@ def tuntas(request, id_tugas):
         t = TugasProyek.objects.get(pk=id_tugas)
         t.komentar = request.POST.get('komentar')
         t.penilaian = request.POST.get('penilaian')
-        t.status = 'Tuntas'
+        if not (t.status == 'Terlambat'):
+            t.status = 'Tuntas'
         t.save()
 
         return redirect('lihat_tugas')
