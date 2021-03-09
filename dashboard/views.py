@@ -114,11 +114,14 @@ def klasemen(request):
     non_office = []
 
     for a in user:
+        skor = hitungskor(a.id)[0]
+        total_tugas_tuntas = hitungskor(a.id)[1]
         if a.id in id_orang_office:
-            orang_office.append( (a, hitungskor(a.id) ) )
+            orang_office.append( (a, skor, total_tugas_tuntas ) )
         else:
-            non_office.append( (a, hitungskor(a.id) ) )
+            non_office.append( (a, skor, total_tugas_tuntas ) )
 
+    print(orang_office)
     orang_office.sort(key=lambda tup: tup[1])
     non_office.sort(key=lambda tup: tup[1])
     orang_office = orang_office[::-1]
