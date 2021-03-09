@@ -428,7 +428,7 @@ def lihat_tugas_tuntas(request):
 
     # KHUSUS TUGAS RUTIN YANG UDAH TUNTAS
     if ceo:
-        tr = TugasRutin.objects.filter(bagian='Management', status='Tuntas').order_by('-id')
+        tr = TugasRutin.objects.filter(bagian='Management').order_by('-id')
     else:
         tr = TugasRutin.objects.filter(bagian=request.user.last_name).order_by('-id')
     context['tugas_rutin'] = tr
