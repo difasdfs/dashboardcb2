@@ -49,6 +49,10 @@ urlpatterns = [
     path('lihat_tugas/', views.lihat_tugas, name='lihat_tugas'),
     path('lihat_tugas_tuntas/', views.lihat_tugas_tuntas, name='lihat_tugas_tuntas'),
     
+    # SISTEM SP OTOMATIS
+    path('index_sp/', views.index_sp, name='index_sp'),
+    path('input_so/', views.input_sp, name='input_sp'),
+
     # DATA KARYAWAN
     path('data_karyawan/', views.data_karyawan, name='data_karyawan'),
     path('tambah_data_karyawan/', views.tambah_data_karyawan, name='tambah_data_karyawan'),

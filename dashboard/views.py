@@ -134,6 +134,38 @@ def klasemen(request):
 
     return render(request, 'klasemen.html', context)
 
+# ------------------------------- SP ----------------------------------
+
+@login_required(login_url='login')
+def index_sp(request):
+    ngecekdeadline()
+
+    nama = request.user.first_name
+    context = {
+        'nama': nama,
+        'data_kar' : True,
+    }
+
+    if request.user.groups.filter(name='Eksekutif').exists():
+        context['data_kar'] = False
+        return redirect('logout')
+
+    return render(request, 'sp/index.html', context)
+
+@login_required(login_url='login')
+def input_sp(request):
+    nama = request.user.first_name
+    context = {
+        'nama': nama,
+        'data_kar' : True,
+    }
+
+    if request.user.groups.filter(name='Eksekutif').exists():
+        context['data_kar'] = False
+        return redirect('logout')
+
+    return render(request, 'sp/input_sp.html', context)
+
 # ------------------------------- CEO ----------------------------------
 
 @login_required(login_url='login')
