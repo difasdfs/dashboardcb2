@@ -29,7 +29,8 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Tugas</th>
                         <th scope="col">Status</th>
-                        <th scode="col">Deadline</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 {% for isi in tugas_proyek %}
@@ -39,6 +40,7 @@
                     <th><a href="{% url 'mdetail_proyek' isi.id %}">{{isi.judul}}</a></th> 
                     <th>{{isi.status}}</th>
                     <th>{{isi.deadline|time:"H:i"}}, {{isi.deadline|date:"d M Y"}}</th>
+                    <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_proyek' isi.id %}">Archive</a></th>
                 </tr>
                 {% endfor %}
                 </table>
@@ -51,6 +53,7 @@
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
                         <th scope="col">Tugas</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     {% for isi in tugas_rutin %}
@@ -58,6 +61,7 @@
                         <th scope="row">{{forloop.counter}}</th>
                         <th>{{isi.pemilik_tugas.first_name}}</th>
                         <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
+                        <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
                     </tr>
                     {% endfor %}
                 </table>
