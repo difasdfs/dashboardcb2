@@ -16,16 +16,13 @@
                       <th scope="col">No</th>
                       <th scope="col">Nama</th>
                       <th scope="col">Input Tugas</th>
-                      <th scope="col">Delete</th>
                     </tr>
                   </thead>
                 {% for ang in anggota %}
                 <tr>
                     <th scope="row">{{forloop.counter}}</th>
                     <th>{{ang.first_name}}</th>
-                    <th><a class="btn btn-outline-primary" href="{% url 'input_tugas_proyek' ang.id %}" role="button">Proyek</a> <a class="btn btn-outline-info" href="{% url 'input_tugas_rutin' ang.id %}" role="button">Rutin</a></th> 
-                    <th><a href="{% url 'delete_eksekutif' ang.id %}">Delete</a></th>
-                    
+                    <th><a class="btn btn-outline-primary" href="{% url 'input_tugas_proyek' ang.id %}" role="button">Proyek</a> <a class="btn btn-outline-info" href="{% url 'input_tugas_rutin' ang.id %}" role="button">Rutin</a></th>                     
                 </tr>
                 {% endfor %}
             </table>
