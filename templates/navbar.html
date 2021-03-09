@@ -25,6 +25,11 @@
                 <li class="nav-item">
                     <a href="{% url 'klasemen' %}" class="nav-link">Klasemen</a>
                 </li>
+                {% if data_kar %}
+                <li>
+                    <a href="{% url 'index_sp' %}" class="nav-link">Sistem SP</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
         <span class="hello-msg">Halo, {{nama}}</span>
