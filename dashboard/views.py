@@ -794,6 +794,23 @@ def eksekusi_archive_rutin(request, id_tugas):
     
     return redirect('lihat_tugas')
 
+def kembalikan_archive_proyek(request, id_tugas):
+
+    tp = TugasProyek.objects.get(pk=id_tugas)
+    tp.archive = False
+    tp.save()
+
+    return redirect('archive_tugas')
+
+def kembalikan_archive_rutin(request, id_tugas):
+
+    tr = TugasRutin.objects.get(pk=id_tugas)
+    tr.archive = False
+    tr.save()
+    
+    return redirect('archive_tugas')
+
+
 # --------------------------- eksekutif ----------------------------------
 
 @login_required(login_url='login')
