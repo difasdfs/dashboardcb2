@@ -4,6 +4,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, Group
 from django.core.files.storage import FileSystemStorage
+from django.core.paginator import Paginator, EmptyPage
 
 from .decorators import unauthenticated_user
 from .logic import *
@@ -402,8 +403,21 @@ def lihat_tugas_tuntas(request):
     else:
         tp = TugasProyek.objects.filter(bagian=request.user.last_name, status='Tuntas')
     
+    banyak_data_per_page = 10
+    p = Paginator(tp, banyak_data_per_page)
+    page_num = request.GET.get('page', 1)
+
+    try:
+	    page = p.page(page_num)
+    except EmptyPage:
+	    page = p.page(1)
+
+    banyak_halaman = [str(a+1) for a in range(p.num_pages)]
+    context['banyak_halaman'] = banyak_halaman
+    context['halaman_aktif'] = str(page_num)
+
     # tr = TugasRutin.objects.filter(bagian=request.user.last_name, status='Tuntas')
-    context['tugas_proyek'] = tp
+    context['tugas_proyek'] = page
     # context['tugas_rutin'] = tr
 
     return render(request, 'manager/lihat_tugas_tuntas.html', context)
