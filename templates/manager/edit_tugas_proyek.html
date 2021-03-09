@@ -48,6 +48,7 @@
                           <option value="On Progress">On Progress</option>
                           <option value="Selesai">Selesai</option>
                           <option value="Deadline">Deadline</option>
+                          <option value="Terlambat">Terlambat</option>
                         </select>
                     </div>
                     {% endif %}
@@ -61,6 +62,7 @@
                           <option value="On Progress">On Progress</option>
                           <option value="Selesai">Selesai</option>
                           <option value="Deadline">Deadline</option>
+                          <option value="Terlambat">Terlambat</option>
                         </select>
                     </div>
                     {% endif %}
@@ -74,6 +76,7 @@
                           <option value="On Progress" selected>On Progress</option>
                           <option value="Selesai">Selesai</option>
                           <option value="Deadline">Deadline</option>
+                          <option value="Terlambat">Terlambat</option>
                         </select>
                     </div>
                     {% endif %}
@@ -87,6 +90,7 @@
                           <option value="On Progress">On Progress</option>
                           <option value="Selesai" selected>Selesai</option>
                           <option value="Deadline">Deadline</option>
+                          <option value="Terlambat">Terlambat</option>
                         </select>
                     </div>
                     {% endif %}
@@ -100,6 +104,21 @@
                           <option value="On Progress">On Progress</option>
                           <option value="Selesai">Selesai</option>
                           <option value="Deadline" selected>Deadline</option>
+                          <option value="Terlambat">Terlambat</option>
+                        </select>
+                    </div>
+                    {% endif %}
+
+                    {% if terlambat %}
+                    <div class="form-group">
+                        <label for="status">Status :</label>
+                        <select id="status" name="status" class="form-control">
+                          <option value="Tuntas">Tuntas</option>
+                          <option value="Hold">Hold</option>
+                          <option value="On Progress">On Progress</option>
+                          <option value="Selesai">Selesai</option>
+                          <option value="Deadline">Deadline</option>
+                          <option value="Terlambat" selected>Terlambat</option>
                         </select>
                     </div>
                     {% endif %}
