@@ -27,6 +27,7 @@ class TugasProyek(models.Model):
     komentar = models.CharField(max_length=1000)
     selesai_pada = models.DateTimeField('Selesai pada', null=True)
     link_bukti = models.CharField(max_length=1000, null=True)
+    archive = models.BooleanField(null=True, default=False)
 
     def __str__(self):
         return self.judul
@@ -36,6 +37,7 @@ class TugasRutin(models.Model):
     judul = models.CharField(max_length=150)
     isi = models.CharField(max_length=1000)
     bagian = models.CharField(max_length=150, null=True)
+    archive = models.BooleanField(null=True)
 
     def __str__(self):
         return self.judul

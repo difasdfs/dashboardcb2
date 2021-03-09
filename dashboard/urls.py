@@ -32,6 +32,9 @@ urlpatterns = [
     path('tugas_aktif_manager/', views.tugas_aktif_manager, name="tugas_aktif_manager"),
     path('tugas_tuntas_manager/', views.tugas_tuntas_manager, name='tugas_tuntas_manager'),
     path('duplikasi_tugas_proyek/<int:id_tugas>', views.duplikasi_tugas_proyek, name='duplikasi_tugas_proyek'),
+    path('archive_tugas/', views.archive_tugas, name='archive_tugas'),
+    path('eksekusi_archive_proyek/<int:id_tugas>', views.eksekusi_archive_proyek, name='eksekusi_archive_proyek'),
+    path('eksekusi_archive_rutin/<int:id_tugas>', views.eksekusi_archive_rutin, name='eksekusi_archive_rutin'),
     
     # EKSEKUTIF
     path('eksekutif/', views.eksekutif, name='eksekutif'),

@@ -374,10 +374,13 @@ def lihat_tugas(request):
 
     if ceo:
         tp = TugasProyek.objects.filter(bagian='Management').exclude(status='Tuntas').order_by('-id')
-        tr = TugasRutin.objects.filter(bagian='Management').order_by('-id')
+        tr = TugasRutin.objects.filter(bagian='Management').order_by('-id').exclude(archive=True)
     else:
         tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas').order_by('-id')
-        tr = TugasRutin.objects.filter(bagian=request.user.last_name).order_by('-id')
+        tr = TugasRutin.objects.filter(bagian=request.user.last_name).order_by('-id').exclude(archive=True)
+
+    tp = tp.exclude(archive=True)
+    tr = tr.exclude(archive=True)
 
     context['tugas_proyek'] = tp
     context['tugas_rutin'] = tr
@@ -758,6 +761,38 @@ def tugas_tuntas_manager(request):
         context['data_kar'] = True
 
     return render(request, 'manager/tugas_tuntas_manager.html', context)
+
+
+@login_required(login_url='login')
+def archive_tugas(request):
+    nama = request.user.first_name
+    context = {'nama' : nama}
+    
+    tp = TugasProyek.objects.filter(archive=True)
+    tr = TugasRutin.objects.filter(archive=True)
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    context['tugas_proyek'] = tp
+    context['tugas_rutin'] = tr
+    return render(request, 'manager/archive_tugas.html', context)
+
+def eksekusi_archive_proyek(request, id_tugas):
+
+    tp = TugasProyek.objects.get(pk=id_tugas)
+    tp.archive = True
+    tp.save()
+
+    return redirect('lihat_tugas')
+
+def eksekusi_archive_rutin(request, id_tugas):
+
+    tr = TugasRutin.objects.get(pk=id_tugas)
+    tr.archive = True
+    tr.save()
+    
+    return redirect('lihat_tugas')
 
 # --------------------------- eksekutif ----------------------------------
 
