@@ -273,12 +273,10 @@ def input_tugas_rutin(request, id_eksekutif):
     ceo = request.user.groups.filter(name='CEO').exists()
 
     if request.method == 'POST':
-        object_eksekutif = User.objects.get(pk=id_eksekutif)
-
         data_judul = request.POST.get('judul')
         data_isi = request.POST.get('isi')
-        data_mulai = request.POST.get('mulai')
-        data_selesai = request.POST.get('selesai')
+        # DICOMMENT BUAT DEBUGGING AJA
+        object_eksekutif = User.objects.get(pk=id_eksekutif)
 
         if ceo:
             tgs_rutin = TugasRutin(
@@ -296,35 +294,52 @@ def input_tugas_rutin(request, id_eksekutif):
             )
         tgs_rutin.save()
 
-        data_mulai += "T18:00"
-        data_selesai += "T18:00"
-
         objek_tugas = TugasRutin.objects.get(pk=tgs_rutin.id)
         statusnya = "On Progress"
 
-        d_dikerjakan_dari = datetime.fromisoformat(data_mulai)
-        d_dikerjakan_sampai = datetime.fromisoformat(data_selesai)
+        tipe = request.POST.get('tipe')
+        if tipe == 'harian':
+            data_mulai = request.POST.get('mulai')
+            data_selesai = request.POST.get('selesai')
 
-        d_dikerjakan_dari_utc = d_dikerjakan_dari.astimezone(pytz.utc)
-        # d_dikerjakan_sampai_utc = d_dikerjakan_sampai.astimezone(pytz.utc)
+            data_mulai += "T18:00"
+            data_selesai += "T18:00"           
 
-        selisih = d_dikerjakan_sampai - d_dikerjakan_dari
-        banyak_hari = selisih.days + 1
+            d_dikerjakan_dari = datetime.fromisoformat(data_mulai)
+            d_dikerjakan_sampai = datetime.fromisoformat(data_selesai)
 
-        tanggal = d_dikerjakan_dari_utc
+            d_dikerjakan_dari_utc = d_dikerjakan_dari.astimezone(pytz.utc)
+            # d_dikerjakan_sampai_utc = d_dikerjakan_sampai.astimezone(pytz.utc)
 
-        for i in range(banyak_hari):
-            isitgs_rutin = IsiTugasRutin(
-                tugas_rutin = objek_tugas,
-                deadline = tanggal,
-                status = statusnya,
-                judul = data_judul,
-                isi = data_isi
-            )
+            selisih = d_dikerjakan_sampai - d_dikerjakan_dari
+            banyak_hari = selisih.days + 1
 
-            isitgs_rutin.save()
-            tanggal += timedelta(days=1)
+            tanggal = d_dikerjakan_dari_utc
 
+            for i in range(banyak_hari):
+                isitgs_rutin = IsiTugasRutin(
+                    tugas_rutin = objek_tugas,
+                    deadline = tanggal,
+                    status = statusnya,
+                    judul = data_judul,
+                    isi = data_isi
+                )
+
+                isitgs_rutin.save()
+                tanggal += timedelta(days=1)
+        else:
+            # banyak_tugas adalah integer
+            banyak_tugas = int(request.POST.get('banyak-tugas'))
+            for i in range(banyak_tugas):
+                isitgs_rutin = IsiTugasRutin(
+                    tugas_rutin = objek_tugas,
+                    deadline = request.POST.get('deadline' + str(i+1)),
+                    status = statusnya,
+                    judul = data_judul,
+                    isi = data_isi
+                )
+                isitgs_rutin.save()
+            
         return redirect('lihat_tugas')
 
     nama = request.user.first_name
