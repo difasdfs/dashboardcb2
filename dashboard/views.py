@@ -710,7 +710,7 @@ def tugas_aktif_manager(request):
 
     ngecekdeadline()
     objek_user = User.objects.get(pk=request.user.id)
-    t = TugasProyek.objects.filter(pemilik_tugas=objek_user).exclude(status="Tuntas")
+    t = TugasProyek.objects.filter(pemilik_tugas=objek_user).exclude(status="Tuntas").order_by('deadline')
     tr = TugasRutin.objects.filter(pemilik_tugas=objek_user)
 
     nama = request.user.first_name
