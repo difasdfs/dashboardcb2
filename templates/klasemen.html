@@ -14,7 +14,7 @@
     <style>
         .kotak-flex{
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: space-around;
         }
         .tabel1{
@@ -22,6 +22,10 @@
         }
         .tabel2{
             
+        }
+        .lebartabel{
+            width: 70%;
+            /* border: 1px solid black; */
         }
     </style>
 </head>
@@ -36,37 +40,42 @@
         <br>
         <div class="kotak-flex">
             <div class="tabel1">
-                <table class="table lebartabel">
+                <table class="table lebartabel table-bordered table-hover">
                     <thead>
                         <tr>
                           <th scope="col">Rank</th>
                           <th scope="col">Nama</th>
                           <th scope="col">Nilai Akhir</th>
+                          <th scope="col">Tugas Tuntas</th>
                         </tr>
                     </thead>
                         {% for user in orang_office %}
                         <tr>
                             <th scope="row">{{forloop.counter}}</th>
                             <th>{{user.0.first_name}}</th>
-                            <th>{{user.1}}</th>        
+                            <th>{{user.1}}</th>
+                            <th>{{user.2}}</th>        
                         </tr>
                         {% endfor %}
                     </table>
             </div>
+            <br><br>
             <div class="tabel2">
-                <table class="table lebartabel">
+                <table class="table lebartabel table-bordered table-hover">
                     <thead>
                         <tr>
                           <th scope="col">Rank</th>
                           <th scope="col">Nama</th>
                           <th scope="col">Nilai Akhir</th>
+                          <th scope="col">Tugas Tuntas</th>
                         </tr>
                     </thead>
                         {% for user in non_office %}
                         <tr>
                             <th scope="row">{{forloop.counter}}</th>
                             <th>{{user.0.first_name}}</th>
-                            <th>{{user.1}}</th>        
+                            <th>{{user.1}}</th>
+                            <th>{{user.2}}</th>        
                         </tr>
                         {% endfor %}
                     </table>
