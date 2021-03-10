@@ -375,7 +375,8 @@ def input_tugas_rutin(request, id_eksekutif):
                     deadline = request.POST.get('deadline' + str(i+1)),
                     status = statusnya,
                     judul = data_judul,
-                    isi = data_isi
+                    isi = data_isi,
+                    link_bukti = '#'
                 )
                 isitgs_rutin.save()
             
