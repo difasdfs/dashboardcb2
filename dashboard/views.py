@@ -414,11 +414,11 @@ def lihat_tugas(request):
         tp = TugasProyek.objects.filter(bagian='Management').exclude(status='Tuntas').order_by('-id')
         tr = TugasRutin.objects.filter(bagian='Management').order_by('-id').exclude(archive=True)
     else:
-        tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas').order_by('-id')
+        tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas').order_by('deadline')
         tr = TugasRutin.objects.order_by('-id').exclude(archive=True)
         tr = tr.exclude(bagian='Management')
 
-    tp = tp.exclude(archive=True)
+    tp = tp.exclude(archive=True).order_by('deadline')
     tr = tr.exclude(archive=True)
     
     tugas_rutin_marketing = tr.filter(bagian='Marketing')
