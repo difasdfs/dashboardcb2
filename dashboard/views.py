@@ -421,9 +421,16 @@ def lihat_tugas(request):
     tp = tp.exclude(archive=True)
     tr = tr.exclude(archive=True)
     
+    tugas_rutin_marketing = tr.filter(bagian='Marketing')
+    tugas_rutin_operation = tr.filter(bagian='Operation')
+    tugas_rutin_finance = tr.filter(bagian='Finance')
+    tugas_rutin_hr = tr.filter(bagian='Human Resource')
 
     context['tugas_proyek'] = tp
-    context['tugas_rutin'] = tr
+    context['tugas_rutin_marketing'] = tugas_rutin_marketing
+    context['tugas_rutin_operation'] = tugas_rutin_operation
+    context['tugas_rutin_finance'] = tugas_rutin_finance
+    context['tugas_rutin_hr'] = tugas_rutin_hr
 
     return render(request, 'manager/lihat_tugas.html', context)
 
