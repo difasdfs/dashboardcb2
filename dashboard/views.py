@@ -431,6 +431,8 @@ def lihat_tugas(request):
         context['manager_marketing'] = True
     elif bagian_user == 'Finance':
         context['manager_finance'] = True
+    elif bagian_user == 'Human Resource':
+        context['manager_hr'] = True
 
     context['tugas_proyek'] = tp
     context['tugas_rutin_marketing'] = tugas_rutin_marketing
