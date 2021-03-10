@@ -29,6 +29,7 @@ urlpatterns = [
     path('edit_tugas_proyek/<int:id_tugas>', views.edit_tugas_proyek, name='edit_tugas_proyek'),
     path('edit_tugas_rutin/<int:id_tugas>', views.edit_tugas_rutin, name='edit_tugas_rutin'),
     path('progress_tugas_rutin/<int:id_tugas>', views.progress_tugas_rutin, name='progress_tugas_rutin'),
+    path('tugas_rutin_tuntas/<int:id_tugas>', views.tugas_rutin_tuntas, name='tugas_rutin_tuntas'),
     path('tugas_aktif_manager/', views.tugas_aktif_manager, name="tugas_aktif_manager"),
     path('tugas_tuntas_manager/', views.tugas_tuntas_manager, name='tugas_tuntas_manager'),
     path('duplikasi_tugas_proyek/<int:id_tugas>', views.duplikasi_tugas_proyek, name='duplikasi_tugas_proyek'),
