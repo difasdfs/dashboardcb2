@@ -426,6 +426,12 @@ def lihat_tugas(request):
     tugas_rutin_finance = tr.filter(bagian='Finance')
     tugas_rutin_hr = tr.filter(bagian='Human Resource')
 
+    bagian_user = request.user.last_name
+    if bagian_user == 'Marketing':
+        context['manager_marketing'] = True
+    elif bagian_user == 'Finance':
+        context['manager_finance'] = True
+
     context['tugas_proyek'] = tp
     context['tugas_rutin_marketing'] = tugas_rutin_marketing
     context['tugas_rutin_operation'] = tugas_rutin_operation
