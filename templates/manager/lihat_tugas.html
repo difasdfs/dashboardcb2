@@ -47,27 +47,108 @@
                 <br><br>
               <h2>Tugas Rutin</h2>
 
-              <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Bagian</th>
-                        <th scope="col">Tugas</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    {% for isi in tugas_rutin %}
-                    <tr>
-                        <th scope="row">{{forloop.counter}}</th>
-                        <th>{{isi.pemilik_tugas.first_name}}</th>
-                        <th>{{isi.pemilik_tugas.last_name}}</th>
-                        <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
-                        <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
-                    </tr>
-                    {% endfor %}
-                </table>
-
+              <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-link active" id="nav-operation-tab" data-toggle="tab" href="#nav-operation" role="tab" aria-controls="nav-operation" aria-selected="true">Operation</a>
+                  <a class="nav-link" id="nav-marketing-tab" data-toggle="tab" href="#nav-marketing" role="tab" aria-controls="nav-marketing" aria-selected="false">Marketing</a>
+                  <a class="nav-link" id="nav-finance-tab" data-toggle="tab" href="#nav-finance" role="tab" aria-controls="nav-finance" aria-selected="false">Finance</a>
+                  <a class="nav-link" id="nav-hr-tab" data-toggle="tab" href="#nav-hr" role="tab" aria-controls="nav-hr" aria-selected="false">Human Resource</a>
+                </div>
+              </nav>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-operation" role="tabpanel" aria-labelledby="nav-operation-tab">
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Bagian</th>
+                                <th scope="col">Tugas</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            {% for isi in tugas_rutin_operation %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <th>{{isi.pemilik_tugas.first_name}}</th>
+                                <th>{{isi.pemilik_tugas.last_name}}</th>
+                                <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
+                                <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                </div>
+                <div class="tab-pane fade" id="nav-marketing" role="tabpanel" aria-labelledby="nav-marketing-tab">
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Bagian</th>
+                                <th scope="col">Tugas</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            {% for isi in tugas_rutin_marketing %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <th>{{isi.pemilik_tugas.first_name}}</th>
+                                <th>{{isi.pemilik_tugas.last_name}}</th>
+                                <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
+                                <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                </div>
+                <div class="tab-pane fade" id="nav-finance" role="tabpanel" aria-labelledby="nav-finance-tab">
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Bagian</th>
+                                <th scope="col">Tugas</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            {% for isi in tugas_rutin_finance %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <th>{{isi.pemilik_tugas.first_name}}</th>
+                                <th>{{isi.pemilik_tugas.last_name}}</th>
+                                <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
+                                <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                </div>
+                <div class="tab-pane fade" id="nav-hr" role="tabpanel" aria-labelledby="nav-hr-tab">
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Bagian</th>
+                                <th scope="col">Tugas</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            {% for isi in tugas_rutin_hr %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <th>{{isi.pemilik_tugas.first_name}}</th>
+                                <th>{{isi.pemilik_tugas.last_name}}</th>
+                                <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
+                                <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+                </div>
+              </div>
           </div>
       </div>
   </div>
