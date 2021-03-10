@@ -514,6 +514,34 @@ def progress_tugas_rutin(request, id_tugas):
 
 
 @login_required(login_url='login')
+def tugas_rutin_tuntas(request, id_tugas):
+
+    nama = request.user.first_name
+    context = {'nama' : nama}
+
+    ceo = request.user.groups.filter(name='CEO').exists()
+
+    if ceo:
+        context['sidebar_ceo'] = True
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    # objek tugas rutin
+    t = TugasRutin.objects.get(pk=id_tugas)
+
+    tr = IsiTugasRutin.objects.filter(tugas_rutin=t)
+    tr = tr.filter(status='Tuntas', ketuntasan=True)
+
+    context['tugas_rutin'] = tr
+    context['judul'] = t.judul
+    context['isi'] = t.isi
+
+    return render(request, 'manager/tugas_rutin_tuntas.html', context)
+
+
+
+@login_required(login_url='login')
 def mdetail_rutin(request, id_tugas):
 
     nama = request.user.first_name
