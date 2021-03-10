@@ -52,6 +52,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th scope="col">Nama</th>
+                        <th scope="col">Bagian</th>
                         <th scope="col">Tugas</th>
                         <th scope="col"></th>
                     </tr>
@@ -60,6 +61,7 @@
                     <tr>
                         <th scope="row">{{forloop.counter}}</th>
                         <th>{{isi.pemilik_tugas.first_name}}</th>
+                        <th>{{isi.pemilik_tugas.last_name}}</th>
                         <th><a href="{% url 'progress_tugas_rutin' isi.id %}">{{isi.judul}}</a></th>
                         <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.id %}">Archive</a></th>
                     </tr>
