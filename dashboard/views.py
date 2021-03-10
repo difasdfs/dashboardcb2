@@ -415,7 +415,7 @@ def lihat_tugas(request):
         tr = TugasRutin.objects.filter(bagian='Management').order_by('-id').exclude(archive=True)
     else:
         tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas').order_by('-id')
-        tr = TugasRutin.objects.order_by('-bagian').exclude(archive=True)
+        tr = TugasRutin.objects.order_by('-id').exclude(archive=True)
         tr = tr.exclude(bagian='Management')
 
     tp = tp.exclude(archive=True)
