@@ -9,7 +9,8 @@ from django.core.paginator import Paginator, EmptyPage
 from .decorators import unauthenticated_user
 from .logic import *
 from .hskor import hitungskor
-from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan
+from .index_sp import query_index_sp
+from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
 
 from django.utils import timezone
 from datetime import datetime, timedelta
@@ -121,7 +122,6 @@ def klasemen(request):
         else:
             non_office.append( (a, skor, total_tugas_tuntas ) )
 
-    print(orang_office)
     orang_office.sort(key=lambda tup: tup[1])
     non_office.sort(key=lambda tup: tup[1])
     orang_office = orang_office[::-1]
@@ -146,26 +146,47 @@ def index_sp(request):
         'data_kar' : True,
     }
 
+    evaluasi_tugas = query_index_sp()
+    evaluasi_tugas.sort(key=lambda tup: tup[6])
+    evaluasi_tugas = evaluasi_tugas[::-1]
+    context['evaluasi_tugas'] = evaluasi_tugas
+    
+
+    if request.user.last_name == 'Information Technology':
+        context['debugging'] = True
+
     if request.user.groups.filter(name='Eksekutif').exists():
         context['data_kar'] = False
         return redirect('logout')
 
     return render(request, 'sp/index.html', context)
 
-@login_required(login_url='login')
-def input_sp(request):
-    nama = request.user.first_name
-    context = {
-        'nama': nama,
-        'data_kar' : True,
-    }
 
-    if request.user.groups.filter(name='Eksekutif').exists():
-        context['data_kar'] = False
+@login_required(login_url='login')
+def debugging_sp(request):
+    if request.user.last_name != 'Information Technology':
         return redirect('logout')
 
-    return render(request, 'sp/input_sp.html', context)
+    if request.method == 'POST':
+        mulai = request.POST.get('mulai')
+        selesai = request.POST.get('selesai')
+        tahun_sekarang = datetime.now().year
+        periode_sp = PeriodeSp(
+            nama_periode = 'Maret 2 - Input sendiri',
+            tahun = tahun_sekarang,
+            awal_periode = mulai,
+            akhir_periode = selesai,
+            dieksekusi = False
+        )
+        periode_sp.save()
 
+    context = {
+        'nama': request.user.first_name,
+        'data_kar' : True,
+        'debugging' : True
+    }
+
+    return render(request, 'sp/debugging.html', context)
 # ------------------------------- CEO ----------------------------------
 
 @login_required(login_url='login')

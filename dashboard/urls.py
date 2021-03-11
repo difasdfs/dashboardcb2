@@ -52,7 +52,7 @@ urlpatterns = [
     
     # SISTEM SP OTOMATIS
     path('index_sp/', views.index_sp, name='index_sp'),
-    path('input_so/', views.input_sp, name='input_sp'),
+    path('debugging_sp/', views.debugging_sp, name='debugging_sp'),
 
     # DATA KARYAWAN
     path('data_karyawan/', views.data_karyawan, name='data_karyawan'),

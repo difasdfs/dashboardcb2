@@ -65,6 +65,25 @@ class IsiTugasRutin(models.Model):
     judul = models.CharField(max_length=150, null=True)
     isi = models.CharField(max_length=1000, null=True)
 
+class PeriodeSp(models.Model):
+    nama_periode = models.CharField(max_length=100)
+    tahun = models.IntegerField()
+    awal_periode = models.DateTimeField('Awal periode')
+    akhir_periode = models.DateTimeField('Akhir Periode')
+    dieksekusi = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.nama_periode
+
+class KenaSp(models.Model):
+    periode_sp = models.ForeignKey(PeriodeSp, on_delete=models.CASCADE)
+    id_user = models.IntegerField()
+    berakhir_pada = models.DateTimeField('Berakhir pada')
+    keaktifan = models.BooleanField(default=True)
+
+    def __str__(self):
+        user = User.objects.get(pk=self.id_user)
+        return user.first_name
 
 class DataKaryawan(models.Model):
     AREA = (
