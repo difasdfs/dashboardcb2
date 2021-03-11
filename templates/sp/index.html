@@ -1,6 +1,16 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<style>
+    .tablesp{
+        width: 100%;
+    }
+
+    .penting{
+        background-color: rgb(255, 173, 173);
+    }
+</style>
+
 <hr>
 <div class="container">
     <div class="row">
@@ -8,7 +18,42 @@
         {% include 'sp/sidebar.html' %}
 
         <div class="col">
-            <h1>Sistem Surat Peringatan Otomatis</h1>
+            <h1>Evaluasi</h1>
+            <br>
+
+            <!-- table -->
+            <div class="table-responsive">
+            <table class="table table-sm tablesp table-bordered table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">No</th>
+                      <th scope="col">Nama</th>
+                      <th scope="col">Bagian</th>
+                      <th scope="col">Total Tugas</th>
+                      <th scope="col">Tuntas</th>
+                      <th scope="col">Terlambat</th>
+                      <th scope="col">Deadline</th>
+                      <th scope="col">Nilai Akhir</th>
+                      <th scope="col">%terlambat</th>
+                      <th scope="col">%deadline</th>
+                    </tr>
+                </thead>
+                    {% for a in evaluasi_tugas %}
+                    <tr>
+                        <td scope="row">{{forloop.counter}}</td>
+                        <td>{{a.0}}</td>
+                        <td>{{a.1}}</td>
+                        <td>{{a.2}}</td>
+                        <td>{{a.3}}</td>
+                        <td>{{a.4}}</td>
+                        <td>{{a.5}}</td>
+                        <td class="penting">{{a.6}}</td>
+                        <td class="penting">{{a.7}}</td>
+                        <td class="penting">{{a.8}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 </div>
