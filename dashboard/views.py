@@ -163,6 +163,24 @@ def index_sp(request):
 
 
 @login_required(login_url='login')
+def eval_per_periode(request):
+
+    nama = request.user.first_name
+    context = {
+        'nama': nama,
+        'data_kar' : True,
+    }
+
+    if request.user.last_name == 'Information Technology':
+        context['debugging'] = True
+
+    if request.user.groups.filter(name='Eksekutif').exists():
+        context['data_kar'] = False
+        return redirect('logout')
+    return render(request, 'sp/eval_per_periode.html', context)
+
+
+@login_required(login_url='login')
 def debugging_sp(request):
     if request.user.last_name != 'Information Technology':
         return redirect('logout')

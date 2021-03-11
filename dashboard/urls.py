@@ -53,6 +53,7 @@ urlpatterns = [
     # SISTEM SP OTOMATIS
     path('index_sp/', views.index_sp, name='index_sp'),
     path('debugging_sp/', views.debugging_sp, name='debugging_sp'),
+    path('eval_per_periode/', views.eval_per_periode, name='eval_per_periode'),
 
     # DATA KARYAWAN
     path('data_karyawan/', views.data_karyawan, name='data_karyawan'),
