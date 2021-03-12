@@ -1,6 +1,12 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<style>
+  .cellmerah{
+    background-color: rgb(253, 156, 156);
+  }
+</style>
+
 <hr>
 <div class="container">
     <div class="row">
@@ -17,7 +23,7 @@
                   <div class="card-header" id="headmaret2">
                     <h2 class="mb-0">
                       <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasimaret2" aria-expanded="false" aria-controls="collapsemaret2">
-                        Periode Maret 2
+                        Periode Maret 2 (11 Maret 2021 - 25 Maret 2021)
                       </button>
                     </h2>
                   </div>
@@ -26,9 +32,6 @@
                       
                       <div class="table-responsive">
                         <table class="table table-sm tablesp table-bordered table-hover">
-                            <p>Awal periode : {{awal_periode}}</p>
-                            <p>Akhir periode : {{akhir_periode}}</p>
-                            <p>Sekarang : {{sekarang}}</p>
                             <thead>
                                 <tr>
                                   <th scope="col">No</th>
@@ -52,9 +55,25 @@
                                     <td>{{isi.3}}</td>
                                     <td>{{isi.4}}</td>
                                     <td>{{isi.5}}</td>
-                                    <td class="penting">{{isi.6}}</td>
-                                    <td class="penting">{{isi.7}}</td>
-                                    <td class="penting">{{isi.8}}</td>
+
+                                    {% if isi.6 > 8 %}
+                                    <td>{{isi.6}}</td>
+                                    {% else %}
+                                    <td class="cellmerah">{{isi.6}}</td>
+                                    {% endif %}
+
+                                    {% if isi.7 < 20 %}
+                                    <td>%{{isi.7}}</td>
+                                    {% else %}
+                                    <td class="cellmerah">%{{isi.7}}</td>
+                                    {% endif %}
+
+                                    {% if isi.8 < 5 %}
+                                    <td>%{{isi.8}}</td>
+                                    {% else %}
+                                    <td class="cellmerah">%{{isi.8}}</td>
+                                    {% endif %}
+
                                 </tr>
                                 {% endfor %}
                             </table>
