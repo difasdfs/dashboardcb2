@@ -11,7 +11,7 @@ from .logic import *
 from .hskor import hitungskor
 from .index_sp import query_index_sp
 from .periode_sp import evaluasi
-from .rinci_tugas_rutin import rinci_tr
+from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
 from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
 
 from django.utils import timezone
@@ -973,12 +973,14 @@ def daftar_tugas(request):
 
     nama = request.user.first_name
 
+    tugas_rutin = rinci_tr_eksekutif(request.user.id)
+
     ngecekdeadline()
     objek_user = User.objects.get(pk=request.user.id)
     t = TugasProyek.objects.filter(pemilik_tugas=objek_user).order_by('deadline').exclude(status="Tuntas")
     tr = TugasRutin.objects.filter(pemilik_tugas=objek_user).order_by('-id')
 
-    context = {'nama' : nama, 'tugas_proyek' : t, 'tugas_rutin':tr}
+    context = {'nama' : nama, 'tugas_proyek' : t, 'tugas_rutin': tugas_rutin}
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
@@ -991,9 +993,10 @@ def tugas_tuntas(request):
     nama = request.user.first_name
     ngecekdeadline()
     objek_user = User.objects.get(pk=request.user.id)
-    t = TugasProyek.objects.filter(pemilik_tugas=objek_user, status="Tuntas")
+    t = TugasProyek.objects.filter(pemilik_tugas=objek_user, status="Tuntas").order_by('-id')
+    tr = rinci_tr_eksekutif(request.user.id, False)
 
-    context = {'nama' : nama, 'tugas_proyek' : t}
+    context = {'nama' : nama, 'tugas_proyek' : t, 'tugas_rutin' : tr}
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
@@ -1004,7 +1007,7 @@ def daftar_tugas_rutin(request, id_tugas):
 
     nama = request.user.first_name
     t = TugasRutin.objects.get(pk=id_tugas)
-    tr = IsiTugasRutin.objects.filter(tugas_rutin=t)
+    tr = IsiTugasRutin.objects.filter(tugas_rutin=t).order_by('deadline')
     manager = request.user.groups.filter(name='Manager').exists()
 
     context = {'nama' : nama, 'judul' : t.judul, 'isi' : t.isi, 'tugas_rutin' : tr}

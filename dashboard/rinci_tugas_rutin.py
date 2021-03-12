@@ -1,4 +1,5 @@
 from .models import TugasRutin, IsiTugasRutin
+from django.contrib.auth.models import User
 
 def rinci_tr(bagian_):
 
@@ -14,6 +15,28 @@ def rinci_tr(bagian_):
         hasil.append( (tr.pemilik_tugas.first_name, tr.judul, tr.id, a[0], a[1]) )
 
     hasil.sort(key=lambda tup: tup[2])
+    hasil = hasil[::-1]
+
+    return hasil
+
+def rinci_tr_eksekutif(id, hilang=True):
+
+    hasil = []
+
+    user_eksekutif = User.objects.get(pk=id)
+    tugas_rutin = TugasRutin.objects.filter(pemilik_tugas=user_eksekutif)
+
+    for tr in tugas_rutin:
+
+        ht = hitung_total_tuntas(tr)
+
+        if hilang:
+            if ht[0] == ht[1]:
+                continue
+
+        hasil.append( (tr.judul, tr.id, ht[0], ht[1]) )
+
+    hasil.sort(key=lambda tup: tup[1])
     hasil = hasil[::-1]
 
     return hasil
