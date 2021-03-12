@@ -173,6 +173,8 @@ def eval_per_periode(request):
     }
     
     hasil = evaluasi()
+    hasil.sort(key=lambda tup: tup[6])
+    hasil = hasil[::-1]
     context['evalmaret2'] = hasil
 
     if request.user.last_name == 'Information Technology':
