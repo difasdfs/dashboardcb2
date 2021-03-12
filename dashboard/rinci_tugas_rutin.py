@@ -8,6 +8,9 @@ def rinci_tr(bagian_):
 
         a = hitung_total_tuntas(tr)
 
+        if a[0] == a[1]:
+            continue
+
         hasil.append( (tr.pemilik_tugas.first_name, tr.judul, tr.id, a[0], a[1]) )
 
     hasil.sort(key=lambda tup: tup[2])
