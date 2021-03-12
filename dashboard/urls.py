@@ -14,6 +14,7 @@ urlpatterns = [
     # CEO
     path('home_ceo/', views.index_ceo, name='ceo'),
     path('daftar_manager/', views.daftar_manager, name='daftar_manager'),
+    path('edit_nilai/<int:id_isi_tugas_rutin>', views.edit_nilai, name='edit_nilai'),
 
     # MANAGER
     path('manager/', views.manager, name='manager'),

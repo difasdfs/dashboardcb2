@@ -253,6 +253,39 @@ def daftar_manager(request):
 
     return render(request, 'ceo/manager.html', context)
 
+
+@login_required(login_url='login')
+def edit_nilai(request, id_isi_tugas_rutin):
+
+    isitr = TugasProyek.objects.get(pk=id_isi_tugas_rutin)
+
+    if request.method == 'POST':
+        komentar = request.POST.get('komentar')
+        penilaian = request.POST.get('penilaian')
+        isitr.komentar = komentar
+        isitr.penilaian = penilaian
+        isitr.save()
+        return redirect('lihat_tugas_tuntas')
+
+    nama = request.user.first_name    
+
+    context = {
+        'nama': nama,
+        'data_kar' : True,
+        'tugas' : isitr
+    }
+
+    # belum ada dokumen
+    if isitr == '#':
+        context['belum'] = True
+
+    if request.user.groups.filter(name='Eksekutif').exists() or request.user.groups.filter(name='Manager').exists():
+        context['data_kar'] = False
+        return redirect('logout')
+
+    return render(request, 'ceo/edit_nilai.html', context)
+
+
 # ------------------------------- MANAGER ----------------------------------
 
 @login_required(login_url='login')
@@ -633,8 +666,6 @@ def mdetail_proyek(request, id_tugas):
     t = TugasProyek.objects.get(pk=id_tugas)
     dokumennya = t.bukti
 
-    print(t)
-
     if (t.status == 'Tuntas'):
         nottuntas = False
     else:
@@ -650,6 +681,7 @@ def mdetail_proyek(request, id_tugas):
 
     if ceo:
         context['sidebar_ceo'] = True
+        context['tombol_edit_nilai'] = True
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
