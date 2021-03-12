@@ -166,23 +166,14 @@ def index_sp(request):
 @login_required(login_url='login')
 def eval_per_periode(request):
 
-    id_periode_maret2 = 1
-    objek_periode_sp = PeriodeSp.objects.get(pk=id_periode_maret2)
-
     nama = request.user.first_name
     context = {
         'nama': nama,
         'data_kar' : True,
-        'awal_periode' : objek_periode_sp.awal_periode,
-        'akhir_periode' : objek_periode_sp.akhir_periode
     }
-
-    sekarang = timezone.now()
-    context['sekarang'] = sekarang
     
-    if (sekarang > objek_periode_sp.awal_periode) and (sekarang < objek_periode_sp.akhir_periode):
-        hasil = evaluasi()
-        context['evalmaret2'] = hasil
+    hasil = evaluasi()
+    context['evalmaret2'] = hasil
 
     if request.user.last_name == 'Information Technology':
         context['debugging'] = True
