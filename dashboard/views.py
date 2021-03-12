@@ -166,17 +166,21 @@ def index_sp(request):
 @login_required(login_url='login')
 def eval_per_periode(request):
 
+    objek_periode_sp = PeriodeSp.objects.get(pk=1)
     nama = request.user.first_name
     context = {
         'nama': nama,
         'data_kar' : True,
+        'awal_periode' : objek_periode_sp.awal_periode,
+        'akhir_periode' : objek_periode_sp.akhir_periode
     }
 
     utc = pytz.UTC
 
     id_periode_maret2 = 1
-    objek_periode_sp = PeriodeSp.objects.get(pk=1)
-    sekarang = utc.localize(datetime.now())
+    
+    sekarang = timezone.now()
+    context['sekarang'] = sekarang
     print("Sekarang : " + str(sekarang))
     print("Awal periode : " + str(objek_periode_sp.awal_periode))
     print("Akhir periode : " + str(objek_periode_sp.akhir_periode))
@@ -1061,7 +1065,7 @@ def upload_dokumentasi_tp(request, id_tugas):
         else:
             t.link_bukti = request.POST.get('linkbukti')       
         
-        t.selesai_pada = datetime.now()
+        t.selesai_pada = timezone.now()
 
         if t.status == 'Deadline':
             t.status = 'Terlambat'
@@ -1105,7 +1109,7 @@ def upload_dokumentasi_tr(request, id_tugas):
         else:
             t.link_bukti = request.POST.get('linkbukti')
 
-        t.selesai_pada = datetime.now()
+        t.selesai_pada = timezone.now()
         
         if t.status == 'Deadline':
             t.status = 'Terlambat'
