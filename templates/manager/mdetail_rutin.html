@@ -77,8 +77,10 @@
                     </tbody>
                 </table>
                 <a class="btn btn-warning" href="{% url 'edit_tugas_rutin' tugas.id %}" role="button">Edit</a>
-                <span><a class="btn btn-primary" href="{% url 'rutin_tuntas' tugas.id %}" role="button">Tuntas</a></span>
 
+                {% if not tuntas %}
+                <span><a class="btn btn-primary" href="{% url 'rutin_tuntas' tugas.id %}" role="button">Tuntas</a></span>
+                {% endif %}
           </div>
       </div>
   </div>
