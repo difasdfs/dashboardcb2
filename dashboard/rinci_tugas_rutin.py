@@ -1,7 +1,7 @@
 from .models import TugasRutin, IsiTugasRutin
 from django.contrib.auth.models import User
 
-def rinci_tr(bagian_):
+def rinci_tr(bagian_, tampilkan_tuntas_semua = False):
 
     hasil = []
     tugas_rutin = TugasRutin.objects.filter(bagian=bagian_)
@@ -9,8 +9,9 @@ def rinci_tr(bagian_):
 
         a = hitung_total_tuntas(tr)
 
-        if a[0] == a[1]:
-            continue
+        if not tampilkan_tuntas_semua:
+            if a[0] == a[1]:
+                continue
 
         hasil.append( (tr.pemilik_tugas.first_name, tr.judul, tr.id, a[0], a[1]) )
 
