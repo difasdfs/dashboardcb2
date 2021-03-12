@@ -166,7 +166,9 @@ def index_sp(request):
 @login_required(login_url='login')
 def eval_per_periode(request):
 
-    objek_periode_sp = PeriodeSp.objects.get(pk=1)
+    id_periode_maret2 = 1
+    objek_periode_sp = PeriodeSp.objects.get(pk=id_periode_maret2)
+
     nama = request.user.first_name
     context = {
         'nama': nama,
@@ -175,18 +177,11 @@ def eval_per_periode(request):
         'akhir_periode' : objek_periode_sp.akhir_periode
     }
 
-    utc = pytz.UTC
-
-    id_periode_maret2 = 1
-    
     sekarang = timezone.now()
     context['sekarang'] = sekarang
-    print("Sekarang : " + str(sekarang))
-    print("Awal periode : " + str(objek_periode_sp.awal_periode))
-    print("Akhir periode : " + str(objek_periode_sp.akhir_periode))
     
     if (sekarang > objek_periode_sp.awal_periode) and (sekarang < objek_periode_sp.akhir_periode):
-        print("berhasil!")
+        eval = evaluasi("maret2")
 
     if request.user.last_name == 'Information Technology':
         context['debugging'] = True
