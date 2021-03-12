@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .lebartabel{
+        width: 70%;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        {% include 'ceo/sidebar.html' %}
+
+        <div class="col">
+            <h1>Halaman edit nilai</h1>
+            <div class="lebartabel">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <th scope="row">Judul</th>
+                    <td>{{tugas.judul}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Isi</th>
+                    <td>{{tugas.isi|linebreaks}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Deadline</th>
+                    <td>{{tugas.deadline|time:"H:i"}}, {{tugas.deadline|date:"d M Y"}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Status</th>
+                    <td>{{tugas.status}}</td>
+                </tr>
+                {% if belum %}
+                
+                <tr>
+                    <th scope="row">Dokumen</th>
+                    <td>Belum ada dokumen yang diupload</td>
+                </tr>
+
+                {% else %}
+                <tr>
+                    <th scope="row">Dokumen</th>
+                    <td><a href="{{tugas.bukti}}" target="_blank">Dokumen</a></td>
+                </tr>
+                {% endif %}
+
+                <tr>
+                    <th scope="row">Link</th>
+                    <td><a href="{{tugas.link_bukti}}" target="_blank">Link</a></td>
+                </tr>
+
+                </tbody>
+            </table>
+            <br>
+            <h2>Penilaian</h2>
+
+            <div class="kontainer-penilaian">
+            <form action="" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="komentar">Komentar</label>
+                    <textarea class="form-control" id="komentar" name="komentar" rows="3">{{tugas.komentar}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="penilaian">Penilaian (0-10)</label>
+                    <input type="number" class="form-control" id="penilaian" name="penilaian" min="0" max="10" value="{{tugas.penilaian}}">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
