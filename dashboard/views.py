@@ -10,6 +10,7 @@ from .decorators import unauthenticated_user
 from .logic import *
 from .hskor import hitungskor
 from .index_sp import query_index_sp
+from .periode_sp import evaluasi
 from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
 
 from django.utils import timezone
@@ -171,12 +172,25 @@ def eval_per_periode(request):
         'data_kar' : True,
     }
 
+    utc = pytz.UTC
+
+    id_periode_maret2 = 1
+    objek_periode_sp = PeriodeSp.objects.get(pk=1)
+    sekarang = utc.localize(datetime.now())
+    print("Sekarang : " + str(sekarang))
+    print("Awal periode : " + str(objek_periode_sp.awal_periode))
+    print("Akhir periode : " + str(objek_periode_sp.akhir_periode))
+    
+    if (sekarang > objek_periode_sp.awal_periode) and (sekarang < objek_periode_sp.akhir_periode):
+        print("berhasil!")
+
     if request.user.last_name == 'Information Technology':
         context['debugging'] = True
 
     if request.user.groups.filter(name='Eksekutif').exists():
         context['data_kar'] = False
         return redirect('logout')
+
     return render(request, 'sp/eval_per_periode.html', context)
 
 
@@ -186,12 +200,14 @@ def debugging_sp(request):
         return redirect('logout')
 
     if request.method == 'POST':
+        # nama periode, tahun
+        namaperiode = request.POST.get("namaperiode")
+        tahun_periode = request.POST.get("tahunperiode")
         mulai = request.POST.get('mulai')
         selesai = request.POST.get('selesai')
-        tahun_sekarang = datetime.now().year
         periode_sp = PeriodeSp(
             nama_periode = 'Maret 2 - Input sendiri',
-            tahun = tahun_sekarang,
+            tahun = tahun_periode,
             awal_periode = mulai,
             akhir_periode = selesai,
             dieksekusi = False
@@ -697,6 +713,7 @@ def rutin_tuntas(request, id_tugas):
     
     if request.method == 'POST':
         t = IsiTugasRutin.objects.get(pk=id_tugas)
+        tr = t.tugas_rutin
         t.komentar = request.POST.get('komentar')
         t.penilaian = request.POST.get('penilaian')
         t.ketuntasan = True
@@ -706,7 +723,7 @@ def rutin_tuntas(request, id_tugas):
             t.status = 'Tuntas'
         t.save()
 
-        return mdetail_rutin(request, id_tugas)
+        return progress_tugas_rutin(request, tr.id)
 
     nama = request.user.first_name
     t = IsiTugasRutin.objects.get(pk=id_tugas)
