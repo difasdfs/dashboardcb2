@@ -81,6 +81,9 @@
                 {% endif %}
 
                 <span><a class="btn btn-info" href="{% url 'duplikasi_tugas_proyek' tugas.id %}" role="button">Duplicate</a></span>
+                {% if not nottuntas and tombol_edit_nilai %}
+                <span><a class="btn btn-primary" href="{% url 'edit_nilai' tugas.id %}" role="button">Edit Nilai</a></span>
+                {% endif %}
 
           </div>
       </div>
