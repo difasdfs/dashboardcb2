@@ -80,7 +80,10 @@ def evaluasi():
             persen_terlambat = 0.0
             persen_deadline = 0.0
         else:
-            nilai_akhir = nilai_akhir / total_tuntas
+            nilai_akhir = str(nilai_akhir)
+            nilai_akhir = nilai_akhir.split('.')
+            nilai_akhir = nilai_akhir[0] + '.' + nilai_akhir[1]
+
             persen_terlambat = persenTerlambat(total_terlambat, total_tugas)
             persen_deadline = persenDeadline(total_deadline, total_tugas)
 
@@ -107,3 +110,5 @@ def persenDeadline(total_deadline, total_tugas):
     hasil = '%' + pisah[0] + '.' + pisah[1][:2]
 
     return hasil
+
+# def nilaiAkhir(nilai_akhir):
