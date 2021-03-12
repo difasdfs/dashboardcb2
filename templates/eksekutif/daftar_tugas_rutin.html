@@ -45,7 +45,11 @@
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{isi.deadline|time:"H:i"}}, {{isi.deadline|date:"d M Y"}}</td>
                     <td>{{isi.status}}</td>
+                    {% if isi.status != "Tuntas" %}
                     <td><a class="btn btn-warning" href="{% url 'upload_dokumentasi_tr' isi.id %}" role="button">Selesai</a></td>
+                    {% else %}
+                    <td></td>
+                    {% endif %}
                   </tr>
                     {% endfor %}
                 </tbody>
