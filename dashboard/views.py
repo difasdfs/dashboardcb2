@@ -181,7 +181,8 @@ def eval_per_periode(request):
     context['sekarang'] = sekarang
     
     if (sekarang > objek_periode_sp.awal_periode) and (sekarang < objek_periode_sp.akhir_periode):
-        eval = evaluasi("maret2")
+        hasil = evaluasi()
+        context['evalmaret2'] = hasil
 
     if request.user.last_name == 'Information Technology':
         context['debugging'] = True
