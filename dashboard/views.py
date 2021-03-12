@@ -11,6 +11,7 @@ from .logic import *
 from .hskor import hitungskor
 from .index_sp import query_index_sp
 from .periode_sp import evaluasi
+from .rinci_tugas_rutin import rinci_tr
 from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
 
 from django.utils import timezone
@@ -469,11 +470,11 @@ def lihat_tugas(request):
 
     tp = tp.exclude(archive=True).order_by('deadline')
     tr = tr.exclude(archive=True)
-    
-    tugas_rutin_marketing = tr.filter(bagian='Marketing')
-    tugas_rutin_operation = tr.filter(bagian='Operation')
-    tugas_rutin_finance = tr.filter(bagian='Finance')
-    tugas_rutin_hr = tr.filter(bagian='Human Resource')
+
+    tugas_rutin_marketing = rinci_tr("Marketing")
+    tugas_rutin_operation = rinci_tr('Operation')
+    tugas_rutin_finance = rinci_tr("Finance")
+    tugas_rutin_hr = rinci_tr("Human Resource")
 
     bagian_user = request.user.last_name
     if bagian_user == 'Marketing':
@@ -632,6 +633,8 @@ def mdetail_proyek(request, id_tugas):
     t = TugasProyek.objects.get(pk=id_tugas)
     dokumennya = t.bukti
 
+    print(t)
+
     if (t.status == 'Tuntas'):
         nottuntas = False
     else:
@@ -656,7 +659,7 @@ def mdetail_proyek(request, id_tugas):
     if t.status == 'Tuntas':
         context['tuntas'] = True
 
-    if not (t.link_bukti == '#') or (t.link_bukti == None):
+    if not (t.link_bukti == None):
         context['ada_link'] = True
 
     return render(request, 'manager/mdetail_proyek.html', context)
@@ -845,7 +848,7 @@ def edit_tugas_rutin(request, id_tugas):
         t.status = data_status
         t.save()
 
-        return mdetail_rutin(request, id_tugas)
+        return progress_tugas_rutin(request, t.tugas_rutin.id)
 
     nama = request.user.first_name
     t = IsiTugasRutin.objects.get(pk=id_tugas)
