@@ -15,8 +15,17 @@
 
         <div class="col">
             <h1>Debugging</h1>
+            <br>
             <form method="post" class="custom-tabelform">
                 {% csrf_token %}
+                <div class="form-group">
+                    <label for="namaperiode">Nama periode</label>
+                    <input type="text" class="form-control" id="namaperiode" name="namaperiode">
+                </div>
+                <div class="form-group">
+                    <label for="tahunperiode">Tahun</label>
+                    <input type="number" class="form-control" name="tahunperiode" id="tahunperiode">
+                </div>
                 <div class="form-group">
                     <label for="mulai">Mulai</label>
                     <input type="datetime-local" class="form-control" id="mulai" name="mulai">
