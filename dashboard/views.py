@@ -689,7 +689,7 @@ def mdetail_proyek(request, id_tugas):
 
     if t.bukti == '#':
         context['belum'] = True
-    if t.status == 'Tuntas':
+    if (t.status == 'Tuntas') or (t.ketuntasan):
         context['tuntas'] = True
 
     if not (t.link_bukti == None):
