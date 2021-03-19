@@ -188,8 +188,16 @@ class DataKaryawan(models.Model):
             # lama bekerja
             masuk = self.tanggal_masuk
             selisih = hariini - masuk
+            
+            # ngitung hari
             selisih = selisih.days
+
+            # ngitung tahun
+            tahun = selisih // 365
+            selisih = selisih - (tahun*365)
+
+            # ngitung bulan
             bulan = selisih // 30
             selisih = selisih - (bulan*30)
 
-            self.lama_bekerja = str(bulan) + " bulan, " + str(selisih) + " hari"
+            self.lama_bekerja = str(tahun) + " tahun, " + str(bulan) + " bulan, " + str(selisih) + " hari"
