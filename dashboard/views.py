@@ -1166,8 +1166,26 @@ def upload_dokumentasi_tr(request, id_tugas):
 def data_karyawan(request):
     
     d = DataKaryawan.objects.filter(status='AKTIF')
-    
-    context = {'nama' : request.user.first_name, 'data' : d}
+    karyawan_office = d.filter(area='Office')
+    area_cisitu = d.filter(area='Cisitu')
+    area_jatinangor = d.filter(area='Jatinangor')
+    area_metro = d.filter(area='Metro')
+    area_sukajadi = d.filter(area='Sukajadi')
+    area_sukabirus = d.filter(area='Telkom Sukabirus')
+    area_sukapura = d.filter(area='Telkom Sukapura')
+    area_unjani = d.filter(area='Unjani')
+
+    context = {'nama' : request.user.first_name,
+               'data' : d,
+               'karyawan_office' : karyawan_office,
+               'area_cisitu' : area_cisitu,
+               'area_jatinangor' : area_jatinangor,
+               'area_metro' : area_metro,
+               'area_sukajadi' : area_sukajadi,
+               'area_sukabirus' : area_sukabirus,
+               'area_sukapura' : area_sukapura,
+               'area_unjani' : area_unjani
+            }
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
     
