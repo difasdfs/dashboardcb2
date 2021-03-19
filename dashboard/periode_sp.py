@@ -41,11 +41,17 @@ def evaluasi():
         total_terlambat = 0
         total_deadline = 0
 
+        banyaknya_tugas_yang_tuntas = 0
+
         tp = TugasProyek.objects.filter(pemilik_tugas=obj_user)
         tp = tp.filter(deadline__range=[awal, akhir])
-        
+
         banyak_tp = len(tp)
         for tugas_proyek in tp:
+
+            if tugas_proyek.ketuntasan:
+                banyaknya_tugas_yang_tuntas += 1
+
             if tugas_proyek.status == "Tuntas":
                 total_tuntas += 1
             elif tugas_proyek.status == "Terlambat":
@@ -63,6 +69,10 @@ def evaluasi():
             isi_tr = isi_tr.filter(deadline__range=[awal, akhir])
             banyak_tr += len(isi_tr)
             for tugas_rutin in isi_tr:
+
+                if tugas_rutin.ketuntasan:
+                    banyaknya_tugas_yang_tuntas += 1
+
                 if tugas_rutin.status == "Tuntas":
                     total_tuntas += 1
                 elif tugas_rutin.status == "Terlambat":
@@ -75,12 +85,14 @@ def evaluasi():
 
         total_tugas = banyak_tp + banyak_tr
 
-        if total_tuntas == 0:
+        print(nama)
+        print(banyaknya_tugas_yang_tuntas)
+        print(nilai_akhir)
+
+        if banyaknya_tugas_yang_tuntas == 0:
             nilai_akhir = 0.0
-            persen_terlambat = 0.0
-            persen_deadline = 0.0
         else:
-            nilai_akhir = str(nilai_akhir/total_tuntas)
+            nilai_akhir = str(nilai_akhir/banyaknya_tugas_yang_tuntas)
             list_nilai = nilai_akhir.split('.')
             nilai_akhir = list_nilai[0] + '.' + list_nilai[1][:2]
             nilai_akhir = float(nilai_akhir)
