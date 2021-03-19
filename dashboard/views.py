@@ -667,7 +667,7 @@ def mdetail_proyek(request, id_tugas):
     t = TugasProyek.objects.get(pk=id_tugas)
     dokumennya = t.bukti
 
-    if (t.status == 'Tuntas'):
+    if (t.status == 'Tuntas') or (t.ketuntasan):
         nottuntas = False
     else:
         nottuntas = True
