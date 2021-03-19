@@ -502,6 +502,7 @@ def lihat_tugas(request):
         tr = tr.exclude(bagian='Management')
 
     tp = tp.exclude(archive=True).order_by('deadline')
+    tp = tp.exclude(ketuntasan=True)
     tr = tr.exclude(archive=True)
 
     tugas_rutin_marketing = rinci_tr("Marketing")
@@ -540,9 +541,9 @@ def lihat_tugas_tuntas(request):
         context['data_kar'] = True
     
     if ceo:
-        tp = TugasProyek.objects.filter(bagian='Management', status='Tuntas').order_by('-id')
+        tp = TugasProyek.objects.filter(bagian='Management', ketuntasan=True).order_by('-id')
     else:
-        tp = TugasProyek.objects.filter(bagian=request.user.last_name, status='Tuntas').order_by('-id')
+        tp = TugasProyek.objects.filter(bagian=request.user.last_name, ketuntasan=True).order_by('-id')
     
     banyak_data_per_page = 10
     p = Paginator(tp, banyak_data_per_page)
