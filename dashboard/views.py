@@ -1326,8 +1326,14 @@ def karyawan_keluar(request, id_karyawan):
 def halaman_edit(request, id_karyawan):
 
     d = DataKaryawan.objects.get(pk=id_karyawan)
+    tanggal_masuk = d.tanggal_masuk.strftime("%Y-%m-%d")
+    tanggal_lahir = d.tanggal_lahir.strftime("%Y-%m-%d")
 
-    context = {'nama' : request.user.first_name, 'data' : d}
+    context = {'nama' : request.user.first_name, 
+               'data' : d,
+               'tanggal_masuk' : tanggal_masuk,
+               'tanggal_lahir' : tanggal_lahir
+            }
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
