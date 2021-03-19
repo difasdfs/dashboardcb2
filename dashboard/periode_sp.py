@@ -91,6 +91,8 @@ def evaluasi():
 
         if banyaknya_tugas_yang_tuntas == 0:
             nilai_akhir = 0.0
+            persen_terlambat = persenTerlambat(total_terlambat, total_tugas)
+            persen_deadline = persenDeadline(total_deadline, total_tugas)
         else:
             nilai_akhir = str(nilai_akhir/banyaknya_tugas_yang_tuntas)
             list_nilai = nilai_akhir.split('.')
