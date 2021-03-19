@@ -8,30 +8,257 @@
         <div class="col">
             <h1>Data Karyawan Aktif</h1>
 
-            <!-- nik, nama, jabatan, area -->
-            <br>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">NIK</th>
-                        <th scope="col">Nama</th>
-                        <th scope="col">Jabatan</th>
-                        <th scope="col">Area</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for isi in data %}
-                    <tr>
-                        <th scope="row">{{forloop.counter}}</th>
-                        <td>{{isi.nik}}</td>
-                        <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
-                        <td>{{isi.nama_posisi}}</td>
-                        <td>{{isi.area}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All</a>
+                  <a class="nav-link" id="nav-office-tab" data-toggle="tab" href="#nav-office" role="tab" aria-controls="nav-office" aria-selected="false">Office</a>
+                  <a class="nav-link" id="nav-cisitu-tab" data-toggle="tab" href="#nav-cisitu" role="tab" aria-controls="nav-cisitu" aria-selected="false">Cisitu</a>
+                  <a class="nav-link" id="nav-jatinangor-tab" data-toggle="tab" href="#nav-jatinangor" role="tab" aria-controls="nav-jatinangor" aria-selected="false">Jatinangor</a>
+                  <a class="nav-link" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="false">Metro</a>
+                  <a class="nav-link" id="nav-sukajadi-tab" data-toggle="tab" href="#nav-sukajadi" role="tab" aria-controls="nav-sukajadi" aria-selected="false">Sukajadi</a>
+                  <a class="nav-link" id="nav-sukabirus-tab" data-toggle="tab" href="#nav-sukabirus" role="tab" aria-controls="nav-sukabirus" aria-selected="false">Sukabirus</a>
+                  <a class="nav-link" id="nav-sukapura-tab" data-toggle="tab" href="#nav-sukapura" role="tab" aria-controls="nav-sukapura" aria-selected="false">Sukapura</a>
+                  <a class="nav-link" id="nav-unjani-tab" data-toggle="tab" href="#nav-unjani" role="tab" aria-controls="nav-unjani" aria-selected="false">Unjani</a>
+                </div>
+              </nav>
+
+              <!-- SEMUA KARYAWAN -->
+              <br>
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in data %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- OFFICE -->
+                <div class="tab-pane fade" id="nav-office" role="tabpanel" aria-labelledby="nav-office-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in karyawan_office %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- CISITU -->
+                <div class="tab-pane fade" id="nav-cisitu" role="tabpanel" aria-labelledby="nav-cisitu-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_cisitu %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- JATINANGOR -->
+                <div class="tab-pane fade" id="nav-jatinangor" role="tabpanel" aria-labelledby="nav-jatinangor-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_jatinangor %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- METRO -->
+                <div class="tab-pane fade" id="nav-metro" role="tabpanel" aria-labelledby="nav-metro-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_metro %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SUKAJADI    -->
+                <div class="tab-pane fade" id="nav-sukajadi" role="tabpanel" aria-labelledby="nav-sukajadi-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_sukajadi %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SUKABIRUS -->
+                <div class="tab-pane fade" id="nav-sukabirus" role="tabpanel" aria-labelledby="nav-sukabirus-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_sukabirus %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SUKAPURA -->
+                <div class="tab-pane fade" id="nav-sukapura" role="tabpanel" aria-labelledby="nav-sukapura-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_sukapura %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- UNJANI -->
+                <div class="tab-pane fade" id="nav-unjani" role="tabpanel" aria-labelledby="nav-unjani-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_unjani %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+              </div>
         </div>
     </div>
 </div>
