@@ -31,7 +31,7 @@
                         <label for="isi">Isi</label>
                         <textarea class="form-control" id="isi" name="isi" rows="3"></textarea>
                     </div>
-                    
+
                     <div class="form-group">
                         <label for="banyak-tugas">Banyak tugas</label>
                         <select onchange="banyakTugas(this)" class="form-control" id="banyak-tugas" name="banyak-tugas">
@@ -73,7 +73,7 @@
         var divnya = document.getElementById('banyak-deadline');
         var val = nilai.value;
         if(val === 'harian'){
-            divnya.innerHTML = '<div class="form-group"><label for="mulai`">Mulai</label><input type="date" class="form-control" id="mulai" name="mulai"></div><div class="form-group"><label for="selesai`">Selesai</label><input type="date" class="form-control" id="selesai" name="selesai"></div><input type="hidden" name="tipe" value="harian">';
+            divnya.innerHTML = '<div class="form-group"><label for="mulai`">Mulai</label><input type="date" class="form-control" id="mulai" name="mulai"></div><div class="form-group"><label for="selesai`">Selesai</label><input type="date" class="form-control" id="selesai" name="selesai"><br><div class="form-group"><label for="deadlinejam">Deadline</label><br><input type="time" id="deadlinejam" name="deadlinejam"></div></div><input type="hidden" name="tipe" value="harian">';
         }else{
             var nilaiPerulangan = parseInt(val)
             var isiHTML = '';
