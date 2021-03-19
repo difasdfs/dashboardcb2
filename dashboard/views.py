@@ -422,8 +422,8 @@ def input_tugas_rutin(request, id_eksekutif):
             data_mulai = request.POST.get('mulai')
             data_selesai = request.POST.get('selesai')
 
-            data_mulai += "T18:00"
-            data_selesai += "T18:00"           
+            data_mulai += "T" + request.POST.get('deadlinejam')
+            data_selesai += "T" + request.POST.get('deadlinejam')
 
             d_dikerjakan_dari = datetime.fromisoformat(data_mulai)
             d_dikerjakan_sampai = datetime.fromisoformat(data_selesai)
