@@ -1,2 +1,11 @@
-test branch
-ngaruh ga sih kalau baris ini diedit?
+- Training Manajer
+- Area Manager
+- Restaurant Manager
+- Assistant Restaurant Manager
+- Crew Leader
+- Crew
+- Training Restaurant Manager
+- Management Trainee Restaurant Manager
+- Training Assistant Restaurant Manager
+- Training Crew Leader
+- Training Crew
