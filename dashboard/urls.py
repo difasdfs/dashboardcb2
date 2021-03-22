@@ -39,6 +39,7 @@ urlpatterns = [
     path('eksekusi_archive_rutin/<int:id_tugas>', views.eksekusi_archive_rutin, name='eksekusi_archive_rutin'),
     path('kembalikan_archive_proyek/<int:id_tugas>', views.kembalikan_archive_proyek, name='kembalikan_archive_proyek'),
     path('kembalikan_archive_rutin/<int:id_tugas>', views.kembalikan_archive_rutin, name='kembalikan_archive_rutin'),
+    path('lihat_tugas_per_nama/<int:id_user>', views.lihat_tugas_per_nama, name='lihat_tugas_per_nama'),
     
     # EKSEKUTIF
     path('eksekutif/', views.eksekutif, name='eksekutif'),

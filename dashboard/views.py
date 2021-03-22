@@ -479,11 +479,14 @@ def input_tugas_rutin(request, id_eksekutif):
 @login_required(login_url='login')
 def lihat_tugas(request):
 
+    # mengembalikan object user
+    anggota = anggotabagian(request.user.first_name, request.user.last_name)
+
     ceo = request.user.groups.filter(name='CEO').exists()
 
     ngecekdeadline()
     nama = request.user.first_name
-    context = {'nama' : nama}
+    context = {'nama' : nama, 'anggota' : anggota}
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
@@ -525,6 +528,33 @@ def lihat_tugas(request):
     context['tugas_rutin_hr'] = tugas_rutin_hr
 
     return render(request, 'manager/lihat_tugas.html', context)
+
+
+@login_required(login_url='login')
+def lihat_tugas_per_nama(request, id_user):
+
+    nama = request.user.first_name
+    ceo = request.user.groups.filter(name='CEO').exists()
+    anggota = anggotabagian(request.user.first_name, request.user.last_name)
+    tp = TugasProyek.objects.filter(pemilik_tugas=User.objects.get(pk=id_user), ketuntasan=False).order_by('deadline')
+    # nama, id, tuntas, total tugas
+    tr = rinci_tr_eksekutif(id_user)
+    nama_pemilik_tugas = User.objects.get(pk=id_user).first_name
+    context = {
+        'nama' : nama,
+        'anggota' : anggota,
+        'tugas_proyek' : tp,
+        'tugas_rutin' : tr,
+        'nama_pemilik_tugas' : nama_pemilik_tugas
+    }
+
+    if ceo:
+        context['sidebar_ceo'] = True
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'manager/lihat_tugas_per_nama.html', context)
 
 
 @login_required(login_url='login')
