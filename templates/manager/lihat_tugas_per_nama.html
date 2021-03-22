@@ -1,0 +1,103 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .tugas-berdasarkan-nama{
+        position: relative;
+        display: inline-block;
+    }
+
+    .nama-pemilik {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .nama-pemilik a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .nama-pemilik a:hover {background-color: #ddd;}
+
+    .tugas-berdasarkan-nama:hover .nama-pemilik {display: block;}
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        {% include 'manager/sidebar.html' %}
+
+        <div class="col">
+            <div class="tugas-berdasarkan-nama">
+                <button type="button" class="dropbtn btn btn-primary btn-sm">Tampilkan Tugas</button>
+                <div class="nama-pemilik">
+                    <a href="{% url 'lihat_tugas' %}">Semua</a>
+                    {% for a in anggota %}
+                    <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+            <br><br>
+
+              <h2>Tugas Proyek</h2>
+
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Tugas</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Deadline</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                {% for isi in tugas_proyek %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <th>{{isi.pemilik_tugas.first_name}}</th>
+                    <th><a href="{% url 'mdetail_proyek' isi.id %}">{{isi.judul}}</a></th> 
+                    <th>{{isi.status}}</th>
+                    <th>{{isi.deadline|time:"H:i"}}, {{isi.deadline|date:"d M Y"}}</th>
+                    <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_proyek' isi.id %}">Archive</a></th>
+                </tr>
+                {% endfor %}
+                </table>
+                <br>
+              <h2>Tugas Rutin</h2>
+
+                
+                <br>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Tugas</th>
+                            <th scope="col">Tuntas</th>
+                            <th scope="col"></th>
+                        </tr>
+                        </thead>
+                        {% for r in tugas_rutin %}
+                        <tr>
+                            <th scope="row">{{forloop.counter}}</th>
+                            <th>{{nama_pemilik_tugas}}</th>
+                            <th><a href="{% url 'progress_tugas_rutin' r.1 %}">{{r.0}}</a></th>
+                            <th>{{r.2}}/{{r.3}}</th>
+                            <th><a class="btn btn-warning" href="#">Archive</a></th>
+                        </tr>
+                        {% endfor %}
+                    </table>
+               
+        </div>
+    </div>
+</div>
+
+{% endblock %}

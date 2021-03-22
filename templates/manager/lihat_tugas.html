@@ -5,6 +5,33 @@
     .kontainer-form{
       width: 500px;
     }
+
+    .tugas-berdasarkan-nama{
+        position: relative;
+        display: inline-block;
+    }
+
+    .nama-pemilik {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .nama-pemilik a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    .nama-pemilik a:hover {background-color: #ddd;}
+
+    .tugas-berdasarkan-nama:hover .nama-pemilik {display: block;}
+
+    /* .tugas-berdasarkan-nama:hover .dropbtn {background-color: #3e8e41;} */
   </style>
   
   <hr>
@@ -18,8 +45,18 @@
         {% endif %}
 
           <div class="col">
-              <h1>Tugas</h1>
-              <br><br>
+
+            <div class="tugas-berdasarkan-nama">
+                <button type="button" class="dropbtn btn btn-primary btn-sm">Tampilkan Tugas</button>
+                <div class="nama-pemilik">
+                    {% for a in anggota %}
+                    <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <br><br>
+
               <h2>Tugas Proyek</h2>
 
                 <table class="table">
@@ -44,7 +81,7 @@
                 </tr>
                 {% endfor %}
                 </table>
-                <br><br>
+                <br>
               <h2>Tugas Rutin</h2>
 
                 {% if manager_marketing %}
@@ -338,6 +375,7 @@
                   </div>
 
                 {% endif %}
+                <!-- ini adalah ujung divnya -->
           </div>
       </div>
   </div>
