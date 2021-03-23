@@ -620,7 +620,7 @@ def progress_tugas_rutin(request, id_tugas):
     t = TugasRutin.objects.get(pk=id_tugas)
 
     tr = IsiTugasRutin.objects.filter(tugas_rutin=t, ketuntasan=False)
-    context['tugas_rutin'] = tr
+    context['tr'] = tr
     context['judul'] = t.judul
     context['isi'] = t.isi
 
@@ -1302,7 +1302,7 @@ def tambah_data_karyawan(request):
         'nama' : request.user.first_name, 
         'nik_terakhir' : nik_terakhir
     }
-    
+
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
