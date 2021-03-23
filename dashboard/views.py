@@ -1294,7 +1294,15 @@ def tambah_data_karyawan(request):
         d.save()
         return redirect('data_karyawan')
 
-    context = {'nama' : request.user.first_name}
+    d = DataKaryawan.objects.all().order_by('-id')[0]
+    nik_terakhir = '0000' + str(d.id+1)
+    nik_terakhir = nik_terakhir[-4:]
+
+    context = {
+        'nama' : request.user.first_name, 
+        'nik_terakhir' : nik_terakhir
+    }
+    
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
