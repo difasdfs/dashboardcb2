@@ -619,7 +619,7 @@ def progress_tugas_rutin(request, id_tugas):
     # objek tugas rutin
     t = TugasRutin.objects.get(pk=id_tugas)
 
-    tr = IsiTugasRutin.objects.filter(tugas_rutin=t)
+    tr = IsiTugasRutin.objects.filter(tugas_rutin=t, ketuntasan=False)
     context['tugas_rutin'] = tr
     context['judul'] = t.judul
     context['isi'] = t.isi
