@@ -17,7 +17,8 @@
       {% endif %}
 
         <div class="col">
-            
+          <a href="{% url 'lihat_tugas_per_nama' tr.0.tugas_rutin.pemilik_tugas.id %}" class="btn btn-success" tabindex="-1" role="button" aria-disabled="true">Back</a>
+          <br><br>
             <h2 class="padding-proyek">Tugas Rutin</h2>
             <table class="table table-striped">
               <tbody>
@@ -42,7 +43,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                    {% for isi in tugas_rutin %}
+                    {% for isi in tr %}
                   <tr>
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{isi.deadline|time:"H:i"}} |  {{isi.deadline|date:"l, d M Y"}}</td>
