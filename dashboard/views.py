@@ -17,7 +17,7 @@ from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, Period
 from django.utils import timezone
 from datetime import datetime, timedelta
 import pytz
-import django_excel
+# import django_excel
 
 from django.http import HttpResponse
 
@@ -29,8 +29,8 @@ def test_webhook(request):
     context = {'data' : data}
     return render(request, 'test_webhook.html', context)
 
-def export_data_karyawan(request):
-    return django_excel.make_response_from_a_table(DataKaryawan, "xls", file_name="data_karyawan")
+# def export_data_karyawan(request):
+#     return django_excel.make_response_from_a_table(DataKaryawan, "xls", file_name="data_karyawan")
 
 # -------------------------------------------------------------------------------------------------
 
