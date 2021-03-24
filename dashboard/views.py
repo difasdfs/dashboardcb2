@@ -17,15 +17,22 @@ from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, Period
 from django.utils import timezone
 from datetime import datetime, timedelta
 import pytz
+import django_excel
 
 from django.http import HttpResponse
 
 # Create your views here.
 
+# DEBUGGGING
 def test_webhook(request):
     data = request.POST
     context = {'data' : data}
     return render(request, 'test_webhook.html', context)
+
+def export_data_karyawan(request):
+    return django_excel.make_response_from_a_table(DataKaryawan, "xls", file_name="data_karyawan")
+
+# -------------------------------------------------------------------------------------------------
 
 @login_required(login_url='login')
 def index(request):
