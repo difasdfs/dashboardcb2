@@ -1236,6 +1236,7 @@ def data_karyawan(request):
     
     d = DataKaryawan.objects.filter(status='AKTIF')
     karyawan_office = d.filter(area='Office')
+    area_antapani = d.filter(area="Antapani")
     area_cisitu = d.filter(area='Cisitu')
     area_jatinangor = d.filter(area='Jatinangor')
     area_metro = d.filter(area='Metro')
@@ -1247,6 +1248,7 @@ def data_karyawan(request):
     context = {'nama' : request.user.first_name,
                'data' : d,
                'karyawan_office' : karyawan_office,
+               'area_antapani' : area_antapani,
                'area_cisitu' : area_cisitu,
                'area_jatinangor' : area_jatinangor,
                'area_metro' : area_metro,
