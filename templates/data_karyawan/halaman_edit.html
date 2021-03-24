@@ -19,6 +19,11 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     <br>
+
+                    <div class="form-group">
+                        <label><strong>NIK</strong> : {{data.nik}}</label>
+                    </div>
+
                     <div class="form-group">
                         <label for="nama">Nama : </label>
                         <input type="text" class="form-control" id="nama" name="nama" value="{{data.nama}}" required>
@@ -223,7 +228,8 @@
                             {% if pendidikan_sd %}
                             <option value="SD" selected>SD</option>
                             <option value="SMP">SMP</option>
-                            <option value="SMA/SMK">SMA/SMK</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK">SMK</option>
                             <option value="D3">D3</option>
                             <option value="S1">S1</option>
                             <option value="S2">S2</option>
@@ -232,7 +238,8 @@
                             {% elif pendidikan_smp %}
                             <option value="SD">SD</option>
                             <option value="SMP" selected>SMP</option>
-                            <option value="SMA/SMK">SMA/SMK</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK">SMK</option>
                             <option value="D3">D3</option>
                             <option value="S1">S1</option>
                             <option value="S2">S2</option>
@@ -241,7 +248,18 @@
                             {% elif pendidikan_sma %}
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
-                            <option value="SMA/SMK" selected>SMA/SMK</option>
+                            <option value="SMA" selected>SMA</option>
+                            <option value="SMK">SMK</option>
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+
+                            {% elif pendidikan_smk %}
+                            <option value="SD">SD</option>
+                            <option value="SMP">SMP</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK" selected>SMK</option>
                             <option value="D3">D3</option>
                             <option value="S1">S1</option>
                             <option value="S2">S2</option>
@@ -250,7 +268,8 @@
                             {% elif pendidikan_d3 %}
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
-                            <option value="SMA/SMK">SMA/SMK</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK">SMK</option>
                             <option value="D3" selected>D3</option>
                             <option value="S1">S1</option>
                             <option value="S2">S2</option>
@@ -259,7 +278,8 @@
                             {% elif pendidikan_s1 %}
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
-                            <option value="SMA/SMK">SMA/SMK</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK">SMK</option>
                             <option value="D3">D3</option>
                             <option value="S1" selected>S1</option>
                             <option value="S2">S2</option>
@@ -268,7 +288,8 @@
                             {% elif pendidikan_s2 %}
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
-                            <option value="SMA/SMK">SMA/SMK</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK">SMK</option>
                             <option value="D3">D3</option>
                             <option value="S1">S1</option>
                             <option value="S2" selected>S2</option>
@@ -277,7 +298,8 @@
                             {% elif pendidikan_s3 %}
                             <option value="SD">SD</option>
                             <option value="SMP">SMP</option>
-                            <option value="SMA/SMK">SMA/SMK</option>
+                            <option value="SMA">SMA</option>
+                            <option value="SMK">SMK</option>
                             <option value="D3">D3</option>
                             <option value="S1">S1</option>
                             <option value="S2">S2</option>
