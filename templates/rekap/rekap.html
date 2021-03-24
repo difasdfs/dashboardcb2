@@ -1,6 +1,15 @@
 {% extends 'main.html' %}
 {% block content %}
 
+<style>
+    .tabel-custom{
+        width : 60%;
+    }
+    .cellmerah{
+        background-color: rgb(253, 156, 156);
+    }
+</style>
+
 <hr>
 <div class="container">
     <div class="row">
@@ -10,6 +19,264 @@
         <div class="col">
             <h1>Rekap</h1>
             <br>
+
+            <div class="accordion" id="accordioneval">
+
+                <div class="card">
+                  <div class="card-header" id="headmaret2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasimaret2" aria-expanded="false" aria-controls="collapsemaret2">
+                        Periode Maret 2 (11 Maret 2021 - 25 Maret 2021)
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasimaret2" class="collapse show" aria-labelledby="headmaret2" data-parent="#accordioneval">
+                    <div class="card-body">
+                        <table class="table table-bordered tabel-custom">
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Total Tugas</th>
+                                    <td>{{periode1.0}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Tuntas</th>
+                                    <td>{{periode1.1}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Terlambat</th>
+                                    <td>{{periode1.2}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Deadline</th>
+                                    <td>{{periode1.3}}</td>
+                                </tr>
+
+                                {% if periode1.4 < 8 %}
+                                <tr>
+                                    <th scope="row">Nilai Akhir</th>
+                                    <td class="cellmerah">{{periode1.4}}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <th scope="row">Nilai Akhir</th>
+                                    <td>{{periode1.4}}</td>
+                                </tr>
+                                {% endif %}
+
+                                {% if periode1.5 > 20 %}
+                                <tr>
+                                    <th scope="row">%terlambat</th>
+                                    <td class="cellmerah">%{{periode1.5}}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <th scope="row">%terlambat</th>
+                                    <td>%{{periode1.5}}</td>
+                                </tr>
+                                {% endif %}
+
+                                {% if periode1.7 < 5 %}
+                                <tr>
+                                    <th scope="row">%deadline</th>
+                                    <td>%{{periode1.6}}</td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <th scope="row">%deadline</th>
+                                    <td class="cellmerah">%{{periode1.6}}</td>
+                                </tr>
+                                {% endif %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headapril1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiapril1" aria-expanded="false" aria-controls="collapseapril1">
+                        Periode April 1
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasiapril1" class="collapse" aria-labelledby="headapril1" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode April 1
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headapril2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiapril2" aria-expanded="false" aria-controls="collapseapril2">
+                        Periode April 2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasiapril2" class="collapse" aria-labelledby="headapril2" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode April 2
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headmei1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasimei1" aria-expanded="false" aria-controls="collapsemei1">
+                        Periode Mei 1
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasimei1" class="collapse" aria-labelledby="headmei1" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Mei 1
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headmei2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasimei2" aria-expanded="false" aria-controls="collapsemei2">
+                        Periode Mei 2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasimei2" class="collapse" aria-labelledby="headmei2" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Mei 2
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headjuni1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasijuni1" aria-expanded="false" aria-controls="collapsejuni1">
+                        Periode Juni 1
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasijuni1" class="collapse" aria-labelledby="headjuni1" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Juni 1
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headjuni2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasijuni2" aria-expanded="false" aria-controls="collapsejuni2">
+                        Periode Juni 2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasijuni2" class="collapse" aria-labelledby="headjuni2" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Juni 2
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headjuli1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasijuli1" aria-expanded="false" aria-controls="collapsejuli1">
+                        Periode Juli 1
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasijuli1" class="collapse" aria-labelledby="headjuli1" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Juli 1
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headjuli2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasijuli2" aria-expanded="false" aria-controls="collapsejuli2">
+                        Periode Juli 2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasijuli2" class="collapse" aria-labelledby="headjuli2" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Juli 2
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headagustus1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiagustus1" aria-expanded="false" aria-controls="collapseagustus1">
+                        Periode Agustus 1
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasiagustus1" class="collapse" aria-labelledby="headagustus1" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Agustus 1
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headagustus2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiagustus2" aria-expanded="false" aria-controls="collapseagustus2">
+                        Periode Agustus 2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasiagustus2" class="collapse" aria-labelledby="headagustus2" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode Agustus 2
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headseptember1">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiseptember1" aria-expanded="false" aria-controls="collapseseptember1">
+                        Periode September 1
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasiseptember1" class="collapse" aria-labelledby="headseptember1" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode September 1
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header" id="headseptember2">
+                    <h2 class="mb-0">
+                      <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiseptember2" aria-expanded="false" aria-controls="collapseseptember2">
+                        Periode September 2
+                      </button>
+                    </h2>
+                  </div>
+                  <div id="evaluasiseptember2" class="collapse" aria-labelledby="headseptember2" data-parent="#accordioneval">
+                    <div class="card-body">
+                      Evaluasi Periode September 2
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+        </div>
+
         </div>
     </div>
 </div>
