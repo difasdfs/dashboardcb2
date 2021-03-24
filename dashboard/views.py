@@ -17,7 +17,7 @@ from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, Period
 from django.utils import timezone
 from datetime import datetime, timedelta
 import pytz
-# import django_excel
+import django_excel
 
 from django.http import HttpResponse
 
@@ -29,8 +29,40 @@ def test_webhook(request):
     context = {'data' : data}
     return render(request, 'test_webhook.html', context)
 
-# def export_data_karyawan(request):
-#     return django_excel.make_response_from_a_table(DataKaryawan, "xls", file_name="data_karyawan")
+def export_data_karyawan(request):
+    
+    karyawan_aktif = DataKaryawan.objects.filter(status="AKTIF")
+
+    bulan = {
+        "1" : "Jan",
+        "2" : "Feb",
+        "3" : "Mar",
+        "4" : "Apr",
+        "5" : "May",
+        "6" : "Jun",
+        "7" : "Jul",
+        "8" : "Aug",
+        "9" : "Sep",
+        "10" : "Okt",
+        "11" : "Nov",
+        "12" : "Des"
+    }
+
+    i = 1
+    datanya = [
+        ["NO", "NO ID FING", "NIK", "Nama", "Area", "Level Manajemen", "Nama Posisi", "Kode Posisi", "Status Pegawai", "Tanggal Masuk", "Lama Bekerja", "No KTP", "Tempat Lahir", "Tanggal Lahir", "Umur", "Jenis Kelamin", "Agama", "Pendidikan", "Jurusan", "Alamat", "No Hp", "Marital Status", "Anak", "No.Rek", "BPJS Ketenagakerjaan"], 
+    ]
+    for d in karyawan_aktif:
+        d.update_data()
+        tanggal_masuk = d.tanggal_masuk.strftime("%d") + " " + bulan[str(d.tanggal_masuk.month)] + " " + d.tanggal_masuk.strftime("%Y")
+        tanggal_lahir = d.tanggal_lahir.strftime("%d") + " " + bulan[str(d.tanggal_lahir.month)] + " " + d.tanggal_lahir.strftime("%Y")
+
+        datanya.append([i, d.no_id_fingerprint, d.nik, d.nama, d.area, d.level_manajemen, d.nama_posisi, d.kode_posisi, d.status_pegawai, tanggal_masuk, d.lama_bekerja, d.no_ktp, d.tempat_lahir, tanggal_lahir, d.umur, d.jenis_kelamin, d.agama, d.pendidikan, d.jurusan, d.alamat, d.no_hp, d.marital_status, d.anak, d.no_rekening, d.bpjs_ketenagakerjaan])
+        i += 1
+    
+    print(datanya)
+
+    return django_excel.make_response_from_array(datanya, "xls", file_name="data_karyawan")
 
 # -------------------------------------------------------------------------------------------------
 
@@ -297,7 +329,7 @@ def edit_nilai(request, id_isi_tugas_rutin):
 
 @login_required(login_url='login')
 def manager(request):
-    
+        
     ngecekdeadline()
     nama = request.user.first_name
     context = {'nama': nama}
