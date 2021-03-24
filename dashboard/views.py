@@ -11,6 +11,7 @@ from .logic import *
 from .hskor import hitungskor
 from .index_sp import query_index_sp
 from .periode_sp import evaluasi
+from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
 from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
 
@@ -135,6 +136,23 @@ def profile(request):
 
     return render(request, 'profile.html', context)
 
+
+# ------------------------------- REKAP ----------------------------------
+@login_required(login_url='login')
+def rekap(request):
+    nama = request.user.first_name
+    bagian = request.user.last_name
+    periode1 = query_rekap(1, request.user.id)
+
+    context = {
+        'bagian': bagian, 
+        'nama': nama,
+        'periode1' : periode1
+    }
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'rekap/rekap.html', context)
 
 # ------------------------------- KLASEMEN ----------------------------------
 @login_required(login_url='login')
