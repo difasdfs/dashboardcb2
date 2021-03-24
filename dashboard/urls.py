@@ -65,7 +65,7 @@ urlpatterns = [
     path('halaman_edit_karyawan/<int:id_karyawan>', views.halaman_edit, name='halaman_edit_karyawan'),
     path('karyawan_tidak_aktif/', views.karyawan_tidak_aktif, name='karyawan_tidak_aktif'),
     path('test_webhook/', views.test_webhook, name='test_webhook'),
-    path('export_data_karyawan', views.export_data_karyawan, name="export_data_karyawan"),
+    # path('export_data_karyawan', views.export_data_karyawan, name="export_data_karyawan"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
