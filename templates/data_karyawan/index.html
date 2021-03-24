@@ -6,12 +6,17 @@
     <div class="row">
         {% include 'data_karyawan/sidebar.html' %}
         <div class="col">
+
+            <a href="{% url 'export_data_karyawan' %}" class="btn btn-success btn-sm">Export to Excel</a>
+            <br><br>
+
             <h1>Data Karyawan Aktif</h1>
 
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                   <a class="nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All</a>
                   <a class="nav-link" id="nav-office-tab" data-toggle="tab" href="#nav-office" role="tab" aria-controls="nav-office" aria-selected="false">Office</a>
+                  <a class="nav-link" id="nav-antapani-tab" data-toggle="tab" href="#nav-antapani" role="tab" aria-controls="nav-antapani" aria-selected="false">Antapani</a>
                   <a class="nav-link" id="nav-cisitu-tab" data-toggle="tab" href="#nav-cisitu" role="tab" aria-controls="nav-cisitu" aria-selected="false">Cisitu</a>
                   <a class="nav-link" id="nav-jatinangor-tab" data-toggle="tab" href="#nav-jatinangor" role="tab" aria-controls="nav-jatinangor" aria-selected="false">Jatinangor</a>
                   <a class="nav-link" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="false">Metro</a>
@@ -64,6 +69,32 @@
                         </thead>
                         <tbody>
                             {% for isi in karyawan_office %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ANTAPANI -->
+                <div class="tab-pane fade" id="nav-antapani" role="tabpanel" aria-labelledby="nav-antapani-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_antapani %}
                             <tr>
                                 <th scope="row">{{forloop.counter}}</th>
                                 <td>{{isi.nik}}</td>
