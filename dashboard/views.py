@@ -1440,8 +1440,10 @@ def halaman_edit(request, id_karyawan):
         context['pendidikan_sd'] = True
     elif d.pendidikan == 'SMP':
         context['pendidikan_smp'] = True
-    elif d.pendidikan == 'SMA/SMK':
+    elif (d.pendidikan == 'SMA/SMK') or (d.pendidikan == "SMA"):
         context['pendidikan_sma'] = True
+    elif d.pendidikan == 'SMK':
+        context['pendidikan_smk'] = True
     elif d.pendidikan == 'D3':
         context['pendidikan_d3'] = True
     elif d.pendidikan == 'S1':
