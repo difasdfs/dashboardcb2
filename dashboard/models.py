@@ -75,6 +75,7 @@ class PeriodeSp(models.Model):
     def __str__(self):
         return self.nama_periode
 
+# ini model gagal
 class KenaSp(models.Model):
     periode_sp = models.ForeignKey(PeriodeSp, on_delete=models.CASCADE)
     id_user = models.IntegerField()
@@ -84,6 +85,18 @@ class KenaSp(models.Model):
     def __str__(self):
         user = User.objects.get(pk=self.id_user)
         return user.first_name
+
+# ini yang dipake
+class SuratPeringatan(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    mulai_sp = models.DateField()
+    berakhir_sp = models.DateField()
+    keaktifan = models.BooleanField()
+
+    def berakhir_dalam(self):
+        selisih = self.berakhir_sp - self.mulai_sp
+        return selisih.days
+
 
 class DataKaryawan(models.Model):
     AREA = (

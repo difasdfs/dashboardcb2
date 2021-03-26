@@ -13,7 +13,7 @@ from .index_sp import query_index_sp
 from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
-from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
+from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, SuratPeringatan
 
 from django.utils import timezone
 from datetime import datetime, timedelta
@@ -1100,6 +1100,12 @@ def eksekutif(request):
     
     nama = request.user.first_name
     context = {'nama' : nama}
+
+    sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
+    if sp_user:
+        context['kena_sp'] = True
+        context['surat_peringatan'] = sp_user
+
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
