@@ -10,7 +10,7 @@ from .decorators import unauthenticated_user
 from .logic import *
 from .hskor import hitungskor
 from .index_sp import query_index_sp
-from .periode_sp import evaluasi
+from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
 from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, KenaSp
@@ -230,10 +230,16 @@ def eval_per_periode(request):
         'data_kar' : True,
     }
     
-    hasil = evaluasi()
+    hasil = evaluasi(1)
     hasil.sort(key=lambda tup: tup[6])
     hasil = hasil[::-1]
     context['evalmaret2'] = hasil
+    dieksekusi_maret2 = PeriodeSp.objects.get(pk=1).dieksekusi
+    yang_kena_sp_maret2 = dapet_sp_periode_ini(hasil)
+    context['yang_kena_sp_maret2'] = yang_kena_sp_maret2
+
+    if not dieksekusi_maret2:
+        context['belum_dieksekusi'] = True
 
     if request.user.last_name == 'Information Technology':
         context['debugging'] = True
@@ -272,6 +278,18 @@ def debugging_sp(request):
     }
 
     return render(request, 'sp/debugging.html', context)
+
+def eksekusi_sp(request, id_periode_sp):
+
+    hasil = evaluasi(id_periode_sp)
+    yang_kena_sp = dapet_sp_periode_ini(hasil)
+
+    for isi in yang_kena_sp:
+        id_user = isi[-1]
+        object_user = User.objects.get(pk=id_user)
+        # kenasp = KenaSp()
+
+    return redirect('eval_per_periode')
 # ------------------------------- CEO ----------------------------------
 
 @login_required(login_url='login')

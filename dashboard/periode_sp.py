@@ -2,10 +2,11 @@ from .models import TugasProyek, TugasRutin, IsiTugasRutin, KenaSp, PeriodeSp
 from django.contrib.auth.models import User
 from django.utils import timezone
 from .hskor import hitungskor
+from datetime import date, timedelta
 
-def evaluasi():
+def evaluasi(periode):
 
-    objekperiodesp = PeriodeSp.objects.get(pk=1)
+    objekperiodesp = PeriodeSp.objects.get(pk=periode)
     awal = objekperiodesp.awal_periode
     akhir = objekperiodesp.akhir_periode
 
@@ -102,8 +103,9 @@ def evaluasi():
             persen_terlambat = persenTerlambat(total_terlambat, total_tugas)
             persen_deadline = persenDeadline(total_deadline, total_tugas)
 
-        hasil.append((nama, bagian, total_tugas, total_tuntas, total_terlambat, total_deadline, nilai_akhir, persen_terlambat, persen_deadline))
+        hasil.append((nama, bagian, total_tugas, total_tuntas, total_terlambat, total_deadline, nilai_akhir, persen_terlambat, persen_deadline, obj_user.id))
 
+    # hasil.append(objekperiodesp.dieksekusi)
     return hasil
 
 def persenTerlambat(total_terlambat, total_tugas):
@@ -126,4 +128,31 @@ def persenDeadline(total_deadline, total_tugas):
 
     return float(hasil)
 
-# def nilaiAkhir(nilai_akhir):
+def dapet_sp_periode_ini(rekap):
+
+    hasil = []
+    mulai_sp = date.today()
+    berakhir_dalam = timedelta(days=90)
+    berakhir_sp = mulai_sp + berakhir_dalam
+
+    for isi in rekap:
+        sp = 0
+
+        nilai_akhir = isi[-4]
+        persen_terlambat = isi[-3]
+        persen_deadline = isi[-2]
+        nama = isi[0]
+        bagian = isi[1]
+        id_user = isi[-1]
+
+        if nilai_akhir < 8:
+            sp += 1
+        if persen_terlambat > 20:
+            sp += 1
+        if persen_deadline > 5:
+            sp += 1
+        if sp > 0:
+            hasil.append((nama, bagian, sp, mulai_sp, berakhir_sp, id_user))
+
+
+    return hasil
