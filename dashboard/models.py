@@ -94,7 +94,7 @@ class SuratPeringatan(models.Model):
     keaktifan = models.BooleanField()
 
     def berakhir_dalam(self):
-        selisih = self.berakhir_sp - self.mulai_sp
+        selisih = self.berakhir_sp - datetime.date.today()
         return selisih.days
 
 
