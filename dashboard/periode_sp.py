@@ -131,7 +131,7 @@ def persenDeadline(total_deadline, total_tugas):
 def dapet_sp_periode_ini(rekap):
 
     hasil = []
-    mulai_sp = date.today()
+    mulai_sp = date(2021, 3, 26)
     berakhir_dalam = timedelta(days=90)
     berakhir_sp = mulai_sp + berakhir_dalam
 
