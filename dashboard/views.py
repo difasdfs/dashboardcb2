@@ -232,6 +232,9 @@ def eval_per_periode(request):
         'data_kar' : True,
     }
     
+    kenasp_periode_maret2 = SuratPeringatan.objects.all()
+    context['kenasp_periode_maret2'] = kenasp_periode_maret2
+    
     hasil = evaluasi(1)
     hasil.sort(key=lambda tup: tup[6])
     hasil = hasil[::-1]
@@ -239,6 +242,7 @@ def eval_per_periode(request):
     dieksekusi_maret2 = PeriodeSp.objects.get(pk=1).dieksekusi
     yang_kena_sp_maret2 = dapet_sp_periode_ini(hasil)
     context['yang_kena_sp_maret2'] = yang_kena_sp_maret2
+    
 
     if not dieksekusi_maret2:
         context['belum_dieksekusi'] = True
