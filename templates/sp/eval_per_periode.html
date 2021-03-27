@@ -91,20 +91,20 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Bagian</th>
-                                    <th scope="col">SP</th>
                                     <th scope="col">Mulai</th>
                                     <th scope="col">Sampai</th>
+                                    <th scope="col">Berakhir dalam</th>
                                   </tr>
                               </thead>
                               <tbody>
-                                {% for isi in yang_kena_sp_maret2 %}
+                                {% for isi in kenasp_periode_maret2 %}
                                   <tr>
                                       <td scope="row">{{forloop.counter}}</td>
-                                      <td>{{isi.0}}</td>
-                                      <td>{{isi.1}}</td>
-                                      <td>{{isi.2}}</td>
-                                      <td>{{isi.3|date:"j M Y"}}</td>
-                                      <td>{{isi.4|date:"j M Y"}}</td>
+                                      <td>{{isi.user.first_name}}</td>
+                                      <td>{{isi.user.last_name}}</td>
+                                      <td>{{isi.mulai_sp|date:"j M Y"}}</td>
+                                      <td>{{isi.berakhir_sp|date:"j M Y"}}</td>
+                                      <td>{{isi.berakhir_dalam}}</td>
                                   </tr>
                                   {% endfor %}
                                 </tbody>
