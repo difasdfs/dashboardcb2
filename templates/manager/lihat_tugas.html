@@ -50,7 +50,9 @@
                 <button type="button" class="dropbtn btn btn-primary btn-sm">Tampilkan Tugas</button>
                 <div class="nama-pemilik">
                     {% for a in anggota %}
-                    <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                        {% if a.id != 5 %}
+                        <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

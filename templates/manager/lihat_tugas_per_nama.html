@@ -40,7 +40,9 @@
                 <div class="nama-pemilik">
                     <a href="{% url 'lihat_tugas' %}">Semua</a>
                     {% for a in anggota %}
-                    <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                        {% if a.id != 5 %}
+                            <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
