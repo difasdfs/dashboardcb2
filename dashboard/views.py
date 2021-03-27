@@ -569,13 +569,17 @@ def lihat_tugas(request):
     if ceo:
         context['sidebar_ceo'] = True
 
-    # tugas proyek
+    # periode tugas yang mau ditampilkan
+    periode = PeriodeSp.objects.get(pk=2) # periode april 2
+    awal = periode.awal_periode
+    akhir = periode.akhir_periode
 
+    # tugas proyek
     if ceo:
-        tp = TugasProyek.objects.filter(bagian='Management').exclude(status='Tuntas').order_by('-id')
+        tp = TugasProyek.objects.filter(bagian='Management', deadline__range=[awal, akhir]).exclude(status='Tuntas').order_by('-id')
         tr = TugasRutin.objects.filter(bagian='Management').order_by('-id').exclude(archive=True)
     else:
-        tp = TugasProyek.objects.filter(bagian=request.user.last_name).exclude(status='Tuntas').order_by('deadline')
+        tp = TugasProyek.objects.filter(bagian=request.user.last_name, deadline__range=[awal, akhir]).exclude(status='Tuntas').order_by('deadline')
         tr = TugasRutin.objects.order_by('-id').exclude(archive=True)
         tr = tr.exclude(bagian='Management')
 
