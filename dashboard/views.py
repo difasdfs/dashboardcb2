@@ -587,7 +587,7 @@ def lihat_tugas(request):
     tp = tp.exclude(ketuntasan=True)
     tr = tr.exclude(archive=True)
 
-    tugas_rutin_marketing = rinci_tr("Marketing", True)
+    tugas_rutin_marketing = rinci_tr("Marketing")
     tugas_rutin_operation = rinci_tr('Operation')
     tugas_rutin_finance = rinci_tr("Finance")
     tugas_rutin_hr = rinci_tr("Human Resource")
