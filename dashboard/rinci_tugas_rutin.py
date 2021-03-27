@@ -13,9 +13,9 @@ def rinci_tr(bagian_, tampilkan_tuntas_semua = False):
         if not tampilkan_tuntas_semua:
             if a[0] == a[1]:
                 continue
-
-        if jangan_tampilkan_tugas(tr):
-            continue
+            if jangan_tampilkan_tugas(tr):
+                continue
+        
 
         hasil.append( (tr.pemilik_tugas.first_name, tr.judul, tr.id, a[0], a[1]) )
 
