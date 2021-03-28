@@ -171,7 +171,7 @@ def klasemen(request):
         if a.id not in id_terlarang:
             user.append(a)
 
-    id_orang_office = [6,3,23,25,8,22,2,24,4,31]
+    id_orang_office = [6,3,23,25,8,22,2,24,4,31,36]
     orang_office = []
     non_office = []
 
