@@ -9,6 +9,36 @@
 
         <div class="col">
             <h1>Dashboard Manager</h1>
+
+            {% if kena_sp %}
+
+            <br><br>
+            <h3>Surat Peringatan</h3>
+            <div class="table-responsive">
+                <table class="table table-sm tablesp table-bordered table-hover">
+                    <thead>
+                        <tr>
+                          <th scope="col">SP</th>
+                          <th scope="col">Tanggal Terbit</th>
+                          <th scope="col">Tanggal Berakhir</th>
+                          <th scope="col">Berakhir Dalam</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sp in surat_peringatan %}
+                        <tr>
+                            <td scope="row">{{forloop.counter}}</td>
+                            <td>{{sp.mulai_sp|date:"j M Y"}}</td>
+                            <td>{{sp.berakhir_sp|date:"j M Y"}}</td>
+                            <td>{{sp.berakhir_dalam}} Hari</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    </table>
+                </div>
+
+            {% endif %}
+
         </div>
     </div>
 </div>
