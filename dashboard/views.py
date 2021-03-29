@@ -382,6 +382,12 @@ def edit_nilai(request, id_isi_tugas_rutin):
 def manager(request):
         
     ngecekdeadline()
+
+    sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
+    if sp_user:
+        context['kena_sp'] = True
+        context['surat_peringatan'] = sp_user
+
     nama = request.user.first_name
     context = {'nama': nama}
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
