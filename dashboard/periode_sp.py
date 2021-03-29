@@ -29,6 +29,7 @@ def evaluasi(periode):
         32, # salma
         33, # pak arif      
         34, # wida
+        36, # rahmat ali
     ]
 
     hasil = []
@@ -109,6 +110,10 @@ def evaluasi(periode):
     return hasil
 
 def persenTerlambat(total_terlambat, total_tugas):
+
+    if total_tugas == 0:
+        return 0
+
     hasil = total_terlambat / total_tugas
     hasil *= 100
 
@@ -119,6 +124,10 @@ def persenTerlambat(total_terlambat, total_tugas):
     return float(hasil)
 
 def persenDeadline(total_deadline, total_tugas):
+
+    if total_tugas == 0:
+        return 0
+
     hasil = total_deadline / total_tugas
     hasil *= 100
 

@@ -235,10 +235,19 @@ def eval_per_periode(request):
     kenasp_periode_maret2 = SuratPeringatan.objects.all()
     context['kenasp_periode_maret2'] = kenasp_periode_maret2
     
+    # ---------------------------------------------
     hasil = evaluasi(1)
     hasil.sort(key=lambda tup: tup[6])
     hasil = hasil[::-1]
     context['evalmaret2'] = hasil
+
+    evalapril1 = evaluasi(2)
+    evalapril1.sort(key=lambda tup: tup[6])
+    evalapril1 = evalapril1[::-1]
+    context['evalapril1'] = evalapril1
+    # ---------------------------------------------
+
+
     dieksekusi_maret2 = PeriodeSp.objects.get(pk=1).dieksekusi
     yang_kena_sp_maret2 = dapet_sp_periode_ini(hasil)
     context['yang_kena_sp_maret2'] = yang_kena_sp_maret2
