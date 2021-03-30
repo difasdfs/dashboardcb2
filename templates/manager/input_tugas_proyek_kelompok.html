@@ -1,0 +1,56 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .kontainer-form{
+        width: 500px;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        {% if sidebar_ceo %}
+            {% include 'ceo/sidebar.html' %}
+        {% else %}
+            {% include 'manager/sidebar.html' %}
+        {% endif %}
+
+        <div class="col">
+            <h2>Input Tugas Proyek Kelompok</h2>
+            <br>
+            <div class="kontainer-form">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="judul">Judul</label>
+                        <input type="text" class="form-control" id="judul" name="judul" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="isi">Isi</label>
+                        <textarea class="form-control" id="isi" name="isi" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="deadline">Deadline</label>
+                        <input type="datetime-local" class="form-control" id="deadline" name="deadline" required>
+                    </div>
+
+                    <label for="tugaskan_ke">Tugaskan ke :</label><br>
+                   
+                    {% for u in eksekutif_bagian %}
+                        <input type="checkbox" id="{{u.first_name}}" name="{{u.first_name}}" value="idnya_{{u.id}}">
+                        <label for="{{u.first_name}}">{{u.first_name}}</label><br>
+                    {% endfor %}
+                    
+                    <button type="submit" value="Submit" class="btn btn-primary">Submit</button>
+
+                    <br><br>  <br><br>  <br><br>
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
