@@ -438,6 +438,164 @@ def daftar_eksekutif(request):
     return render(request, 'manager/daftar_eksekutif.html', context)
 
 @login_required(login_url='login')
+def input_tugas_proyek_kelompok(request):
+
+    nama = request.user.first_name
+    eksekutif_bagian = User.objects.filter(last_name=request.user.last_name).exclude(first_name=request.user.first_name)
+    eksekutif_bagian = eksekutif_bagian.exclude(id=5)
+    context = {
+        'nama' : nama, 
+        'eksekutif_bagian': eksekutif_bagian
+        }
+
+    ceo = request.user.groups.filter(name='CEO').exists()
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    if ceo:
+        context['sidebar_ceo'] = True
+
+    if request.method == 'POST':
+        data_judul = request.POST.get('judul')
+        data_isi = request.POST.get('isi')
+        data_deadline = request.POST.get('deadline')
+        listnya = list(request.POST.keys())
+        for k in listnya[4:]:
+            k = request.POST.get(k)
+            idnya = k.split("_")
+            idnya = int(idnya[1])
+            if ceo:
+                t = TugasProyek(
+                    pemilik_tugas = User.objects.get(pk=idnya),
+                    judul = data_judul,
+                    isi = data_isi,
+                    deadline = data_deadline,
+                    status = 'On Progress',
+                    bagian = 'Management',
+                    bukti = '#',
+                    ketuntasan = False
+                )
+            else:
+                t = TugasProyek(
+                    pemilik_tugas = User.objects.get(pk=idnya),
+                    judul = data_judul,
+                    isi = data_isi,
+                    deadline = data_deadline,
+                    status = 'On Progress',
+                    bagian = request.user.last_name,
+                    bukti = '#',
+                    ketuntasan = False
+                )
+            t.save()
+        return redirect("lihat_tugas")
+
+    return render(request, 'manager/input_tugas_proyek_kelompok.html', context)
+
+def input_tugas_rutin_kelompok(request):
+
+    nama = request.user.first_name
+    eksekutif_bagian = User.objects.filter(last_name=request.user.last_name).exclude(first_name=request.user.first_name)
+    eksekutif_bagian = eksekutif_bagian.exclude(id=5)
+    context = {
+        'nama' : nama, 
+        'eksekutif_bagian': eksekutif_bagian
+        }
+
+    ceo = request.user.groups.filter(name='CEO').exists()
+
+    if request.method == 'POST':
+        data_judul = request.POST.get('judul')
+        data_isi = request.POST.get('isi')
+        # DICOMMENT BUAT DEBUGGING AJA
+
+        banyak_tugas = int(request.POST.get('banyak-tugas'))
+        # DICOMMENT BUAT DEBUGGING AJA
+        skip = banyak_tugas + 4
+        listnya = list(request.POST.keys())
+        for k in listnya[skip:]:
+            k = request.POST.get(k)
+            idnya = k.split("_")
+            id_eksekutif = int(idnya[1])
+
+            object_eksekutif = User.objects.get(pk=id_eksekutif)
+
+            if ceo:
+                tgs_rutin = TugasRutin(
+                    pemilik_tugas= object_eksekutif, 
+                    judul=data_judul,
+                    isi = data_isi,
+                    bagian = 'Management',
+                )
+            else:
+                tgs_rutin = TugasRutin(
+                pemilik_tugas= object_eksekutif, 
+                judul=data_judul,
+                isi = data_isi,
+                bagian = request.user.last_name,
+            )
+            tgs_rutin.save()
+
+            objek_tugas = TugasRutin.objects.get(pk=tgs_rutin.id)
+            statusnya = "On Progress"
+
+            tipe = request.POST.get('tipe')
+            if tipe == 'harian':
+                data_mulai = request.POST.get('mulai')
+                data_selesai = request.POST.get('selesai')
+
+                data_mulai += "T" + request.POST.get('deadlinejam')
+                data_selesai += "T" + request.POST.get('deadlinejam')
+
+                d_dikerjakan_dari = datetime.fromisoformat(data_mulai)
+                d_dikerjakan_sampai = datetime.fromisoformat(data_selesai)
+
+                d_dikerjakan_dari_utc = d_dikerjakan_dari.astimezone(pytz.utc)
+                # d_dikerjakan_sampai_utc = d_dikerjakan_sampai.astimezone(pytz.utc)
+
+                selisih = d_dikerjakan_sampai - d_dikerjakan_dari
+                banyak_hari = selisih.days + 1
+
+                tanggal = d_dikerjakan_dari_utc
+
+                for i in range(banyak_hari):
+                    isitgs_rutin = IsiTugasRutin(
+                        tugas_rutin = objek_tugas,
+                        deadline = tanggal,
+                        status = statusnya,
+                        judul = data_judul,
+                        isi = data_isi,
+                        ketuntasan = False
+                    )
+
+                    isitgs_rutin.save()
+                    tanggal += timedelta(days=1)
+            else:
+                # banyak_tugas adalah integer
+                banyak_tugas = int(request.POST.get('banyak-tugas'))
+                for i in range(banyak_tugas):
+                    isitgs_rutin = IsiTugasRutin(
+                        tugas_rutin = objek_tugas,
+                        deadline = request.POST.get('deadline' + str(i+1)),
+                        status = statusnya,
+                        judul = data_judul,
+                        isi = data_isi,
+                        link_bukti = '#'
+                    )
+                    isitgs_rutin.save()
+                
+        return redirect('lihat_tugas')
+        
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    if ceo:
+        context['sidebar_ceo'] = True
+
+    return render(request, 'manager/input_tugas_rutin_kelompok.html', context)
+
+@login_required(login_url='login')
 def input_tugas_proyek(request, id_eksekutif):
 
     nama = request.user.first_name
