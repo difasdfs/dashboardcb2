@@ -26,53 +26,483 @@
         <br>
         
         <a href="{% url 'upgrade_tc_ac' %}" class="btn btn-success btn-sm tombol-update" role="button">update</a>
-        
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered border-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Total Sales</th>
-                        <th scope="col">Total Check</th>
-                        <th scope="col">Average Check</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for a in ac %}
-                    <tr>
-                        <td>{{a.0|date:"j M Y"}}</td>
-                        <td>{{a.1}}</td>
-                        <td>{{a.2}}</td>
-                        <td>{{a.3}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <br>
-        <div class="table-responsive">
-            <table class="table table-hover table-bordered border-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Tanggal</th>
-                        <th scope="col">Total Sales Online</th>
-                        <th scope="col">Total Check Online</th>
-                        <th scope="col">Average Check Online</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for a in ac %}
-                    <tr>
-                        <td>{{a.0|date:"j M Y"}}</td>
-                        <td>{{a.4}}</td>
-                        <td>{{a.5}}</td>
-                        <td>{{a.6}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
     
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All</a>
+                <a class="nav-link" id="nav-antapani-tab" data-toggle="tab" href="#nav-antapani" role="tab" aria-controls="nav-antapani" aria-selected="false">Antapani</a>
+                <a class="nav-link" id="nav-cisitu-tab" data-toggle="tab" href="#nav-cisitu" role="tab" aria-controls="nav-cisitu" aria-selected="false">Cisitu</a>
+                <a class="nav-link" id="nav-jatinangor-tab" data-toggle="tab" href="#nav-jatinangor" role="tab" aria-controls="nav-jatinangor" aria-selected="false">Jatinangor</a>
+                <a class="nav-link" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="false">Metro</a>
+                <a class="nav-link" id="nav-sukajadi-tab" data-toggle="tab" href="#nav-sukajadi" role="tab" aria-controls="nav-sukajadi" aria-selected="false">Sukajadi</a>
+                <a class="nav-link" id="nav-sukabirus-tab" data-toggle="tab" href="#nav-sukabirus" role="tab" aria-controls="nav-sukabirus" aria-selected="false">Sukabirus</a>
+                <a class="nav-link" id="nav-sukapura-tab" data-toggle="tab" href="#nav-sukapura" role="tab" aria-controls="nav-sukapura" aria-selected="false">Sukapura</a>
+                <a class="nav-link" id="nav-unjani-tab" data-toggle="tab" href="#nav-unjani" role="tab" aria-controls="nav-unjani" aria-selected="false">Unjani</a>
+            </div>
+        </nav>
+
+        <!-- SEMUA CABANG -->
+        <br>
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ANTAPANI -->
+            <div class="tab-pane fade" id="nav-antapani" role="tabpanel" aria-labelledby="nav-antapani-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_antapani %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_antapani %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- CISITU -->
+            <div class="tab-pane fade" id="nav-cisitu" role="tabpanel" aria-labelledby="nav-cisitu-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_cisitu %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_cisitu %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- JATINANGOR -->
+            <div class="tab-pane fade" id="nav-jatinangor" role="tabpanel" aria-labelledby="nav-jatinangor-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_jatinangor %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_jatinangor %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- METRO -->
+            <div class="tab-pane fade" id="nav-metro" role="tabpanel" aria-labelledby="nav-metro-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_metro %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_metro %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SUKAJADI    -->
+            <div class="tab-pane fade" id="nav-sukajadi" role="tabpanel" aria-labelledby="nav-sukajadi-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_sukajadi %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_sukajadi %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SUKABIRUS -->
+            <div class="tab-pane fade" id="nav-sukabirus" role="tabpanel" aria-labelledby="nav-sukabirus-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_sukabirus %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_sukabirus %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- SUKAPURA -->
+            <div class="tab-pane fade" id="nav-sukapura" role="tabpanel" aria-labelledby="nav-sukapura-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_sukapura %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_sukapura %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- UNJANI -->
+            <div class="tab-pane fade" id="nav-unjani" role="tabpanel" aria-labelledby="nav-unjani-tab">
+                <h4>Dine In & Takeaway</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales</th>
+                                <th scope="col">Total Check</th>
+                                <th scope="col">Average Check</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_unjani %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.1}}</td>
+                                <td>{{a.2}}</td>
+                                <td>{{a.3}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <h4>Online Delivery</h4>
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered border-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tanggal</th>
+                                <th scope="col">Total Sales Online</th>
+                                <th scope="col">Total Check Online</th>
+                                <th scope="col">Average Check Online</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for a in ac_unjani %}
+                            <tr>
+                                <td>{{a.0|date:"j M Y"}}</td>
+                                <td>{{a.4}}</td>
+                                <td>{{a.5}}</td>
+                                <td>{{a.6}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- AKHIR TAB -->
     </div>
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
