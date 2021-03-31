@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import datetime
 import pytz
+import locale
 
 # Create your models here.
 
@@ -214,3 +215,100 @@ class DataKaryawan(models.Model):
             selisih = selisih - (bulan*30)
 
             self.lama_bekerja = str(tahun) + " tahun, " + str(bulan) + " bulan, " + str(selisih) + " hari"
+
+
+class DataStruk(models.Model):
+    nomor_struk = models.CharField(max_length=50)
+    created_at = models.DateTimeField()
+    outlet = models.CharField(max_length=70)
+    nama_pembayaran = models.CharField(max_length=70)
+    tipe_struk = models.CharField(max_length=70)
+    money_amount = models.IntegerField()
+
+    def __str__(self):
+        return self.nomor_struk + ' - ' + self.tipe_struk
+    
+class NomorStrukTerakhir(models.Model):
+    nomor_struk = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nomor_struk
+
+class AverageCheck(models.Model):
+    hari = models.DateField()
+    awal_hari = models.DateTimeField()
+    akhir_hari = models.DateTimeField()
+    total_check = models.IntegerField(default=0, null=True)
+    total_sales = models.IntegerField(default=0, null=True)
+    total_check_online = models.IntegerField(default=0, null=True)
+    total_sales_online = models.IntegerField(default=0, null=True)
+    average_check = models.FloatField(default=0, null=True)
+    average_check_online = models.FloatField(default=0, null=True)
+    
+    total_check_antapani = models.IntegerField(default=0, null=True)
+    total_check_online_antapani = models.IntegerField(default=0, null=True)
+    average_check_antapani = models.FloatField(default=0, null=True)
+    average_check_online_antapani = models.FloatField(default=0, null=True)
+    total_sales_antapani = models.IntegerField(default=0, null=True)
+    total_sales_online_antapani = models.IntegerField(default=0, null=True)
+
+    total_check_metro = models.IntegerField(default=0, null=True)
+    total_check_online_metro = models.IntegerField(default=0, null=True)
+    average_check_metro = models.FloatField(default=0, null=True)
+    average_check_online_metro = models.FloatField(default=0, null=True)
+    total_sales_metro = models.IntegerField(default=0, null=True)
+    total_sales_online_metro = models.IntegerField(default=0, null=True)
+
+    total_check_jatinangor = models.IntegerField(default=0, null=True)
+    total_check_online_jatinangor = models.IntegerField(default=0, null=True)
+    average_check_jatinangor = models.FloatField(default=0, null=True)
+    average_check_online_jatinangor = models.FloatField(default=0, null=True)
+    total_sales_jatinangor = models.IntegerField(default=0, null=True)
+    total_sales_online_jatinangor = models.IntegerField(default=0, null=True)
+
+    total_check_sukapura = models.IntegerField(default=0, null=True)
+    total_check_online_sukapura = models.IntegerField(default=0, null=True)
+    average_check_sukapura = models.FloatField(default=0, null=True)
+    average_check_online_sukapura = models.FloatField(default=0, null=True)
+    total_sales_sukapura = models.IntegerField(default=0, null=True)
+    total_sales_online_sukapura = models.IntegerField(default=0, null=True)
+
+    total_check_sukabirus = models.IntegerField(default=0, null=True)
+    total_check_online_sukabirus = models.IntegerField(default=0, null=True)
+    average_check_sukabirus = models.FloatField(default=0, null=True)
+    average_check_online_sukabirus = models.FloatField(default=0, null=True)
+    total_sales_sukabirus = models.IntegerField(default=0, null=True)
+    total_sales_online_sukabirus = models.IntegerField(default=0, null=True)
+
+    total_check_unjani = models.IntegerField(default=0, null=True)
+    total_check_online_unjani = models.IntegerField(default=0, null=True)
+    average_check_unjani = models.FloatField(default=0, null=True)
+    average_check_online_unjani = models.FloatField(default=0, null=True)
+    total_sales_unjani = models.IntegerField(default=0, null=True)
+    total_sales_online_unjani = models.IntegerField(default=0, null=True)
+
+    total_check_cisitu = models.IntegerField(default=0, null=True)
+    total_check_online_cisitu = models.IntegerField(default=0, null=True)
+    average_check_cisitu = models.FloatField(default=0, null=True)
+    average_check_online_cisitu = models.FloatField(default=0, null=True)
+    total_sales_cisitu = models.IntegerField(default=0, null=True)
+    total_sales_online_cisitu = models.IntegerField(default=0, null=True)
+
+    total_check_sukajadi = models.IntegerField(default=0, null=True)
+    total_check_online_sukajadi = models.IntegerField(default=0, null=True)
+    average_check_sukajadi = models.FloatField(default=0, null=True)
+    average_check_online_sukajadi = models.FloatField(default=0, null=True)
+    total_sales_sukajadi = models.IntegerField(default=0, null=True)
+    total_sales_online_sukajadi = models.IntegerField(default=0, null=True)
+
+    def tentukan_awal_akhir_hari(self):
+        self.awal_hari = datetime.datetime(self.hari.year, self.hari.month, self.hari.day, 0, 0, 1, 0, tzinfo=pytz.UTC) - datetime.timedelta(hours=7)
+        self.akhir_hari = datetime.datetime(self.hari.year, self.hari.month, self.hari.day, 23, 59, 59, 0, tzinfo=pytz.UTC) - datetime.timedelta(hours=7) 
+
+    def formatnya(self, angka, with_prefix=True, desimal=2):
+        locale.setlocale(locale.LC_NUMERIC, 'IND')
+        rupiah = locale.format_string("%.*f", (desimal, angka), True)
+        if with_prefix:
+            return "Rp. {}".format(rupiah)
+        else:
+            return rupiah

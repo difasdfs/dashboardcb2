@@ -7,16 +7,17 @@ from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator, EmptyPage
 
 from .decorators import unauthenticated_user
+from .tc_ac import refresh_tcav, update_tc
 from .logic import *
 from .hskor import hitungskor
 from .index_sp import query_index_sp
 from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
-from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, SuratPeringatan
+from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, SuratPeringatan, AverageCheck
 
 from django.utils import timezone
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 import pytz
 import django_excel
 
@@ -25,6 +26,38 @@ from django.http import HttpResponse
 # Create your views here.
 
 # DEBUGGGING
+
+def average_check(request):
+    nama = request.user.first_name
+    bagian = request.user.last_name
+    context = {'bagian': bagian, 'nama': nama}
+
+    ac = AverageCheck.objects.all()
+    ac = [[i.hari, i.formatnya(i.total_sales), i.total_check, i.formatnya(i.average_check), i.formatnya(i.total_sales_online), i.total_check_online, i.formatnya(i.average_check_online)] for i in ac]
+    ac = ac[-5:]
+    ac.reverse()
+    context['ac'] = ac
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'average_check.html', context)
+
+def upgrade_tc_ac(request):
+    refresh_tcav()
+    now = timezone.now() + timedelta(hours=7)
+    tanggal_sekarang = date(now.year, now.month, now.day)
+    cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
+
+    if not cek_tanggal:
+        d = AverageCheck(hari=tanggal_sekarang)
+        d.tentukan_awal_akhir_hari()
+        d.save()
+    
+    aw = AverageCheck.objects.filter(hari=tanggal_sekarang)[0]
+    update_tc(aw.id)
+    return redirect('average_check')
+
 def test_webhook(request):
     data = request.POST
     context = {'data' : data}
