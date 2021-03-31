@@ -175,47 +175,42 @@ def update_tc(id_objek_ac):
     if total_check_online_antapani == 0:
         ac.average_check_online_antapani = 0
     else:
-        ac.average_check_online_antapani = total_sales_antapani / total_check_online_antapani
+        ac.average_check_online_antapani = total_sales_online_antapani / total_check_online_antapani
 
     if total_check_online_metro == 0:
         ac.average_check_online_metro = 0
     else:
-        ac.average_check_online_metro = total_sales_metro / total_check_online_metro
-    
-    if total_check_online_antapani == 0:
-        ac.average_check_online_antapani = 0
-    else:
-        ac.average_check_online_antapani = total_sales_antapani / total_check_online_antapani
+        ac.average_check_online_metro = total_sales_online_metro / total_check_online_metro
 
     if total_check_online_jatinangor == 0:
         ac.average_check_online_jatinangor = 0
     else:
-        ac.average_check_online_jatinangor = total_sales_jatinangor / total_check_online_jatinangor
+        ac.average_check_online_jatinangor = total_sales_online_jatinangor / total_check_online_jatinangor
 
     if total_check_online_sukabirus == 0:
         ac.average_check_online_sukabirus = 0
     else:
-        ac.average_check_online_sukabirus = total_sales_sukabirus / total_check_online_sukabirus
+        ac.average_check_online_sukabirus = total_sales_online_sukabirus / total_check_online_sukabirus
 
     if total_check_online_sukapura == 0:
         ac.average_check_online_sukapura = 0
     else:
-        ac.average_check_online_sukapura = total_sales_sukapura / total_check_online_sukapura
+        ac.average_check_online_sukapura = total_sales_online_sukapura / total_check_online_sukapura
 
     if total_check_online_unjani == 0:
         ac.average_check_online_unjani = 0
     else:
-        ac.average_check_online_unjani = total_sales_unjani / total_check_online_unjani
+        ac.average_check_online_unjani = total_sales_online_unjani / total_check_online_unjani
 
     if total_check_online_cisitu == 0:
         ac.average_check_online_cisitu = 0
     else:
-        ac.average_check_online_cisitu = total_sales_cisitu / total_check_online_cisitu
+        ac.average_check_online_cisitu = total_sales_online_cisitu / total_check_online_cisitu
     
     if total_check_online_sukajadi == 0:
         ac.average_check_online_sukajadi = 0
     else:
-        ac.average_check_online_sukajadi = total_sales_sukajadi / total_check_online_sukajadi
+        ac.average_check_online_sukajadi = total_sales_online_sukajadi / total_check_online_sukajadi
 
     ac.total_sales = total_sales_dine_in_takeaway
     ac.total_sales_online = total_sales_online

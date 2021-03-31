@@ -33,10 +33,52 @@ def average_check(request):
     context = {'bagian': bagian, 'nama': nama}
 
     ac = AverageCheck.objects.all()
+    ac_master = AverageCheck.objects.all()
+
     ac = [[i.hari, i.formatnya(i.total_sales), i.total_check, i.formatnya(i.average_check), i.formatnya(i.total_sales_online), i.total_check_online, i.formatnya(i.average_check_online)] for i in ac]
-    ac = ac[-5:]
+    ac = ac[-7:]
     ac.reverse()
     context['ac'] = ac
+
+    ac_antapani = [[i.hari, i.formatnya(i.total_sales_antapani), i.total_check_antapani, i.formatnya(i.average_check_antapani), i.formatnya(i.total_sales_online_antapani), i.total_check_online_antapani, i.formatnya(i.average_check_online_antapani)] for i in ac_master]
+    ac_antapani = ac_antapani[-7:]
+    ac_antapani.reverse()
+    context['ac_antapani'] = ac_antapani
+
+    ac_cisitu = [[i.hari, i.formatnya(i.total_sales_cisitu), i.total_check_cisitu, i.formatnya(i.average_check_cisitu), i.formatnya(i.total_sales_online_cisitu), i.total_check_online_cisitu, i.formatnya(i.average_check_online_cisitu)] for i in ac_master]
+    ac_cisitu = ac_cisitu[-7:]
+    ac_cisitu.reverse()
+    context['ac_cisitu'] = ac_cisitu
+
+    ac_jatinangor = [[i.hari, i.formatnya(i.total_sales_jatinangor), i.total_check_jatinangor, i.formatnya(i.average_check_jatinangor), i.formatnya(i.total_sales_online_jatinangor), i.total_check_online_jatinangor, i.formatnya(i.average_check_online_jatinangor)] for i in ac_master]
+    ac_jatinangor = ac_jatinangor[-7:]
+    ac_jatinangor.reverse()
+    context['ac_jatinangor'] = ac_jatinangor
+
+    ac_metro = [[i.hari, i.formatnya(i.total_sales_metro), i.total_check_metro, i.formatnya(i.average_check_metro), i.formatnya(i.total_sales_online_metro), i.total_check_online_metro, i.formatnya(i.average_check_online_metro)] for i in ac_master]
+    ac_metro = ac_metro[-7:]
+    ac_metro.reverse()
+    context['ac_metro'] = ac_metro
+
+    ac_sukajadi = [[i.hari, i.formatnya(i.total_sales_sukajadi), i.total_check_sukajadi, i.formatnya(i.average_check_sukajadi), i.formatnya(i.total_sales_online_sukajadi), i.total_check_online_sukajadi, i.formatnya(i.average_check_online_sukajadi)] for i in ac_master]
+    ac_sukajadi = ac_sukajadi[-7:]
+    ac_sukajadi.reverse()
+    context['ac_sukajadi'] = ac_sukajadi
+
+    ac_sukabirus = [[i.hari, i.formatnya(i.total_sales_sukabirus), i.total_check_sukabirus, i.formatnya(i.average_check_sukabirus), i.formatnya(i.total_sales_online_sukabirus), i.total_check_online_sukabirus, i.formatnya(i.average_check_online_sukabirus)] for i in ac_master]
+    ac_sukabirus = ac_sukabirus[-7:]
+    ac_sukabirus.reverse()
+    context['ac_sukabirus'] = ac_sukabirus
+
+    ac_sukapura = [[i.hari, i.formatnya(i.total_sales_sukapura), i.total_check_sukapura, i.formatnya(i.average_check_sukapura), i.formatnya(i.total_sales_online_sukapura), i.total_check_online_sukapura, i.formatnya(i.average_check_online_sukapura)] for i in ac_master]
+    ac_sukapura = ac_sukapura[-7:]
+    ac_sukapura.reverse()
+    context['ac_sukapura'] = ac_sukapura
+
+    ac_unjani = [[i.hari, i.formatnya(i.total_sales_unjani), i.total_check_unjani, i.formatnya(i.average_check_unjani), i.formatnya(i.total_sales_online_unjani), i.total_check_online_unjani, i.formatnya(i.average_check_online_unjani)] for i in ac_master]
+    ac_unjani = ac_unjani[-7:]
+    ac_unjani.reverse()
+    context['ac_unjani'] = ac_unjani
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
