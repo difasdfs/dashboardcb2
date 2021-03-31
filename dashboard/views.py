@@ -827,7 +827,7 @@ def lihat_tugas(request):
     # periode tugas yang mau ditampilkan
     periode = PeriodeSp.objects.get(pk=2) # periode april 2
     awal = periode.awal_periode
-    akhir = periode.akhir_periode
+    akhir = periode.akhir_periode + timedelta(days=365)
 
     # tugas proyek
     if ceo:
