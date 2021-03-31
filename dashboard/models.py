@@ -305,10 +305,25 @@ class AverageCheck(models.Model):
         self.awal_hari = datetime.datetime(self.hari.year, self.hari.month, self.hari.day, 0, 0, 1, 0, tzinfo=pytz.UTC) - datetime.timedelta(hours=7)
         self.akhir_hari = datetime.datetime(self.hari.year, self.hari.month, self.hari.day, 23, 59, 59, 0, tzinfo=pytz.UTC) - datetime.timedelta(hours=7) 
 
-    def formatnya(self, angka, with_prefix=True, desimal=2):
-        locale.setlocale(locale.LC_NUMERIC, 'IND')
-        rupiah = locale.format_string("%.*f", (desimal, angka), True)
-        if with_prefix:
-            return "Rp. {}".format(rupiah)
-        else:
-            return rupiah
+    def formatnya(self, angka):
+        if angka >= 1000000:
+            jutaan = angka // 1000000
+            pengurang = jutaan * 1000000
+            angka = angka - pengurang
+
+            ribuan = angka // 1000
+            pengurang = ribuan * 1000
+            angka = angka - pengurang
+            sisa = '00000' + str(angka)
+            sisa = sisa[-3:]
+
+            return "Rp. " + str(jutaan) + '.' + str(ribuan) + '.' + sisa + ',00'
+
+        elif angka >= 1000:
+            ribuan = angka // 1000
+            pengurang = ribuan * 1000
+            angka = angka - pengurang
+            sisa = '00000' + str(angka)
+            sisa = sisa[-3:]
+            
+            return "Rp. " + str(ribuan) + '.' + sisa + ',00'
