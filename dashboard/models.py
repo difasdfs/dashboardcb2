@@ -306,6 +306,13 @@ class AverageCheck(models.Model):
         self.akhir_hari = datetime.datetime(self.hari.year, self.hari.month, self.hari.day, 23, 59, 59, 0, tzinfo=pytz.UTC) - datetime.timedelta(hours=7) 
 
     def formatnya(self, angka):
+
+        if isinstance(angka, float):
+            angka = str(angka)
+            angka = angka.split('.')
+            angka = angka[0]
+            angka = int(angka)
+
         if angka >= 1000000:
             jutaan = angka // 1000000
             pengurang = jutaan * 1000000
@@ -313,17 +320,20 @@ class AverageCheck(models.Model):
 
             ribuan = angka // 1000
             pengurang = ribuan * 1000
+            ribuan = "00000" + str(ribuan)
+            ribuan = ribuan[-3:]
+
             angka = angka - pengurang
             sisa = '00000' + str(angka)
             sisa = sisa[-3:]
 
-            return "Rp. " + str(jutaan) + '.' + str(ribuan) + '.' + sisa + ',00'
-
+            return "Rp. " + str(jutaan) + '.' + ribuan + '.' + sisa
         elif angka >= 1000:
             ribuan = angka // 1000
             pengurang = ribuan * 1000
             angka = angka - pengurang
+
             sisa = '00000' + str(angka)
             sisa = sisa[-3:]
             
-            return "Rp. " + str(ribuan) + '.' + sisa + ',00'
+            return "Rp. " + str(ribuan) + '.' + sisa
