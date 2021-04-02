@@ -112,8 +112,6 @@ def upgrade_tc_ac(request):
     
     aw = AverageCheck.objects.filter(hari=tanggal_sekarang)[0]
     update_tc(aw.id)
-    update_tc(aw.id-1)
-    update_tc(aw.id-2)
     return redirect('average_check')
 
 def test_webhook(request):
