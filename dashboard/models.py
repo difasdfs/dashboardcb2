@@ -446,3 +446,35 @@ class OmsetBulan(models.Model):
             return "Rp. " + str(ribuan) + '.' + sisa
         else:
             return str(angka)
+
+
+class Complaint(models.Model):
+    CABANG = [
+        ("Antapani", "Antapani"),
+        ("Cisitu", "Cisitu"),
+        ("Jatinangor", "Jatinangor"),
+        ("Metro", "Metro"),
+        ("Sukapura", "Sukapura"),
+        ("Sukabirus", "Sukabirus"),
+        ("Sukajadi", "Sukajadi"),
+        ("Unjani", "Unjani"),
+    ]
+
+    JENIS = [
+        ("Kualitas Produk", "Kualitas Produk"),
+        ("Kebersihan", "Kebersihan"),
+        ("Pelayanan", "Pelayanan"),
+        ("Tidak Lengkap", "Tidak Lengkap"),
+        ("Lainnya", "Lainnya")
+    ]
+
+    tanggal = models.DateField()
+    jam_operasional = models.TimeField()
+    nama = models.CharField(max_length=100)
+    media_penyampaian_complain = models.CharField(max_length=100)
+    nomor_kontak = models.CharField(max_length=30)
+    complaint = models.TextField(max_length=1000)
+    handling = models.CharField(max_length=100)
+    jenis = models.CharField(max_length=100, choices=JENIS, null=True)
+    cabang = models.CharField(max_length=100, choices=CABANG)
+    status = models.CharField(max_length=100, null=True)

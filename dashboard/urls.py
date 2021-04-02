@@ -75,6 +75,12 @@ urlpatterns = [
 
     # REKAP
     path('rekap/', views.rekap, name='rekap'),
+
+    # MARKETING
+    path('complaint_list/', views.complaint_list, name='complaint_list'),
+    path('input_complaint/', views.input_complaint, name='input_complaint'),
+    path('detail_complaint/<int:id_complaint>', views.detail_complaint, name='detail_complaint'),
+    path('edit_complaint/<int:id_complaint>', views.edit_complaint, name='edit_complaint')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

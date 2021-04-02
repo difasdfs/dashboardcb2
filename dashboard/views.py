@@ -1847,7 +1847,89 @@ def halaman_edit(request, id_karyawan):
 
     return render(request, 'data_karyawan/halaman_edit.html', context)
 
+# ---------------------- MARKETING -------------------------------
+@login_required(login_url='login')
+def complaint_list(request):
+    c = Complaint.objects.all()
+    context = {'nama' : request.user.first_name, 'complaint' : c}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/complaint_list.html', context)
 
+@login_required(login_url='login')
+def detail_complaint(request, id_complaint):
+    c = Complaint.objects.get(pk=id_complaint)
+    context = {'nama' : request.user.first_name, 'complaint' : c}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/detail_complaint.html', context)
+
+def edit_complaint(request, id_complaint):
+
+    if request.method == "POST":
+        c = Complaint.objects.get(pk=id_complaint)
+        c.tanggal = request.POST.get('tanggal')
+        c.jam_operasional = request.POST.get('jamoperasional')
+        c.nama = request.POST.get('nama')
+        c.media_penyampaian_complain = request.POST.get('mediapenyampaiancomplaint')
+        c.nomor_kontak = request.POST.get('nomorkontak')
+        c.complaint = request.POST.get('complaint')
+        c.handling = request.POST.get('handling')
+        c.cabang = request.POST.get('cabang')
+        c.status = request.POST.get('status')
+        c.jenis = request.POST.get('jenis')
+
+        c.save()
+        return redirect('complaint_list')
+
+
+    c = Complaint.objects.get(pk=id_complaint)
+    tgl = str(c.tanggal)
+    jam_ops = str(c.jam_operasional)
+    context = {
+        'nama' : request.user.first_name, 
+        'complaint' : c, 
+        'tanggal' : tgl, 
+        'jam' : jam_ops
+        }
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/edit_complaint.html', context)
+
+@login_required(login_url='login')
+def input_complaint(request):
+
+    if request.method == 'POST':
+        input_tanggal = request.POST.get('tanggal')
+        input_jam_operasional = request.POST.get('jamoperasional')
+        input_nama = request.POST.get('nama')
+        input_media_penyampaian_complaint = request.POST.get('mediapenyampaiancomplaint')
+        input_nomor_kontak = request.POST.get('nomorkontak')
+        input_complaint = request.POST.get('complaint')
+        input_handling = request.POST.get('handling')
+        input_jenis = request.POST.get('jenis')
+        input_cabang = request.POST.get('cabang')
+        input_status = request.POST.get('status')
+
+        c = Complaint(
+            tanggal=input_tanggal,
+            jam_operasional=input_jam_operasional,
+            nama=input_nama,
+            media_penyampaian_complain=input_media_penyampaian_complaint,
+            nomor_kontak=input_nomor_kontak,
+            complaint=input_complaint,
+            handling=input_handling,
+            cabang=input_cabang,
+            jenis = input_jenis,
+            status = input_status
+        )
+        c.save()
+        return redirect('complaint_list')
+
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/input_complaint.html', context)
 # ---------------------- LOGIC -------------------------------
 
 def ngecekdeadline():
