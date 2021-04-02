@@ -383,7 +383,7 @@ class OmsetBulan(models.Model):
             return "-" + self.formatnya(selisih)
 
     def selisih_omset_bulan(self):
-        selisih = self.omset_bulan_sebelumnya - self.omset_bulan_ini
+        selisih = self.omset_bulan_ini - self.omset_bulan_sebelumnya
         if selisih > 0:
             return "+" + self.formatnya(selisih)
         else:
