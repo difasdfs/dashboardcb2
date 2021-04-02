@@ -18,23 +18,33 @@
                     <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
                 {% if data_kar %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'data_karyawan' %}">Data Karyawan</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="humanResource" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Human Resource
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="humanResource">
+                    <a class="dropdown-item" href="{% url 'data_karyawan' %}">Data Karyawan</a>
+                    </div>
                 </li>
                 {% endif %}
-                <li class="nav-item">
-                    <a href="{% url 'klasemen' %}" class="nav-link">Klasemen</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="marketing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Marketing
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="marketing">
+                    <a href="{% url 'average_check' %}" class="dropdown-item">Average Check</a>
+                    <a href="{% url 'omset' %}" class="dropdown-item">Omset</a>
+                    </div>
                 </li>
-                {% if data_kar %}
-                <li>
-                    <a href="{% url 'index_sp' %}" class="nav-link">Sistem SP</a>
-                </li>
-                {% endif %}
-                <li>
-                    <a href="{% url 'rekap' %}" class="nav-link">Rekap</a>
-                </li>
-                <li>
-                    <a href="{% url 'average_check' %}" class="nav-link">Average Check</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="sistemsp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Sistem SP
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="sistemsp">
+                    <a href="{% url 'klasemen' %}" class="dropdown-item">Klasemen</a>
+                    <a href="{% url 'rekap' %}" class="dropdown-item">Rekap</a>
+                    {% if data_kar %}<a href="{% url 'index_sp' %}" class="dropdown-item">Evaluasi</a>{% endif %}
+                    </div>
                 </li>
             </ul>
         </div>
