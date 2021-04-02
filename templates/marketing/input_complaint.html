@@ -1,0 +1,76 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .lebarform{
+        width: 50%;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <h1>Input Complaint</h1><br>
+    <div class="lebarform">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tanggal">Tanggal</label>
+                <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+            </div>
+            <div class="form-group">
+                <label for="jamoperasional">Jam Operasional</label>
+                <input type="time" class="form-control" id="jamoperasional" name="jamoperasional" required>
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="mediapenyampaiancomplaint">Media Penyampaian Complaint</label>
+                <input type="text" class="form-control" id="mediapenyampaiancomplaint" name="mediapenyampaiancomplaint" required>
+            </div>
+            <div class="form-group">
+                <label for="nomorkontak">Nomor Kontak</label>
+                <input type="text" class="form-control" id="nomorkontak" name="nomorkontak" required>
+            </div>
+            <div class="form-group">
+                <label for="complaint">Complaint</label>
+                <textarea class="form-control" id="complaint" name="complaint" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="handling">Handling (oleh)</label>
+                <input type="text" class="form-control" id="handling" name="handling" required>
+            </div>
+            <div class="form-group">
+                <label for="jenis">Jenis</label>
+                <select class="form-control" id="jenis" name="jenis">
+                    <option value="Kualitas Produk">Kualitas Produk</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Pelayanan">Pelayanan</option>
+                    <option value="Tidak Lengkap">Tidak Lengkap</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="cabang">Cabang</label>
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <input type="text" class="form-control" id="status" name="status" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Input Complaint</button>
+        </form>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

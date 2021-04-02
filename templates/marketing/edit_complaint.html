@@ -1,0 +1,190 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .lebarform{
+        width: 50%;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <h1>Edit Complaint</h1><br>
+    <div class="lebarform">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tanggal">Tanggal</label>
+                <input type="date" value="{{tanggal}}" class="form-control" id="tanggal" name="tanggal" required>
+            </div>
+            <div class="form-group">
+                <label for="jamoperasional">Jam Operasional</label>
+                <input type="time" value="{{jam}}" class="form-control" id="jamoperasional" name="jamoperasional" required>
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{complaint.nama}}" required>
+            </div>
+            <div class="form-group">
+                <label for="mediapenyampaiancomplaint">Media Penyampaian Complaint</label>
+                <input type="text" value="{{complaint.media_penyampaian_complain}}" class="form-control" id="mediapenyampaiancomplaint" name="mediapenyampaiancomplaint" required>
+            </div>
+            <div class="form-group">
+                <label for="nomorkontak">Nomor Kontak</label>
+                <input type="text" value="{{complaint.nomor_kontak}}" class="form-control" id="nomorkontak" name="nomorkontak" required>
+            </div>
+            <div class="form-group">
+                <label for="complaint">Complaint</label>
+                <textarea class="form-control" id="complaint" name="complaint" rows="3" required>{{complaint.complaint}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="handling">Handling (oleh)</label>
+                <input type="text" value="{{complaint.handling}}" class="form-control" id="handling" name="handling" required>
+            </div>
+            <div class="form-group">
+                <label for="jenis">Jenis</label>
+                {% if complaint.jenis == "Pelayanan" %}
+                <select class="form-control" id="jenis" name="jenis">
+                    <option value="Kualitas Produk">Kualitas Produk</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Pelayanan" selected>Pelayanan</option>
+                    <option value="Tidak Lengkap">Tidak Lengkap</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+                {% elif complaint.jenis == "Kualitas Produk" %}
+                <select class="form-control" id="jenis" name="jenis">
+                    <option value="Kualitas Produk" selected>Kualitas Produk</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Pelayanan">Pelayanan</option>
+                    <option value="Tidak Lengkap">Tidak Lengkap</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+                {% elif complaint.jenis == "Kebersihan" %}
+                <select class="form-control" id="jenis" name="jenis">
+                    <option value="Kualitas Produk">Kualitas Produk</option>
+                    <option value="Kebersihan" selected>Kebersihan</option>
+                    <option value="Pelayanan">Pelayanan</option>
+                    <option value="Tidak Lengkap">Tidak Lengkap</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+                {% elif complaint.jenis == "Tidak Lengkap" %}
+                <select class="form-control" id="jenis" name="jenis">
+                    <option value="Kualitas Produk">Kualitas Produk</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Pelayanan">Pelayanan</option>
+                    <option value="Tidak Lengkap" selected>Tidak Lengkap</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+                {% else %}
+                <label for="jenis">Jenis</label>
+                <select class="form-control" id="jenis" name="jenis">
+                    <option value="Kualitas Produk">Kualitas Produk</option>
+                    <option value="Kebersihan">Kebersihan</option>
+                    <option value="Pelayanan">Pelayanan</option>
+                    <option value="Tidak Lengkap">Tidak Lengkap</option>
+                    <option value="Lainnya" selected>Lainnya</option>
+                </select>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="cabang">Cabang</label>
+                {% if complaint.cabang == "Antapani" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani" selected>Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% elif complaint.cabang == "Cisitu" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu" selected>Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% elif complaint.cabang == "Jatinangor" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor" selected>Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% elif complaint.cabang == "Metro" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro" selected>Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% elif complaint.cabang == "Sukapura" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura" selected>Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% elif complaint.cabang == "Sukabirus" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus" selected>Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% elif complaint.cabang == "Sukajadi" %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi" selected>Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+                {% else %}
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani" selected>Unjani</option>
+                </select>
+                {% endif %}
+            </div>
+            <div class="form-group">
+                <label for="status">Status</label>
+                <input type="text" value="{{complaint.status}}" class="form-control" id="status" name="status" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Edit Complaint</button>
+        </form>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

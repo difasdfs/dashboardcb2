@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .kontainer-form{
+      width: 75%;
+    }
+  </style>
+  
+  <hr>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+                <a href="{% url 'complaint_list' %}" class="btn btn-success btn-sm" role="button">Back</a>
+                <br>
+                <br>
+                <h1>Detail Complaint</h1>
+                <br>
+                <div class="kontainer-form">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Tanggal</th>
+                        <td>{{complaint.tanggal|date:"j M Y"}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jam Operasional</th>
+                        <td>{{complaint.jam_operasional}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Menida Penyampaian Complaint</th>
+                        <td>{{complaint.media_penyampaian_complain}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nomor Kontak</th>
+                        <td>{{complaint.nomor_kontak}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Complaint</th>
+                        <td>{{complaint.complaint}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Handling (oleh)</th>
+                        <td>{{complaint.handling}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Jenis</th>
+                        <td>{{complaint.jenis}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Cabang</th>
+                        <td>{{complaint.cabang}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Status</th>
+                        <td>{{complaint.status}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <br><br><br><br><br>
+          </div>
+          
+      </div>
+  </div>
+
+{% endblock %}
