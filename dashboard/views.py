@@ -14,7 +14,7 @@ from .index_sp import query_index_sp
 from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
-from .models import TugasProyek, TugasRutin, IsiTugasRutin, DataKaryawan, PeriodeSp, SuratPeringatan, AverageCheck
+from .models import *
 
 from django.utils import timezone
 from datetime import datetime, timedelta, date
@@ -25,7 +25,21 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-# DEBUGGGING
+def omset(request):
+    nama = request.user.first_name
+    bagian = request.user.last_name
+
+    query_omset_semua = OmsetBulan.objects.all()
+    for ob in query_omset_semua:
+        ob.hitung_omset_bulan()
+    query_omset = [ [i.periode, i.formatnya(i.omset_bulan_ini), i.target_omset, i.selisih_omset_target, i.selisih_omset_bulan] for i in query_omset_semua]
+
+    context = {'bagian': bagian, 'nama': nama, 'query_omset' : query_omset}
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'omset.html', context)
 
 def average_check(request):
     nama = request.user.first_name
@@ -98,6 +112,8 @@ def upgrade_tc_ac(request):
     
     aw = AverageCheck.objects.filter(hari=tanggal_sekarang)[0]
     update_tc(aw.id)
+    update_tc(aw.id-1)
+    update_tc(aw.id-2)
     return redirect('average_check')
 
 def test_webhook(request):

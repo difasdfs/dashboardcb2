@@ -337,3 +337,112 @@ class AverageCheck(models.Model):
             sisa = sisa[-3:]
             
             return "Rp. " + str(ribuan) + '.' + sisa
+
+class PeriodeKerja(models.Model):
+    periode = models.CharField(max_length=50)
+    awal_periode = models.DateField() # 26 bulan sebelumnya
+    akhir_periode = models.DateField() # 25 bulan periode
+
+    def __str__(self):
+        return self.periode
+
+class OmsetBulan(models.Model):
+    periode = models.ForeignKey(PeriodeKerja, on_delete=models.CASCADE)
+    omset_bulan_ini = models.IntegerField()
+    omset_bulan_sebelumnya = models.IntegerField()
+    target_omset = models.IntegerField()
+
+    def __str__(self):
+        return "Omset " + self.periode.periode
+
+    def dapatkan_omset_bulan_sebelumnya(self):
+        idnya = self.id - 1
+        d = OmsetBulan.objects.get(pk=idnya)
+        self.omset_bulan_sebelumnya = d.omset_bulan_ini
+        self.save()
+
+    # UNTUK UPDATE
+    def hitung_omset_bulan(self):
+        awal = self.periode.awal_periode
+        akhir = self.periode.akhir_periode
+        awal_hitung = datetime.datetime(awal.year, awal.month, awal.day, 0, 0, 1, tzinfo=pytz.UTC) - datetime.timedelta(hours=7)
+        akhir_hitung = datetime.datetime(akhir.year, akhir.month, akhir.day, 23, 59, 59, tzinfo=pytz.UTC) - datetime.timedelta(hours=7)
+        ds = DataStruk.objects.filter(created_at__range=[awal_hitung, akhir_hitung])
+        omset = 0
+        for s in ds:
+            omset += s.money_amount
+        self.omset_bulan_ini = omset
+        self.save()
+
+    def selisih_omset_target(self):
+        selisih = self.target_omset - self.omset_bulan_ini
+        if selisih > 0:
+            return "+" + self.formatnya(selisih)
+        else:
+            selisih = abs(selisih)
+            return "-" + self.formatnya(selisih)
+
+    def selisih_omset_bulan(self):
+        selisih = self.omset_bulan_sebelumnya - self.omset_bulan_ini
+        if selisih > 0:
+            return "+" + self.formatnya(selisih)
+        else:
+            selisih = -selisih
+            return "-" + self.formatnya(selisih)
+
+    def formatnya(self, angka):
+
+        if isinstance(angka, float):
+            angka = str(angka)
+            angka = angka.split('.')
+            angka = angka[0]
+            angka = int(angka)
+
+        if angka >= 1000000000:
+            milyaran = angka // 1000000000
+            pengurang = milyaran * 1000000000
+            angka = angka - pengurang
+
+            jutaan = angka // 1000000
+            pengurang = jutaan * 1000000
+            jutaan = "00000" + str(jutaan)
+            jutaan = jutaan[-3:]
+            angka = angka - pengurang
+
+            ribuan = angka // 1000
+            pengurang = ribuan * 1000
+            ribuan = "00000" + str(ribuan)
+            ribuan = ribuan[-3:]
+
+            angka = angka - pengurang
+            sisa = '00000' + str(angka)
+            sisa = sisa[-3:]
+
+            return "Rp. " + str(milyaran) + '.' + str(jutaan) + '.' + ribuan + '.' + sisa
+
+        elif angka >= 1000000:
+            jutaan = angka // 1000000
+            pengurang = jutaan * 1000000
+            angka = angka - pengurang
+
+            ribuan = angka // 1000
+            pengurang = ribuan * 1000
+            ribuan = "00000" + str(ribuan)
+            ribuan = ribuan[-3:]
+
+            angka = angka - pengurang
+            sisa = '00000' + str(angka)
+            sisa = sisa[-3:]
+
+            return "Rp. " + str(jutaan) + '.' + ribuan + '.' + sisa
+        elif angka >= 1000:
+            ribuan = angka // 1000
+            pengurang = ribuan * 1000
+            angka = angka - pengurang
+
+            sisa = '00000' + str(angka)
+            sisa = sisa[-3:]
+            
+            return "Rp. " + str(ribuan) + '.' + sisa
+        else:
+            return str(angka)
