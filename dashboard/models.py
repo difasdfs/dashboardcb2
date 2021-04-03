@@ -478,3 +478,30 @@ class Complaint(models.Model):
     jenis = models.CharField(max_length=100, choices=JENIS, null=True)
     cabang = models.CharField(max_length=100, choices=CABANG)
     status = models.CharField(max_length=100, null=True)
+
+class MysteryGuest(models.Model):
+    CABANG = [
+        ("Antapani", "Antapani"),
+        ("Cisitu", "Cisitu"),
+        ("Jatinangor", "Jatinangor"),
+        ("Metro", "Metro"),
+        ("Sukapura", "Sukapura"),
+        ("Sukabirus", "Sukabirus"),
+        ("Sukajadi", "Sukajadi"),
+        ("Unjani", "Unjani"),
+    ]
+
+    cabang = models.CharField(max_length=100, choices=CABANG)
+    nama = models.CharField(max_length=100)
+    tanggal = models.DateField()
+    nilai_appearance = models.FloatField()
+    komentar_appearance = models.TextField(max_length=1000)
+    nilai_aroma = models.FloatField()
+    komentar_aroma = models.TextField(max_length=1000)
+    nilai_rasa = models.FloatField()
+    komentar_rasa = models.TextField(max_length=1000)
+    nilai_overall = models.FloatField()
+    komentar_overall = models.TextField(max_length=1000)
+    dokumentasi_luar = models.CharField(max_length=100)
+    dokumentasi_dalam = models.CharField(max_length=100)
+    nilai_manajemen = models.FloatField()

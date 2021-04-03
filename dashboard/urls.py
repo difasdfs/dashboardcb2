@@ -80,7 +80,10 @@ urlpatterns = [
     path('complaint_list/', views.complaint_list, name='complaint_list'),
     path('input_complaint/', views.input_complaint, name='input_complaint'),
     path('detail_complaint/<int:id_complaint>', views.detail_complaint, name='detail_complaint'),
-    path('edit_complaint/<int:id_complaint>', views.edit_complaint, name='edit_complaint')
+    path('edit_complaint/<int:id_complaint>', views.edit_complaint, name='edit_complaint'),
+    path('mystery_guest/', views.mystery_guest, name='mystery_guest'),
+    path('input_mystery_guest/', views.input_mystery_guest, name='input_mystery_guest'),
+    path('detail_mystery_guest/<int:id_mystery_guest>', views.detail_mystery_guest, name='detail_mystery_guest')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

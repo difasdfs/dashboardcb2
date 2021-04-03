@@ -1930,6 +1930,75 @@ def input_complaint(request):
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
     return render(request, 'marketing/input_complaint.html', context)
+
+@login_required(login_url='login')
+def mystery_guest(request):
+    mg = MysteryGuest.objects.all()
+    context = {'nama' : request.user.first_name, 'mg' : mg}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/mystery_guest.html', context)
+
+
+@login_required(login_url='login')
+def input_mystery_guest(request):
+
+    if request.method == 'POST':
+        input_cabang = request.POST.get('cabang')
+        input_nama = request.POST.get('nama')
+        input_tanggal = request.POST.get('tanggal')
+        input_nilai_appearance = request.POST.get('nilai_appearance')
+        input_komentar_appearance = request.POST.get('komentar_appearance')
+        input_nilai_aroma = request.POST.get('nilai_aroma')
+        input_komentar_aroma = request.POST.get('komentar_aroma')
+        input_nilai_rasa = request.POST.get('nilai_rasa')
+        input_komentar_rasa = request.POST.get('komentar_rasa')
+        input_nilai_overall = request.POST.get('nilai_overall')
+        input_komentar_overall = request.POST.get('komentar_overall')
+        input_nilai_manajemen = request.POST.get('nilai_manajemen')
+
+        uploaded_dokumentasi_luar = request.FILES['dokumentasi_luar']
+        fs1 = FileSystemStorage()
+        nama1 = fs1.save(uploaded_dokumentasi_luar.name, uploaded_dokumentasi_luar)
+        alamat1 = fs1.url(nama1)
+
+        uploaded_dokumentasi_dalam = request.FILES['dokumentasi_dalam']
+        fs2 = FileSystemStorage()
+        nama2 = fs2.save(uploaded_dokumentasi_dalam.name, uploaded_dokumentasi_dalam)
+        alamat2 = fs2.url(nama2)
+
+        mg = MysteryGuest(
+            cabang = input_cabang,
+            nama = input_nama,
+            tanggal = input_tanggal,
+            nilai_appearance = input_nilai_appearance,
+            komentar_appearance = input_komentar_appearance,
+            nilai_aroma = input_nilai_aroma,
+            komentar_aroma = input_komentar_aroma,
+            nilai_rasa = input_nilai_rasa,
+            komentar_rasa = input_komentar_rasa,
+            nilai_overall = input_nilai_overall,
+            komentar_overall = input_komentar_overall,
+            dokumentasi_luar = alamat1,
+            dokumentasi_dalam = alamat2,
+            nilai_manajemen = input_nilai_manajemen
+        )
+        mg.save()
+        return redirect('mystery_guest')
+
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/input_mystery_guest.html', context)
+
+@login_required(login_url='login')
+def detail_mystery_guest(request, id_mystery_guest):
+    mg = MysteryGuest.objects.get(pk=id_mystery_guest)
+    context = {'nama' : request.user.first_name, 'mg' : mg}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/detail_mystery_guest.html', context)
+
 # ---------------------- LOGIC -------------------------------
 
 def ngecekdeadline():
