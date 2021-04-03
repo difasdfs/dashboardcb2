@@ -1,0 +1,33 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<hr>
+<div class="container">
+    <h1>Mystery Guest</h1><br>
+    <a href="{% url 'input_mystery_guest' %}" class="btn btn-success btn-sm" role="button">Input</a>
+    <br><br>
+    <table class="table table-hover table-bordered border-dark">
+        <thead>
+            <tr>
+                <th scope="col">Tanggal</th>
+                <th scope="col">Nama</th>
+                <th scope="col">Cabang</th>
+                <th scope="col">Nilai Overall</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for a in mg %}
+            <tr>
+                <td>{{a.tanggal|date:"j M Y"}}</td>
+                <td><a href="{% url 'detail_mystery_guest' a.id %}">{{a.nama}}</a></td>
+                <td>{{a.cabang}}</td>
+                <td>{{a.nilai_overall}}</td>
+                <td><a href="#" class="btn btn-warning btn-sm" role="button">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

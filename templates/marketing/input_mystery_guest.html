@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .lebarform{
+        width: 50%;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <h1>Input Mystery Guest</h1><br>
+    <div class="lebarform">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <!-- DIBAWAH INI UDAH BENER -->
+            <div class="form-group">
+                <label for="cabang">Cabang</label>
+                <select class="form-control" id="cabang" name="cabang">
+                    <option value="Antapani">Antapani</option>
+                    <option value="Cisitu">Cisitu</option>
+                    <option value="Jatinangor">Jatinangor</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Sukapura">Sukapura</option>
+                    <option value="Sukabirus">Sukabirus</option>
+                    <option value="Sukajadi">Sukajadi</option>
+                    <option value="Unjani">Unjani</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama</label>
+                <input type="text" class="form-control" id="nama" name="nama" required>
+            </div>
+            <div class="form-group">
+                <label for="tanggal">Tanggal</label>
+                <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+            </div>
+            <div class="form-group">
+                <label for="nilai_appearance">Nilai Appearance</label>
+                <input type="number" class="form-control" id="nilai_appearance" name="nilai_appearance" min="1" max="5" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="komentar_appearance">Komentar Appearance</label>
+                <textarea class="form-control" id="komentar_appearance" name="komentar_appearance" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nilai_aroma">Nilai Aroma</label>
+                <input type="number" class="form-control" id="nilai_aroma" name="nilai_aroma" min="1" max="5" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="komentar_aroma">Komentar Aroma</label>
+                <textarea class="form-control" id="komentar_aroma" name="komentar_aroma" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nilai_rasa">Nilai Rasa</label>
+                <input type="number" class="form-control" id="nilai_rasa" name="nilai_rasa" min="1" max="5" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="komentar_rasa">Komentar Rasa</label>
+                <textarea class="form-control" id="komentar_rasa" name="komentar_rasa" rows="3" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="nilai_overall">Nilai Overall</label>
+                <input type="number" class="form-control" id="nilai_overall" name="nilai_overall" min="1" max="5" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="komentar_overall">Komentar Overall</label>
+                <textarea class="form-control" id="komentar_overall" name="komentar_overall" rows="3" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="dokumentasi_luar">Dokumentasi Luar</label>
+                <input type="file" class="form-control" id="dokumentasi_luar" name="dokumentasi_luar" required>
+            </div>
+            <div class="form-group">
+                <label for="dokumentasi_dalam">Dokumentasi Dalam</label>
+                <input type="file" class="form-control" id="dokumentasi_dalam" name="dokumentasi_dalam" required>
+            </div>
+
+            <div class="form-group">
+                <label for="nilai_manajemen">Nilai Manajemen</label>
+                <input type="number" class="form-control" id="nilai_manajemen" name="nilai_manajemen" min="1" max="5" step=".1" required>
+            </div>
+            <!-- DIATAS INI UDAH BENER -->
+            <button type="submit" class="btn btn-primary">Input Mystery Guest</button>
+        </form>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

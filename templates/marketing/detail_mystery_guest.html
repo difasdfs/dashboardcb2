@@ -1,0 +1,93 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .kontainer-form{
+      width: 75%;
+    }
+    .kontainer-flex{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        padding: 10px;
+    }
+  </style>
+  
+  <hr>
+  <div class="container">
+      <div class="row">
+          <div class="col">
+                <a href="{% url 'mystery_guest' %}" class="btn btn-success btn-sm" role="button">Back</a>
+                <br>
+                <br>
+                <h1>Detail Mystery Guest</h1>
+                <br>
+                <div class="kontainer-form">
+                <div class="kontainer-flex">
+                <img class="fit-picture"
+                    src="{{mg.dokumentasi_luar}}"
+                    alt="Dokumentasi Tampak Luar" width="50%">
+                <img class="fit-picture"
+                    src="{{mg.dokumentasi_dalam}}"
+                    alt="Dokumentasi Tampak Dalam" width="50%">
+                </div>
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <th scope="row">Cabang</th>
+                        <td>{{mg.cabang}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nama</th>
+                        <td>{{mg.nama}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tanggal</th>
+                        <td>{{mg.tanggal|date:"j M Y"}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nilai Appearance</th>
+                        <td>{{mg.nilai_appearance}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Komentar Appearance</th>
+                        <td>{{mg.komentar_appearance}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nilai Aroma</th>
+                        <td>{{mg.nilai_aroma}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Komentar Aroma</th>
+                        <td>{{mg.komentar_aroma}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nilai Rasa</th>
+                        <td>{{mg.nilai_rasa}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Komentar Rasa</th>
+                        <td>{{mg.komentar_rasa}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nilai Overall</th>
+                        <td>{{mg.nilai_overall}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Komentar Overall</th>
+                        <td>{{mg.komentar_overall}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nilai Manajemen</th>
+                        <td>{{mg.nilai_manajemen}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                </div>
+                <br><br><br><br><br>
+          </div>
+          
+      </div>
+  </div>
+
+{% endblock %}
