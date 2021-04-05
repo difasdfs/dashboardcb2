@@ -375,7 +375,7 @@ class OmsetBulan(models.Model):
         self.save()
 
     def selisih_omset_target(self):
-        selisih = self.target_omset - self.omset_bulan_ini
+        selisih = self.omset_bulan_ini - self.target_omset
         if selisih > 0:
             return "+" + self.formatnya(selisih)
         else:
