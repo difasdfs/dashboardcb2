@@ -376,7 +376,9 @@ class OmsetBulan(models.Model):
 
     def selisih_omset_target(self):
         selisih = self.omset_bulan_ini - self.target_omset
-        if selisih > 0:
+        if selisih == 0:
+            return "0"
+        elif selisih > 0:
             return "+" + self.formatnya(selisih)
         else:
             selisih = abs(selisih)
@@ -384,7 +386,9 @@ class OmsetBulan(models.Model):
 
     def selisih_omset_bulan(self):
         selisih = self.omset_bulan_ini - self.omset_bulan_sebelumnya
-        if selisih > 0:
+        if selisih == 0:
+            return "0"
+        elif selisih > 0:
             return "+" + self.formatnya(selisih)
         else:
             selisih = -selisih
