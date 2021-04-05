@@ -30,6 +30,7 @@
                     <th scope="col">Target Omset</th>
                     <th scope="col">Selisih dari Target Omset</th>
                     <th scope="col">Selisih Bulan Lalu</th>
+                    <th scope="col">Sales to Target</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +55,8 @@
                     {% else %}
                     <td>{{a.4}}</td>
                     {% endif %}
+
+                    <td>{{a.5}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
