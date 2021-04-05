@@ -22,7 +22,7 @@
             {% for a in complaint %}
             <tr>
                 <td>{{a.tanggal|date:"j M Y"}}</td>
-                <td>{{a.jam_operasional}}</td>
+                <td>{{a.jam_operasional|time:"H.i"}}</td>
                 <td><a href="{% url 'detail_complaint' a.id %}">{{a.complaint}}</a></td>
                 <td>{{a.cabang}}</td>
                 <td>{{a.jenis}}</td>
