@@ -31,6 +31,8 @@ def omset(request):
 
     query_omset_semua = OmsetBulan.objects.all()
     for ob in query_omset_semua:
+        if ob.id == 1:
+            continue
         ob.hitung_omset_bulan()
     query_omset = [ [i.periode, i.formatnya(i.omset_bulan_ini), i.formatnya(i.target_omset), i.selisih_omset_target(), i.selisih_omset_bulan()] for i in query_omset_semua]
 
