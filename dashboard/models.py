@@ -374,6 +374,24 @@ class OmsetBulan(models.Model):
         self.omset_bulan_ini = omset
         self.save()
 
+    def sales_to_target(self):
+        awal = self.periode.awal_periode
+        akhir = self.periode.akhir_periode
+        berapa_hari = akhir-awal
+        berapa_hari = berapa_hari.days
+
+        if berapa_hari <= 0:
+            return 0
+
+        omset_yang_kurang = self.target_omset - self.omset_bulan_ini
+
+        if omset_yang_kurang <= 0:
+            return 0
+
+        sales_to_targetnya = omset_yang_kurang / berapa_hari
+
+        return sales_to_targetnya
+
     def selisih_omset_target(self):
         selisih = self.omset_bulan_ini - self.target_omset
         if selisih == 0:

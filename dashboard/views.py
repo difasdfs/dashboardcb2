@@ -34,7 +34,7 @@ def omset(request):
         if ob.id == 1:
             continue
         ob.hitung_omset_bulan()
-    query_omset = [ [i.periode, i.formatnya(i.omset_bulan_ini), i.formatnya(i.target_omset), i.selisih_omset_target(), i.selisih_omset_bulan()] for i in query_omset_semua]
+    query_omset = [ [i.periode, i.formatnya(i.omset_bulan_ini), i.formatnya(i.target_omset), i.selisih_omset_target(), i.selisih_omset_bulan(), i.formatnya(i.sales_to_target())] for i in query_omset_semua]
 
     context = {'bagian': bagian, 'nama': nama, 'query_omset' : query_omset}
 
