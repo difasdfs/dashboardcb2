@@ -32,7 +32,7 @@ def omset(request):
     query_omset_semua = OmsetBulan.objects.all()
     for ob in query_omset_semua:
         ob.hitung_omset_bulan()
-    query_omset = [ [i.periode, i.formatnya(i.omset_bulan_ini), i.formatnya(i.target_omset), i.selisih_omset_target, i.selisih_omset_bulan] for i in query_omset_semua]
+    query_omset = [ [i.periode, i.formatnya(i.omset_bulan_ini), i.formatnya(i.target_omset), i.selisih_omset_target(), i.selisih_omset_bulan()] for i in query_omset_semua]
 
     context = {'bagian': bagian, 'nama': nama, 'query_omset' : query_omset}
 
