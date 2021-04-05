@@ -41,14 +41,18 @@
 
                     {% if a.3.0 == '-' %}
                     <td style="color:red">{{a.3}}</td>
-                    {% else %}
+                    {% elif a.3.0 == '+' %}
                     <td style="color:green">{{a.3}}</td>
+                    {% else %}
+                    <td style="color:green">0</td>
                     {% endif %}
                     
                     {% if a.4.0 == '-' %}
                     <td style="color:red">{{a.4}}</td>
-                    {% else %}
+                    {% elif a.4.0 == '+' %}
                     <td style="color:green">{{a.4}}</td>
+                    {% else %}
+                    <td style="color:green">0</td>
                     {% endif %}
                 </tr>
                 {% endfor %}
