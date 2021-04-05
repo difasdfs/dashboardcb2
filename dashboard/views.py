@@ -110,8 +110,10 @@ def upgrade_tc_ac(request):
         d.tentukan_awal_akhir_hari()
         d.save()
     
-    aw = AverageCheck.objects.filter(hari=tanggal_sekarang)[0]
-    update_tc(aw.id)
+    ac = AverageCheck.objects.all()
+    for struk in ac:
+	    update_tc(struk.id)
+    
     return redirect('average_check')
 
 def test_webhook(request):
