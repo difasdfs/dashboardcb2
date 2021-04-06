@@ -1854,10 +1854,26 @@ def halaman_edit(request, id_karyawan):
 # ---------------------- MARKETING -------------------------------
 @login_required(login_url='login')
 def complaint_list(request):
-    c = Complaint.objects.all()
-    context = {'nama' : request.user.first_name, 'complaint' : c}
+    context = {'nama' : request.user.first_name}
+    c = Complaint.objects.all().order_by('-tanggal')
+    
+    banyak_data_per_page = 10
+    p = Paginator(c, banyak_data_per_page)
+    page_num = request.GET.get('page', 1)
+
+    try:
+	    page = p.page(page_num)
+    except EmptyPage:
+	    page = p.page(1)
+
+    banyak_halaman = [str(a+1) for a in range(p.num_pages)]
+    context['banyak_halaman'] = banyak_halaman
+    context['halaman_aktif'] = str(page_num)
+    context['complaint'] = page
+
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
+        
     return render(request, 'marketing/complaint_list.html', context)
 
 @login_required(login_url='login')
