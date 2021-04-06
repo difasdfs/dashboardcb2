@@ -632,6 +632,7 @@ def manager(request):
         'unjani' : unjani
     }
     context['total_complaint'] = total_complaint
+    context['periode_kerja'] = periode_kerja
     # SELESAI MENGHITUNG
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
