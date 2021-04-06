@@ -31,67 +31,99 @@
         <tbody>
             <tr>
                 <th scope="row">Antapani</th>
-                <td>{{total_complaint.antapani.0}}</td>
-                <td>{{total_complaint.antapani.1}}</td>
-                <td>{{total_complaint.antapani.2}}</td>
-                <td>{{total_complaint.antapani.3}}</td>
-                <td>{{total_complaint.antapani.4}}</td>
+                {% for a in complaint.0 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Cisitu</th>
-                <td>{{total_complaint.cisitu.0}}</td>
-                <td>{{total_complaint.cisitu.1}}</td>
-                <td>{{total_complaint.cisitu.2}}</td>
-                <td>{{total_complaint.cisitu.3}}</td>
-                <td>{{total_complaint.cisitu.4}}</td>
+                {% for a in complaint.1 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Jatinangor</th>
-                <td>{{total_complaint.jatinangor.0}}</td>
-                <td>{{total_complaint.jatinangor.1}}</td>
-                <td>{{total_complaint.jatinangor.2}}</td>
-                <td>{{total_complaint.jatinangor.3}}</td>
-                <td>{{total_complaint.jatinangor.4}}</td>
+                {% for a in complaint.2 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Metro</th>
-                <td>{{total_complaint.metro.0}}</td>
-                <td>{{total_complaint.metro.1}}</td>
-                <td>{{total_complaint.metro.2}}</td>
-                <td>{{total_complaint.metro.3}}</td>
-                <td>{{total_complaint.metro.4}}</td>
+                {% for a in complaint.3 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Sukabirus</th>
-                <td>{{total_complaint.sukabirus.0}}</td>
-                <td>{{total_complaint.sukabirus.1}}</td>
-                <td>{{total_complaint.sukabirus.2}}</td>
-                <td>{{total_complaint.sukabirus.3}}</td>
-                <td>{{total_complaint.sukabirus.4}}</td>
+                {% for a in complaint.4 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Sukapura</th>
-                <td>{{total_complaint.sukapura.0}}</td>
-                <td>{{total_complaint.sukapura.1}}</td>
-                <td>{{total_complaint.sukapura.2}}</td>
-                <td>{{total_complaint.sukapura.3}}</td>
-                <td>{{total_complaint.sukapura.4}}</td>
+                {% for a in complaint.5 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Sukajadi</th>
-                <td>{{total_complaint.sukajadi.0}}</td>
-                <td>{{total_complaint.sukajadi.1}}</td>
-                <td>{{total_complaint.sukajadi.2}}</td>
-                <td>{{total_complaint.sukajadi.3}}</td>
-                <td>{{total_complaint.sukajadi.4}}</td>
+                {% for a in complaint.6 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
             <tr>
                 <th scope="row">Unjani</th>
-                <td>{{total_complaint.unjani.0}}</td>
-                <td>{{total_complaint.unjani.1}}</td>
-                <td>{{total_complaint.unjani.2}}</td>
-                <td>{{total_complaint.unjani.3}}</td>
-                <td>{{total_complaint.unjani.4}}</td>
+                {% for a in complaint.7 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
             </tr>
         </tbody>
     </table>
