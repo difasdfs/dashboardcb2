@@ -5,7 +5,7 @@ def rinci_tr(bagian_, tampilkan_tuntas_semua = False):
 
     hasil = []
     
-    tugas_rutin = TugasRutin.objects.filter(bagian=bagian_)
+    tugas_rutin = TugasRutin.objects.filter(bagian=bagian_).exclude(archive=True)
     for tr in tugas_rutin:
 
         a = hitung_total_tuntas(tr)
