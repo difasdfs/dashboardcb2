@@ -9,8 +9,14 @@ def apamanager(user):
     return user.groups.filter(name='Manager').exists()
 
 def fungsi_helper_untuk_fungsi_di_bawah(cabangnya, complaint_periode, complaint_periode_sebelumnya):
-    complaint_cabang = complaint_periode.filter(cabang=cabangnya)
-    complaint_cabang_sebelumnya = complaint_periode_sebelumnya.filter(cabang=cabangnya)
+    
+    if cabangnya != "All Crisbar":
+        complaint_cabang = complaint_periode.filter(cabang=cabangnya)
+        complaint_cabang_sebelumnya = complaint_periode_sebelumnya.filter(cabang=cabangnya)
+    else:
+        complaint_cabang = complaint_periode
+        complaint_cabang_sebelumnya = complaint_periode_sebelumnya
+
     total_complaint_cabang = len(complaint_cabang)
     total_complaint_cabang_sebelumnya = len(complaint_cabang_sebelumnya)
 
@@ -49,6 +55,7 @@ def query_complaint_dashboard(PERIODE):
     periode_sebelumnya = PeriodeKerja.objects.get(pk=(PERIODE-1))
     
     c = Complaint.objects.all()
+    c = c.exclude(jenis="Lainnya")
     complaint_periode = c.filter(tanggal__range=[periode.awal_periode, periode.akhir_periode])
     complaint_periode_sebelumnya = c.filter(tanggal__range=[periode_sebelumnya.awal_periode, periode_sebelumnya.akhir_periode])
 
@@ -60,5 +67,6 @@ def query_complaint_dashboard(PERIODE):
     sukapura = fungsi_helper_untuk_fungsi_di_bawah("Sukapura", complaint_periode, complaint_periode_sebelumnya)
     sukajadi = fungsi_helper_untuk_fungsi_di_bawah("Sukajadi", complaint_periode, complaint_periode_sebelumnya)
     unjani = fungsi_helper_untuk_fungsi_di_bawah("Unjani", complaint_periode, complaint_periode_sebelumnya)
+    all_crisbar = fungsi_helper_untuk_fungsi_di_bawah("All Crisbar", complaint_periode, complaint_periode_sebelumnya)
 
-    return antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani
+    return antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar
