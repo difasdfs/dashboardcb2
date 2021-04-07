@@ -33,9 +33,9 @@
                 <th scope="row">Antapani</th>
                 {% for a in complaint.0 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -45,9 +45,9 @@
                 <th scope="row">Cisitu</th>
                 {% for a in complaint.1 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -57,9 +57,9 @@
                 <th scope="row">Jatinangor</th>
                 {% for a in complaint.2 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -69,9 +69,9 @@
                 <th scope="row">Metro</th>
                 {% for a in complaint.3 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -81,9 +81,9 @@
                 <th scope="row">Sukabirus</th>
                 {% for a in complaint.4 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -93,9 +93,9 @@
                 <th scope="row">Sukapura</th>
                 {% for a in complaint.5 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -105,9 +105,9 @@
                 <th scope="row">Sukajadi</th>
                 {% for a in complaint.6 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
@@ -117,9 +117,21 @@
                 <th scope="row">Unjani</th>
                 {% for a in complaint.7 %}
                     {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red">({{a.1}})</span></td>
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">All Crisbar</th>
+                {% for a in complaint.8 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
                     {% else %}
                         <td><strong>{{a.0}}</strong></td>
                     {% endif %}
