@@ -27,8 +27,6 @@ def evaluasi(periode):
         30, # farhan
         31, # rara
         32, # salma
-        33, # pak arif      
-        34, # wida
         36, # rahmat ali
     ]
 
