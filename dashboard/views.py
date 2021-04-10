@@ -156,9 +156,42 @@ def export_data_karyawan(request):
         datanya.append([i, d.no_id_fingerprint, d.nik, d.nama, d.area, d.level_manajemen, d.nama_posisi, d.kode_posisi, d.status_pegawai, tanggal_masuk, d.lama_bekerja, d.no_ktp, d.tempat_lahir, tanggal_lahir, d.umur, d.jenis_kelamin, d.agama, d.pendidikan, d.jurusan, d.alamat, d.no_hp, d.marital_status, d.anak, d.no_rekening, d.bpjs_ketenagakerjaan])
         i += 1
     
-    print(datanya)
+    # print(datanya)
 
     return django_excel.make_response_from_array(datanya, "xls", file_name="data_karyawan")
+
+
+def export_karyawan_out(request):
+    karyawan_out = DataKaryawan.objects.filter(status="KELUAR")
+    datanya = ["NIK", "Nama", "Jabatan", "Area", "Tanggal Masuk", "Tanggal Keluar", "Alasan"]
+
+    bulan = {
+        "1" : "Jan",
+        "2" : "Feb",
+        "3" : "Mar",
+        "4" : "Apr",
+        "5" : "May",
+        "6" : "Jun",
+        "7" : "Jul",
+        "8" : "Aug",
+        "9" : "Sep",
+        "10" : "Okt",
+        "11" : "Nov",
+        "12" : "Des"
+    }
+
+    for k in karyawan_out:
+        tanggal_masuk = k.tanggal_masuk.strftime("%d") + " " + bulan[str(k.tanggal_masuk.month)] + " " + k.tanggal_masuk.strftime("%Y")
+        
+        if k.tanggal_keluar == None:
+            continue
+        else:
+            tanggal_keluar = k.tanggal_keluar.strftime("%d") + " " + bulan[str(k.tanggal_keluar.month)] + " " + k.tanggal_keluar.strftime("%Y")
+        
+        # print(k.alasan_keluar)
+        datanya.append([k.nik, k.nama, k.nama_posisi, k.area, tanggal_masuk, tanggal_keluar, k.alasan_keluar])
+
+    return django_excel.make_response_from_array(datanya, "xls", file_name="data_karyawan_out")
 
 # -------------------------------------------------------------------------------------------------
 

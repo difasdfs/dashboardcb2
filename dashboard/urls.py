@@ -72,6 +72,7 @@ urlpatterns = [
     path('karyawan_tidak_aktif/', views.karyawan_tidak_aktif, name='karyawan_tidak_aktif'),
     path('test_webhook/', views.test_webhook, name='test_webhook'),
     path('export_data_karyawan/', views.export_data_karyawan, name="export_data_karyawan"),
+    path('export_karyawan_out/', views.export_karyawan_out, name="export_karyawan_out"),
 
     # REKAP
     path('rekap/', views.rekap, name='rekap'),
