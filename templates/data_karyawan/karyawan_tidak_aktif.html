@@ -6,6 +6,8 @@
     <div class="row">
         {% include 'data_karyawan/sidebar.html' %}
         <div class="col">
+        <a href="{% url 'export_karyawan_out' %}" class="btn btn-success btn-sm">Export to Excel</a>
+            <br><br>
             <h1>Data Karyawan Keluar</h1>
 
             <!-- nik, nama, jabatan, area -->
