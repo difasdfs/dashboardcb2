@@ -163,8 +163,6 @@ def export_data_karyawan(request):
 
 def export_karyawan_out(request):
     karyawan_out = DataKaryawan.objects.filter(status="KELUAR")
-    datanya = ["NIK", "Nama", "Jabatan", "Area", "Tanggal Masuk", "Tanggal Keluar", "Alasan"]
-
     bulan = {
         "1" : "Jan",
         "2" : "Feb",
@@ -179,7 +177,7 @@ def export_karyawan_out(request):
         "11" : "Nov",
         "12" : "Des"
     }
-
+    datanya = [["NIK", "Nama", "Jabatan", "Area", "Tanggal Masuk", "Tanggal Keluar", "Alasan"]]
     for k in karyawan_out:
         tanggal_masuk = k.tanggal_masuk.strftime("%d") + " " + bulan[str(k.tanggal_masuk.month)] + " " + k.tanggal_masuk.strftime("%Y")
         
@@ -188,7 +186,6 @@ def export_karyawan_out(request):
         else:
             tanggal_keluar = k.tanggal_keluar.strftime("%d") + " " + bulan[str(k.tanggal_keluar.month)] + " " + k.tanggal_keluar.strftime("%Y")
         
-        # print(k.alasan_keluar)
         datanya.append([k.nik, k.nama, k.nama_posisi, k.area, tanggal_masuk, tanggal_keluar, k.alasan_keluar])
 
     return django_excel.make_response_from_array(datanya, "xls", file_name="data_karyawan_out")
