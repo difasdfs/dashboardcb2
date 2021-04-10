@@ -162,7 +162,7 @@ def export_data_karyawan(request):
 
 
 def export_karyawan_out(request):
-    karyawan_out = DataKaryawan.objects.filter(status="KELUAR")
+    karyawan_out = DataKaryawan.objects.filter(status="KELUAR").order_by('-tanggal_keluar')
     bulan = {
         "1" : "Jan",
         "2" : "Feb",
