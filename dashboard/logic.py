@@ -15,6 +15,15 @@ def berselisih(variabel1, variabel2):
     else:
         return str(hasil)
 
+def selisih_trend(variabel1, variabel2):
+    hasil = variabel1 - variabel2
+    if hasil > 0:
+        return '+' + str(hasil) + '↓'
+    elif hasil == 0:
+        return str(hasil)
+    else:
+        return str(hasil) + '↑'
+
 def fungsi_helper_untuk_fungsi_di_bawah(cabangnya, complaint_periode, complaint_periode_sebelumnya):
     
     if cabangnya != "All Crisbar":
@@ -73,3 +82,23 @@ def query_complaint_dashboard(PERIODE):
     antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar = complaint_cabang
 
     return antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar
+
+def query_box_home(PERIODE):
+    total_complaint = 0
+    sebelum = 0
+    trend = 0
+
+    periode = PeriodeKerja.objects.get(pk=PERIODE)
+    periode_sebelumnya = PeriodeKerja.objects.get(pk=(PERIODE-1))
+    complaint_periode = Complaint.objects.filter(tanggal__range=[periode.awal_periode, periode.akhir_periode])
+    complaint_periode_sebelumnya = Complaint.objects.filter(tanggal__range=[periode_sebelumnya.awal_periode, periode_sebelumnya.akhir_periode])
+    
+    total_complaint = len(complaint_periode)
+    sebelum = len(complaint_periode_sebelumnya)
+    trend = selisih_trend(total_complaint, sebelum)
+
+    hasil = {
+        'complaint' : {'total_complaint' : total_complaint, 'sebelum' : sebelum, 'trend' : trend}
+    }
+
+    return hasil

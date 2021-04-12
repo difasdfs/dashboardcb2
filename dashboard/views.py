@@ -449,6 +449,7 @@ def index_ceo(request):
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
+    context['query_box_home'] = query_box_home(PERIODE)
 
     if request.user.groups.filter(name='Eksekutif').exists() or request.user.groups.filter(name='Manager').exists():
         context['data_kar'] = False
@@ -523,6 +524,7 @@ def manager(request):
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
+    context['query_box_home'] = query_box_home(PERIODE)
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
@@ -1427,6 +1429,7 @@ def eksekutif(request):
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
+    context['query_box_home'] = query_box_home(PERIODE)
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
