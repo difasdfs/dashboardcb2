@@ -13,19 +13,341 @@
     .judul-tabel{
         background-color: #ff9e9e;
     }
+
+    .paragraf-visi{
+        font-size: 27px;
+        text-align: center;
+    }
+    .janji-crisbar{
+        font-size: 27px;
+        text-align: center;
+        color: #fc0404;
+    }
+
+    .kontainer-papan-skor{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    
+    {% comment %} ANAK DARI KONTAINER PAPAN SKOR {% endcomment %}
+    .anak-flex1{
+        background-color: #08bc04;
+        color: white;
+        text-align: center;
+        padding : 7px;
+        flex-grow: 1;
+        margin: 5px;
+        border-radius: 5px;
+    }
+    .anak-flex2{
+        color: white;
+        background-color: #f8541c;
+        text-align: center;
+        padding : 7px;
+        flex-grow: 1;
+        margin: 5px;
+        border-radius: 5px;
+    }
+    .anak-flex3{
+        color: white;
+        background-color: #ffdc64;
+        text-align: center;
+        padding : 7px;
+        flex-grow: 1;
+        margin: 5px;
+        border-radius: 5px;
+    }
+    .anak-flex4{
+        color: white;
+        background-color: #709cec;
+        text-align: center;
+        padding : 7px;
+        flex-grow: 1;
+        margin: 5px;
+        border-radius: 5px;
+    }
+    {% comment %} ANAK DARI KONTAINER PAPAN SKOR {% endcomment %}
+
+    .kaki-papan-skor{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .angka-dalam-anak{
+        font-size: 50px;
+    }
+    .judul-dalam-anak{
+        font-size: 25px;
+    }
+
+    {% comment %} KELAS STATUS {% endcomment %}
+    .hati-hati{
+        color: white;
+        background-color: #ff0404;
+    }
+
+    .pertahankan{
+        background-color: #08fc04;
+    }
 </style>
 
 <div class="home-status">
-    <h3>Complaint Periode {{periode_kerja}}</h3>
+    <h2><strong>Visi Crisbar</strong></h2>
+    <p class="paragraf-visi">Menjadi merek jaringan makanan <em>cepat saji <strong>favorit</strong></em> dan <em><strong>langganan</strong></em> dewasa muda Indonesia</p>
+    <h2><strong>Janji Crisbar</strong></h2>
+    <p class="janji-crisbar"><strong>SENYUM MANIS, RASA MANIS, MOMEN MANIS</strong></p>
+    <h2 style="text-align: center;"><strong>PAPAN SKOR</strong></h2>
+    <h3 style="text-align: center;"><strong>BISNIS CRISBAR</strong></h3>
+    <h4 style="text-align: center;">{{periode_kerja}}</h4>
+    <div class="kontainer-papan-skor">
+        <div class="anak-flex1">
+            <h5 class="judul-dalam-anak">KOMPLAIN <br> PELANGGAN</h5>
+            <div class="angka-dalam-anak"><strong>{{complaint.8.5.0}}</strong></div>
+            <div class="kaki-papan-skor">
+                <div>
+                    <div>Sebelum</div>
+                    <div><strong>52</strong></div>
+                </div>
+                <div>
+                    <div>Trend</div>
+                    <div><strong>-42↓</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="anak-flex2">
+            <h5 class="judul-dalam-anak">KEPUASAN <br> PELANGGAN</h5>
+            <div class="angka-dalam-anak"><strong>4.5</strong></div>
+            <div class="kaki-papan-skor">
+                <div>
+                    <div>Sebelum</div>
+                    <div><strong>4.7</strong></div>
+                </div>
+                <div>
+                    <div>Trend</div>
+                    <div><strong>-0.2↓</strong></div>
+                </div>
+            </div> 
+        </div>
+        <div class="anak-flex3">
+            <h5 class="judul-dalam-anak">TREN <br> PENJUALAN</h5>
+            <div class="angka-dalam-anak"><strong>36,7jt</strong></div>
+            <div class="kaki-papan-skor">
+                <div>
+                    <div>Sebelum</div>
+                    <div><strong>36,5jt</strong></div>
+                </div>
+                <div>
+                    <div>Trend</div>
+                    <div><strong>+0,2jt↑</strong></div>
+                </div>
+            </div>
+        </div>
+        <div class="anak-flex4">
+            <h5 class="judul-dalam-anak">TREN <br> PELANGGAN</h5>
+            <div class="angka-dalam-anak"><strong>1078</strong></div>
+            <div class="kaki-papan-skor">
+                <div>
+                    <div>Sebelum</div>
+                    <div><strong>978</strong></div>
+                </div>
+                <div>
+                    <div>Trend</div>
+                    <div><strong>+100↑</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <h3><strong>Komplain Pelanggan</strong></h3>
+    <h5>April 2021 vs. Maret 2021</h5>
     <table>
         <thead>
             <tr>
-                <th scope="col" class="judul-tabel" style="width:20%">Cabang</th>
-                <th scope="col" class="judul-tabel" style="width:18%">Kualitas Produk</th>
-                <th scope="col" class="judul-tabel" style="width:12%">Kebersihan</th>
-                <th scope="col" class="judul-tabel" style="width:13%">Pelayanan</th>
-                <th scope="col" class="judul-tabel" style="width:17%">Tidak Lengkap</th>
-                <th scope="col" class="judul-tabel" style="width:20%">Total Komplain</th>
+                <th scope="col" class="judul-tabel" style="width:14%">Cabang</th>
+                <th scope="col" class="judul-tabel" style="width:16%">Kualitas Produk</th>
+                <th scope="col" class="judul-tabel" style="width:10%">Kebersihan</th>
+                <th scope="col" class="judul-tabel" style="width:11%">Pelayanan</th>
+                <th scope="col" class="judul-tabel" style="width:15%">Tidak Lengkap</th>
+                <th scope="col" class="judul-tabel" style="width:16%">Total Komplain</th>
+                <th scope="col" class="judul-tabel" style="width:18%">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for comp in complaint %}
+            <tr>
+                {% for c in comp %}
+                    {% if c.1.0 == '-' %}
+                        <td><strong>{{c.0}}</strong> <span style="color:green; opacity:50%;">({{c.1}})</span></td>
+                    {% elif c.1.0 == '+' %}
+                        <td><strong>{{c.0}}</strong> <span style="color:red; opacity:50%;">({{c.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{c.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+
+                {% if comp.5.1.0 == '-' %}
+                    <td class="pertahankan"><strong>PERTAHANKAN</strong></td>
+                {% elif comp.5.1.0 == '+' %}
+                    <td class="hati-hati"><strong>HATI-HATI!</strong></td>
+                {% else %}
+                    <td class="pertahankan"><strong>PERTAHANKAN</strong></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <br>
+    <h3><strong>Kepuasan Pelanggan</strong></h3>
+    <h5>April 2021 vs. Maret 2021</h5>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="judul-tabel" style="width:16%">Cabang</th>
+                <th scope="col" class="judul-tabel" style="width:12%">GOOGLE</th>
+                <th scope="col" class="judul-tabel" style="width:12%">GO FOOD</th>
+                <th scope="col" class="judul-tabel" style="width:13%">GRAB FOOD</th>
+                <th scope="col" class="judul-tabel" style="width:13%">SURVEY</th>
+                <th scope="col" class="judul-tabel" style="width:14%">TOTAL AVG.</th>
+                <th scope="col" class="judul-tabel" style="width:20%">STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Antapani</th>
+                {% for a in complaint.0 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="hati-hati">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Cisitu</th>
+                {% for a in complaint.1 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Jatinangor</th>
+                {% for a in complaint.2 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Metro</th>
+                {% for a in complaint.3 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Sukabirus</th>
+                {% for a in complaint.4 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Sukapura</th>
+                {% for a in complaint.5 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Sukajadi</th>
+                {% for a in complaint.6 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">Unjani</th>
+                {% for a in complaint.7 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+            <tr>
+                <th scope="row">All Crisbar</th>
+                {% for a in complaint.8 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+                <td class="pertahankan">Status</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <h3><strong>Tren Penjualan Harian</strong></h3>
+    <h5>April 2021 vs. Maret 2021</h5>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="judul-tabel" style="width:18%">Cabang</th>
+                <th scope="col" class="judul-tabel" style="width:18%">Dine in Take Away</th>
+                <th scope="col" class="judul-tabel" style="width:12%">Go Food</th>
+                <th scope="col" class="judul-tabel" style="width:13%">Grab Food</th>
+                <th scope="col" class="judul-tabel" style="width:17%">TOTAL AVG.</th>
+                <th scope="col" class="judul-tabel" style="width:22%">STATUS</th>
             </tr>
         </thead>
         <tbody>
@@ -139,5 +461,135 @@
             </tr>
         </tbody>
     </table>
+
+    <br>
+    <h3><strong>Tren Pelanggan Harian</strong></h3>
+    <h5>April 2021 vs. Maret 2021</h5>
+    <table>
+        <thead>
+            <tr>
+                <th scope="col" class="judul-tabel" style="width:20%">Cabang</th>
+                <th scope="col" class="judul-tabel" style="width:18%">Dine in Take Away</th>
+                <th scope="col" class="judul-tabel" style="width:12%">Go Food</th>
+                <th scope="col" class="judul-tabel" style="width:13%">Grab Food</th>
+                <th scope="col" class="judul-tabel" style="width:17%">TOTAL AVG.</th>
+                <th scope="col" class="judul-tabel" style="width:20%">STATUS</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Antapani</th>
+                {% for a in complaint.0 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Cisitu</th>
+                {% for a in complaint.1 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Jatinangor</th>
+                {% for a in complaint.2 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Metro</th>
+                {% for a in complaint.3 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Sukabirus</th>
+                {% for a in complaint.4 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Sukapura</th>
+                {% for a in complaint.5 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Sukajadi</th>
+                {% for a in complaint.6 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">Unjani</th>
+                {% for a in complaint.7 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">All Crisbar</th>
+                {% for a in complaint.8 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <br>
     
 </div>
