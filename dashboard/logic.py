@@ -18,11 +18,11 @@ def berselisih(variabel1, variabel2):
 def selisih_trend(variabel1, variabel2):
     hasil = variabel1 - variabel2
     if hasil > 0:
-        return '+' + str(hasil) + '↓'
+        return '+' + str(hasil) + '↑'
     elif hasil == 0:
         return str(hasil)
     else:
-        return str(hasil) + '↑'
+        return str(hasil) + '↓'
 
 def fungsi_helper_untuk_fungsi_di_bawah(cabangnya, complaint_periode, complaint_periode_sebelumnya):
     
