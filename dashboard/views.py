@@ -357,8 +357,11 @@ def eval_per_periode(request):
         'data_kar' : True,
     }
     
-    kenasp_periode_maret2 = SuratPeringatan.objects.all()
+    kenasp_periode_maret2 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 3, 26))
     context['kenasp_periode_maret2'] = kenasp_periode_maret2
+
+    kenasp_periode_april1 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 4, 11))
+    context['kenasp_periode_april1'] = kenasp_periode_april1
     
     # ---------------------------------------------
     hasil = evaluasi(1)
