@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from .models import DataStruk, PeriodeKerja, Complaint, KepuasanPelanggan
 from datetime import datetime, timedelta
+from django.utils import timezone
 import pytz
 
 def anggotabagian(nama_manager, bagian):
@@ -231,6 +232,10 @@ def query_penjualan_harian_dashboard(PERIODE):
     awal_periode = datetime(struk.awal_periode.year, struk.awal_periode.month, struk.awal_periode.day, 0, 0, 1, tzinfo=pytz.UTC) - timedelta(hours=7)
     akhir_periode = datetime(struk.akhir_periode.year, struk.akhir_periode.month, struk.akhir_periode.day, 23, 59, 59, tzinfo=pytz.UTC) - timedelta(hours=7)
     
+    sekarang = timezone.now()
+    selisih = sekarang - awal_periode
+    print(selisih.days)
+
     struk_periode = DataStruk.objects.filter(created_at__range=[awal_periode, akhir_periode])
     struk_periode = struk_periode.order_by('created_at')
     
@@ -324,14 +329,14 @@ def query_penjualan_harian_dashboard(PERIODE):
                 dine_in_take_away_unjani += a.money_amount
         
     hasil = [
-        ["Antapani", format_rupian(dine_in_take_away_antapani), format_rupian(gofood_antapani), format_rupian(grabfood_antapani), format_rupian((dine_in_take_away_antapani + gofood_antapani + grabfood_antapani)/3)],
-        ["Cisitu", format_rupian(dine_in_take_away_cisitu), format_rupian(gofood_cisitu), format_rupian(grabfood_cisitu), format_rupian((dine_in_take_away_cisitu + gofood_cisitu + grabfood_cisitu)/3)],
-        ["Jatinangor", format_rupian(dine_in_take_away_jatinangor), format_rupian(gofood_jatinangor), format_rupian(grabfood_jatinangor), format_rupian((dine_in_take_away_jatinangor + gofood_jatinangor + grabfood_jatinangor)/3)],
-        ["Metro", format_rupian(dine_in_take_away_metro), format_rupian(gofood_metro), format_rupian(grabfood_metro), format_rupian((dine_in_take_away_metro + gofood_metro + grabfood_metro)/3)],
-        ["Sukabirus", format_rupian(dine_in_take_away_sukabirus), format_rupian(gofood_sukabirus), format_rupian(grabfood_sukabirus), format_rupian((dine_in_take_away_sukabirus + gofood_sukabirus + grabfood_sukabirus)/3)],
-        ["Sukapura", format_rupian(dine_in_take_away_sukapura), format_rupian(gofood_sukapura), format_rupian(grabfood_sukapura), format_rupian((dine_in_take_away_sukapura + gofood_sukapura + grabfood_sukapura)/3)],
-        ["Sukajadi", format_rupian(dine_in_take_away_sukajadi), format_rupian(gofood_sukajadi), format_rupian(grabfood_sukajadi), format_rupian((dine_in_take_away_sukajadi + gofood_sukajadi + grabfood_sukajadi)/3)],
-        ["Unjani", format_rupian(dine_in_take_away_unjani), format_rupian(gofood_unjani), format_rupian(grabfood_unjani), format_rupian((dine_in_take_away_unjani + gofood_unjani + grabfood_unjani)/3)],
+        ["Antapani", format_rupian(dine_in_take_away_antapani/selisih.days), format_rupian(gofood_antapani/selisih.days), format_rupian(grabfood_antapani/selisih.days), format_rupian( ((dine_in_take_away_antapani + gofood_antapani + grabfood_antapani)/3)/selisih.days )],
+        ["Cisitu", format_rupian(dine_in_take_away_cisitu/selisih.days), format_rupian(gofood_cisitu/selisih.days), format_rupian(grabfood_cisitu/selisih.days), format_rupian( ((dine_in_take_away_cisitu + gofood_cisitu + grabfood_cisitu)/3)/selisih.days )],
+        ["Jatinangor", format_rupian(dine_in_take_away_jatinangor/selisih.days), format_rupian(gofood_jatinangor/selisih.days), format_rupian(grabfood_jatinangor/selisih.days), format_rupian( ((dine_in_take_away_jatinangor + gofood_jatinangor + grabfood_jatinangor)/3)/selisih.days )],
+        ["Metro", format_rupian(dine_in_take_away_metro/selisih.days), format_rupian(gofood_metro/selisih.days), format_rupian(grabfood_metro/selisih.days), format_rupian( ((dine_in_take_away_metro + gofood_metro + grabfood_metro)/3)/selisih.days )],
+        ["Sukabirus", format_rupian(dine_in_take_away_sukabirus/selisih.days), format_rupian(gofood_sukabirus/selisih.days), format_rupian(grabfood_sukabirus/selisih.days), format_rupian( ((dine_in_take_away_sukabirus + gofood_sukabirus + grabfood_sukabirus)/3)/selisih.days )],
+        ["Sukapura", format_rupian(dine_in_take_away_sukapura/selisih.days), format_rupian(gofood_sukapura/selisih.days), format_rupian(grabfood_sukapura/selisih.days), format_rupian( ((dine_in_take_away_sukapura + gofood_sukapura + grabfood_sukapura)/3)/selisih.days )],
+        ["Sukajadi", format_rupian(dine_in_take_away_sukajadi/selisih.days), format_rupian(gofood_sukajadi/selisih.days), format_rupian(grabfood_sukajadi/selisih.days), format_rupian( ((dine_in_take_away_sukajadi + gofood_sukajadi + grabfood_sukajadi)/3)/selisih.days )],
+        ["Unjani", format_rupian(dine_in_take_away_unjani/selisih.days), format_rupian(gofood_unjani/selisih.days), format_rupian(grabfood_unjani/selisih.days), format_rupian( ((dine_in_take_away_unjani + gofood_unjani + grabfood_unjani)/3)/selisih.days)],
     ]
     
     return hasil
