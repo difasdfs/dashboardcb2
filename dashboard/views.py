@@ -1804,6 +1804,8 @@ def halaman_edit(request, id_karyawan):
         context['area_telkom_sukapura'] = True
     elif d.area == 'Unjani':
         context['area_unjadi'] = True
+    elif d.area == 'Kopo':
+        context['area_kopo'] = True
 
     if d.jenis_kelamin == 'L':
         context['lakilaki'] = True
