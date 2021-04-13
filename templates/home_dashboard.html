@@ -118,15 +118,15 @@
         </div>
         <div class="anak-flex2">
             <h5 class="judul-dalam-anak">KEPUASAN <br> PELANGGAN</h5>
-            <div class="angka-dalam-anak"><strong>4.5</strong></div>
+            <div class="angka-dalam-anak"><strong>{{query_box_home.kepuasan_pelanggan.avg_semua}}</strong></div>
             <div class="kaki-papan-skor">
                 <div>
                     <div>Sebelum</div>
-                    <div><strong>4.7</strong></div>
+                    <div><strong>{{query_box_home.kepuasan_pelanggan.sebelum}}</strong></div>
                 </div>
                 <div>
                     <div>Trend</div>
-                    <div><strong>-0.2↓</strong></div>
+                    <div><strong>{{query_box_home.kepuasan_pelanggan.trend}}</strong></div>
                 </div>
             </div> 
         </div>
@@ -162,7 +162,7 @@
 
     <br>
     <h3><strong>Komplain Pelanggan</strong></h3>
-    <h5>April 2021 vs. Maret 2021</h5>
+    <h5>{{periode_kerja}} vs. Maret 2021</h5>
     <table>
         <thead>
             <tr>
@@ -216,123 +216,59 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <th scope="row">Antapani</th>
-                {% for a in complaint.0 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+            {% for kp in query_kepuasan_pelanggan %}
+                <tr>
+                    <th scope="row">{{kp.0}}</th>
+                    {% if kp.2.0 == '+' %}
+                        <td><strong>{{kp.1}}</strong> <span style="color:green; opacity:50%;">({{kp.2}})</span></td>
+                    {% elif kp.2.0 == '-' %}
+                        <td><strong>{{kp.1}}</strong> <span style="color:red; opacity:50%;">({{kp.2}})</span></td>
                     {% else %}
-                        <td><strong>{{a.0}}</strong></td>
+                        <td><strong>{{kp.1}}</strong> <span style="color:red; opacity:50%;">({{kp.2}})</span></td>
                     {% endif %}
-                {% endfor %}
-                <td class="hati-hati">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Cisitu</th>
-                {% for a in complaint.1 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+
+                    {% if kp.4.0 == '+' %}
+                        <td><strong>{{kp.3}}</strong> <span style="color:green; opacity:50%;">({{kp.4}})</span></td>
+                    {% elif kp.4.0 == '-' %}
+                        <td><strong>{{kp.3}}</strong> <span style="color:red; opacity:50%;">({{kp.4}})</span></td>
                     {% else %}
-                        <td><strong>{{a.0}}</strong></td>
+                        <td><strong>{{kp.3}}</strong> <span style="color:red; opacity:50%;">({{kp.4}})</span></td>
                     {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Jatinangor</th>
-                {% for a in complaint.2 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                
+                    {% if kp.6.0 == '+' %}
+                        <td><strong>{{kp.5}}</strong> <span style="color:green; opacity:50%;">({{kp.6}})</span></td>
+                    {% elif kp.6.0 == '-' %}
+                        <td><strong>{{kp.5}}</strong> <span style="color:red; opacity:50%;">({{kp.6}})</span></td>
                     {% else %}
-                        <td><strong>{{a.0}}</strong></td>
+                        <td><strong>{{kp.5}}</strong> <span style="color:red; opacity:50%;">({{kp.6}})</span></td>
                     {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Metro</th>
-                {% for a in complaint.3 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+
+                    {% if kp.8.0 == '+' %}
+                        <td><strong>{{kp.7}}</strong> <span style="color:green; opacity:50%;">({{kp.8}})</span></td>
+                    {% elif kp.8.0 == '-' %}
+                        <td><strong>{{kp.7}}</strong> <span style="color:red; opacity:50%;">({{kp.8}})</span></td>
                     {% else %}
-                        <td><strong>{{a.0}}</strong></td>
+                        <td><strong>{{kp.7}}</strong> <span style="color:red; opacity:50%;">({{kp.8}})</span></td>
                     {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Sukabirus</th>
-                {% for a in complaint.4 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+
+                    {% if kp.10.0 == '+' %}
+                        <td><strong>{{kp.9}}</strong> <span style="color:green; opacity:50%;">({{kp.10}})</span></td>
+                    {% elif kp.10.0 == '-' %}
+                        <td><strong>{{kp.9}}</strong> <span style="color:red; opacity:50%;">({{kp.10}})</span></td>
                     {% else %}
-                        <td><strong>{{a.0}}</strong></td>
+                        <td><strong>{{kp.9}}</strong> <span style="color:red; opacity:50%;">({{kp.10}})</span></td>
                     {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Sukapura</th>
-                {% for a in complaint.5 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+
+                    {% if kp.10.0 == '+' %}
+                        <td class="pertahankan"><strong>PERTAHANKAN</strong></td>
+                    {% elif kp.10.0 == '-' %}
+                        <td class="hati-hati"><strong>HATI-HATI!</strong></td>
                     {% else %}
-                        <td><strong>{{a.0}}</strong></td>
+                        <td class="pertahankan"><strong>PERTAHANKAN</strong></td>
                     {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Sukajadi</th>
-                {% for a in complaint.6 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{a.0}}</strong></td>
-                    {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">Unjani</th>
-                {% for a in complaint.7 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{a.0}}</strong></td>
-                    {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
-            <tr>
-                <th scope="row">All Crisbar</th>
-                {% for a in complaint.8 %}
-                    {% if a.1.0 == '-' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
-                    {% elif a.1.0 == '+' %}
-                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{a.0}}</strong></td>
-                    {% endif %}
-                {% endfor %}
-                <td class="pertahankan">Status</td>
-            </tr>
+
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 
