@@ -569,3 +569,36 @@ class KepuasanPelanggan(models.Model):
 
     def __str__(self):
         return str(self.tanggal)
+
+    def dapat_average(self, cabang):
+        hasil = 0
+        if cabang == "Antapani":
+            hasil = self.google_antapani + self.gofood_antapani + self.grabfood_antapani + self.survei_antapani
+        elif cabang == "Cisitu" :
+            hasil = self.google_cisitu + self.gofood_cisitu + self.grabfood_cisitu + self.survei_cisitu
+        elif cabang == "Jatinangor" :
+            hasil = self.google_jatinangor + self.gofood_jatinangor + self.grabfood_jatinangor + self.survei_jatinangor
+        elif cabang == "Metro" :
+            hasil = self.google_metro + self.gofood_metro + self.grabfood_metro + self.survei_metro
+        elif cabang == "Sukabirus" :
+            hasil = self.google_sukabirus + self.gofood_sukabirus + self.grabfood_sukabirus + self.survei_sukabirus
+        elif cabang == "Sukapura" :
+            hasil = self.google_sukapura + self.gofood_sukapura + self.grabfood_sukapura + self.survei_sukapura
+        elif cabang == "Sukajadi" :
+            hasil = self.google_sukajadi + self.gofood_sukajadi + self.grabfood_sukajadi + self.survei_sukajadi
+        elif cabang == "Unjani" :
+            hasil = self.google_unjani + self.gofood_unjani + self.grabfood_unjani + self.survei_unjani
+
+        hasil /=4
+        return hasil
+
+    def dapat_average_semua(self):
+        hasil = self.google_antapani + self.google_cisitu + self.google_jatinangor + self.google_metro + self.google_sukabirus + self.google_sukapura + self.google_sukajadi + self.google_unjani
+        hasil += self.gofood_antapani + self.gofood_cisitu + self.gofood_jatinangor + self.gofood_metro + self.gofood_sukabirus + self.gofood_sukapura + self.gofood_sukajadi + self.gofood_unjani
+        hasil += self.grabfood_antapani + self.grabfood_cisitu + self.grabfood_jatinangor + self.grabfood_metro + self.grabfood_sukabirus + self.grabfood_sukapura + self.grabfood_sukajadi + self.grabfood_unjani
+        hasil += self.survei_antapani + self.survei_cisitu + self.survei_jatinangor + self.survei_metro + self.survei_sukabirus + self.survei_sukapura + self.survei_sukajadi + self.survei_unjani
+        hasil /= 32
+
+        hasil = "{:.2f}".format(hasil)
+
+        return float(hasil)
