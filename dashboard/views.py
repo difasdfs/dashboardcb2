@@ -1826,6 +1826,10 @@ def halaman_edit(request, id_karyawan):
         context['pendidikan_s2'] = True
     elif d.pendidikan == 'S3':
         context['pendidikan_s3'] = True
+    elif d.pendidikan == 'D1':
+        context['pendidikan_d1'] = True
+    elif d.pendidikan == 'S2':
+        context['pendidikan_d2'] = True
 
     if d.marital_status == 'BELUM MENIKAH':
         context['status_belum'] = True
