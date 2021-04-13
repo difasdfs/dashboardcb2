@@ -50,8 +50,8 @@ def average_check(request):
     bagian = request.user.last_name
     context = {'bagian': bagian, 'nama': nama}
 
-    ac = AverageCheck.objects.all().order_by('-hari')
-    ac_master = AverageCheck.objects.all().order_by('-hari')
+    ac = AverageCheck.objects.all().order_by('hari')
+    ac_master = AverageCheck.objects.all().order_by('hari')
 
     ac = [[i.hari, i.formatnya(i.total_sales), i.total_check, i.formatnya(i.average_check), i.formatnya(i.total_sales_online), i.total_check_online, i.formatnya(i.average_check_online)] for i in ac]
     ac = ac[-7:]
