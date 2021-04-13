@@ -1,0 +1,88 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<hr>
+<div class="container">
+    <h1>Kepuasan Pelanggan {{kepuasan_pelanggan.tanggal|date:"j M Y"}}</h1><br>
+    <a href="{% url 'kepuasan_pelanggan' %}" class="btn btn-success btn-sm" role="button">Back</a>
+    <br><br>
+    <table class="table table-hover table-bordered border-dark">
+        <thead>
+            <tr>
+                <th scope="col">Nama Cabang</th>
+                <th scope="col">GOOGLE</th>
+                <th scope="col">GO FOOD</th>
+                <th scope="col">GRAB FOOD</th>
+                <th scope="col">SURVEY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Antapani</td>
+                <td>{{kepuasan_pelanggan.google_antapani}}</td>
+                <td>{{kepuasan_pelanggan.gofood_antapani}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_antapani}}</td>
+                <td>{{kepuasan_pelanggan.survei_antapani}}</td>
+            </tr>
+
+            <tr>
+                <td>Cisitu</td>
+                <td>{{kepuasan_pelanggan.google_cisitu}}</td>
+                <td>{{kepuasan_pelanggan.gofood_cisitu}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_cisitu}}</td>
+                <td>{{kepuasan_pelanggan.survei_cisitu}}</td>
+            </tr>
+
+            <tr>
+                <td>Jatinangor</td>
+                <td>{{kepuasan_pelanggan.google_jatinangor}}</td>
+                <td>{{kepuasan_pelanggan.gofood_jatinangor}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_jatinangor}}</td>
+                <td>{{kepuasan_pelanggan.survei_jatinangor}}</td>
+            </tr>
+
+            <tr>
+                <td>Metro</td>
+                <td>{{kepuasan_pelanggan.google_metro}}</td>
+                <td>{{kepuasan_pelanggan.gofood_metro}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_metro}}</td>
+                <td>{{kepuasan_pelanggan.survei_metro}}</td>
+            </tr>
+
+            <tr>
+                <td>Sukabirus</td>
+                <td>{{kepuasan_pelanggan.google_sukabirus}}</td>
+                <td>{{kepuasan_pelanggan.gofood_sukabirus}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_sukabirus}}</td>
+                <td>{{kepuasan_pelanggan.survei_sukabirus}}</td>
+            </tr>
+
+            <tr>
+                <td>Sukapura</td>
+                <td>{{kepuasan_pelanggan.google_sukapura}}</td>
+                <td>{{kepuasan_pelanggan.gofood_sukapura}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_sukapura}}</td>
+                <td>{{kepuasan_pelanggan.survei_sukapura}}</td>
+            </tr>
+
+            <tr>
+                <td>Sukajadi</td>
+                <td>{{kepuasan_pelanggan.google_sukajadi}}</td>
+                <td>{{kepuasan_pelanggan.gofood_sukajadi}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_sukajadi}}</td>
+                <td>{{kepuasan_pelanggan.survei_sukajadi}}</td>
+            </tr>
+
+            <tr>
+                <td>Unjani</td>
+                <td>{{kepuasan_pelanggan.google_unjani}}</td>
+                <td>{{kepuasan_pelanggan.gofood_unjani}}</td>
+                <td>{{kepuasan_pelanggan.grabfood_unjani}}</td>
+                <td>{{kepuasan_pelanggan.survei_unjani}}</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock %}

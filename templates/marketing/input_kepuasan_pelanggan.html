@@ -1,0 +1,162 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .lebarform{
+        width: 50%;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <h1>Input Complaint</h1><br>
+    <div class="lebarform">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="tanggal">Tanggal</label>
+                <input type="date" class="form-control" id="tanggal" name="tanggal" required>
+            </div>
+            
+            {% comment %} GOOGLE {% endcomment %}
+            <div class="form-group">
+                <label for="google_antapani">Google Antapani</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_antapani" name="google_antapani" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_cisitu">Google Cisitu</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_cisitu" name="google_cisitu" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_jatinangor">Google Jatinangor</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_jatinangor" name="google_jatinangor" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_metro">Google Metro</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_metro" name="google_metro" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_sukabirus">Google Sukabirus</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_sukabirus" name="google_sukabirus" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_sukapura">Google Sukapura</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_sukapura" name="google_sukapura" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_sukajadi">Google Sukajadi</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_sukajadi" name="google_sukajadi" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="google_unjani">Google Unjani</label>
+                <input type="number" class="form-control" min="0" max="5" id="google_unjani" name="google_unjani" step=".1" required>
+            </div>
+
+            {% comment %} GOFOOD {% endcomment %}
+            <div class="form-group">
+                <label for="gofood_antapani">Go Food Antapani</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_antapani" name="gofood_antapani" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_cisitu">Go Food Cisitu</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_cisitu" name="gofood_cisitu" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_jatinangor">Go Food Jatinangor</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_jatinangor" name="gofood_jatinangor" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_metro">Go Food Metro</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_metro" name="gofood_metro" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_sukabirus">Go Food Sukabirus</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_sukabirus" name="gofood_sukabirus" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_sukapura">Go Food Sukapura</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_sukapura" name="gofood_sukapura" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_sukajadi">Go Food Sukajadi</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_sukajadi" name="gofood_sukajadi" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="gofood_unjani">Go Food Unjani</label>
+                <input type="number" class="form-control" min="0" max="5" id="gofood_unjani" name="gofood_unjani" step=".1" required>
+            </div>
+
+            {% comment %} GRABFOOD {% endcomment %}
+            <div class="form-group">
+                <label for="grabfood_antapani">Grabfood Antapani</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_antapani" name="grabfood_antapani" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_cisitu">Grabfood Cisitu</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_cisitu" name="grabfood_cisitu" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_jatinangor">Grabfood Jatinangor</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_jatinangor" name="grabfood_jatinangor" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_metro">Grabfood Metro</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_metro" name="grabfood_metro" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_sukabirus">Grabfood Sukabirus</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_sukabirus" name="grabfood_sukabirus" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_sukapura">Grabfood Sukapura</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_sukapura" name="grabfood_sukapura" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_sukajadi">Grabfood Sukajadi</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_sukajadi" name="grabfood_sukajadi" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="grabfood_unjani">Grabfood Unjani</label>
+                <input type="number" class="form-control" min="0" max="5" id="grabfood_unjani" name="grabfood_unjani" step=".1" required>
+            </div>
+
+            {% comment %} SURVEI {% endcomment %}
+            <div class="form-group">
+                <label for="survei_antapani">Survei Antapani</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_antapani" name="survei_antapani" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_cisitu">Survei Cisitu</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_cisitu" name="survei_cisitu" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_jatinangor">Survei Jatinangor</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_jatinangor" name="survei_jatinangor" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_metro">Survei Metro</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_metro" name="survei_metro" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_sukabirus">Survei Sukabirus</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_sukabirus" name="survei_sukabirus" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_sukapura">Survei Sukapura</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_sukapura" name="survei_sukapura" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_sukajadi">Survei Sukajadi</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_sukajadi" name="survei_sukajadi" step=".1" required>
+            </div>
+            <div class="form-group">
+                <label for="survei_unjani">Survei Unjani</label>
+                <input type="number" class="form-control" min="0" max="5" id="survei_unjani" name="survei_unjani" step=".1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Input</button>
+        </form>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br>
+{% endblock %}

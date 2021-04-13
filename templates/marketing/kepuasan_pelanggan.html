@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<hr>
+<div class="container">
+    <h1>Kepuasan Pelanggan</h1><br>
+    <a href="{% url 'input_kepuasan_pelanggan' %}" class="btn btn-success btn-sm" role="button">Input Kepuasan Pelanggan</a>
+    <br><br>
+    <table class="table table-hover table-bordered border-dark">
+        <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Tanggal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for kp in kepuasan_pelanggan %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td><a href="{% url 'detail_kepuasan_pelanggan' kp.id %}">{{kp.tanggal|date:"j M Y"}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+</div>
+
+{% endblock %}
