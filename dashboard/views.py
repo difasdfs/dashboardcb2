@@ -451,6 +451,7 @@ def index_ceo(request):
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
+    context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
 
     if request.user.groups.filter(name='Eksekutif').exists() or request.user.groups.filter(name='Manager').exists():
         context['data_kar'] = False
@@ -527,6 +528,7 @@ def manager(request):
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
+    context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
@@ -1433,6 +1435,7 @@ def eksekutif(request):
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
+    context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:

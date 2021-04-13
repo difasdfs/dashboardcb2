@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
-from .models import PeriodeKerja, Complaint, KepuasanPelanggan
+from .models import DataStruk, PeriodeKerja, Complaint, KepuasanPelanggan
+from datetime import datetime, timedelta
+import pytz
 
 def anggotabagian(nama_manager, bagian):
     users = User.objects.filter(last_name=bagian).exclude(first_name=nama_manager)
@@ -188,4 +190,148 @@ def query_box_home(PERIODE):
         'kepuasan_pelanggan' : {'avg_semua' : avg_semua, 'sebelum': avg_sebelum, 'trend' : trend_kp}
     }
 
+    return hasil
+
+def format_rupian(angka):
+
+    if isinstance(angka, float):
+        angka = str(angka)
+        angka = angka.split('.')
+        angka = angka[0]
+        angka = int(angka)
+
+    if angka >= 1000000:
+        jutaan = angka // 1000000
+        pengurang = jutaan * 1000000
+        angka = angka - pengurang
+
+        ribuan = angka // 1000
+        pengurang = ribuan * 1000
+        ribuan = "00000" + str(ribuan)
+        ribuan = ribuan[-3:]
+
+        angka = angka - pengurang
+        sisa = '00000' + str(angka)
+        sisa = sisa[-3:]
+
+        return "Rp. " + str(jutaan) + '.' + ribuan + '.' + sisa
+    elif angka >= 1000:
+        ribuan = angka // 1000
+        pengurang = ribuan * 1000
+        angka = angka - pengurang
+
+        sisa = '00000' + str(angka)
+        sisa = sisa[-3:]
+        
+        return "Rp. " + str(ribuan) + '.' + sisa
+
+def query_penjualan_harian_dashboard(PERIODE):
+    struk = PeriodeKerja.objects.get(pk=PERIODE)
+    
+    awal_periode = datetime(struk.awal_periode.year, struk.awal_periode.month, struk.awal_periode.day, 0, 0, 1, tzinfo=pytz.UTC) - timedelta(hours=7)
+    akhir_periode = datetime(struk.akhir_periode.year, struk.akhir_periode.month, struk.akhir_periode.day, 23, 59, 59, tzinfo=pytz.UTC) - timedelta(hours=7)
+    
+    struk_periode = DataStruk.objects.filter(created_at__range=[awal_periode, akhir_periode])
+    struk_periode = struk_periode.order_by('created_at')
+    
+    dine_in_take_away_antapani = 0
+    gofood_antapani = 0
+    grabfood_antapani = 0
+    
+    dine_in_take_away_cisitu = 0
+    gofood_cisitu = 0
+    grabfood_cisitu = 0
+
+    dine_in_take_away_jatinangor = 0
+    gofood_jatinangor = 0
+    grabfood_jatinangor = 0
+
+    dine_in_take_away_metro = 0
+    gofood_metro = 0
+    grabfood_metro = 0
+    
+    dine_in_take_away_sukabirus = 0
+    gofood_sukabirus = 0
+    grabfood_sukabirus = 0
+
+    dine_in_take_away_sukapura = 0
+    gofood_sukapura = 0
+    grabfood_sukapura = 0
+
+    dine_in_take_away_sukajadi = 0
+    gofood_sukajadi = 0
+    grabfood_sukajadi = 0
+
+    dine_in_take_away_unjani = 0
+    gofood_unjani = 0
+    grabfood_unjani = 0
+    
+    i = 1
+    for a in struk_periode:
+        if "GO FOOD" in a.nama_pembayaran:
+            
+            if "Antapani" in a.outlet:
+                gofood_antapani += a.money_amount
+            elif "Cisitu" in a.outlet:
+                gofood_cisitu += a.money_amount
+            elif "Jatinangor" in a.outlet:
+                gofood_jatinangor += a.money_amount
+            elif "Metro" in a.outlet:
+                gofood_metro += a.money_amount
+            elif "Sukabirus" in a.outlet:
+                gofood_sukabirus += a.money_amount
+            elif "Sukapura" in a.outlet:
+                gofood_sukapura += a.money_amount
+            elif "Sukajadi" in a.outlet:
+                gofood_sukajadi += a.money_amount
+            elif "Unjani" in a.outlet:
+                gofood_unjani += a.money_amount
+
+        elif "GRAB" in a.nama_pembayaran:
+
+            if "Antapani" in a.outlet:
+                grabfood_antapani += a.money_amount
+            elif "Cisitu" in a.outlet:
+                grabfood_cisitu += a.money_amount
+            elif "Jatinangor" in a.outlet:
+                grabfood_jatinangor += a.money_amount
+            elif "Metro" in a.outlet:
+                grabfood_metro += a.money_amount
+            elif "Sukabirus" in a.outlet:
+                grabfood_sukabirus += a.money_amount
+            elif "Sukapura" in a.outlet:
+                grabfood_sukapura += a.money_amount
+            elif "Sukajadi" in a.outlet:
+                grabfood_sukajadi += a.money_amount
+            elif "Unjani" in a.outlet:
+                grabfood_unjani += a.money_amount
+        else:
+            if "Antapani" in a.outlet:
+                dine_in_take_away_antapani += a.money_amount
+            elif "Cisitu" in a.outlet:
+                dine_in_take_away_cisitu += a.money_amount
+            elif "Jatinangor" in a.outlet:
+                dine_in_take_away_jatinangor += a.money_amount
+            elif "Metro" in a.outlet:
+                dine_in_take_away_metro += a.money_amount
+            elif "Sukabirus" in a.outlet:
+                dine_in_take_away_sukabirus += a.money_amount
+            elif "Sukapura" in a.outlet:
+                dine_in_take_away_sukapura += a.money_amount
+            elif "Sukajadi" in a.outlet:
+                dine_in_take_away_sukajadi += a.money_amount
+            elif "Unjani" in a.outlet:
+                dine_in_take_away_unjani += a.money_amount
+        
+    hasil = [
+        ["Antapani", format_rupian(dine_in_take_away_antapani), format_rupian(gofood_antapani), format_rupian(grabfood_antapani), format_rupian((dine_in_take_away_antapani + gofood_antapani + grabfood_antapani)/3)],
+        ["Cisitu", format_rupian(dine_in_take_away_cisitu), format_rupian(gofood_cisitu), format_rupian(grabfood_cisitu), format_rupian((dine_in_take_away_cisitu + gofood_cisitu + grabfood_cisitu)/3)],
+        ["Jatinangor", format_rupian(dine_in_take_away_jatinangor), format_rupian(gofood_jatinangor), format_rupian(grabfood_jatinangor), format_rupian((dine_in_take_away_jatinangor + gofood_jatinangor + grabfood_jatinangor)/3)],
+        ["Metro", format_rupian(dine_in_take_away_metro), format_rupian(gofood_metro), format_rupian(grabfood_metro), format_rupian((dine_in_take_away_metro + gofood_metro + grabfood_metro)/3)],
+        ["Sukabirus", format_rupian(dine_in_take_away_sukabirus), format_rupian(gofood_sukabirus), format_rupian(grabfood_sukabirus), format_rupian((dine_in_take_away_sukabirus + gofood_sukabirus + grabfood_sukabirus)/3)],
+        ["Sukapura", format_rupian(dine_in_take_away_sukapura), format_rupian(gofood_sukapura), format_rupian(grabfood_sukapura), format_rupian((dine_in_take_away_sukapura + gofood_sukapura + grabfood_sukapura)/3)],
+        ["Sukajadi", format_rupian(dine_in_take_away_sukajadi), format_rupian(gofood_sukajadi), format_rupian(grabfood_sukajadi), format_rupian((dine_in_take_away_sukajadi + gofood_sukajadi + grabfood_sukajadi)/3)],
+        ["Unjani", format_rupian(dine_in_take_away_unjani), format_rupian(gofood_unjani), format_rupian(grabfood_unjani), format_rupian((dine_in_take_away_unjani + gofood_unjani + grabfood_unjani)/3)],
+    ]
+    
     return hasil
