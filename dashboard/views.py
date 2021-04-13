@@ -525,7 +525,7 @@ def manager(request):
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
-    context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
+    # context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
