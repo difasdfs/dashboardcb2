@@ -2078,6 +2078,75 @@ def detail_mystery_guest(request, id_mystery_guest):
         context['data_kar'] = True
     return render(request, 'marketing/detail_mystery_guest.html', context)
 
+
+@login_required(login_url='login')
+def kepuasan_pelanggan(request):
+    kp = KepuasanPelanggan.objects.all().order_by('-tanggal')
+    context = {'nama' : request.user.first_name, 'kepuasan_pelanggan' : kp}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/kepuasan_pelanggan.html', context)
+
+@login_required(login_url='login')
+def input_kepuasan_pelanggan(request):
+
+    if request.method == 'POST':
+        kp = KepuasanPelanggan(
+            tanggal = request.POST.get('tanggal'),
+
+            google_antapani = request.POST.get('google_antapani'),
+            google_cisitu = request.POST.get('google_cisitu'),
+            google_jatinangor  = request.POST.get('google_jatinangor'),
+            google_metro = request.POST.get('google_metro'),
+            google_sukabirus  = request.POST.get('google_sukabirus'),
+            google_sukapura  = request.POST.get('google_sukapura'),
+            google_sukajadi  = request.POST.get('google_sukajadi'),
+            google_unjani = request.POST.get('google_unjani'),
+
+            gofood_antapani = request.POST.get('gofood_antapani'),
+            gofood_cisitu = request.POST.get('gofood_cisitu'),
+            gofood_jatinangor  = request.POST.get('gofood_jatinangor'),
+            gofood_metro = request.POST.get('gofood_metro'),
+            gofood_sukabirus  = request.POST.get('gofood_sukabirus'),
+            gofood_sukapura  = request.POST.get('gofood_sukapura'),
+            gofood_sukajadi  = request.POST.get('gofood_sukajadi'),
+            gofood_unjani = request.POST.get('gofood_unjani'),
+
+            grabfood_antapani = request.POST.get('grabfood_antapani'),
+            grabfood_cisitu = request.POST.get('grabfood_cisitu'),
+            grabfood_jatinangor  = request.POST.get('grabfood_jatinangor'),
+            grabfood_metro = request.POST.get('grabfood_metro'),
+            grabfood_sukabirus  = request.POST.get('grabfood_sukabirus'),
+            grabfood_sukapura  = request.POST.get('grabfood_sukapura'),
+            grabfood_sukajadi  = request.POST.get('grabfood_sukajadi'),
+            grabfood_unjani = request.POST.get('grabfood_unjani'),
+
+            survei_antapani = request.POST.get('survei_antapani'),
+            survei_cisitu = request.POST.get('survei_cisitu'),
+            survei_jatinangor  = request.POST.get('survei_jatinangor'),
+            survei_metro = request.POST.get('survei_metro'),
+            survei_sukabirus  = request.POST.get('survei_sukabirus'),
+            survei_sukapura  = request.POST.get('survei_sukapura'),
+            survei_sukajadi  = request.POST.get('survei_sukajadi'),
+            survei_unjani = request.POST.get('survei_unjani')
+        )
+        kp.save()
+        return redirect('kepuasan_pelanggan')
+
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    return render(request, 'marketing/input_kepuasan_pelanggan.html', context)
+
+
+@login_required(login_url='login')
+def detail_kepuasan_pelanggan(request, id_kepuasan_pelanggan):
+    kp = KepuasanPelanggan.objects.get(pk=id_kepuasan_pelanggan)
+    context = {'nama' : request.user.first_name, 'kepuasan_pelanggan' : kp}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'marketing/detail_kepuasan_pelanggan.html', context)
 # ---------------------- LOGIC -------------------------------
 
 def ngecekdeadline():

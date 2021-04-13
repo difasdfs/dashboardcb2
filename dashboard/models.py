@@ -527,3 +527,45 @@ class MysteryGuest(models.Model):
     dokumentasi_luar = models.CharField(max_length=100)
     dokumentasi_dalam = models.CharField(max_length=100)
     nilai_manajemen = models.FloatField()
+
+class KepuasanPelanggan(models.Model):
+    tanggal = models.DateField()
+    
+    google_antapani = models.FloatField()
+    google_cisitu = models.FloatField()
+    google_jatinangor = models.FloatField()
+    google_metro = models.FloatField()
+    google_sukabirus = models.FloatField()
+    google_sukapura = models.FloatField()
+    google_sukajadi = models.FloatField()
+    google_unjani = models.FloatField()
+
+    gofood_antapani = models.FloatField()
+    gofood_cisitu = models.FloatField()
+    gofood_jatinangor = models.FloatField()
+    gofood_metro = models.FloatField()
+    gofood_sukabirus = models.FloatField()
+    gofood_sukapura = models.FloatField()
+    gofood_sukajadi = models.FloatField()
+    gofood_unjani = models.FloatField()
+
+    grabfood_antapani = models.FloatField()
+    grabfood_cisitu = models.FloatField()
+    grabfood_jatinangor = models.FloatField()
+    grabfood_metro = models.FloatField()
+    grabfood_sukabirus = models.FloatField()
+    grabfood_sukapura = models.FloatField()
+    grabfood_sukajadi = models.FloatField()
+    grabfood_unjani = models.FloatField()
+
+    survei_antapani = models.FloatField()
+    survei_cisitu = models.FloatField()
+    survei_jatinangor = models.FloatField()
+    survei_metro = models.FloatField()
+    survei_sukabirus = models.FloatField()
+    survei_sukapura = models.FloatField()
+    survei_sukajadi = models.FloatField()
+    survei_unjani = models.FloatField()
+
+    def __str__(self):
+        return str(self.tanggal)

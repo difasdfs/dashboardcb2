@@ -73,6 +73,9 @@ urlpatterns = [
     path('test_webhook/', views.test_webhook, name='test_webhook'),
     path('export_data_karyawan/', views.export_data_karyawan, name="export_data_karyawan"),
     path('export_karyawan_out/', views.export_karyawan_out, name="export_karyawan_out"),
+    path('kepuasan_pelanggan/', views.kepuasan_pelanggan, name='kepuasan_pelanggan'),
+    path('input_kepuasan_pelanggan/', views.input_kepuasan_pelanggan, name="input_kepuasan_pelanggan"),
+    path('detail_kepuasan_pelanggan/<int:id_kepuasan_pelanggan>', views.detail_kepuasan_pelanggan, name="detail_kepuasan_pelanggan"),
 
     # REKAP
     path('rekap/', views.rekap, name='rekap'),
