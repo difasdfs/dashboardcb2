@@ -525,6 +525,7 @@ def manager(request):
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
+    context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
@@ -1611,6 +1612,7 @@ def data_karyawan(request):
     area_antapani = d.filter(area="Antapani")
     area_cisitu = d.filter(area='Cisitu')
     area_jatinangor = d.filter(area='Jatinangor')
+    area_kopo = d.filter(area='Kopo')
     area_metro = d.filter(area='Metro')
     area_sukajadi = d.filter(area='Sukajadi')
     area_sukabirus = d.filter(area='Telkom Sukabirus')
@@ -1623,6 +1625,7 @@ def data_karyawan(request):
                'area_antapani' : area_antapani,
                'area_cisitu' : area_cisitu,
                'area_jatinangor' : area_jatinangor,
+               'area_kopo' : area_kopo,
                'area_metro' : area_metro,
                'area_sukajadi' : area_sukajadi,
                'area_sukabirus' : area_sukabirus,
