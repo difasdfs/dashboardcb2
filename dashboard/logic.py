@@ -90,8 +90,8 @@ def query_box_home(PERIODE):
 
     periode = PeriodeKerja.objects.get(pk=PERIODE)
     periode_sebelumnya = PeriodeKerja.objects.get(pk=(PERIODE-1))
-    complaint_periode = Complaint.objects.filter(tanggal__range=[periode.awal_periode, periode.akhir_periode])
-    complaint_periode_sebelumnya = Complaint.objects.filter(tanggal__range=[periode_sebelumnya.awal_periode, periode_sebelumnya.akhir_periode])
+    complaint_periode = Complaint.objects.filter(tanggal__range=[periode.awal_periode, periode.akhir_periode]).exclude(jenis="Lainnya")
+    complaint_periode_sebelumnya = Complaint.objects.filter(tanggal__range=[periode_sebelumnya.awal_periode, periode_sebelumnya.akhir_periode]).exclude(jenis="Lainnya")
     
     total_complaint = len(complaint_periode)
     sebelum = len(complaint_periode_sebelumnya)
