@@ -19,6 +19,7 @@
                   <a class="nav-link" id="nav-antapani-tab" data-toggle="tab" href="#nav-antapani" role="tab" aria-controls="nav-antapani" aria-selected="false">Antapani</a>
                   <a class="nav-link" id="nav-cisitu-tab" data-toggle="tab" href="#nav-cisitu" role="tab" aria-controls="nav-cisitu" aria-selected="false">Cisitu</a>
                   <a class="nav-link" id="nav-jatinangor-tab" data-toggle="tab" href="#nav-jatinangor" role="tab" aria-controls="nav-jatinangor" aria-selected="false">Jatinangor</a>
+                  <a class="nav-link" id="nav-kopo-tab" data-toggle="tab" href="#nav-kopo" role="tab" aria-controls="nav-kopo" aria-selected="false">Kopo</a>
                   <a class="nav-link" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="false">Metro</a>
                   <a class="nav-link" id="nav-sukajadi-tab" data-toggle="tab" href="#nav-sukajadi" role="tab" aria-controls="nav-sukajadi" aria-selected="false">Sukajadi</a>
                   <a class="nav-link" id="nav-sukabirus-tab" data-toggle="tab" href="#nav-sukabirus" role="tab" aria-controls="nav-sukabirus" aria-selected="false">Sukabirus</a>
@@ -147,6 +148,32 @@
                         </thead>
                         <tbody>
                             {% for isi in area_jatinangor %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <td>{{isi.nik}}</td>
+                                <td><a href="{% url 'detail_data_karyawan' isi.id %}">{{isi.nama}}</a></td>
+                                <td>{{isi.nama_posisi}}</td>
+                                <td>{{isi.area}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- KOPO -->
+                <div class="tab-pane fade" id="nav-kopo" role="tabpanel" aria-labelledby="nav-kopo-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">NIK</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Jabatan</th>
+                                <th scope="col">Area</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in area_kopo %}
                             <tr>
                                 <th scope="row">{{forloop.counter}}</th>
                                 <td>{{isi.nik}}</td>
