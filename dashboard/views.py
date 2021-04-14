@@ -446,6 +446,23 @@ def eksekusi_sp(request, id_periode_sp):
 @login_required(login_url='login')
 def index_ceo(request):
     
+    try:
+        refresh_tcav()
+        now = timezone.now() + timedelta(hours=7)
+        tanggal_sekarang = date(now.year, now.month, now.day)
+        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
+
+        if not cek_tanggal:
+            d = AverageCheck(hari=tanggal_sekarang)
+            d.tentukan_awal_akhir_hari()
+            d.save()
+        
+        ac = AverageCheck.objects.all()
+        for struk in ac:
+            update_tc(struk.id)
+    except:
+        pass
+
     ngecekdeadline()
     nama = request.user.first_name
     context = {
@@ -526,6 +543,23 @@ def edit_nilai(request, id_isi_tugas_rutin):
 @login_required(login_url='login')
 def manager(request):
         
+    try:
+        refresh_tcav()
+        now = timezone.now() + timedelta(hours=7)
+        tanggal_sekarang = date(now.year, now.month, now.day)
+        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
+
+        if not cek_tanggal:
+            d = AverageCheck(hari=tanggal_sekarang)
+            d.tentukan_awal_akhir_hari()
+            d.save()
+        
+        ac = AverageCheck.objects.all()
+        for struk in ac:
+            update_tc(struk.id)
+    except:
+        pass
+
     ngecekdeadline()
 
     nama = request.user.first_name
@@ -1439,6 +1473,23 @@ def eksekutif(request):
     
     nama = request.user.first_name
     context = {'nama' : nama}
+
+    try:
+        refresh_tcav()
+        now = timezone.now() + timedelta(hours=7)
+        tanggal_sekarang = date(now.year, now.month, now.day)
+        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
+
+        if not cek_tanggal:
+            d = AverageCheck(hari=tanggal_sekarang)
+            d.tentukan_awal_akhir_hari()
+            d.save()
+        
+        ac = AverageCheck.objects.all()
+        for struk in ac:
+            update_tc(struk.id)
+    except:
+        pass
 
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
