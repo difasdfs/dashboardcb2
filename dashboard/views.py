@@ -69,7 +69,7 @@ def average_check(request):
         else:
             ac = ac.filter(hari__range=[awal_date, akhir_date])
             ac_master = ac_master.filter(hari__range=[awal_date, akhir_date])
-            jumlah = selisih.days - 1
+            jumlah = selisih.days + 1
    
     ac = [[i.hari, i.formatnya(i.total_sales), i.total_check, i.formatnya(i.average_check), i.formatnya(i.total_sales_online), i.total_check_online, i.formatnya(i.average_check_online)] for i in ac]
     ac = ac[-jumlah:]
