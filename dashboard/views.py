@@ -2026,6 +2026,7 @@ def input_complaint(request):
 @login_required(login_url='login')
 def mystery_guest(request):
     mg = MysteryGuest.objects.all()
+    mg = mg.order_by('-tanggal')
     context = {'nama' : request.user.first_name, 'mg' : mg}
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
