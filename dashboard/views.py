@@ -537,6 +537,8 @@ def manager(request):
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
     context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
+    context['tren_penjualan_harian'] = tren_penjualan_harian(PERIODE)
+    print(tren_penjualan_harian(PERIODE))
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:

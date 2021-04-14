@@ -193,7 +193,7 @@ def query_box_home(PERIODE):
 
     return hasil
 
-def format_rupian(angka):
+def format_rupiah(angka):
 
     if isinstance(angka, float):
         angka = str(angka)
@@ -234,7 +234,6 @@ def query_penjualan_harian_dashboard(PERIODE):
     
     sekarang = timezone.now()
     selisih = sekarang - awal_periode
-    print(selisih.days)
 
     struk_periode = DataStruk.objects.filter(created_at__range=[awal_periode, akhir_periode])
     struk_periode = struk_periode.order_by('created_at')
@@ -329,14 +328,178 @@ def query_penjualan_harian_dashboard(PERIODE):
                 dine_in_take_away_unjani += a.money_amount
         
     hasil = [
-        ["Antapani", format_rupian(dine_in_take_away_antapani/selisih.days), format_rupian((gofood_antapani/selisih.days)*0.8), format_rupian((grabfood_antapani/selisih.days)*0.8), format_rupian( (dine_in_take_away_antapani/selisih.days)+((gofood_antapani/selisih.days)*0.8)+((grabfood_antapani/selisih.days)*0.8) )],
-        ["Cisitu", format_rupian(dine_in_take_away_cisitu/selisih.days), format_rupian((gofood_cisitu/selisih.days)*0.8), format_rupian((grabfood_cisitu/selisih.days)*0.8), format_rupian( (dine_in_take_away_cisitu/selisih.days)+((gofood_cisitu/selisih.days)*0.8)+((grabfood_cisitu/selisih.days)*0.8) )],
-        ["Jatinangor", format_rupian(dine_in_take_away_jatinangor/selisih.days), format_rupian((gofood_jatinangor/selisih.days)*0.8), format_rupian((grabfood_jatinangor/selisih.days)*0.8), format_rupian( (dine_in_take_away_jatinangor/selisih.days)+((gofood_jatinangor/selisih.days)*0.8)+((grabfood_jatinangor/selisih.days)*0.8) )],
-        ["Metro", format_rupian(dine_in_take_away_metro/selisih.days), format_rupian((gofood_metro/selisih.days)*0.8), format_rupian((grabfood_metro/selisih.days)*0.8), format_rupian( (dine_in_take_away_metro/selisih.days)+((gofood_metro/selisih.days)*0.8)+((grabfood_metro/selisih.days)*0.8) )],
-        ["Sukabirus", format_rupian(dine_in_take_away_sukabirus/selisih.days), format_rupian((gofood_sukabirus/selisih.days)*0.8), format_rupian((grabfood_sukabirus/selisih.days)*0.8), format_rupian( (dine_in_take_away_sukabirus/selisih.days)+((gofood_sukabirus/selisih.days)*0.8)+((grabfood_sukabirus/selisih.days)*0.8) )],
-        ["Sukapura", format_rupian(dine_in_take_away_sukapura/selisih.days), format_rupian((gofood_sukapura/selisih.days)*0.8), format_rupian((grabfood_sukapura/selisih.days)*0.8), format_rupian( (dine_in_take_away_sukapura/selisih.days)+((gofood_sukapura/selisih.days)*0.8)+((grabfood_sukapura/selisih.days)*0.8) )],
-        ["Sukajadi", format_rupian(dine_in_take_away_sukajadi/selisih.days), format_rupian((gofood_sukajadi/selisih.days)*0.8), format_rupian((grabfood_sukajadi/selisih.days)*0.8), format_rupian( (dine_in_take_away_sukajadi/selisih.days)+((gofood_sukajadi/selisih.days)*0.8)+((grabfood_sukajadi/selisih.days)*0.8) )],
-        ["Unjani", format_rupian(dine_in_take_away_unjani/selisih.days), format_rupian((gofood_unjani/selisih.days)*0.8), format_rupian((grabfood_unjani/selisih.days)*0.8), format_rupian( (dine_in_take_away_unjani/selisih.days)+((gofood_unjani/selisih.days)*0.8)+((grabfood_unjani/selisih.days)*0.8))],
+        ["Antapani", format_rupiah(dine_in_take_away_antapani/selisih.days), format_rupiah((gofood_antapani/selisih.days)*0.8), format_rupiah((grabfood_antapani/selisih.days)*0.8), format_rupiah( (dine_in_take_away_antapani/selisih.days)+((gofood_antapani/selisih.days)*0.8)+((grabfood_antapani/selisih.days)*0.8) )],
+        ["Cisitu", format_rupiah(dine_in_take_away_cisitu/selisih.days), format_rupiah((gofood_cisitu/selisih.days)*0.8), format_rupiah((grabfood_cisitu/selisih.days)*0.8), format_rupiah( (dine_in_take_away_cisitu/selisih.days)+((gofood_cisitu/selisih.days)*0.8)+((grabfood_cisitu/selisih.days)*0.8) )],
+        ["Jatinangor", format_rupiah(dine_in_take_away_jatinangor/selisih.days), format_rupiah((gofood_jatinangor/selisih.days)*0.8), format_rupiah((grabfood_jatinangor/selisih.days)*0.8), format_rupiah( (dine_in_take_away_jatinangor/selisih.days)+((gofood_jatinangor/selisih.days)*0.8)+((grabfood_jatinangor/selisih.days)*0.8) )],
+        ["Metro", format_rupiah(dine_in_take_away_metro/selisih.days), format_rupiah((gofood_metro/selisih.days)*0.8), format_rupiah((grabfood_metro/selisih.days)*0.8), format_rupiah( (dine_in_take_away_metro/selisih.days)+((gofood_metro/selisih.days)*0.8)+((grabfood_metro/selisih.days)*0.8) )],
+        ["Sukabirus", format_rupiah(dine_in_take_away_sukabirus/selisih.days), format_rupiah((gofood_sukabirus/selisih.days)*0.8), format_rupiah((grabfood_sukabirus/selisih.days)*0.8), format_rupiah( (dine_in_take_away_sukabirus/selisih.days)+((gofood_sukabirus/selisih.days)*0.8)+((grabfood_sukabirus/selisih.days)*0.8) )],
+        ["Sukapura", format_rupiah(dine_in_take_away_sukapura/selisih.days), format_rupiah((gofood_sukapura/selisih.days)*0.8), format_rupiah((grabfood_sukapura/selisih.days)*0.8), format_rupiah( (dine_in_take_away_sukapura/selisih.days)+((gofood_sukapura/selisih.days)*0.8)+((grabfood_sukapura/selisih.days)*0.8) )],
+        ["Sukajadi", format_rupiah(dine_in_take_away_sukajadi/selisih.days), format_rupiah((gofood_sukajadi/selisih.days)*0.8), format_rupiah((grabfood_sukajadi/selisih.days)*0.8), format_rupiah( (dine_in_take_away_sukajadi/selisih.days)+((gofood_sukajadi/selisih.days)*0.8)+((grabfood_sukajadi/selisih.days)*0.8) )],
+        ["Unjani", format_rupiah(dine_in_take_away_unjani/selisih.days), format_rupiah((gofood_unjani/selisih.days)*0.8), format_rupiah((grabfood_unjani/selisih.days)*0.8), format_rupiah( (dine_in_take_away_unjani/selisih.days)+((gofood_unjani/selisih.days)*0.8)+((grabfood_unjani/selisih.days)*0.8))],
     ]
     
+    return hasil
+
+
+def query_perhitungan_penjualan_harian_dashboard(PERIODE):
+    struk = PeriodeKerja.objects.get(pk=PERIODE)
+    
+    awal_periode = datetime(struk.awal_periode.year, struk.awal_periode.month, struk.awal_periode.day, 0, 0, 1, tzinfo=pytz.UTC) - timedelta(hours=7)
+    akhir_periode = datetime(struk.akhir_periode.year, struk.akhir_periode.month, struk.akhir_periode.day, 23, 59, 59, tzinfo=pytz.UTC) - timedelta(hours=7)
+    
+    sekarang = timezone.now()
+    selisih = sekarang - awal_periode
+
+    struk_periode = DataStruk.objects.filter(created_at__range=[awal_periode, akhir_periode])
+    struk_periode = struk_periode.order_by('created_at')
+    
+    dine_in_take_away_antapani = 0
+    gofood_antapani = 0
+    grabfood_antapani = 0
+    
+    dine_in_take_away_cisitu = 0
+    gofood_cisitu = 0
+    grabfood_cisitu = 0
+
+    dine_in_take_away_jatinangor = 0
+    gofood_jatinangor = 0
+    grabfood_jatinangor = 0
+
+    dine_in_take_away_metro = 0
+    gofood_metro = 0
+    grabfood_metro = 0
+    
+    dine_in_take_away_sukabirus = 0
+    gofood_sukabirus = 0
+    grabfood_sukabirus = 0
+
+    dine_in_take_away_sukapura = 0
+    gofood_sukapura = 0
+    grabfood_sukapura = 0
+
+    dine_in_take_away_sukajadi = 0
+    gofood_sukajadi = 0
+    grabfood_sukajadi = 0
+
+    dine_in_take_away_unjani = 0
+    gofood_unjani = 0
+    grabfood_unjani = 0
+    
+    for a in struk_periode:
+        if "GO FOOD" in a.nama_pembayaran:
+            
+            if "Antapani" in a.outlet:
+                gofood_antapani += a.money_amount
+            elif "Cisitu" in a.outlet:
+                gofood_cisitu += a.money_amount
+            elif "Jatinangor" in a.outlet:
+                gofood_jatinangor += a.money_amount
+            elif "Metro" in a.outlet:
+                gofood_metro += a.money_amount
+            elif "Sukabirus" in a.outlet:
+                gofood_sukabirus += a.money_amount
+            elif "Sukapura" in a.outlet:
+                gofood_sukapura += a.money_amount
+            elif "Sukajadi" in a.outlet:
+                gofood_sukajadi += a.money_amount
+            elif "Unjani" in a.outlet:
+                gofood_unjani += a.money_amount
+
+        elif "GRAB" in a.nama_pembayaran:
+
+            if "Antapani" in a.outlet:
+                grabfood_antapani += a.money_amount
+            elif "Cisitu" in a.outlet:
+                grabfood_cisitu += a.money_amount
+            elif "Jatinangor" in a.outlet:
+                grabfood_jatinangor += a.money_amount
+            elif "Metro" in a.outlet:
+                grabfood_metro += a.money_amount
+            elif "Sukabirus" in a.outlet:
+                grabfood_sukabirus += a.money_amount
+            elif "Sukapura" in a.outlet:
+                grabfood_sukapura += a.money_amount
+            elif "Sukajadi" in a.outlet:
+                grabfood_sukajadi += a.money_amount
+            elif "Unjani" in a.outlet:
+                grabfood_unjani += a.money_amount
+        else:
+            if "Antapani" in a.outlet:
+                dine_in_take_away_antapani += a.money_amount
+            elif "Cisitu" in a.outlet:
+                dine_in_take_away_cisitu += a.money_amount
+            elif "Jatinangor" in a.outlet:
+                dine_in_take_away_jatinangor += a.money_amount
+            elif "Metro" in a.outlet:
+                dine_in_take_away_metro += a.money_amount
+            elif "Sukabirus" in a.outlet:
+                dine_in_take_away_sukabirus += a.money_amount
+            elif "Sukapura" in a.outlet:
+                dine_in_take_away_sukapura += a.money_amount
+            elif "Sukajadi" in a.outlet:
+                dine_in_take_away_sukajadi += a.money_amount
+            elif "Unjani" in a.outlet:
+                dine_in_take_away_unjani += a.money_amount
+        
+    hasil = [
+        # Dine in Take Away, Go food, grabfood, total
+        [dine_in_take_away_antapani/selisih.days, (gofood_antapani/selisih.days)*0.8, (grabfood_antapani/selisih.days)*0.8, (dine_in_take_away_antapani/selisih.days)+((gofood_antapani/selisih.days)*0.8)+((grabfood_antapani/selisih.days)*0.8) ],             # ANTAPANI
+        [dine_in_take_away_cisitu/selisih.days, (gofood_cisitu/selisih.days)*0.8, (grabfood_cisitu/selisih.days)*0.8, (dine_in_take_away_cisitu/selisih.days)+((gofood_cisitu/selisih.days)*0.8)+((grabfood_cisitu/selisih.days)*0.8) ],                         # CISITU
+        [dine_in_take_away_jatinangor/selisih.days, (gofood_jatinangor/selisih.days)*0.8, (grabfood_jatinangor/selisih.days)*0.8, (dine_in_take_away_jatinangor/selisih.days)+((gofood_jatinangor/selisih.days)*0.8)+((grabfood_jatinangor/selisih.days)*0.8) ], # JATINANGOR
+        [dine_in_take_away_metro/selisih.days, (gofood_metro/selisih.days)*0.8, (grabfood_metro/selisih.days)*0.8, (dine_in_take_away_metro/selisih.days)+((gofood_metro/selisih.days)*0.8)+((grabfood_metro/selisih.days)*0.8) ],                               # METRO
+        [dine_in_take_away_sukabirus/selisih.days, (gofood_sukabirus/selisih.days)*0.8, (grabfood_sukabirus/selisih.days)*0.8, (dine_in_take_away_sukabirus/selisih.days)+((gofood_sukabirus/selisih.days)*0.8)+((grabfood_sukabirus/selisih.days)*0.8) ],       # SUKABIRUS
+        [dine_in_take_away_sukapura/selisih.days, (gofood_sukapura/selisih.days)*0.8, (grabfood_sukapura/selisih.days)*0.8, (dine_in_take_away_sukapura/selisih.days)+((gofood_sukapura/selisih.days)*0.8)+((grabfood_sukapura/selisih.days)*0.8) ],             # SUKAPURA
+        [dine_in_take_away_sukajadi/selisih.days, (gofood_sukajadi/selisih.days)*0.8, (grabfood_sukajadi/selisih.days)*0.8, (dine_in_take_away_sukajadi/selisih.days)+((gofood_sukajadi/selisih.days)*0.8)+((grabfood_sukajadi/selisih.days)*0.8) ],             # SUKAJADI
+        [dine_in_take_away_unjani/selisih.days, (gofood_unjani/selisih.days)*0.8, (grabfood_unjani/selisih.days)*0.8, (dine_in_take_away_unjani/selisih.days)+((gofood_unjani/selisih.days)*0.8)+((grabfood_unjani/selisih.days)*0.8)],                          # UNJANI
+    ]
+    
+    return hasil
+
+def dapat_selisih_penjualan_harian(PERIODE):
+    hasil_periode = query_perhitungan_penjualan_harian_dashboard(PERIODE)
+    hasil_periode_sebelumnya = query_perhitungan_penjualan_harian_dashboard(PERIODE-1)
+    
+    hasil = []
+    i = 0
+    for hp in hasil_periode:
+        j = 0
+        list_dalam = []
+        for h in hp:
+            selisih = h - hasil_periode_sebelumnya[i][j]
+            if selisih > 0:
+                list_dalam.append('+' + format_rupiah(selisih))
+            elif selisih < 0:
+                selisih = -selisih
+                list_dalam.append('-' + format_rupiah(selisih))
+            else:
+                list_dalam.append(format_rupiah(selisih))
+            j += 1
+        hasil.append(list_dalam)
+        i += 1
+    return hasil
+
+def tren_penjualan_harian(PERIODE):
+    tph = query_perhitungan_penjualan_harian_dashboard(PERIODE)
+    tph_rupiah = []
+    for isi in tph:
+        kosong = []
+        for i in isi:
+            kosong.append(format_rupiah(i))
+        tph_rupiah.append(kosong)   
+    
+    tph_selisih = dapat_selisih_penjualan_harian(PERIODE)
+
+    cabang = ['Antapani', 'Cisitu', 'Jatinangor', 'Metro', 'Sukabirus', 'Sukapura', 'Sukajadi', 'Unjani']
+    hasil = []
+    i = 0
+    for tph in tph_rupiah:
+        j = 0
+        hsl = []
+        hsl.append(cabang[i])
+        for isi in tph:
+            hsl.append([isi, tph_selisih[i][j]])
+            j += 1
+        hasil.append(hsl)
+        i += 1
+
     return hasil
