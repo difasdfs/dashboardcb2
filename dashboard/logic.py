@@ -426,22 +426,28 @@ def query_perhitungan_penjualan_harian_dashboard(PERIODE, periode_sebelumnya=Fal
             elif "Unjani" in a.outlet:
                 grabfood_unjani += a.money_amount
         else:
+
+            if ("OVO" in a.nama_pembayaran) or ("SHOPEE PAY" in a.nama_pembayaran) or ("GOPAY" in a.nama_pembayaran):
+                jumlah_uang = a.money_amount * 0.993
+            else:
+                jumlah_uang = a.money_amount
+
             if "Antapani" in a.outlet:
-                dine_in_take_away_antapani += a.money_amount
+                dine_in_take_away_antapani += jumlah_uang
             elif "Cisitu" in a.outlet:
-                dine_in_take_away_cisitu += a.money_amount
+                dine_in_take_away_cisitu += jumlah_uang
             elif "Jatinangor" in a.outlet:
-                dine_in_take_away_jatinangor += a.money_amount
+                dine_in_take_away_jatinangor += jumlah_uang
             elif "Metro" in a.outlet:
-                dine_in_take_away_metro += a.money_amount
+                dine_in_take_away_metro += jumlah_uang
             elif "Sukabirus" in a.outlet:
-                dine_in_take_away_sukabirus += a.money_amount
+                dine_in_take_away_sukabirus += jumlah_uang
             elif "Sukapura" in a.outlet:
-                dine_in_take_away_sukapura += a.money_amount
+                dine_in_take_away_sukapura += jumlah_uang
             elif "Sukajadi" in a.outlet:
-                dine_in_take_away_sukajadi += a.money_amount
+                dine_in_take_away_sukajadi += jumlah_uang
             elif "Unjani" in a.outlet:
-                dine_in_take_away_unjani += a.money_amount
+                dine_in_take_away_unjani += jumlah_uang
         
     hasil = [
         # Dine in Take Away, Go food, grabfood, total
