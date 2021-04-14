@@ -282,7 +282,7 @@
                 <th scope="col" class="judul-tabel" style="width:18%">Dine in Take Away</th>
                 <th scope="col" class="judul-tabel" style="width:14%">Go Food</th>
                 <th scope="col" class="judul-tabel" style="width:15%">Grab Food</th>
-                <th scope="col" class="judul-tabel" style="width:17%">TOTAL AVG.</th>
+                <th scope="col" class="judul-tabel" style="width:17%">TOTAL</th>
                 {% comment %} <th scope="col" class="judul-tabel" style="width:22%">STATUS</th> {% endcomment %}
             </tr>
         </thead>
@@ -290,7 +290,7 @@
             {% for penjualan_harian in query_penjualan_harian %}
             <tr>
                 {% for ph in penjualan_harian %}
-                    <td>{{ph}}</td>
+                    <td><strong>{{ph}}</strong></td>
                 {% endfor %}
             </tr>
             {% endfor %}
