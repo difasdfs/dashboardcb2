@@ -457,9 +457,10 @@ def index_ceo(request):
             d.tentukan_awal_akhir_hari()
             d.save()
         
-        ac = AverageCheck.objects.all()
-        for struk in ac:
-            update_tc(struk.id)
+        a = AverageCheck.objects.all()
+        a = a.order_by('-hari')
+        for i in a[:4]:
+            print(i.hari)
     except:
         pass
 
@@ -554,9 +555,10 @@ def manager(request):
             d.tentukan_awal_akhir_hari()
             d.save()
         
-        ac = AverageCheck.objects.all()
-        for struk in ac:
-            update_tc(struk.id)
+        a = AverageCheck.objects.all()
+        a = a.order_by('-hari')
+        for i in a[:4]:
+            print(i.hari)
     except:
         pass
 
@@ -1485,9 +1487,10 @@ def eksekutif(request):
             d.tentukan_awal_akhir_hari()
             d.save()
         
-        ac = AverageCheck.objects.all()
-        for struk in ac:
-            update_tc(struk.id)
+        a = AverageCheck.objects.all()
+        a = a.order_by('-hari')
+        for i in a[:4]:
+            print(i.hari)
     except:
         pass
 
