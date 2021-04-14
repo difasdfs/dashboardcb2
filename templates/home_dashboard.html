@@ -287,12 +287,43 @@
             </tr>
         </thead>
         <tbody>
-            {% for penjualan_harian in query_penjualan_harian %}
-            <tr>
-                {% for ph in penjualan_harian %}
-                    <td><strong>{{ph}}</strong></td>
-                {% endfor %}
-            </tr>
+            {% for isi in tren_penjualan_harian%}
+                <tr>
+                    <td><strong>{{isi.0}}</strong></td>
+
+                    {% if isi.1.1.0 == "+" %}
+                        <td><strong>{{isi.1.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.1.1}})</span></td>
+                    {% elif isi.1.1.0 == "+" %}
+                        <td><strong>{{isi.1.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.1.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{isi.1.0}}</strong> <br> ({{isi.1.1}})</td>
+                    {% endif %}
+
+                    {% if isi.2.1.0 == "+" %}
+                        <td><strong>{{isi.2.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.2.1}})</span></td>
+                    {% elif isi.2.1.0 == "+" %}
+                        <td><strong>{{isi.2.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.2.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{isi.2.0}}</strong> <br> ({{isi.2.1}})</td>
+                    {% endif %}
+
+                    {% if isi.3.1.0 == "+" %}
+                        <td><strong>{{isi.3.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.3.1}})</span></td>
+                    {% elif isi.3.1.0 == "+" %}
+                        <td><strong>{{isi.3.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.3.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{isi.3.0}}</strong> <br> ({{isi.3.1}})</td>
+                    {% endif %}
+
+                    {% if isi.4.1.0 == "+" %}
+                        <td><strong>{{isi.4.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.4.1}})</span></td>
+                    {% elif isi.4.1.0 == "+" %}
+                        <td><strong>{{isi.4.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.4.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{isi.4.0}}</strong> <br> ({{isi.4.1}})</td>
+                    {% endif %}
+
+                </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -420,6 +451,7 @@
                     {% endif %}
                 {% endfor %}
             </tr>
+            
         </tbody>
     </table>
     <br>
