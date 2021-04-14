@@ -123,7 +123,7 @@
                       </button>
                     </h2>
                   </div>
-                  <div id="evaluasiapril1" class="collapse show" aria-labelledby="headapril1" data-parent="#accordioneval">
+                  <div id="evaluasiapril1" class="collapse" aria-labelledby="headapril1" data-parent="#accordioneval">
                     <div class="card-body">
                       
 
@@ -213,13 +213,60 @@
                   <div class="card-header" id="headapril2">
                     <h2 class="mb-0">
                       <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiapril2" aria-expanded="false" aria-controls="collapseapril2">
-                        Periode April 2
+                        Periode April 2 (11 April 2021 - 25 April 2021)
                       </button>
                     </h2>
                   </div>
-                  <div id="evaluasiapril2" class="collapse" aria-labelledby="headapril2" data-parent="#accordioneval">
+                  <div id="evaluasiapril2" class="collapse show" aria-labelledby="headapril2" data-parent="#accordioneval">
                     <div class="card-body">
-                      Evaluasi Periode April 2
+                      <div class="table-responsive">
+                        <table class="table table-sm tablesp table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                  <th scope="col">No</th>
+                                  <th scope="col">Nama</th>
+                                  <th scope="col">Bagian</th>
+                                  <th scope="col">Total Tugas</th>
+                                  <th scope="col">Tuntas</th>
+                                  <th scope="col">Terlambat</th>
+                                  <th scope="col">Deadline</th>
+                                  <th scope="col">Nilai Akhir</th>
+                                  <th scope="col">%terlambat</th>
+                                  <th scope="col">%deadline</th>
+                                </tr>
+                            </thead>
+                                {% for isi in evalapril2 %}
+                                <tr>
+                                    <td scope="row">{{forloop.counter}}</td>
+                                    <td>{{isi.0}}</td>
+                                    <td>{{isi.1}}</td>
+                                    <td>{{isi.2}}</td>
+                                    <td>{{isi.3}}</td>
+                                    <td>{{isi.4}}</td>
+                                    <td>{{isi.5}}</td>
+
+                                    {% if isi.6 >= 8 %}
+                                    <td>{{isi.6}}</td>
+                                    {% else %}
+                                    <td class="cellmerah">{{isi.6}}</td>
+                                    {% endif %}
+
+                                    {% if isi.7 <= 20 %}
+                                    <td>%{{isi.7}}</td>
+                                    {% else %}
+                                    <td class="cellmerah">%{{isi.7}}</td>
+                                    {% endif %}
+
+                                    {% if isi.8 <= 5 %}
+                                    <td>%{{isi.8}}</td>
+                                    {% else %}
+                                    <td class="cellmerah">%{{isi.8}}</td>
+                                    {% endif %}
+
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
                     </div>
                   </div>
                 </div>
