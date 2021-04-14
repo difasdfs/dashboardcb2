@@ -391,21 +391,21 @@ def query_perhitungan_penjualan_harian_dashboard(PERIODE, periode_sebelumnya=Fal
         if "GO FOOD" in a.nama_pembayaran:
             
             if "Antapani" in a.outlet:
-                gofood_antapani += a.money_amount
+                gofood_antapani += a.money_amount - 800
             elif "Cisitu" in a.outlet:
-                gofood_cisitu += a.money_amount
+                gofood_cisitu += a.money_amount - 800
             elif "Jatinangor" in a.outlet:
-                gofood_jatinangor += a.money_amount
+                gofood_jatinangor += a.money_amount - 800
             elif "Metro" in a.outlet:
-                gofood_metro += a.money_amount
+                gofood_metro += a.money_amount - 800
             elif "Sukabirus" in a.outlet:
-                gofood_sukabirus += a.money_amount
+                gofood_sukabirus += a.money_amount - 800
             elif "Sukapura" in a.outlet:
-                gofood_sukapura += a.money_amount
+                gofood_sukapura += a.money_amount - 800
             elif "Sukajadi" in a.outlet:
-                gofood_sukajadi += a.money_amount
+                gofood_sukajadi += a.money_amount - 800
             elif "Unjani" in a.outlet:
-                gofood_unjani += a.money_amount
+                gofood_unjani += a.money_amount - 800
 
         elif "GRAB" in a.nama_pembayaran:
 
