@@ -87,7 +87,6 @@ def query_complaint_dashboard(PERIODE):
     return antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar
 
 def query_kepuasan_pelanggan_dashboard():
-    print("fungsi query_kepuasan_pelanggan_dashboard kebaca")
     semua_kp = KepuasanPelanggan.objects.all().order_by('-tanggal')
     sesudah_sebelum_kp = semua_kp[:2]
     sesudah = sesudah_sebelum_kp[0]
@@ -160,7 +159,6 @@ def query_kepuasan_pelanggan_dashboard():
     ]
 
     return hasil
-    # print(sesudah, sebelum)
 
 def query_box_home(PERIODE):
     total_complaint = 0
@@ -341,13 +339,17 @@ def query_penjualan_harian_dashboard(PERIODE):
     return hasil
 
 
-def query_perhitungan_penjualan_harian_dashboard(PERIODE):
+def query_perhitungan_penjualan_harian_dashboard(PERIODE, periode_sebelumnya=False):
     struk = PeriodeKerja.objects.get(pk=PERIODE)
     
     awal_periode = datetime(struk.awal_periode.year, struk.awal_periode.month, struk.awal_periode.day, 0, 0, 1, tzinfo=pytz.UTC) - timedelta(hours=7)
     akhir_periode = datetime(struk.akhir_periode.year, struk.akhir_periode.month, struk.akhir_periode.day, 23, 59, 59, tzinfo=pytz.UTC) - timedelta(hours=7)
     
-    sekarang = timezone.now()
+    if periode_sebelumnya:
+        sekarang = akhir_periode
+    else:
+        sekarang = timezone.now()
+    
     selisih = sekarang - awal_periode
 
     struk_periode = DataStruk.objects.filter(created_at__range=[awal_periode, akhir_periode])
@@ -457,7 +459,7 @@ def query_perhitungan_penjualan_harian_dashboard(PERIODE):
 
 def dapat_selisih_penjualan_harian(PERIODE):
     hasil_periode = query_perhitungan_penjualan_harian_dashboard(PERIODE)
-    hasil_periode_sebelumnya = query_perhitungan_penjualan_harian_dashboard(PERIODE-1)
+    hasil_periode_sebelumnya = query_perhitungan_penjualan_harian_dashboard((PERIODE-1), True)
     
     hasil = []
     i = 0
@@ -503,3 +505,7 @@ def tren_penjualan_harian(PERIODE):
         i += 1
 
     return hasil
+
+def tren_penjualan_harian_all_crisbar(PERIODE):
+    perhitungan = query_perhitungan_penjualan_harian_dashboard(PERIODE)
+    print(perhitungan)
