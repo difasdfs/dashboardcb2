@@ -25,8 +25,23 @@
         <h1>Total Check & Average Check</h1>
         <br>
         
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    <input type="date" class="form-control" name="awal">
+                </div>
+                <div class="col">
+                    <input type="date" class="form-control" name="akhir">
+                </div>
+                <div class="col">
+                    <button type="submit" class="btn btn-primary">Ganti Tanggal</button>
+                </div>
+            </div>
+        </form>
+        <br>
         <a href="{% url 'upgrade_tc_ac' %}" class="btn btn-success btn-sm tombol-update" role="button">update</a>
-    
         <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                 <a class="nav-link active" id="nav-all-tab" data-toggle="tab" href="#nav-all" role="tab" aria-controls="nav-all" aria-selected="true">All</a>
