@@ -104,19 +104,22 @@ def average_check(request):
     return render(request, 'average_check.html', context)
 
 def upgrade_tc_ac(request):
-    refresh_tcav()
-    now = timezone.now() + timedelta(hours=7)
-    tanggal_sekarang = date(now.year, now.month, now.day)
-    cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
+    try:
+        refresh_tcav()
+        now = timezone.now() + timedelta(hours=7)
+        tanggal_sekarang = date(now.year, now.month, now.day)
+        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
 
-    if not cek_tanggal:
-        d = AverageCheck(hari=tanggal_sekarang)
-        d.tentukan_awal_akhir_hari()
-        d.save()
-    
-    ac = AverageCheck.objects.all()
-    for struk in ac:
-	    update_tc(struk.id)
+        if not cek_tanggal:
+            d = AverageCheck(hari=tanggal_sekarang)
+            d.tentukan_awal_akhir_hari()
+            d.save()
+        
+        ac = AverageCheck.objects.all()
+        for struk in ac:
+            update_tc(struk.id)
+    except:
+        pass
     
     return redirect('average_check')
 
