@@ -944,6 +944,7 @@ def lihat_tugas(request):
     tugas_rutin_operation = rinci_tr('Operation')
     tugas_rutin_finance = rinci_tr("Finance")
     tugas_rutin_hr = rinci_tr("Human Resource")
+    tugas_rutin_ceo = rinci_tr("Management")
 
     bagian_user = request.user.last_name
     if bagian_user == 'Marketing':
@@ -958,7 +959,7 @@ def lihat_tugas(request):
     context['tugas_rutin_operation'] = tugas_rutin_operation
     context['tugas_rutin_finance'] = tugas_rutin_finance
     context['tugas_rutin_hr'] = tugas_rutin_hr
-    context['tugas_rutin_ceo'] = tr
+    context['tugas_rutin_ceo'] = tugas_rutin_ceo
 
     return render(request, 'manager/lihat_tugas.html', context)
 
