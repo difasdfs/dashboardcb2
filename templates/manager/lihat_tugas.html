@@ -273,6 +273,32 @@
                     </div>
                     
                   </div>
+                {% elif sidebar_ceo %}
+
+                    <br>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Nama</th>
+                                <th scope="col">Tugas</th>
+                                <th scope="col">Tuntas</th>
+                                <th scope="col"></th>
+                            </tr>
+                            </thead>
+                            {% for isi in tugas_rutin_ceo %}
+                            <tr>
+                                <th scope="row">{{forloop.counter}}</th>
+                                <th>{{isi.0}}</th>
+                                {% comment %} <th><a href="{% url 'progress_tugas_rutin' isi.2 %}">{{isi.1}}</a></th> {% endcomment %}
+                                <th><a href="#">{{isi.1}}</a></th>
+                                <th>{{isi.3}}/{{isi.4}}</th>
+                                {% comment %} <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.2 %}">Archive</a></th> {% endcomment %}
+                                <th><a class="btn btn-warning" href="#">Archive</a></th>
+                            </tr>
+                            {% endfor %}
+                        </table>
+
                 {% else %}
 
                 <nav>
@@ -380,6 +406,7 @@
 
                 {% endif %}
                 <!-- ini adalah ujung divnya -->
+
           </div>
       </div>
   </div>
