@@ -475,7 +475,7 @@ def dapat_selisih_penjualan_harian(PERIODE):
         for h in hp:
             selisih = h - hasil_periode_sebelumnya[i][j]
             if selisih > 0:
-                list_dalam.append('+' + format_rupiah(selisih))
+                list_dalam.append('+' + str(format_rupiah(selisih)))
             elif selisih < 0:
                 selisih = -selisih
                 list_dalam.append('-' + format_rupiah(selisih))
