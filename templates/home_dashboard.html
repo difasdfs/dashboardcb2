@@ -274,9 +274,11 @@
 
     <br>
     <h3><strong>Tren Penjualan Harian</strong></h3>
-    <h5>April 2021 vs. Maret 2021</h5>
-    <a class="btn btn-success btn-sm" href="{% url 'update_dashboard' %}" style="margin-bottom:10px;" role="button">Update</a>
-    <br>
+    <div class="row" style="margin-bottom:7px;">
+        <div class="col-4"><h5>April 2021 vs. Maret 2021</h5></div>
+        <div class="col-8"><a class="btn btn-success btn-sm" href="{% url 'update_dashboard' %}" role="button">Update</a></div>
+    </div>
+    
     <table>
         <thead>
             <tr>
