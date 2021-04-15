@@ -290,11 +290,11 @@
                             <tr>
                                 <th scope="row">{{forloop.counter}}</th>
                                 <th>{{isi.0}}</th>
-                                {% comment %} <th><a href="{% url 'progress_tugas_rutin' isi.2 %}">{{isi.1}}</a></th> {% endcomment %}
-                                <th><a href="#">{{isi.1}}</a></th>
+                                <th><a href="{% url 'progress_tugas_rutin' isi.2 %}">{{isi.1}}</a></th>
+                                {% comment %} <th><a href="#">{{isi.1}}</a></th> {% endcomment %}
                                 <th>{{isi.3}}/{{isi.4}}</th>
-                                {% comment %} <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.2 %}">Archive</a></th> {% endcomment %}
-                                <th><a class="btn btn-warning" href="#">Archive</a></th>
+                                <th><a class="btn btn-warning" href="{% url 'eksekusi_archive_rutin' isi.2 %}">Archive</a></th>
+                                {% comment %} <th><a class="btn btn-warning" href="#">Archive</a></th> {% endcomment %}
                             </tr>
                             {% endfor %}
                         </table>
