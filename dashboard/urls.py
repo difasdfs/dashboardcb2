@@ -13,6 +13,7 @@ urlpatterns = [
     path('average_check/', views.average_check, name='average_check'),
     path('upgrade_tc_ac/', views.upgrade_tc_ac, name='upgrade_tc_ac'),
     path('omset/', views.omset, name='omset'),
+    path('update_dashboard/', views.update_dashboard, name='update_dashboard'),
 
     # CEO
     path('home_ceo/', views.index_ceo, name='ceo'),

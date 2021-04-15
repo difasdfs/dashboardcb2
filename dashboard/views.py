@@ -463,24 +463,6 @@ def eksekusi_sp(request, id_periode_sp):
 
 @login_required(login_url='login')
 def index_ceo(request):
-    
-    try:
-        refresh_tcav()
-        now = timezone.now() + timedelta(hours=7)
-        tanggal_sekarang = date(now.year, now.month, now.day)
-        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
-
-        if not cek_tanggal:
-            d = AverageCheck(hari=tanggal_sekarang)
-            d.tentukan_awal_akhir_hari()
-            d.save()
-        
-        a = AverageCheck.objects.all()
-        a = a.order_by('-hari')
-        for i in a[:4]:
-            print(i.hari)
-    except:
-        pass
 
     ngecekdeadline()
     nama = request.user.first_name
@@ -561,24 +543,6 @@ def edit_nilai(request, id_isi_tugas_rutin):
 
 @login_required(login_url='login')
 def manager(request):
-        
-    try:
-        refresh_tcav()
-        now = timezone.now() + timedelta(hours=7)
-        tanggal_sekarang = date(now.year, now.month, now.day)
-        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
-
-        if not cek_tanggal:
-            d = AverageCheck(hari=tanggal_sekarang)
-            d.tentukan_awal_akhir_hari()
-            d.save()
-        
-        a = AverageCheck.objects.all()
-        a = a.order_by('-hari')
-        for i in a[:4]:
-            print(i.hari)
-    except:
-        pass
 
     ngecekdeadline()
 
@@ -1494,24 +1458,6 @@ def eksekutif(request):
     nama = request.user.first_name
     context = {'nama' : nama}
 
-    try:
-        refresh_tcav()
-        now = timezone.now() + timedelta(hours=7)
-        tanggal_sekarang = date(now.year, now.month, now.day)
-        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
-
-        if not cek_tanggal:
-            d = AverageCheck(hari=tanggal_sekarang)
-            d.tentukan_awal_akhir_hari()
-            d.save()
-        
-        a = AverageCheck.objects.all()
-        a = a.order_by('-hari')
-        for i in a[:4]:
-            print(i.hari)
-    except:
-        pass
-
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
     context['complaint'] = query_complaint
@@ -2263,3 +2209,23 @@ def ngecekdeadline():
 
 def apa_manager(user):
     return user.groups.filter(name='Manager').exists()
+
+def update_dashboard(request):
+    try:
+        refresh_tcav()
+        now = timezone.now() + timedelta(hours=7)
+        tanggal_sekarang = date(now.year, now.month, now.day)
+        cek_tanggal = AverageCheck.objects.filter(hari=tanggal_sekarang)
+
+        if not cek_tanggal:
+            d = AverageCheck(hari=tanggal_sekarang)
+            d.tentukan_awal_akhir_hari()
+            d.save()
+        
+        a = AverageCheck.objects.all()
+        a = a.order_by('-hari')
+        for i in a[:4]:
+            print(i.hari)
+    except:
+        pass
+    return redirect('index')
