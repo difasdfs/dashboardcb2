@@ -958,6 +958,7 @@ def lihat_tugas(request):
     context['tugas_rutin_operation'] = tugas_rutin_operation
     context['tugas_rutin_finance'] = tugas_rutin_finance
     context['tugas_rutin_hr'] = tugas_rutin_hr
+    context['tugas_rutin_ceo'] = tr
 
     return render(request, 'manager/lihat_tugas.html', context)
 
