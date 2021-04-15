@@ -513,5 +513,30 @@ def tren_penjualan_harian(PERIODE):
     return hasil
 
 def tren_penjualan_harian_all_crisbar(PERIODE):
+    total_dine_in = 0
     perhitungan = query_perhitungan_penjualan_harian_dashboard(PERIODE)
-    print(perhitungan)
+
+    total_dine_in = sum([a[0] for a in perhitungan])
+    total_gofood = sum([a[1] for a in perhitungan])
+    total_grabfood = sum([a[2] for a in perhitungan])
+    total_all_crisbar = sum([a[3] for a in perhitungan])
+
+    return ["All Crisbar", format_rupiah(total_dine_in), format_rupiah(total_gofood), format_rupiah(total_grabfood), format_rupiah(total_all_crisbar)]
+
+def tren_penjualan_harian_all_crisbar_debugging(PERIODE):
+    sekarang = query_perhitungan_penjualan_harian_dashboard(PERIODE)
+    periode_lalu = query_perhitungan_penjualan_harian_dashboard(PERIODE, True)
+
+    hasil = []
+    i = 0
+    for isi in sekarang:
+        j = 0
+        hasil2 = []
+        for isi_dalem in isi:
+            selisih = isi_dalem - periode_lalu[i][j]
+            hasil2.append(selisih)
+            j += 1
+        i += 1
+        hasil.append(hasil2)
+
+    return hasil
