@@ -488,13 +488,7 @@ def dapat_selisih_penjualan_harian(PERIODE):
 
 def tren_penjualan_harian(PERIODE):
     tph = query_perhitungan_penjualan_harian_dashboard(PERIODE)
-    tph_rupiah = []
-    for isi in tph:
-        kosong = []
-        for i in isi:
-            kosong.append(format_rupiah(i))
-        tph_rupiah.append(kosong)   
-    
+    tph_rupiah = [ [format_rupiah(i) for i in isi] for isi in tph]
     tph_selisih = dapat_selisih_penjualan_harian(PERIODE)
 
     cabang = ['Antapani', 'Cisitu', 'Jatinangor', 'Metro', 'Sukabirus', 'Sukapura', 'Sukajadi', 'Unjani']
