@@ -15,9 +15,7 @@ def query_index_sp():
         24, # bu ratih
         25, # hanifah
         26, # bu santi
-        27, # pak djuki
-        28, # pak beben
-        29, # friski
+        28, # pak beben        
         30, # farhan
         31, # rara
         32, # salma
