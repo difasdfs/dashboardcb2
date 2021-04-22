@@ -1336,13 +1336,11 @@ def edit_tugas_rutin(request, id_tugas):
         data_judul = request.POST.get('judul')
         data_isi = request.POST.get('isi')
         data_deadline = request.POST.get('deadline')
-        data_status = request.POST.get('status')
 
         t = IsiTugasRutin.objects.get(pk=id_tugas)
         t.judul = data_judul
         t.isi = data_isi
         t.deadline = data_deadline
-        t.status = data_status
         t.save()
 
         return progress_tugas_rutin(request, t.tugas_rutin.id)
