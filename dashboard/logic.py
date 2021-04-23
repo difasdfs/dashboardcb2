@@ -223,6 +223,8 @@ def format_rupiah(angka):
         sisa = sisa[-3:]
         
         return "Rp. " + str(ribuan) + '.' + sisa
+    else:
+        return angka
 
 def query_penjualan_harian_dashboard(PERIODE):
     struk = PeriodeKerja.objects.get(pk=PERIODE)
