@@ -1,0 +1,54 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        {% include 'human_resource/sidebar.html' %}
+        <div class="col">
+            <h1>Hasil Psikotes</h1>
+            {% comment %} awal tabel {% endcomment %}
+            <table style="width:90%;" class="table table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Tanggal Lahir</th>
+                        <th scope="col">Umur</th>
+                        <th scope="col">Pendidikan Terakhir</th>
+                        <th scope="col">Tanggal Test</th>
+                        <th scope="col">Hasil Test</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in peserta %}
+                    <tr>
+                        <td>{{t.nama}}</td>
+                        <td>{{t.tanggal_lahir|date:"j M Y"}}</td>
+                        <td>{{t.umur}}</td>
+                        <td>{{t.pendidikan_terakhir}}</td>
+                        <td>{{t.tanggal_test|date:"j M Y"}}</td>
+                        <td><a class="btn btn-success btn-sm" href="#">Download</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% comment %} ini seharusnya akhir tabel {% endcomment %}
+            <ul class="pagination">
+                {% for i in banyak_halaman %}
+                    {% if i == halaman_aktif %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{i}}">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{i}}">{{i}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
