@@ -2725,7 +2725,7 @@ def ngecekdeadline():
     tugas = TugasProyek.objects.all()
     for a in tugas:
         deadline = a.deadline
-        saat_ini = datetime.now()
+        saat_ini = timezone.now()
         apakah_deadline = (deadline - saat_ini)
         if (apakah_deadline.days < 0) and (a.status == 'On Progress'):
             a.status = "Deadline"
@@ -2734,7 +2734,7 @@ def ngecekdeadline():
     tugas_rutin = IsiTugasRutin.objects.all()
     for a in tugas_rutin:
         deadline = a.deadline
-        saat_ini = datetime.now()
+        saat_ini = timezone.now()
         apakah_deadline = (deadline - saat_ini)
         if (apakah_deadline.days < 0) and (a.status == 'On Progress'):
             a.status = "Deadline"
