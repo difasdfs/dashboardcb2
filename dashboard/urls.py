@@ -78,6 +78,35 @@ urlpatterns = [
     path('input_kepuasan_pelanggan/', views.input_kepuasan_pelanggan, name="input_kepuasan_pelanggan"),
     path('detail_kepuasan_pelanggan/<int:id_kepuasan_pelanggan>', views.detail_kepuasan_pelanggan, name="detail_kepuasan_pelanggan"),
 
+    # ADMIN PSIKOTES
+    path('index_alat_test/', views.index_alat_test, name='index_alat_test'),
+    path('generate_token/', views.generate_token, name='generate_token'),
+    path('daftar_token/', views.daftar_token, name='daftar_token'),
+    path('hasil_psikotes/', views.hasil_psikotes, name='hasil_psikotes'),
+
+    # PESERTA PSIKOTES
+    path('psikotes/', views.psikotes, name='psikotes'),
+    path('data_peserta_psikotes/', views.data_peserta_psikotes, name='data_peserta_psikotes'),
+    path('petunjuk_1/', views.petunjuk_1, name='petunjuk_1'),
+    path('soal_se_2/', views.soal_se_2, name='soal_se_2'),
+    path('petunjuk_3/', views.petunjuk_3, name='petunjuk_3'),
+    path('soal_wa_4/', views.soal_wa_4, name='soal_wa_4'),
+    path('petunjuk_5/', views.petunjuk_5, name='petunjuk_5'),
+    path('soal_an_6/', views.soal_an_6, name='soal_an_6'),
+    path('petunjuk_7/', views.petunjuk_7, name='petunjuk_7'),
+    path('soal_ge_8/', views.soal_ge_8, name='soal_ge_8'),
+    path('petunjuk_9/', views.petunjuk_9, name='petunjuk_9'),
+    path('soal_ra_10/', views.soal_ra_10, name='soal_ra_10'),
+    path('petunjuk_11/', views.petunjuk_11, name='petunjuk_11'),
+    path('soal_zr_12/', views.soal_zr_12, name='soal_zr_12'),
+    path('petunjuk_13/', views.petunjuk_13, name='petunjuk_13'),
+    path('soal_fa_14/', views.soal_fa_14, name='soal_fa_14'),
+    path('petunjuk_15/', views.petunjuk_15, name='petunjuk_15'),
+    path('soal_wu_16/', views.soal_wu_16, name='soal_wu_16'),
+    path('petunjuk_17/', views.petunjuk_17, name='petunjuk_17'),
+    path('hafalan_18/', views.hafalan_18, name='hafalan_18'),
+    path('soal_me_19/', views.soal_me_19, name='soal_me_19'),
+
     # REKAP
     path('rekap/', views.rekap, name='rekap'),
 

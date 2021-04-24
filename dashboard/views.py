@@ -1948,6 +1948,539 @@ def halaman_edit(request, id_karyawan):
 
     return render(request, 'data_karyawan/halaman_edit.html', context)
 
+
+# ---------------------- HUMAN RESOURCE -----------------------
+@login_required(login_url='login')
+def index_alat_test(request):
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'human_resource/home.html', context)
+
+@login_required(login_url='login')
+def generate_token(request):
+
+    if request.method == 'POST':
+        banyak_token = int(request.POST.get('banyak_token'))
+        for i in range(banyak_token):
+            t = TokenTest()
+            t.generate_unique_token()
+            t.save()
+        return redirect('daftar_token')
+
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'human_resource/generate_token.html', context)
+
+@login_required(login_url='login')
+def daftar_token(request):
+    t = TokenTest.objects.all()
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    t = TokenTest.objects.all().order_by('-aktif')
+    banyak_data_per_page = 10
+    p = Paginator(t, banyak_data_per_page)
+    page_num = request.GET.get('page', 1)
+
+    try:
+	    page = p.page(page_num)
+    except EmptyPage:
+	    page = p.page(1)
+
+    banyak_halaman = [str(a+1) for a in range(p.num_pages)]
+    context['banyak_halaman'] = banyak_halaman
+    context['halaman_aktif'] = str(page_num)
+    context['token'] = page
+
+    return render(request, 'human_resource/daftar_token.html', context)
+
+
+@login_required(login_url='login')
+def hasil_psikotes(request):
+    context = {'nama' : request.user.first_name}
+    t = PesertaTest.objects.all().order_by('tanggal_test')
+
+    banyak_data_per_page = 10
+    p = Paginator(t, banyak_data_per_page)
+    page_num = request.GET.get('page', 1)
+
+    try:
+	    page = p.page(page_num)
+    except EmptyPage:
+	    page = p.page(1)
+
+    banyak_halaman = [str(a+1) for a in range(p.num_pages)]
+    context['banyak_halaman'] = banyak_halaman
+    context['halaman_aktif'] = str(page_num)
+    context['peserta'] = page
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    
+    return render(request, 'human_resource/hasil_psikotes.html', context)
+
+# ---------------------- PESERTA PSIKOTES -------------------------------
+def psikotes(request):
+    context = {}
+    if request.method == "POST":
+        tokennya = request.POST.get('kode_test')
+        try:
+            t = TokenTest.objects.get(token=tokennya)
+            if t.aktif:
+                t.aktif = False
+                t.save()
+                request.session['kode_tes'] = t.token
+                return redirect('data_peserta_psikotes')
+            else:
+                context['pesan'] = "Kode tes sudah digunakan"
+        except:
+            pesan = "Kode test salah"
+            context['pesan'] = pesan
+
+    return render(request, 'psikotes/index.html', context)
+
+def data_peserta_psikotes(request):
+    kode_test = request.session['kode_tes']
+    try:
+        t = TokenTest.objects.get(token=kode_test)
+    except:
+        return redirect('psikotes')
+
+    if request.method == "POST":
+        p = PesertaTest(
+            token = t,
+            nama = request.POST.get('nama'),
+            tanggal_lahir = date.fromisoformat(request.POST.get('tanggal_lahir')),
+            pendidikan_terakhir = request.POST.get('pendidikan_terakhir'),
+            tanggal_test = date.today()
+        )
+        p.hitung_umur()
+        p.save()
+        request.session['id_peserta'] = str(p.id)
+        return redirect('petunjuk_1')
+
+    context = {'tanggal_test' : date.today()}
+    return render(request, 'psikotes/daftar_peserta_psikotes.html', context)
+
+def petunjuk_1(request):
+    if ('id_peserta' not in request.session):
+        return redirect('psikotes')
+    return render(request, 'psikotes/soal/1_petunjuk.html')
+
+def soal_se_2(request):
+
+    if ('id_peserta' not in request.session):
+        return redirect('psikotes')
+
+    if request.method == "POST":
+        peserta = PesertaTest.objects.get(pk=int(request.session['id_peserta']))
+        j = JawabanIst(
+            peserta_test = peserta,
+            se_1 = request.POST.get('1_se'),
+            se_2 = request.POST.get('2_se'),
+            se_3 = request.POST.get('3_se'),
+            se_4 = request.POST.get('4_se'),
+            se_5 = request.POST.get('5_se'),
+            se_6 = request.POST.get('6_se'),
+            se_7 = request.POST.get('7_se'),
+            se_8 = request.POST.get('8_se'),
+            se_9 = request.POST.get('9_se'),
+            se_10 = request.POST.get('10_se'),
+            se_11 = request.POST.get('11_se'),
+            se_12 = request.POST.get('12_se'),
+            se_13 = request.POST.get('13_se'),
+            se_14 = request.POST.get('14_se'),
+            se_15 = request.POST.get('15_se'),
+            se_16 = request.POST.get('16_se'),
+            se_17 = request.POST.get('17_se'),
+            se_18 = request.POST.get('18_se'),
+            se_19 = request.POST.get('19_se'),
+            se_20 = request.POST.get('20_se')
+        )
+        j.save()
+        del request.session['id_peserta']
+        request.session['id_jawaban'] = str(j.id)
+        request.session['halaman'] = '2'
+
+        return redirect('petunjuk_3')        
+
+    return render(request, 'psikotes/soal/2_se.html')
+
+def petunjuk_3(request):
+
+    if 'halaman' in request.session:
+        if (request.session['halaman'] not in ['2', '3']):
+            return redirect('psikotes')
+    else:
+        return redirect('psikotes')
+
+    request.session['halaman'] = '3'
+    return render(request, 'psikotes/soal/3_petunjuk.html')
+
+def soal_wa_4(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['3', '4']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '4'
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.wa_1 = request.POST.get('1_wa')
+        j.wa_2 = request.POST.get('2_wa')
+        j.wa_3 = request.POST.get('3_wa')
+        j.wa_4 = request.POST.get('4_wa')
+        j.wa_5 = request.POST.get('5_wa')
+        j.wa_6 = request.POST.get('6_wa')
+        j.wa_7 = request.POST.get('7_wa')
+        j.wa_8 = request.POST.get('8_wa')
+        j.wa_9 = request.POST.get('9_wa')
+        j.wa_10 = request.POST.get('10_wa')
+        j.wa_11 = request.POST.get('11_wa')
+        j.wa_12 = request.POST.get('12_wa')
+        j.wa_13 = request.POST.get('13_wa')
+        j.wa_14 = request.POST.get('14_wa')
+        j.wa_15 = request.POST.get('15_wa')
+        j.wa_16 = request.POST.get('16_wa')
+        j.wa_17 = request.POST.get('17_wa')
+        j.wa_18 = request.POST.get('18_wa')
+        j.wa_19 = request.POST.get('19_wa')
+        j.wa_20 = request.POST.get('20_wa')
+        j.save()
+        return redirect('petunjuk_5')
+
+    return render(request, 'psikotes/soal/4_wa.html')
+
+def petunjuk_5(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['4', '5']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '5'
+    return render(request, 'psikotes/soal/5_petunjuk.html')
+
+def soal_an_6(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['5','6']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '6'
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.an_1 = request.POST.get('1_an')
+        j.an_2 = request.POST.get('2_an')
+        j.an_3 = request.POST.get('3_an')
+        j.an_4 = request.POST.get('4_an')
+        j.an_5 = request.POST.get('5_an')
+        j.an_6 = request.POST.get('6_an')
+        j.an_7 = request.POST.get('7_an')
+        j.an_8 = request.POST.get('8_an')
+        j.an_9 = request.POST.get('9_an')
+        j.an_10 = request.POST.get('10_an')
+        j.an_11 = request.POST.get('11_an')
+        j.an_12 = request.POST.get('12_an')
+        j.an_13 = request.POST.get('13_an')
+        j.an_14 = request.POST.get('14_an')
+        j.an_15 = request.POST.get('15_an')
+        j.an_16 = request.POST.get('16_an')
+        j.an_17 = request.POST.get('17_an')
+        j.an_18 = request.POST.get('18_an')
+        j.an_19 = request.POST.get('19_an')
+        j.an_20 = request.POST.get('20_an')
+        j.save()
+        return redirect('petunjuk_7')
+
+    return render(request, 'psikotes/soal/6_an.html')
+
+def petunjuk_7(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['6', '7']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '7'
+    return render(request, 'psikotes/soal/7_petunjuk.html')
+
+def soal_ge_8(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['7', '8']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '8'
+
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.ge_1 = request.POST.get('1_ge')
+        j.ge_2 = request.POST.get('2_ge')
+        j.ge_3 = request.POST.get('3_ge')
+        j.ge_4 = request.POST.get('4_ge')
+        j.ge_5 = request.POST.get('5_ge')
+        j.ge_6 = request.POST.get('6_ge')
+        j.ge_7 = request.POST.get('7_ge')
+        j.ge_8 = request.POST.get('8_ge')
+        j.ge_9 = request.POST.get('9_ge')
+        j.ge_10 = request.POST.get('10_ge')
+        j.ge_11 = request.POST.get('11_ge')
+        j.ge_12 = request.POST.get('12_ge')
+        j.ge_13 = request.POST.get('13_ge')
+        j.ge_14 = request.POST.get('14_ge')
+        j.ge_15 = request.POST.get('15_ge')
+        j.ge_16 = request.POST.get('16_ge')
+        j.save()
+        return redirect('petunjuk_9')
+
+    return render(request, 'psikotes/soal/8_ge.html')
+
+def petunjuk_9(request):
+    
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['8', '9']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '9'
+    return render(request, 'psikotes/soal/9_petunjuk.html')
+
+def soal_ra_10(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['9', '10']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '10'
+
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.ra_1 = request.POST.get('1_ra')
+        j.ra_2 = request.POST.get('2_ra')
+        j.ra_3 = request.POST.get('3_ra')
+        j.ra_4 = request.POST.get('4_ra')
+        j.ra_5 = request.POST.get('5_ra')
+        j.ra_6 = request.POST.get('6_ra')
+        j.ra_7 = request.POST.get('7_ra')
+        j.ra_8 = request.POST.get('8_ra')
+        j.ra_9 = request.POST.get('9_ra')
+        j.ra_10 = request.POST.get('10_ra')
+        j.ra_11 = request.POST.get('11_ra')
+        j.ra_12 = request.POST.get('12_ra')
+        j.ra_13 = request.POST.get('13_ra')
+        j.ra_14 = request.POST.get('14_ra')
+        j.ra_15 = request.POST.get('15_ra')
+        j.ra_16 = request.POST.get('16_ra')
+        j.ra_17 = request.POST.get('17_ra')
+        j.ra_18 = request.POST.get('18_ra')
+        j.ra_19 = request.POST.get('19_ra')
+        j.ra_20 = request.POST.get('20_ra')
+        j.save()
+        return redirect('petunjuk_11')
+
+    return render(request, 'psikotes/soal/10_ra.html')
+
+def petunjuk_11(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['10', '11']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '11'
+    return render(request, 'psikotes/soal/11_petunjuk.html')
+
+def soal_zr_12(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['11', '12']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '12'
+
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.zr_1 = request.POST.get('1_zr')
+        j.zr_2 = request.POST.get('2_zr')
+        j.zr_3 = request.POST.get('3_zr')
+        j.zr_4 = request.POST.get('4_zr')
+        j.zr_5 = request.POST.get('5_zr')
+        j.zr_6 = request.POST.get('6_zr')
+        j.zr_7 = request.POST.get('7_zr')
+        j.zr_8 = request.POST.get('8_zr')
+        j.zr_9 = request.POST.get('9_zr')
+        j.zr_10 = request.POST.get('10_zr')
+        j.zr_11 = request.POST.get('11_zr')
+        j.zr_12 = request.POST.get('12_zr')
+        j.zr_13 = request.POST.get('13_zr')
+        j.zr_14 = request.POST.get('14_zr')
+        j.zr_15 = request.POST.get('15_zr')
+        j.zr_16 = request.POST.get('16_zr')
+        j.zr_17 = request.POST.get('17_zr')
+        j.zr_18 = request.POST.get('18_zr')
+        j.zr_19 = request.POST.get('19_zr')
+        j.zr_20 = request.POST.get('20_zr')
+        j.save()
+        return redirect('petunjuk_13')
+
+    return render(request, 'psikotes/soal/12_zr.html')
+
+def petunjuk_13(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['12', '13']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '13'
+    return render(request, 'psikotes/soal/13_petunjuk.html')
+
+def soal_fa_14(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['13', '14']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '14'
+
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.fa_1 = request.POST.get('1_fa')
+        j.fa_2 = request.POST.get('2_fa')
+        j.fa_3 = request.POST.get('3_fa')
+        j.fa_4 = request.POST.get('4_fa')
+        j.fa_5 = request.POST.get('5_fa')
+        j.fa_6 = request.POST.get('6_fa')
+        j.fa_7 = request.POST.get('7_fa')
+        j.fa_8 = request.POST.get('8_fa')
+        j.fa_9 = request.POST.get('9_fa')
+        j.fa_10 = request.POST.get('10_fa')
+        j.fa_11 = request.POST.get('11_fa')
+        j.fa_12 = request.POST.get('12_fa')
+        j.fa_13 = request.POST.get('13_fa')
+        j.fa_14 = request.POST.get('14_fa')
+        j.fa_15 = request.POST.get('15_fa')
+        j.fa_16 = request.POST.get('16_fa')
+        j.fa_17 = request.POST.get('17_fa')
+        j.fa_18 = request.POST.get('18_fa')
+        j.fa_19 = request.POST.get('19_fa')
+        j.fa_20 = request.POST.get('20_fa')
+        j.save()
+        return redirect('petunjuk_15')
+
+    return render(request, 'psikotes/soal/14_fa.html')
+
+def petunjuk_15(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['14', '15']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '15'
+    return render(request, 'psikotes/soal/15_petunjuk.html')
+
+def soal_wu_16(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['15', '16']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '16'
+
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.wu_1 = request.POST.get('1_wu')
+        j.wu_2 = request.POST.get('2_wu')
+        j.wu_3 = request.POST.get('3_wu')
+        j.wu_4 = request.POST.get('4_wu')
+        j.wu_5 = request.POST.get('5_wu')
+        j.wu_6 = request.POST.get('6_wu')
+        j.wu_7 = request.POST.get('7_wu')
+        j.wu_8 = request.POST.get('8_wu')
+        j.wu_9 = request.POST.get('9_wu')
+        j.wu_10 = request.POST.get('10_wu')
+        j.wu_11 = request.POST.get('11_wu')
+        j.wu_12 = request.POST.get('12_wu')
+        j.wu_13 = request.POST.get('13_wu')
+        j.wu_14 = request.POST.get('14_wu')
+        j.wu_15 = request.POST.get('15_wu')
+        j.wu_16 = request.POST.get('16_wu')
+        j.wu_17 = request.POST.get('17_wu')
+        j.wu_18 = request.POST.get('18_wu')
+        j.wu_19 = request.POST.get('19_wu')
+        j.wu_20 = request.POST.get('20_wu')
+        j.save()
+        return redirect('petunjuk_17')
+
+    return render(request, 'psikotes/soal/16_wu.html')
+
+def petunjuk_17(request):
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['16', '17']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '17'
+    return render(request, 'psikotes/soal/17_petunjuk.html')
+
+def hafalan_18(request):
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['17', '18']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '18'
+    return render(request, 'psikotes/soal/18_hafalan.html')
+
+def soal_me_19(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['18', '19']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '19'
+
+    if request.method == "POST":
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        j.me_1 = request.POST.get('1_me')
+        j.me_2 = request.POST.get('2_me')
+        j.me_3 = request.POST.get('3_me')
+        j.me_4 = request.POST.get('4_me')
+        j.me_5 = request.POST.get('5_me')
+        j.me_6 = request.POST.get('6_me')
+        j.me_7 = request.POST.get('7_me')
+        j.me_8 = request.POST.get('8_me')
+        j.me_9 = request.POST.get('9_me')
+        j.me_10 = request.POST.get('10_me')
+        j.me_11 = request.POST.get('11_me')
+        j.me_12 = request.POST.get('12_me')
+        j.me_13 = request.POST.get('13_me')
+        j.me_14 = request.POST.get('14_me')
+        j.me_15 = request.POST.get('15_me')
+        j.me_16 = request.POST.get('16_me')
+        j.me_17 = request.POST.get('17_me')
+        j.me_18 = request.POST.get('18_me')
+        j.me_19 = request.POST.get('19_me')
+        j.me_20 = request.POST.get('20_me')
+        return redirect('psikotes')
+
+    return render(request, 'psikotes/soal/19_me.html')
+    
 # ---------------------- MARKETING -------------------------------
 @login_required(login_url='login')
 def complaint_list(request):
