@@ -1,0 +1,219 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    padding-left:100px;
+    padding-right:100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>10:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <ol>
+                    <form method="POST" id="formnya">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="1_ra">
+                                <li>Jika seorang anak memiliki 50 rupiah dan memberikan 15 rupiah kepada orang lain, berapa rupiahkah yang masih tinggal padanya ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="1_ra" name="1_ra">
+                        </div>
+                        <div class="form-group">
+                            <label for="2_ra">
+                                <li>Berapa km-kah yang dapat ditempuh oleh kereta api dalam waktu 7 jam, jika kecepatannya 40 km/jam ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="2_ra" name="2_ra">
+                        </div>
+                        <div class="form-group">
+                            <label for="3_ra">
+                                <li>15 peti buah-buahan beratnya 250 kg dan setiap peti kosong beratnya 3 kg, berapakah berat buah-buahan itu ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="3_ra" name="3_ra">
+                        </div>
+                        <div class="form-group">
+                            <label for="4_ra">
+                                <li>Seseorang mempunyai persediaan rumput yang cukup untuk 7 ekor kuda selama 78 hari. Berapa harikah persediaan itu cukup untuk 21 ekor kuda ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="4_ra" name="4_ra">
+                        </div>
+                        <div class="form-group">
+                            <label for="5_ra">
+                                <li>3 batang coklat harganya Rp 5,- Berapa batangkah yang dapat kita beli dengan Rp 50,- ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="5_ra" name="5_ra">
+                        </div>
+                        <div class="form-group">
+                            <label for="6_ra">
+                                <li>Seseorang dapat berjalan 1,75 m dalam waktu 1/4 detik. Berapa meterkah yang dapat ia tempuh dalam waktu 10 detik ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="6_ra" name="6_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="7_ra">
+                                <li>Jika sebuah batu terletak 15 m di sebelah selatan dari sebatang pohon dan pohon iut berada 30 m di sebelah selatan dari sebuah rumah, berapa meterkah jarak antara batu dan rumah itu?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="7_ra" name="7_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="8_ra">
+                                <li>Jika 4 1/2 m bahan sandang harganya Rp 90,- berapa rupiahkah harganya 2 1/2 m ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="8_ra" name="8_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="9_ra">
+                                <li>7 orang dapat menyelesaikan suatu pekerjaan dalam 6 hari. Berapa orangkah yang diperlukan untuk menyelesaikan pekerjaan itu dalam setengah hari ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="9_ra" name="9_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="10_ra">
+                                <li>Karena dipanaskan, kawat yang panjangnya 48 cm akan mengembang menjadi 52 cm. setelah pemanasan, berapakah panjangnya kawat yang berukuran 72 cm?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="10_ra" name="10_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="11_ra">
+                                <li>Suatu pabrik dapat menghasilkan 304 batang pensil dalam waktu 8 jam. Berapa batangkah dihasilkan dalam waktu setengah jam ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="11_ra" name="11_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="12_ra">
+                                <li>Untuk suatu campuran diperlukan 2 bagian perak dan 3 bagian timah. Berapa gramkah perak yang diperlukan untuk mendapatkan campuran itu yang beratnya 15 gram?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="12_ra" name="12_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="13_ra">
+                                <li>Untuk setiap Rp 3,- yang dimiliki Sidin, Hamid memiliki Rp 5,- Jika mereka bersama mempunyai Rp 120,- berapa rupiahkah yang dimiliki Hamid?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="13_ra" name="13_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="14_ra">
+                                <li>Mesin A menenun 60 m kain, sedangkan mesin B menenun 40 m. berapa meterkah yang ditenun mesin A, jika mesih B menenun 60 m?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="14_ra" name="14_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="15_ra">
+                                <li>Seseorang membelikan 1/10 dari uangnya untuk perangko dan 4 kali jumlah itu untuk alat tulis. Sisa uangnya masih Rp 60,- Berapa rupiahkah uang semula?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="15_ra" name="15_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="16_ra">
+                                <li>Di dalam dua peti terdapat 43 piring. Di dalam peti yang satu terdapat 9 piring lebih banyak dari pada di dalam peti yang lain. Berapa buah piring terdapat di dalam peti yang lebih kecil?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="16_ra" name="16_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="17_ra">
+                                <li>Suatu lembaran kain yang panjangnya 60 cm harus dibagikan sedemikian rupa sehingga panjangnya satu bagian ialah 2/3 dari bagian yang lain. Berapa panjangnya bagian yang terpendek.</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="17_ra" name="17_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="18_ra">
+                                <li>Suatu perusahaan mengekspor 3/4 dari hasil produksinya dan menjual 4/5 dari sisa itu dalam negeri. Berapa % kah hasil produksi yang masih tinggal?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="18_ra" name="18_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="19_ra">
+                                <li>Jika suatu botol berisi anggur hanya 7/8 bagian dan harganya ialah Rp 84,- berapakah harga anggur itu jika botol itu hanya terisi 1/2 penuh ?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="19_ra" name="19_ra">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="20_ra">
+                                <li>Di dalam suatu keluarga setiap anak perempuan mempunyai jumlah saudara laki-laki yang sama dengan jumlah saudara perempuan dan setiap anak laki-laki mempunyai dua kali lebih banyak saudara perempuan dari pada saudara laki-laki. Berapa anak laki-lakikah yang terdapat di dalam keluarga tersebut?</li>
+                            </label>
+                            <input type="text" class="form-control form-control-sm" id="20_ra" name="20_ra">
+                        </div>
+
+                        <div class="mengerti">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 10
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById("formnya").submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

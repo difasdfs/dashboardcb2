@@ -1,0 +1,355 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    padding-left:100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+.flex-soal{
+    display: flex;
+    justify-content: space-around;
+}
+.isi-flex-soal{
+    flex-grow: 1;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>10:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk" id="formnya">
+                <ol>
+                    <form method="POST">
+                        {% csrf_token %}
+                        
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">6</div>
+                                <div class="isi-flex-soal">9</div>
+                                <div class="isi-flex-soal">12</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">21</div>
+                                <div class="isi-flex-soal">24</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="1_zr" name="1_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">16</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">19</div>
+                                <div class="isi-flex-soal">21</div>
+                                <div class="isi-flex-soal">22</div>
+                                <div class="isi-flex-soal">24</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="2_zr" name="2_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">19</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">22</div>
+                                <div class="isi-flex-soal">21</div>
+                                <div class="isi-flex-soal">25</div>
+                                <div class="isi-flex-soal">24</div>
+                                <div class="isi-flex-soal">28</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="3_zr" name="3_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">16</div>
+                                <div class="isi-flex-soal">12</div>
+                                <div class="isi-flex-soal">17</div>
+                                <div class="isi-flex-soal">13</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">14</div>
+                                <div class="isi-flex-soal">19</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="4_zr" name="4_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">2</div>
+                                <div class="isi-flex-soal">4</div>
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal">10</div>
+                                <div class="isi-flex-soal">20</div>
+                                <div class="isi-flex-soal">22</div>
+                                <div class="isi-flex-soal">44</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="5_zr" name="5_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">13</div>
+                                <div class="isi-flex-soal">16</div>
+                                <div class="isi-flex-soal">12</div>
+                                <div class="isi-flex-soal">17</div>
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="6_zr" name="6_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">25</div>
+                                <div class="isi-flex-soal">22</div>
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal">33</div>
+                                <div class="isi-flex-soal">30</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">45</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="7_zr" name="7_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">49</div>
+                                <div class="isi-flex-soal">51</div>
+                                <div class="isi-flex-soal">54</div>
+                                <div class="isi-flex-soal">27</div>
+                                <div class="isi-flex-soal">9</div>
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal">14</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="8_zr" name="8_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">2</div>
+                                <div class="isi-flex-soal">3</div>
+                                <div class="isi-flex-soal">1</div>
+                                <div class="isi-flex-soal">3</div>
+                                <div class="isi-flex-soal">4</div>
+                                <div class="isi-flex-soal">2</div>
+                                <div class="isi-flex-soal">4</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="9_zr" name="9_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">19</div>
+                                <div class="isi-flex-soal">17</div>
+                                <div class="isi-flex-soal">20</div>
+                                <div class="isi-flex-soal">16</div>
+                                <div class="isi-flex-soal">21</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">22</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="10_zr" name="10_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">94</div>
+                                <div class="isi-flex-soal">92</div>
+                                <div class="isi-flex-soal">46</div>
+                                <div class="isi-flex-soal">44</div>
+                                <div class="isi-flex-soal">22</div>
+                                <div class="isi-flex-soal">20</div>
+                                <div class="isi-flex-soal">10</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="11_zr" name="11_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">5</div>
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal">9</div>
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal">12</div>
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="12_zr" name="12_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">12</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">19</div>
+                                <div class="isi-flex-soal">23</div>
+                                <div class="isi-flex-soal">28</div>
+                                <div class="isi-flex-soal">33</div>
+                                <div class="isi-flex-soal">39</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="13_zr" name="13_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">7</div>
+                                <div class="isi-flex-soal">5</div>
+                                <div class="isi-flex-soal">10</div>
+                                <div class="isi-flex-soal">7</div>
+                                <div class="isi-flex-soal">21</div>
+                                <div class="isi-flex-soal">17</div>
+                                <div class="isi-flex-soal">68</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="14_zr" name="14_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">9</div>
+                                <div class="isi-flex-soal">13</div>
+                                <div class="isi-flex-soal">16</div>
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="15_zr" name="15_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">3</div>
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">24</div>
+                                <div class="isi-flex-soal">35</div>
+                                <div class="isi-flex-soal">48</div>
+                                <div class="isi-flex-soal">63</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="16_zr" name="16_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">4</div>
+                                <div class="isi-flex-soal">5</div>
+                                <div class="isi-flex-soal">7</div>
+                                <div class="isi-flex-soal">4</div>
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal">13</div>
+                                <div class="isi-flex-soal">7</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="17_zr" name="17_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">8</div>
+                                <div class="isi-flex-soal">5</div>
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">6</div>
+                                <div class="isi-flex-soal">3</div>
+                                <div class="isi-flex-soal">9</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="18_zr" name="18_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">15</div>
+                                <div class="isi-flex-soal">6</div>
+                                <div class="isi-flex-soal">18</div>
+                                <div class="isi-flex-soal">10</div>
+                                <div class="isi-flex-soal">30</div>
+                                <div class="isi-flex-soal">23</div>
+                                <div class="isi-flex-soal">69</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="19_zr" name="19_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        <hr>
+                        <li>
+                            <div class="flex-soal">
+                                <div class="isi-flex-soal">5</div>
+                                <div class="isi-flex-soal">35</div>
+                                <div class="isi-flex-soal">28</div>
+                                <div class="isi-flex-soal">4</div>
+                                <div class="isi-flex-soal">11</div>
+                                <div class="isi-flex-soal">77</div>
+                                <div class="isi-flex-soal">70</div>
+                                <div class="isi-flex-soal"><input type="number" class="form-control form-control-sm" id="20_zr" name="20_zr" placeholder="?"></div>
+                            </div>
+                        </li>
+                        
+                        <div class="mengerti">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                    
+                </ol>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 10
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById("formnya").submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

@@ -1,0 +1,698 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+/* KHUSUS FLEXBOX SOAL */
+.kontainer-1{
+    display: flex;
+    flex-direction: column;
+}
+
+.kontainer-2{
+    display: flex;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.kontainer-3{
+    display: flex;
+    flex-direction: column;
+}
+
+.gambar{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.pilihan{
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 30px;
+}
+/* AKHIR FLEXBOX SOAL */
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>10:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <form action="" method="POST" id="formnya">
+                    {% csrf_token %}
+                <div class="kontainer-1">
+                    <div class="kontainer-2"><img src="/static/psikotes/wu_soal.jpg" alt="Soal WU 1" width="800"></div>
+                    <ol>
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_1.jpg" alt="Soal 1" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_wu" id="1_wu_a" value="a">
+                                        <label class="form-check-label" for="1_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_wu" id="1_wu_b" value="b">
+                                        <label class="form-check-label" for="1_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_wu" id="1_wu_c" value="c">
+                                        <label class="form-check-label" for="1_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_wu" id="1_wu_d" value="d">
+                                        <label class="form-check-label" for="1_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_wu" id="1_wu_e" value="e">
+                                        <label class="form-check-label" for="1_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_2.jpg" alt="Soal 2" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="2_wu" id="2_wu_a" value="a">
+                                        <label class="form-check-label" for="2_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="2_wu" id="2_wu_b" value="b">
+                                        <label class="form-check-label" for="2_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="2_wu" id="2_wu_c" value="c">
+                                        <label class="form-check-label" for="2_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="2_wu" id="2_wu_d" value="d">
+                                        <label class="form-check-label" for="2_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="2_wu" id="2_wu_e" value="e">
+                                        <label class="form-check-label" for="2_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_3.jpg" alt="Soal 3" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="3_wu" id="3_wu_a" value="a">
+                                        <label class="form-check-label" for="3_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="3_wu" id="3_wu_b" value="b">
+                                        <label class="form-check-label" for="3_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="3_wu" id="3_wu_c" value="c">
+                                        <label class="form-check-label" for="3_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="3_wu" id="3_wu_d" value="d">
+                                        <label class="form-check-label" for="3_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="3_wu" id="3_wu_e" value="e">
+                                        <label class="form-check-label" for="3_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_4.jpg" alt="Soal 4" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_wu" id="4_wu_a" value="a">
+                                        <label class="form-check-label" for="4_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_wu" id="4_wu_b" value="b">
+                                        <label class="form-check-label" for="4_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_wu" id="4_wu_c" value="c">
+                                        <label class="form-check-label" for="4_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_wu" id="4_wu_d" value="d">
+                                        <label class="form-check-label" for="4_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_wu" id="4_wu_e" value="e">
+                                        <label class="form-check-label" for="4_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_5.jpg" alt="Soal 5" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_wu" id="5_wu_a" value="a">
+                                        <label class="form-check-label" for="5_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_wu" id="5_wu_b" value="b">
+                                        <label class="form-check-label" for="5_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_wu" id="5_wu_c" value="c">
+                                        <label class="form-check-label" for="5_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_wu" id="5_wu_d" value="d">
+                                        <label class="form-check-label" for="5_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_wu" id="5_wu_e" value="e">
+                                        <label class="form-check-label" for="5_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_6.jpg" alt="Soal 6" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="6_wu" id="6_wu_a" value="a">
+                                        <label class="form-check-label" for="6_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="6_wu" id="6_wu_b" value="b">
+                                        <label class="form-check-label" for="6_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="6_wu" id="6_wu_c" value="c">
+                                        <label class="form-check-label" for="6_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="6_wu" id="6_wu_d" value="d">
+                                        <label class="form-check-label" for="6_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="6_wu" id="6_wu_e" value="e">
+                                        <label class="form-check-label" for="6_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2"><img src="/static/psikotes/wu_soal.jpg" alt="Soal WU 1" width="800"></div>
+
+                    <div class="kontainer-2">
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_7.jpg" alt="Soal 7" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_wu" id="7_wu_a" value="a">
+                                        <label class="form-check-label" for="7_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_wu" id="7_wu_b" value="b">
+                                        <label class="form-check-label" for="7_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_wu" id="7_wu_c" value="c">
+                                        <label class="form-check-label" for="7_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_wu" id="7_wu_d" value="d">
+                                        <label class="form-check-label" for="7_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_wu" id="7_wu_e" value="e">
+                                        <label class="form-check-label" for="7_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_8.jpg" alt="Soal 8" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_wu" id="8_wu_a" value="a">
+                                        <label class="form-check-label" for="8_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_wu" id="8_wu_b" value="b">
+                                        <label class="form-check-label" for="8_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_wu" id="8_wu_c" value="c">
+                                        <label class="form-check-label" for="8_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_wu" id="8_wu_d" value="d">
+                                        <label class="form-check-label" for="8_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_wu" id="8_wu_e" value="e">
+                                        <label class="form-check-label" for="8_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_9.jpg" alt="Soal 9" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_wu" id="9_wu_a" value="a">
+                                        <label class="form-check-label" for="9_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_wu" id="9_wu_b" value="b">
+                                        <label class="form-check-label" for="9_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_wu" id="9_wu_c" value="c">
+                                        <label class="form-check-label" for="9_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_wu" id="9_wu_d" value="d">
+                                        <label class="form-check-label" for="9_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_wu" id="9_wu_e" value="e">
+                                        <label class="form-check-label" for="9_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="kontainer-2">
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_10.jpg" alt="Soal 10" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_wu" id="10_wu_a" value="a">
+                                        <label class="form-check-label" for="10_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_wu" id="10_wu_b" value="b">
+                                        <label class="form-check-label" for="10_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_wu" id="10_wu_c" value="c">
+                                        <label class="form-check-label" for="10_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_wu" id="10_wu_d" value="d">
+                                        <label class="form-check-label" for="10_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_wu" id="10_wu_e" value="e">
+                                        <label class="form-check-label" for="10_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_11.jpg" alt="Soal 11" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_wu" id="11_wu_a" value="a">
+                                        <label class="form-check-label" for="11_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_wu" id="11_wu_b" value="b">
+                                        <label class="form-check-label" for="11_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_wu" id="11_wu_c" value="c">
+                                        <label class="form-check-label" for="11_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_wu" id="11_wu_d" value="d">
+                                        <label class="form-check-label" for="11_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_wu" id="11_wu_e" value="e">
+                                        <label class="form-check-label" for="11_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_12.jpg" alt="Soal 12" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_wu" id="12_wu_a" value="a">
+                                        <label class="form-check-label" for="12_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_wu" id="12_wu_b" value="b">
+                                        <label class="form-check-label" for="12_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_wu" id="12_wu_c" value="c">
+                                        <label class="form-check-label" for="12_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_wu" id="12_wu_d" value="d">
+                                        <label class="form-check-label" for="12_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_wu" id="12_wu_e" value="e">
+                                        <label class="form-check-label" for="12_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    <div class="kontainer-2"><img src="/static/psikotes/wu_soal.jpg" alt="Soal WU 1" width="800"></div>
+
+                    <div class="kontainer-2">
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_13.jpg" alt="Soal 13" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_wu" id="13_wu_a" value="a">
+                                        <label class="form-check-label" for="13_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_wu" id="13_wu_b" value="b">
+                                        <label class="form-check-label" for="13_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_wu" id="13_wu_c" value="c">
+                                        <label class="form-check-label" for="13_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_wu" id="13_wu_d" value="d">
+                                        <label class="form-check-label" for="13_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_wu" id="13_wu_e" value="e">
+                                        <label class="form-check-label" for="13_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_14.jpg" alt="Soal 14" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_wu" id="14_wu_a" value="a">
+                                        <label class="form-check-label" for="14_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_wu" id="14_wu_b" value="b">
+                                        <label class="form-check-label" for="14_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_wu" id="14_wu_c" value="c">
+                                        <label class="form-check-label" for="14_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_wu" id="14_wu_d" value="d">
+                                        <label class="form-check-label" for="14_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_wu" id="14_wu_e" value="e">
+                                        <label class="form-check-label" for="14_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_15.jpg" alt="Soal 15" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_wu" id="15_wu_a" value="a">
+                                        <label class="form-check-label" for="15_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_wu" id="15_wu_b" value="b">
+                                        <label class="form-check-label" for="15_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_wu" id="15_wu_c" value="c">
+                                        <label class="form-check-label" for="15_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_wu" id="15_wu_d" value="d">
+                                        <label class="form-check-label" for="15_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_wu" id="15_wu_e" value="e">
+                                        <label class="form-check-label" for="15_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="kontainer-2">
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_16.jpg" alt="Soal 16" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_wu" id="16_wu_a" value="a">
+                                        <label class="form-check-label" for="16_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_wu" id="16_wu_b" value="b">
+                                        <label class="form-check-label" for="16_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_wu" id="16_wu_c" value="c">
+                                        <label class="form-check-label" for="16_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_wu" id="16_wu_d" value="d">
+                                        <label class="form-check-label" for="16_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_wu" id="16_wu_e" value="e">
+                                        <label class="form-check-label" for="16_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_17.jpg" alt="Soal 17" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_wu" id="17_wu_a" value="a">
+                                        <label class="form-check-label" for="17_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_wu" id="17_wu_b" value="b">
+                                        <label class="form-check-label" for="17_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_wu" id="17_wu_c" value="c">
+                                        <label class="form-check-label" for="17_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_wu" id="17_wu_d" value="d">
+                                        <label class="form-check-label" for="17_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_wu" id="17_wu_e" value="e">
+                                        <label class="form-check-label" for="17_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_18.jpg" alt="Soal 18" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_wu" id="18_wu_a" value="a">
+                                        <label class="form-check-label" for="18_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_wu" id="18_wu_b" value="b">
+                                        <label class="form-check-label" for="18_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_wu" id="18_wu_c" value="c">
+                                        <label class="form-check-label" for="18_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_wu" id="18_wu_d" value="d">
+                                        <label class="form-check-label" for="18_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_wu" id="18_wu_e" value="e">
+                                        <label class="form-check-label" for="18_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="kontainer-2">
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_19.jpg" alt="Soal 19" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="19_wu" id="19_wu_a" value="a">
+                                        <label class="form-check-label" for="19_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="19_wu" id="19_wu_b" value="b">
+                                        <label class="form-check-label" for="19_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="19_wu" id="19_wu_c" value="c">
+                                        <label class="form-check-label" for="19_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="19_wu" id="19_wu_d" value="d">
+                                        <label class="form-check-label" for="19_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="19_wu" id="19_wu_e" value="e">
+                                        <label class="form-check-label" for="19_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+
+                        <div class="kontainer-3">
+                            <div class="gambar" style="text-align: center;"><img src="/static/psikotes/wu_20.jpg" alt="Soal 20" width="200" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="20_wu" id="20_wu_a" value="a">
+                                        <label class="form-check-label" for="20_wu_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="20_wu" id="20_wu_b" value="b">
+                                        <label class="form-check-label" for="20_wu_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="20_wu" id="20_wu_c" value="c">
+                                        <label class="form-check-label" for="20_wu_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="20_wu" id="20_wu_d" value="d">
+                                        <label class="form-check-label" for="20_wu_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="20_wu" id="20_wu_e" value="e">
+                                        <label class="form-check-label" for="20_wu_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </ol>
+                </div>
+                <div class="mengerti">
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </div>
+            </form>
+            </div>
+           
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 9
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById("formnya").submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

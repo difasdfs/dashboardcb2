@@ -1,0 +1,561 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>6:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <ol>
+                    <form method="POST" id="formnya">
+                        {% csrf_token %}
+                        <li>Kata yang mempunyai huruf permulaan - A - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_me" id="1_me_a" value="a">
+                            <label class="form-check-label" for="1_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_me" id="1_me_b" value="b">
+                            <label class="form-check-label" for="1_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_me" id="1_me_c" value="c">
+                            <label class="form-check-label" for="1_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_me" id="1_me_d" value="d">
+                            <label class="form-check-label" for="1_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_me" id="1_me_e" value="e">
+                            <label class="form-check-label" for="1_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - B - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_me" id="2_me_a" value="a">
+                            <label class="form-check-label" for="2_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_me" id="2_me_b" value="b">
+                            <label class="form-check-label" for="2_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_me" id="2_me_c" value="c">
+                            <label class="form-check-label" for="2_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_me" id="2_me_d" value="d">
+                            <label class="form-check-label" for="2_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_me" id="2_me_e" value="e">
+                            <label class="form-check-label" for="2_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - C - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_me" id="3_me_a" value="a">
+                            <label class="form-check-label" for="3_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_me" id="3_me_b" value="b">
+                            <label class="form-check-label" for="3_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_me" id="3_me_c" value="c">
+                            <label class="form-check-label" for="3_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_me" id="3_me_d" value="d">
+                            <label class="form-check-label" for="3_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_me" id="3_me_e" value="e">
+                            <label class="form-check-label" for="3_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - D - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_me" id="4_me_a" value="a">
+                            <label class="form-check-label" for="4_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_me" id="4_me_b" value="b">
+                            <label class="form-check-label" for="4_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_me" id="4_me_c" value="c">
+                            <label class="form-check-label" for="4_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_me" id="4_me_d" value="d">
+                            <label class="form-check-label" for="4_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_me" id="4_me_e" value="e">
+                            <label class="form-check-label" for="4_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - E - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_me" id="5_me_a" value="a">
+                            <label class="form-check-label" for="5_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_me" id="5_me_b" value="b">
+                            <label class="form-check-label" for="5_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_me" id="5_me_c" value="c">
+                            <label class="form-check-label" for="5_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_me" id="5_me_d" value="d">
+                            <label class="form-check-label" for="5_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_me" id="5_me_e" value="e">
+                            <label class="form-check-label" for="5_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - F - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_me" id="6_me_a" value="a">
+                            <label class="form-check-label" for="6_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_me" id="6_me_b" value="b">
+                            <label class="form-check-label" for="6_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_me" id="6_me_c" value="c">
+                            <label class="form-check-label" for="6_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_me" id="6_me_d" value="d">
+                            <label class="form-check-label" for="6_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_me" id="6_me_e" value="e">
+                            <label class="form-check-label" for="6_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - G - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_me" id="7_me_a" value="a">
+                            <label class="form-check-label" for="7_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_me" id="7_me_b" value="b">
+                            <label class="form-check-label" for="7_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_me" id="7_me_c" value="c">
+                            <label class="form-check-label" for="7_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_me" id="7_me_d" value="d">
+                            <label class="form-check-label" for="7_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_me" id="7_me_e" value="e">
+                            <label class="form-check-label" for="7_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - H - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_me" id="8_me_a" value="a">
+                            <label class="form-check-label" for="8_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_me" id="8_me_b" value="b">
+                            <label class="form-check-label" for="8_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_me" id="8_me_c" value="c">
+                            <label class="form-check-label" for="8_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_me" id="8_me_d" value="d">
+                            <label class="form-check-label" for="8_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_me" id="8_me_e" value="e">
+                            <label class="form-check-label" for="8_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - I - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_me" id="9_me_a" value="a">
+                            <label class="form-check-label" for="9_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_me" id="9_me_b" value="b">
+                            <label class="form-check-label" for="9_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_me" id="9_me_c" value="c">
+                            <label class="form-check-label" for="9_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_me" id="9_me_d" value="d">
+                            <label class="form-check-label" for="9_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_me" id="9_me_e" value="e">
+                            <label class="form-check-label" for="9_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - J - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_me" id="10_me_a" value="a">
+                            <label class="form-check-label" for="10_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_me" id="10_me_b" value="b">
+                            <label class="form-check-label" for="10_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_me" id="10_me_c" value="c">
+                            <label class="form-check-label" for="10_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_me" id="10_me_d" value="d">
+                            <label class="form-check-label" for="10_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_me" id="10_me_e" value="e">
+                            <label class="form-check-label" for="10_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - K - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_me" id="11_me_a" value="a">
+                            <label class="form-check-label" for="11_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_me" id="11_me_b" value="b">
+                            <label class="form-check-label" for="11_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_me" id="11_me_c" value="c">
+                            <label class="form-check-label" for="11_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_me" id="11_me_d" value="d">
+                            <label class="form-check-label" for="11_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_me" id="11_me_e" value="e">
+                            <label class="form-check-label" for="11_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - L - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_me" id="12_me_a" value="a">
+                            <label class="form-check-label" for="12_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_me" id="12_me_b" value="b">
+                            <label class="form-check-label" for="12_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_me" id="12_me_c" value="c">
+                            <label class="form-check-label" for="12_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_me" id="12_me_d" value="d">
+                            <label class="form-check-label" for="12_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_me" id="12_me_e" value="e">
+                            <label class="form-check-label" for="12_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - M - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_me" id="13_me_a" value="a">
+                            <label class="form-check-label" for="13_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_me" id="13_me_b" value="b">
+                            <label class="form-check-label" for="13_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_me" id="13_me_c" value="c">
+                            <label class="form-check-label" for="13_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_me" id="13_me_d" value="d">
+                            <label class="form-check-label" for="13_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_me" id="13_me_e" value="e">
+                            <label class="form-check-label" for="13_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - N - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_me" id="14_me_a" value="a">
+                            <label class="form-check-label" for="14_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_me" id="14_me_b" value="b">
+                            <label class="form-check-label" for="14_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_me" id="14_me_c" value="c">
+                            <label class="form-check-label" for="14_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_me" id="14_me_d" value="d">
+                            <label class="form-check-label" for="14_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_me" id="14_me_e" value="e">
+                            <label class="form-check-label" for="14_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - O - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_me" id="15_me_a" value="a">
+                            <label class="form-check-label" for="15_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_me" id="15_me_b" value="b">
+                            <label class="form-check-label" for="15_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_me" id="15_me_c" value="c">
+                            <label class="form-check-label" for="15_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_me" id="15_me_d" value="d">
+                            <label class="form-check-label" for="15_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_me" id="15_me_e" value="e">
+                            <label class="form-check-label" for="15_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - P - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_me" id="16_me_a" value="a">
+                            <label class="form-check-label" for="16_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_me" id="16_me_b" value="b">
+                            <label class="form-check-label" for="16_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_me" id="16_me_c" value="c">
+                            <label class="form-check-label" for="16_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_me" id="16_me_d" value="d">
+                            <label class="form-check-label" for="16_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_me" id="16_me_e" value="e">
+                            <label class="form-check-label" for="16_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - R - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_me" id="17_me_a" value="a">
+                            <label class="form-check-label" for="17_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_me" id="17_me_b" value="b">
+                            <label class="form-check-label" for="17_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_me" id="17_me_c" value="c">
+                            <label class="form-check-label" for="17_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_me" id="17_me_d" value="d">
+                            <label class="form-check-label" for="17_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_me" id="17_me_e" value="e">
+                            <label class="form-check-label" for="17_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - S - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_me" id="18_me_a" value="a">
+                            <label class="form-check-label" for="18_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_me" id="18_me_b" value="b">
+                            <label class="form-check-label" for="18_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_me" id="18_me_c" value="c">
+                            <label class="form-check-label" for="18_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_me" id="18_me_d" value="d">
+                            <label class="form-check-label" for="18_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_me" id="18_me_e" value="e">
+                            <label class="form-check-label" for="18_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - T - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_me" id="19_me_a" value="a">
+                            <label class="form-check-label" for="19_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_me" id="19_me_b" value="b">
+                            <label class="form-check-label" for="19_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_me" id="19_me_c" value="c">
+                            <label class="form-check-label" for="19_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_me" id="19_me_d" value="d">
+                            <label class="form-check-label" for="19_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_me" id="19_me_e" value="e">
+                            <label class="form-check-label" for="19_me_e">binatang</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kata yang mempunyai huruf permulaan - U - adalah .........</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_me" id="20_me_a" value="a">
+                            <label class="form-check-label" for="20_me_a">bunga</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_me" id="20_me_b" value="b">
+                            <label class="form-check-label" for="20_me_b">perkakas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_me" id="20_me_c" value="c">
+                            <label class="form-check-label" for="20_me_c">burung</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_me" id="20_me_d" value="d">
+                            <label class="form-check-label" for="20_me_d">kesenian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_me" id="20_me_e" value="e">
+                            <label class="form-check-label" for="20_me_e">binatang</label>
+                        </div>
+
+                        <div class="mengerti">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </ol>
+               
+            </div>
+           
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 6
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById("formnya").submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

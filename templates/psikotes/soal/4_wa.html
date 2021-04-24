@@ -1,0 +1,543 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:20px;
+    padding-left: 50px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mengerti{
+    padding-top:20px;
+    /* padding-bottom:30px; */
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>6:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <form method="POST" id="formnya">
+                    {% csrf_token %}
+                    <ol>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="1_wa" id="1_wa_a" value="a">
+                                <label class="form-check-label" for="1_wa_a">lingkungan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="1_wa" id="1_wa_b" value="b">
+                                <label class="form-check-label" for="1_wa_b">panah</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="1_wa" id="1_wa_c" value="c">
+                                <label class="form-check-label" for="1_wa_c">elips</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="1_wa" id="1_wa_d" value="d">
+                                <label class="form-check-label" for="1_wa_d">busur</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="1_wa" id="1_wa_e" value="e">
+                                <label class="form-check-label" for="1_wa_e">lengkungan</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="2_wa" id="2_wa_a" value="a">
+                                <label class="form-check-label" for="2_wa_a">mengetuk</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="2_wa" id="2_wa_b" value="b">
+                                <label class="form-check-label" for="2_wa_b">memaki</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="2_wa" id="2_wa_c" value="c">
+                                <label class="form-check-label" for="2_wa_c">menjahit</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="2_wa" id="2_wa_d" value="d">
+                                <label class="form-check-label" for="2_wa_d">menggergaji</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="2_wa" id="2_wa_e" value="e">
+                                <label class="form-check-label" for="2_wa_e">memukul</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="3_wa" id="3_wa_a" value="a">
+                                <label class="form-check-label" for="3_wa_a">lebar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="3_wa" id="3_wa_b" value="b">
+                                <label class="form-check-label" for="3_wa_b">keliling</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="3_wa" id="3_wa_c" value="c">
+                                <label class="form-check-label" for="3_wa_c">luas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="3_wa" id="3_wa_d" value="d">
+                                <label class="form-check-label" for="3_wa_d">isi</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="3_wa" id="3_wa_e" value="e">
+                                <label class="form-check-label" for="3_wa_e">panjang</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="4_wa" id="4_wa_a" value="a">
+                                <label class="form-check-label" for="4_wa_a">mengikat</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="4_wa" id="4_wa_b" value="b">
+                                <label class="form-check-label" for="4_wa_b">menyatukan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="4_wa" id="4_wa_c" value="c">
+                                <label class="form-check-label" for="4_wa_c">melepaskan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="4_wa" id="4_wa_d" value="d">
+                                <label class="form-check-label" for="4_wa_d">mengkaitkan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="4_wa" id="4_wa_e" value="e">
+                                <label class="form-check-label" for="4_wa_e">melekatkan</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="5_wa" id="5_wa_a" value="a">
+                                <label class="form-check-label" for="5_wa_a">arah</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="5_wa" id="5_wa_b" value="b">
+                                <label class="form-check-label" for="5_wa_b">timur</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="5_wa" id="5_wa_c" value="c">
+                                <label class="form-check-label" for="5_wa_c">perjalanan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="5_wa" id="5_wa_d" value="d">
+                                <label class="form-check-label" for="5_wa_d">tujuan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="5_wa" id="5_wa_e" value="e">
+                                <label class="form-check-label" for="5_wa_e">selatan</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="6_wa" id="6_wa_a" value="a">
+                                <label class="form-check-label" for="6_wa_a">jarak</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="6_wa" id="6_wa_b" value="b">
+                                <label class="form-check-label" for="6_wa_b">perpisahan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="6_wa" id="6_wa_c" value="c">
+                                <label class="form-check-label" for="6_wa_c">tugas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="6_wa" id="6_wa_d" value="d">
+                                <label class="form-check-label" for="6_wa_d">batas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="6_wa" id="6_wa_e" value="e">
+                                <label class="form-check-label" for="6_wa_e">perceraian</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="7_wa" id="7_wa_a" value="a">
+                                <label class="form-check-label" for="7_wa_a">saringan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="7_wa" id="7_wa_b" value="b">
+                                <label class="form-check-label" for="7_wa_b">kelambu</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="7_wa" id="7_wa_c" value="c">
+                                <label class="form-check-label" for="7_wa_c">payung</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="7_wa" id="7_wa_d" value="d">
+                                <label class="form-check-label" for="7_wa_d">tapisan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="7_wa" id="7_wa_e" value="e">
+                                <label class="form-check-label" for="7_wa_e">jala</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="8_wa" id="8_wa_a" value="a">
+                                <label class="form-check-label" for="8_wa_a">putih</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="8_wa" id="8_wa_b" value="b">
+                                <label class="form-check-label" for="8_wa_b">pucat</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="8_wa" id="8_wa_c" value="c">
+                                <label class="form-check-label" for="8_wa_c">buram</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="8_wa" id="8_wa_d" value="d">
+                                <label class="form-check-label" for="8_wa_d">kasar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="8_wa" id="8_wa_e" value="e">
+                                <label class="form-check-label" for="8_wa_e">berkilauan</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="9_wa" id="9_wa_a" value="a">
+                                <label class="form-check-label" for="9_wa_a">otobis</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="9_wa" id="9_wa_b" value="b">
+                                <label class="form-check-label" for="9_wa_b">pesawat terbang</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="9_wa" id="9_wa_c" value="c">
+                                <label class="form-check-label" for="9_wa_c">sepeda motor</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="9_wa" id="9_wa_d" value="d">
+                                <label class="form-check-label" for="9_wa_d">sepeda</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="9_wa" id="9_wa_e" value="e">
+                                <label class="form-check-label" for="9_wa_e">kapal api</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="10_wa" id="10_wa_a" value="a">
+                                <label class="form-check-label" for="10_wa_a">biola</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="10_wa" id="10_wa_b" value="b">
+                                <label class="form-check-label" for="10_wa_b">seruling</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="10_wa" id="10_wa_c" value="c">
+                                <label class="form-check-label" for="10_wa_c">klarinet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="10_wa" id="10_wa_d" value="d">
+                                <label class="form-check-label" for="10_wa_d">terompet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="10_wa" id="10_wa_e" value="e">
+                                <label class="form-check-label" for="10_wa_e">saxophon</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="11_wa" id="11_wa_a" value="a">
+                                <label class="form-check-label" for="11_wa_a">bergelombang</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="11_wa" id="11_wa_b" value="b">
+                                <label class="form-check-label" for="11_wa_b">kasar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="11_wa" id="11_wa_c" value="c">
+                                <label class="form-check-label" for="11_wa_c">berduri</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="11_wa" id="11_wa_d" value="d">
+                                <label class="form-check-label" for="11_wa_d">licin</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="11_wa" id="11_wa_e" value="e">
+                                <label class="form-check-label" for="11_wa_e">lurus</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="12_wa" id="12_wa_a" value="a">
+                                <label class="form-check-label" for="12_wa_a">jam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="12_wa" id="12_wa_b" value="b">
+                                <label class="form-check-label" for="12_wa_b">kompas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="12_wa" id="12_wa_c" value="c">
+                                <label class="form-check-label" for="12_wa_c">penunjuk jalan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="12_wa" id="12_wa_d" value="d">
+                                <label class="form-check-label" for="12_wa_d">bintang pari</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="12_wa" id="12_wa_e" value="e">
+                                <label class="form-check-label" for="12_wa_e">arah</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="13_wa" id="13_wa_a" value="a">
+                                <label class="form-check-label" for="13_wa_a">kebijaksanaan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="13_wa" id="13_wa_b" value="b">
+                                <label class="form-check-label" for="13_wa_b">pendidikan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="13_wa" id="13_wa_c" value="c">
+                                <label class="form-check-label" for="13_wa_c">perencanaan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="13_wa" id="13_wa_d" value="d">
+                                <label class="form-check-label" for="13_wa_d">penempatan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="13_wa" id="13_wa_e" value="e">
+                                <label class="form-check-label" for="13_wa_e">pengerahan</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="14_wa" id="14_wa_a" value="a">
+                                <label class="form-check-label" for="14_wa_a">bermotor</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="14_wa" id="14_wa_b" value="b">
+                                <label class="form-check-label" for="14_wa_b">berjalan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="14_wa" id="14_wa_c" value="c">
+                                <label class="form-check-label" for="14_wa_c">berlayar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="14_wa" id="14_wa_d" value="d">
+                                <label class="form-check-label" for="14_wa_d">bersepeda</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="14_wa" id="14_wa_e" value="e">
+                                <label class="form-check-label" for="14_wa_e">berkuda</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="15_wa" id="15_wa_a" value="a">
+                                <label class="form-check-label" for="15_wa_a">gambar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="15_wa" id="15_wa_b" value="b">
+                                <label class="form-check-label" for="15_wa_b">lukisan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="15_wa" id="15_wa_c" value="c">
+                                <label class="form-check-label" for="15_wa_c">potret</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="15_wa" id="15_wa_d" value="d">
+                                <label class="form-check-label" for="15_wa_d">patung</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="15_wa" id="15_wa_e" value="e">
+                                <label class="form-check-label" for="15_wa_e">ukiran</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="16_wa" id="16_wa_a" value="a">
+                                <label class="form-check-label" for="16_wa_a">panjang</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="16_wa" id="16_wa_b" value="b">
+                                <label class="form-check-label" for="16_wa_b">lonjong</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="16_wa" id="16_wa_c" value="c">
+                                <label class="form-check-label" for="16_wa_c">runcing</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="16_wa" id="16_wa_d" value="d">
+                                <label class="form-check-label" for="16_wa_d">bulat</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="16_wa" id="16_wa_e" value="e">
+                                <label class="form-check-label" for="16_wa_e">bersudut</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="17_wa" id="17_wa_a" value="a">
+                                <label class="form-check-label" for="17_wa_a">kunci</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="17_wa" id="17_wa_b" value="b">
+                                <label class="form-check-label" for="17_wa_b">lonjong</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="17_wa" id="17_wa_c" value="c">
+                                <label class="form-check-label" for="17_wa_c">runcing</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="17_wa" id="17_wa_d" value="d">
+                                <label class="form-check-label" for="17_wa_d">bulat</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="17_wa" id="17_wa_e" value="e">
+                                <label class="form-check-label" for="17_wa_e">bersudut</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="18_wa" id="18_wa_a" value="a">
+                                <label class="form-check-label" for="18_wa_a">jembatan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="18_wa" id="18_wa_b" value="b">
+                                <label class="form-check-label" for="18_wa_b">batas</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="18_wa" id="18_wa_c" value="c">
+                                <label class="form-check-label" for="18_wa_c">perkawinan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="18_wa" id="18_wa_d" value="d">
+                                <label class="form-check-label" for="18_wa_d">pagar</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="18_wa" id="18_wa_e" value="e">
+                                <label class="form-check-label" for="18_wa_e">masyarakat</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="19_wa" id="19_wa_a" value="a">
+                                <label class="form-check-label" for="19_wa_a">mengetam</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="19_wa" id="19_wa_b" value="b">
+                                <label class="form-check-label" for="19_wa_b">menasehati</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="19_wa" id="19_wa_c" value="c">
+                                <label class="form-check-label" for="19_wa_c">mengasah</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="19_wa" id="19_wa_d" value="d">
+                                <label class="form-check-label" for="19_wa_d">melicinkan</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="19_wa" id="19_wa_e" value="e">
+                                <label class="form-check-label" for="19_wa_e">menggosok</label>
+                            </div>    
+                        </li>
+                        <br>
+                        <li>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="20_wa" id="20_wa_a" value="a">
+                                <label class="form-check-label" for="20_wa_a">batu</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="20_wa" id="20_wa_b" value="b">
+                                <label class="form-check-label" for="20_wa_b">baja</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="20_wa" id="20_wa_c" value="c">
+                                <label class="form-check-label" for="20_wa_c">bulu</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="20_wa" id="20_wa_d" value="d">
+                                <label class="form-check-label" for="20_wa_d">karet</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="20_wa" id="20_wa_e" value="e">
+                                <label class="form-check-label" for="20_wa_e">kayu</label>
+                            </div>    
+                        </li>
+                    
+                    <div class="mengerti">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                    </ol>
+                </form>
+            </div>
+       
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 6
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById('formnya').submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

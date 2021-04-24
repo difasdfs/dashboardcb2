@@ -1,0 +1,149 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    padding-left: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>8:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <ol>
+                    <form method="POST" id="formnya">
+                        {% csrf_token %}
+                        
+                        <div class="form-group">
+                            <label for="1_ge"><li>mawar - melati</li></label>
+                            <input type="text" class="form-control form-control-sm" id="1_ge" name="1_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="2_ge"><li>mata - telinga</li></label>
+                            <input type="text" class="form-control form-control-sm" id="2_ge" name="2_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="3_ge"><li>gula - intan</li></label>
+                            <input type="text" class="form-control form-control-sm" id="3_ge" name="3_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="4_ge"><li>hujan - salju</li></label>
+                            <input type="text" class="form-control form-control-sm" id="4_ge" name="4_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="5_ge"><li>pengantar surat - telepon</li></label>
+                            <input type="text" class="form-control form-control-sm" id="5_ge" name="5_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="6_ge"><li>kamera - kacamata</li></label>
+                            <input type="text" class="form-control form-control-sm" id="6_ge" name="6_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="7_ge"><li>lambung - usus</li></label>
+                            <input type="text" class="form-control form-control-sm" id="7_ge" name="7_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="8_ge"><li>banyak - sedikit</li></label>
+                            <input type="text" class="form-control form-control-sm" id="8_ge" name="8_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="9_ge"><li>telur - benih</li></label>
+                            <input type="text" class="form-control form-control-sm" id="9_ge" name="9_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="10_ge"><li>bendera - lencana</li></label>
+                            <input type="text" class="form-control form-control-sm" id="10_ge" name="10_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="11_ge"><li>rumput - gajah</li></label>
+                            <input type="text" class="form-control form-control-sm" id="11_ge" name="11_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="12_ge"><li>ember - kantong</li></label>
+                            <input type="text" class="form-control form-control-sm" id="12_ge" name="12_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="13_ge"><li>awal - akhir</li></label>
+                            <input type="text" class="form-control form-control-sm" id="13_ge" name="13_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="14_ge"><li>kikir - boros</li></label>
+                            <input type="text" class="form-control form-control-sm" id="14_ge" name="14_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="15_ge"><li>penawaran - permintaan</li></label>
+                            <input type="text" class="form-control form-control-sm" id="15_ge" name="15_ge">
+                        </div>
+                        <div class="form-group">
+                            <label for="15_ge"><li>atas - bawah</li></label>
+                            <input type="text" class="form-control form-control-sm" id="15_ge" name="15_ge">
+                        </div>
+
+                        <br><br>
+                        <div class="mengerti">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 8
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById('formnya').submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

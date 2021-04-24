@@ -1,0 +1,37 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <img src="/static/psikotes/13_petunjuk.jpg" alt="Petunjuk 1" width="850">
+            </div>
+            <div class="mengerti">
+                <a class="btn btn-success" href="{% url 'soal_fa_14' %}">Mengerti</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+{% endblock %}

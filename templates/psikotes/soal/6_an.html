@@ -1,0 +1,562 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    padding-left: 100px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>7:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <ol>
+                    <form method="POST" id="formnya">
+                        {% csrf_token %}
+                        <li>Menemukan : menghilangkan = Mengingat : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_an" id="1_an_a" value="a">
+                            <label class="form-check-label" for="1_an_a">menghapal</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_an" id="1_an_b" value="b">
+                            <label class="form-check-label" for="1_an_b">mengenai</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_an" id="1_an_c" value="c">
+                            <label class="form-check-label" for="1_an_c">melupakan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_an" id="1_an_d" value="d">
+                            <label class="form-check-label" for="1_an_d">berpikir</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="1_an" id="1_an_e" value="e">
+                            <label class="form-check-label" for="1_an_e">memimpikan</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Bunga : jambangan = Burung : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_an" id="2_an_a" value="a">
+                            <label class="form-check-label" for="2_an_a">sarang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_an" id="2_an_b" value="b">
+                            <label class="form-check-label" for="2_an_b">langit</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_an" id="2_an_c" value="c">
+                            <label class="form-check-label" for="2_an_c">pagar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_an" id="2_an_d" value="d">
+                            <label class="form-check-label" for="2_an_d">pohon</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="2_an" id="2_an_e" value="e">
+                            <label class="form-check-label" for="2_an_e">sangkar</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kereta api : rel = Otobis : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_an" id="3_an_a" value="a">
+                            <label class="form-check-label" for="3_an_a">roda</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_an" id="3_an_b" value="b">
+                            <label class="form-check-label" for="3_an_b">poros</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_an" id="3_an_c" value="c">
+                            <label class="form-check-label" for="3_an_c">ban</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_an" id="3_an_d" value="d">
+                            <label class="form-check-label" for="3_an_d">jalan raya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="3_an" id="3_an_e" value="e">
+                            <label class="form-check-label" for="3_an_e">kecepatan</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Perak : emas = Cincin : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_an" id="4_an_a" value="a">
+                            <label class="form-check-label" for="4_an_a">arloji</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_an" id="4_an_b" value="b">
+                            <label class="form-check-label" for="4_an_b">berlian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_an" id="4_an_c" value="c">
+                            <label class="form-check-label" for="4_an_c">permata</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_an" id="4_an_d" value="d">
+                            <label class="form-check-label" for="4_an_d">gelang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="4_an" id="4_an_e" value="e">
+                            <label class="form-check-label" for="4_an_e">platina</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Lingkaran : bola = Bujur sangkar : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_an" id="5_an_a" value="a">
+                            <label class="form-check-label" for="5_an_a">bentuk</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_an" id="5_an_b" value="b">
+                            <label class="form-check-label" for="5_an_b">gambar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_an" id="5_an_c" value="c">
+                            <label class="form-check-label" for="5_an_c">segi empat</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_an" id="5_an_d" value="d">
+                            <label class="form-check-label" for="5_an_d">kubus</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="5_an" id="5_an_e" value="e">
+                            <label class="form-check-label" for="5_an_e">piramida</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Saran : kepustakaan = Merundingkan : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_an" id="6_an_a" value="a">
+                            <label class="form-check-label" for="6_an_a">menawarkan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_an" id="6_an_b" value="b">
+                            <label class="form-check-label" for="6_an_b">menentukan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_an" id="6_an_c" value="c">
+                            <label class="form-check-label" for="6_an_c">menilai</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_an" id="6_an_d" value="d">
+                            <label class="form-check-label" for="6_an_d">menimbang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="6_an" id="6_an_e" value="e">
+                            <label class="form-check-label" for="6_an_e">merenungkan</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Lidah : asam = Hidung : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_an" id="7_an_a" value="a">
+                            <label class="form-check-label" for="7_an_a">mencium</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_an" id="7_an_b" value="b">
+                            <label class="form-check-label" for="7_an_b">bernapas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_an" id="7_an_c" value="c">
+                            <label class="form-check-label" for="7_an_c">mengecap</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_an" id="7_an_d" value="d">
+                            <label class="form-check-label" for="7_an_d">tengik</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="7_an" id="7_an_e" value="e">
+                            <label class="form-check-label" for="7_an_e">asin</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Darah : pembuluh = Air : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_an" id="8_an_a" value="a">
+                            <label class="form-check-label" for="8_an_a">pintu air</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_an" id="8_an_b" value="b">
+                            <label class="form-check-label" for="8_an_b">sungai</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_an" id="8_an_c" value="c">
+                            <label class="form-check-label" for="8_an_c">talang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_an" id="8_an_d" value="d">
+                            <label class="form-check-label" for="8_an_d">hujan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="8_an" id="8_an_e" value="e">
+                            <label class="form-check-label" for="8_an_e">ember</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Saraf : penyalur = Pupil : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_an" id="9_an_a" value="a">
+                            <label class="form-check-label" for="9_an_a">penyinaran</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_an" id="9_an_b" value="b">
+                            <label class="form-check-label" for="9_an_b">mata</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_an" id="9_an_c" value="c">
+                            <label class="form-check-label" for="9_an_c">melihat</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_an" id="9_an_d" value="d">
+                            <label class="form-check-label" for="9_an_d">cahaya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="9_an" id="9_an_e" value="e">
+                            <label class="form-check-label" for="9_an_e">pelindung</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Pengantar surat : pengantar telegram = Pandai besi : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_an" id="10_an_a" value="a">
+                            <label class="form-check-label" for="10_an_a">palu godam</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_an" id="10_an_b" value="b">
+                            <label class="form-check-label" for="10_an_b">pedagang besi</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_an" id="10_an_c" value="c">
+                            <label class="form-check-label" for="10_an_c">api</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_an" id="10_an_d" value="d">
+                            <label class="form-check-label" for="10_an_d">tukang emas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="10_an" id="10_an_e" value="e">
+                            <label class="form-check-label" for="10_an_e">besi tempa</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Buta : warna = Tuli : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_an" id="11_an_a" value="a">
+                            <label class="form-check-label" for="11_an_a">pendengaran</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_an" id="11_an_b" value="b">
+                            <label class="form-check-label" for="11_an_b">mendengar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_an" id="11_an_c" value="c">
+                            <label class="form-check-label" for="11_an_c">nada</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_an" id="11_an_d" value="d">
+                            <label class="form-check-label" for="11_an_d">kata</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="11_an" id="11_an_e" value="e">
+                            <label class="form-check-label" for="11_an_e">telinga</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Makanan : bumbu = Ceramah : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_an" id="12_an_a" value="a">
+                            <label class="form-check-label" for="12_an_a">penghinaan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_an" id="12_an_b" value="b">
+                            <label class="form-check-label" for="12_an_b">pidato</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_an" id="12_an_c" value="c">
+                            <label class="form-check-label" for="12_an_c">kelakar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_an" id="12_an_d" value="d">
+                            <label class="form-check-label" for="12_an_d">kesan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="12_an" id="12_an_e" value="e">
+                            <label class="form-check-label" for="12_an_e">ayat</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Marah : emosi = Duka cita : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_an" id="13_an_a" value="a">
+                            <label class="form-check-label" for="13_an_a">suka cita</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_an" id="13_an_b" value="b">
+                            <label class="form-check-label" for="13_an_b">sakit hati</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_an" id="13_an_c" value="c">
+                            <label class="form-check-label" for="13_an_c">suasana hati</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_an" id="13_an_d" value="d">
+                            <label class="form-check-label" for="13_an_d">sedih</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="13_an" id="13_an_e" value="e">
+                            <label class="form-check-label" for="13_an_e">rindu</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Mantel : jubah = wool : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_an" id="14_an_a" value="a">
+                            <label class="form-check-label" for="14_an_a">bahan sandang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_an" id="14_an_b" value="b">
+                            <label class="form-check-label" for="14_an_b">domba</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_an" id="14_an_c" value="c">
+                            <label class="form-check-label" for="14_an_c">sutra</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_an" id="14_an_d" value="d">
+                            <label class="form-check-label" for="14_an_d">jas</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="14_an" id="14_an_e" value="e">
+                            <label class="form-check-label" for="14_an_e">tekstil</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Ketinggian puncak : tekanan udara = ketinggian nada : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_an" id="15_an_a" value="a">
+                            <label class="form-check-label" for="15_an_a">garpu tala</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_an" id="15_an_b" value="b">
+                            <label class="form-check-label" for="15_an_b">sopran</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_an" id="15_an_c" value="c">
+                            <label class="form-check-label" for="15_an_c">nyanyian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_an" id="15_an_d" value="d">
+                            <label class="form-check-label" for="15_an_d">panjang senar</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="15_an" id="15_an_e" value="e">
+                            <label class="form-check-label" for="15_an_e">suara</label>
+                        </div>
+                            
+                        <br><br>
+
+                        <li>Negara : revolusi = Hidup : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_an" id="16_an_a" value="a">
+                            <label class="form-check-label" for="16_an_a">biologi</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_an" id="16_an_b" value="b">
+                            <label class="form-check-label" for="16_an_b">keturunan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_an" id="16_an_c" value="c">
+                            <label class="form-check-label" for="16_an_c">mutasi</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_an" id="16_an_d" value="d">
+                            <label class="form-check-label" for="16_an_d">seleksi</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="16_an" id="16_an_e" value="e">
+                            <label class="form-check-label" for="16_an_e">ilmu hewan</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kekurangan : penemuan = Panas : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_an" id="17_an_a" value="a">
+                            <label class="form-check-label" for="17_an_a">haus</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_an" id="17_an_b" value="b">
+                            <label class="form-check-label" for="17_an_b">khatulistiwa</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_an" id="17_an_c" value="c">
+                            <label class="form-check-label" for="17_an_c">es</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_an" id="17_an_d" value="d">
+                            <label class="form-check-label" for="17_an_d">matahari</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="17_an" id="17_an_e" value="e">
+                            <label class="form-check-label" for="17_an_e">dingin</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Kayu : diketam = Besi : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_an" id="18_an_a" value="a">
+                            <label class="form-check-label" for="18_an_a">dipalu</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_an" id="18_an_b" value="b">
+                            <label class="form-check-label" for="18_an_b">digergaji</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_an" id="18_an_c" value="c">
+                            <label class="form-check-label" for="18_an_c">dituang</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_an" id="18_an_d" value="d">
+                            <label class="form-check-label" for="18_an_d">dikikir</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="18_an" id="18_an_e" value="e">
+                            <label class="form-check-label" for="18_an_e">ditempa</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Olahragawan : lembing = Cedekiawan</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_an" id="19_an_a" value="a">
+                            <label class="form-check-label" for="19_an_a">perpustakaan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_an" id="19_an_b" value="b">
+                            <label class="form-check-label" for="19_an_b">penelitian</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_an" id="19_an_c" value="c">
+                            <label class="form-check-label" for="19_an_c">karya</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_an" id="19_an_d" value="d">
+                            <label class="form-check-label" for="19_an_d">studi</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="19_an" id="19_an_e" value="e">
+                            <label class="form-check-label" for="19_an_e">mikroskop</label>
+                        </div>
+
+                        <br><br>
+
+                        <li>Keledai : kuda pacuan = Pembakaran : ?</li>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_an" id="20_an_a" value="a">
+                            <label class="form-check-label" for="20_an_a">pemadam api</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_an" id="20_an_b" value="b">
+                            <label class="form-check-label" for="20_an_b">obor</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_an" id="20_an_c" value="c">
+                            <label class="form-check-label" for="20_an_c">letupan</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_an" id="20_an_d" value="d">
+                            <label class="form-check-label" for="20_an_d">korek api</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="20_an" id="20_an_e" value="e">
+                            <label class="form-check-label" for="20_an_e">lautan api</label>
+                        </div>
+
+                        <br><br>
+
+                        <div class="mengerti">
+                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                        </div>
+                    </form>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 7
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "<strong>WAKTU HABIS</strong>";
+        document.getElementById('formnya').submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kontainer-flex{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <br>
+            {% if pesan %}
+            <div class="kontainer-flex">
+                <div class="alert alert-danger" role="alert">
+                    {{pesan}}
+                </div>
+            </div>
+            {% endif %}
+            <form action="" class="form-inline justify-content-md-center" method="POST">
+                
+                {% csrf_token %}
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="kode_test" class="sr-only">Kode Tes</label>
+                    <input type="text" min="1" class="form-control" id="kode_test" name="kode_test" placeholder="Kode tes">
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                <br>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock %}

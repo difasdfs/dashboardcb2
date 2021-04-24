@@ -1,0 +1,713 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+/* KHUSUS FLEXBOX SOAL */
+.kontainer-1{
+    display: flex;
+    flex-direction: column;
+}
+
+.kontainer-2{
+    display: flex;
+    padding: 10px;
+    justify-content: space-evenly;
+}
+
+.kontainer-3{
+    display: flex;
+    flex-direction: column;
+}
+
+.gambar{
+    border: 1px solid black;
+}
+
+.pilihan{
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-left: 30px;
+}
+/* AKHIR FLEXBOX SOAL */
+
+div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: auto;
+  border: 1px solid black;
+  border-radius: 10px;
+  background-color: #e6f4fc;
+  padding: 20px;
+  font-size: 20px;
+  width: 160px;
+}
+
+#deadline{
+    color: red;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="sticky"><strong>Sisa waktu</strong> <br> <span id="deadline"><strong>7:00</strong></span></div>
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <form action="" method="POST" id="formnya">
+                    {% csrf_token %}
+                <div class="kontainer-1">
+                    <div class="kontainer-2"><img src="/static/psikotes/fa_soal_1.jpg" alt="Soal FA 1" width="800"></div>
+                    <ol>
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_1.jpg" alt="Soal 1" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_fa" id="1_fa_a" value="a">
+                                        <label class="form-check-label" for="1_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_fa" id="1_fa_b" value="b">
+                                        <label class="form-check-label" for="1_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_fa" id="1_fa_c" value="c">
+                                        <label class="form-check-label" for="1_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_fa" id="1_fa_d" value="d">
+                                        <label class="form-check-label" for="1_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="1_fa" id="1_fa_e" value="e">
+                                        <label class="form-check-label" for="1_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                                <div class="gambar"><img src="/static/psikotes/fa_2.jpg" alt="Soal 2" width="250" height="180"></div>
+                                <div class="pilihan">
+                                    <li>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="2_fa" id="2_fa_a" value="a">
+                                            <label class="form-check-label" for="2_fa_a">a</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="2_fa" id="2_fa_b" value="b">
+                                            <label class="form-check-label" for="2_fa_b">b</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="2_fa" id="2_fa_c" value="c">
+                                            <label class="form-check-label" for="2_fa_c">c</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="2_fa" id="2_fa_d" value="d">
+                                            <label class="form-check-label" for="2_fa_d">d</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="2_fa" id="2_fa_e" value="e">
+                                            <label class="form-check-label" for="2_fa_e">e</label>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                                <div class="gambar"><img src="/static/psikotes/fa_3.jpg" alt="Soal 3" width="250" height="180"></div>
+                                <div class="pilihan">
+                                    <li>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="3_fa" id="3_fa_a" value="a">
+                                            <label class="form-check-label" for="3_fa_a">a</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="3_fa" id="3_fa_b" value="b">
+                                            <label class="form-check-label" for="3_fa_b">b</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="3_fa" id="3_fa_c" value="c">
+                                            <label class="form-check-label" for="3_fa_c">c</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="3_fa" id="3_fa_d" value="d">
+                                            <label class="form-check-label" for="3_fa_d">d</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="3_fa" id="3_fa_e" value="e">
+                                            <label class="form-check-label" for="3_fa_e">e</label>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_4.jpg" alt="Soal 4" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_fa" id="4_fa_a" value="a">
+                                        <label class="form-check-label" for="4_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_fa" id="4_fa_b" value="b">
+                                        <label class="form-check-label" for="4_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_fa" id="4_fa_c" value="c">
+                                        <label class="form-check-label" for="4_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_fa" id="4_fa_d" value="d">
+                                        <label class="form-check-label" for="4_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="4_fa" id="4_fa_e" value="e">
+                                        <label class="form-check-label" for="4_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_5.jpg" alt="Soal 5" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_fa" id="5_fa_a" value="a">
+                                        <label class="form-check-label" for="5_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_fa" id="5_fa_b" value="b">
+                                        <label class="form-check-label" for="5_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_fa" id="5_fa_c" value="c">
+                                        <label class="form-check-label" for="5_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_fa" id="5_fa_d" value="d">
+                                        <label class="form-check-label" for="5_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="5_fa" id="5_fa_e" value="e">
+                                        <label class="form-check-label" for="5_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                                <div class="gambar"><img src="/static/psikotes/fa_6.jpg" alt="Soal 6" width="250" height="180"></div>
+                                <div class="pilihan">
+                                    <li>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="6_fa" id="6_fa_a" value="a">
+                                            <label class="form-check-label" for="6_fa_a">a</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="6_fa" id="6_fa_b" value="b">
+                                            <label class="form-check-label" for="6_fa_b">b</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="6_fa" id="6_fa_c" value="c">
+                                            <label class="form-check-label" for="6_fa_c">c</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="6_fa" id="6_fa_d" value="d">
+                                            <label class="form-check-label" for="6_fa_d">d</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="6_fa" id="6_fa_e" value="e">
+                                            <label class="form-check-label" for="6_fa_e">e</label>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_7.jpg" alt="Soal 7" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_fa" id="7_fa_a" value="a">
+                                        <label class="form-check-label" for="7_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_fa" id="7_fa_b" value="b">
+                                        <label class="form-check-label" for="7_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_fa" id="7_fa_c" value="c">
+                                        <label class="form-check-label" for="7_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_fa" id="7_fa_d" value="d">
+                                        <label class="form-check-label" for="7_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="7_fa" id="7_fa_e" value="e">
+                                        <label class="form-check-label" for="7_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_8.jpg" alt="Soal 8" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_fa" id="8_fa_a" value="a">
+                                        <label class="form-check-label" for="8_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_fa" id="8_fa_b" value="b">
+                                        <label class="form-check-label" for="8_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_fa" id="8_fa_c" value="c">
+                                        <label class="form-check-label" for="8_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_fa" id="8_fa_d" value="d">
+                                        <label class="form-check-label" for="8_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="8_fa" id="8_fa_e" value="e">
+                                        <label class="form-check-label" for="8_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_9.jpg" alt="Soal 9" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_fa" id="9_fa_a" value="a">
+                                        <label class="form-check-label" for="9_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_fa" id="9_fa_b" value="b">
+                                        <label class="form-check-label" for="9_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_fa" id="9_fa_c" value="c">
+                                        <label class="form-check-label" for="9_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_fa" id="9_fa_d" value="d">
+                                        <label class="form-check-label" for="9_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="9_fa" id="9_fa_e" value="e">
+                                        <label class="form-check-label" for="9_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_10.jpg" alt="Soal 10" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_fa" id="10_fa_a" value="a">
+                                        <label class="form-check-label" for="10_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_fa" id="10_fa_b" value="b">
+                                        <label class="form-check-label" for="10_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_fa" id="10_fa_c" value="c">
+                                        <label class="form-check-label" for="10_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_fa" id="10_fa_d" value="d">
+                                        <label class="form-check-label" for="10_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="10_fa" id="10_fa_e" value="e">
+                                        <label class="form-check-label" for="10_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_11.jpg" alt="Soal 11" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_fa" id="11_fa_a" value="a">
+                                        <label class="form-check-label" for="11_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_fa" id="11_fa_b" value="b">
+                                        <label class="form-check-label" for="11_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_fa" id="11_fa_c" value="c">
+                                        <label class="form-check-label" for="11_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_fa" id="11_fa_d" value="d">
+                                        <label class="form-check-label" for="11_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="11_fa" id="11_fa_e" value="e">
+                                        <label class="form-check-label" for="11_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_12.jpg" alt="Soal 12" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_fa" id="12_fa_a" value="a">
+                                        <label class="form-check-label" for="12_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_fa" id="12_fa_b" value="b">
+                                        <label class="form-check-label" for="12_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_fa" id="12_fa_c" value="c">
+                                        <label class="form-check-label" for="12_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_fa" id="12_fa_d" value="d">
+                                        <label class="form-check-label" for="12_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="12_fa" id="12_fa_e" value="e">
+                                        <label class="form-check-label" for="12_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2"><img src="/static/psikotes/fa_soal_2.jpg" alt="Soal FA 2" width="800"></div>
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_13.jpg" alt="Soal 13" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_fa" id="13_fa_a" value="a">
+                                        <label class="form-check-label" for="13_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_fa" id="13_fa_b" value="b">
+                                        <label class="form-check-label" for="13_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_fa" id="13_fa_c" value="c">
+                                        <label class="form-check-label" for="13_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_fa" id="13_fa_d" value="d">
+                                        <label class="form-check-label" for="13_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="13_fa" id="13_fa_e" value="e">
+                                        <label class="form-check-label" for="13_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_14.jpg" alt="Soal 14" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_fa" id="14_fa_a" value="a">
+                                        <label class="form-check-label" for="14_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_fa" id="14_fa_b" value="b">
+                                        <label class="form-check-label" for="14_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_fa" id="14_fa_c" value="c">
+                                        <label class="form-check-label" for="14_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_fa" id="14_fa_d" value="d">
+                                        <label class="form-check-label" for="14_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="14_fa" id="14_fa_e" value="e">
+                                        <label class="form-check-label" for="14_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_15.jpg" alt="Soal 15" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_fa" id="15_fa_a" value="a">
+                                        <label class="form-check-label" for="15_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_fa" id="15_fa_b" value="b">
+                                        <label class="form-check-label" for="15_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_fa" id="15_fa_c" value="c">
+                                        <label class="form-check-label" for="15_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_fa" id="15_fa_d" value="d">
+                                        <label class="form-check-label" for="15_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="15_fa" id="15_fa_e" value="e">
+                                        <label class="form-check-label" for="15_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_16.jpg" alt="Soal 16" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_fa" id="16_fa_a" value="a">
+                                        <label class="form-check-label" for="16_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_fa" id="16_fa_b" value="b">
+                                        <label class="form-check-label" for="16_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_fa" id="16_fa_c" value="c">
+                                        <label class="form-check-label" for="16_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_fa" id="16_fa_d" value="d">
+                                        <label class="form-check-label" for="16_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="16_fa" id="16_fa_e" value="e">
+                                        <label class="form-check-label" for="16_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_17.jpg" alt="Soal 17" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_fa" id="17_fa_a" value="a">
+                                        <label class="form-check-label" for="17_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_fa" id="17_fa_b" value="b">
+                                        <label class="form-check-label" for="17_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_fa" id="17_fa_c" value="c">
+                                        <label class="form-check-label" for="17_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_fa" id="17_fa_d" value="d">
+                                        <label class="form-check-label" for="17_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="17_fa" id="17_fa_e" value="e">
+                                        <label class="form-check-label" for="17_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                            <div class="gambar"><img src="/static/psikotes/fa_18.jpg" alt="Soal 18" width="250" height="180"></div>
+                            <div class="pilihan">
+                                <li>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_fa" id="18_fa_a" value="a">
+                                        <label class="form-check-label" for="18_fa_a">a</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_fa" id="18_fa_b" value="b">
+                                        <label class="form-check-label" for="18_fa_b">b</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_fa" id="18_fa_c" value="c">
+                                        <label class="form-check-label" for="18_fa_c">c</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_fa" id="18_fa_d" value="d">
+                                        <label class="form-check-label" for="18_fa_d">d</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="18_fa" id="18_fa_e" value="e">
+                                        <label class="form-check-label" for="18_fa_e">e</label>
+                                    </div>
+                                </li>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="kontainer-2">
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                                <div class="gambar"><img src="/static/psikotes/fa_19.jpg" alt="Soal 19" width="250" height="180"></div>
+                                <div class="pilihan">
+                                    <li>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="19_fa" id="19_fa_a" value="a">
+                                            <label class="form-check-label" for="19_fa_a">a</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="19_fa" id="19_fa_b" value="b">
+                                            <label class="form-check-label" for="19_fa_b">b</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="19_fa" id="19_fa_c" value="c">
+                                            <label class="form-check-label" for="19_fa_c">c</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="19_fa" id="19_fa_d" value="d">
+                                            <label class="form-check-label" for="19_fa_d">d</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="19_fa" id="19_fa_e" value="e">
+                                            <label class="form-check-label" for="19_fa_e">e</label>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="kontainer-3">
+                            <div class="kontainer-3">
+                                <div class="gambar"><img src="/static/psikotes/fa_20.jpg" alt="Soal 20" width="250" height="180"></div>
+                                <div class="pilihan">
+                                    <li>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="20_fa" id="20_fa_a" value="a">
+                                            <label class="form-check-label" for="20_fa_a">a</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="20_fa" id="20_fa_b" value="b">
+                                            <label class="form-check-label" for="20_fa_b">b</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="20_fa" id="20_fa_c" value="c">
+                                            <label class="form-check-label" for="20_fa_c">c</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="20_fa" id="20_fa_d" value="d">
+                                            <label class="form-check-label" for="20_fa_d">d</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="20_fa" id="20_fa_e" value="e">
+                                            <label class="form-check-label" for="20_fa_e">e</label>
+                                        </div>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    </ol>
+                </div>
+                <div class="mengerti">
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+
+<script>
+    // Deadline
+    var menit = 7
+    var detik = menit * 60
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+      detik -= 1
+      var sisa_menit = Math.floor(detik/60)
+      var sisa_detik = detik - (sisa_menit*60)
+
+      document.getElementById("deadline").innerHTML = "<strong>" + sisa_menit + ':' + sisa_detik + "</strong>";
+        
+      if (detik == 0) {
+        clearInterval(x);
+        document.getElementById("deadline").innerHTML = "WAKTU HABIS";
+        document.getElementById("formnya").submit();
+      }
+    }, 1000);
+</script>
+{% endblock %}
