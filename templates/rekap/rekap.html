@@ -97,11 +97,11 @@
                   <div class="card-header" id="headapril1">
                     <h2 class="mb-0">
                       <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiapril1" aria-expanded="false" aria-controls="collapseapril1">
-                        Periode April 1 (26 Maret 2021 - 25 April 2021)
+                        Periode April 1 (26 Maret 2021 - 10 April 2021)
                       </button>
                     </h2>
                   </div>
-                  <div id="evaluasiapril1" class="collapse show" aria-labelledby="headapril1" data-parent="#accordioneval">
+                  <div id="evaluasiapril1" class="collapse" aria-labelledby="headapril1" data-parent="#accordioneval">
                     <div class="card-body">
 
                       <table class="table table-bordered tabel-custom">
@@ -170,13 +170,71 @@
                   <div class="card-header" id="headapril2">
                     <h2 class="mb-0">
                       <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasiapril2" aria-expanded="false" aria-controls="collapseapril2">
-                        Periode April 2
+                        Periode April 2 (11 April 2021 - 25 April 2021)
                       </button>
                     </h2>
                   </div>
-                  <div id="evaluasiapril2" class="collapse" aria-labelledby="headapril2" data-parent="#accordioneval">
+                  <div id="evaluasiapril2" class="collapse show" aria-labelledby="headapril2" data-parent="#accordioneval">
                     <div class="card-body">
-                      Evaluasi Periode April 2
+
+                      <table class="table table-bordered tabel-custom">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Total Tugas</th>
+                                <td>{{periode3.0}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tuntas</th>
+                                <td>{{periode3.1}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Terlambat</th>
+                                <td>{{periode3.2}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Deadline</th>
+                                <td>{{periode3.3}}</td>
+                            </tr>
+
+                            {% if periode3.4 < 8 %}
+                            <tr>
+                                <th scope="row">Nilai Akhir</th>
+                                <td class="cellmerah">{{periode3.4}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th scope="row">Nilai Akhir</th>
+                                <td>{{periode3.4}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if periode3.5 > 20 %}
+                            <tr>
+                                <th scope="row">%terlambat</th>
+                                <td class="cellmerah">%{{periode3.5}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th scope="row">%terlambat</th>
+                                <td>%{{periode3.5}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if periode3.6 > 5 %}
+                            <tr>
+                                <th scope="row">%deadline</th>
+                                <td class="cellmerah">%{{periode3.6}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th scope="row">%deadline</th>
+                                <td>%{{periode3.6}}</td>
+                            </tr>
+                            {% endif %}
+
+                        </tbody>
+                      </table>
+
                     </div>
                   </div>
                 </div>
@@ -185,13 +243,71 @@
                   <div class="card-header" id="headmei1">
                     <h2 class="mb-0">
                       <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#evaluasimei1" aria-expanded="false" aria-controls="collapsemei1">
-                        Periode Mei 1
+                        Periode Mei 1 (25 April 2021 - 10 Mei 2021)
                       </button>
                     </h2>
                   </div>
                   <div id="evaluasimei1" class="collapse" aria-labelledby="headmei1" data-parent="#accordioneval">
                     <div class="card-body">
-                      Evaluasi Periode Mei 1
+
+                      <table class="table table-bordered tabel-custom">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Total Tugas</th>
+                                <td>{{periode4.0}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Tuntas</th>
+                                <td>{{periode4.1}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Terlambat</th>
+                                <td>{{periode4.2}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Deadline</th>
+                                <td>{{periode4.3}}</td>
+                            </tr>
+
+                            {% if periode4.4 < 8 %}
+                            <tr>
+                                <th scope="row">Nilai Akhir</th>
+                                <td class="cellmerah">{{periode4.4}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th scope="row">Nilai Akhir</th>
+                                <td>{{periode4.4}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if periode4.5 > 20 %}
+                            <tr>
+                                <th scope="row">%terlambat</th>
+                                <td class="cellmerah">%{{periode4.5}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th scope="row">%terlambat</th>
+                                <td>%{{periode4.5}}</td>
+                            </tr>
+                            {% endif %}
+
+                            {% if periode4.6 > 5 %}
+                            <tr>
+                                <th scope="row">%deadline</th>
+                                <td class="cellmerah">%{{periode4.6}}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th scope="row">%deadline</th>
+                                <td>%{{periode4.6}}</td>
+                            </tr>
+                            {% endif %}
+
+                        </tbody>
+                      </table>
+
                     </div>
                   </div>
                 </div>
