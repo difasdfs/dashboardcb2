@@ -383,6 +383,9 @@ def eval_per_periode(request):
 
     kenasp_periode_april1 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 4, 11))
     context['kenasp_periode_april1'] = kenasp_periode_april1
+
+    kenasp_periode_april2 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 4, 26))
+    context['kenasp_periode_april2'] = kenasp_periode_april2
     
     # ---------------------------------------------
     hasil = evaluasi(1)
