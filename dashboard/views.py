@@ -290,12 +290,16 @@ def rekap(request):
     bagian = request.user.last_name
     periode1 = query_rekap(1, request.user.id)
     periode2 = query_rekap(2, request.user.id)
+    periode3 = query_rekap(3, request.user.id)
+    periode4 = query_rekap(4, request.user.id)
 
     context = {
         'bagian': bagian, 
         'nama': nama,
         'periode1' : periode1,
-        'periode2' : periode2
+        'periode2' : periode2,
+        'periode3' : periode3,
+        'periode4' : periode4,
     }
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
