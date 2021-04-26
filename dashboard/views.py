@@ -953,7 +953,7 @@ def lihat_tugas(request):
     tr = tr.exclude(archive=True)
 
     tugas_rutin_marketing = rinci_tr("Marketing")
-    tugas_rutin_operation = rinci_tr('Operation', True)
+    tugas_rutin_operation = rinci_tr('Operation')
     tugas_rutin_finance = rinci_tr("Finance")
     tugas_rutin_hr = rinci_tr("Human Resource")
     tugas_rutin_ceo = rinci_tr("Management")
