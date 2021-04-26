@@ -26,6 +26,8 @@ def evaluasi(periode):
         31, # rara
         32, # salma
         36, # rahmat ali
+        37, # pak dicky
+        38, # denna
     ]
 
     hasil = []
