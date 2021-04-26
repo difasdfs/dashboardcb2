@@ -402,6 +402,11 @@ def eval_per_periode(request):
     evalapril2.sort(key=lambda tup: tup[6])
     evalapril2 = evalapril2[::-1]
     context['evalapril2'] = evalapril2
+
+    mei1 = evaluasi(4)
+    mei1.sort(key=lambda tup: tup[6])
+    mei1 = mei1[::-1]
+    context['mei1'] = mei1
     # ---------------------------------------------
 
 
