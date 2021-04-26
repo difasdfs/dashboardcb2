@@ -42,6 +42,8 @@
                     {% for a in anggota %}
                         {% if a.id != 5 %}
                             <a href="{% url 'lihat_tugas_per_nama' a.id %}">{{a.first_name}}</a>
+                        {% else %}
+                            <a href="#">{{a.first_name}}</a>
                         {% endif %}
                     {% endfor %}
                 </div>
