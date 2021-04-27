@@ -64,7 +64,6 @@ class IsiTugasRutin(models.Model):
     link_bukti = models.CharField(max_length=1000, null=True, default='#')
     selesai_pada = models.DateTimeField('Selesai pada', null=True)
     ketuntasan = models.BooleanField(null=True, default=False)
-
     judul = models.CharField(max_length=150, null=True)
     isi = models.CharField(max_length=1000, null=True)
 
@@ -604,6 +603,17 @@ class KepuasanPelanggan(models.Model):
         hasil = "{:.2f}".format(hasil)
 
         return float(hasil)
+
+class TanggalWeekendWeekdays(models.Model):
+    tanggal = models.DateField()
+    weekend = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.tanggal)
+
+class AssemblyProduct(models.Model):
+    sku = models.CharField(max_length=30)
+    ayam = models.IntegerField()
 
 class TokenTest(models.Model):
     aktif = models.BooleanField(default=True)
