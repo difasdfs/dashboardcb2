@@ -17,7 +17,7 @@ from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
 from .models import *
 
 from django.utils import timezone
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, time
 import pytz
 import django_excel
 
@@ -690,87 +690,57 @@ def input_tugas_rutin_kelompok(request):
     ceo = request.user.groups.filter(name='CEO').exists()
 
     if request.method == 'POST':
+        kunci_post_request = list(request.POST.keys())
         data_judul = request.POST.get('judul')
         data_isi = request.POST.get('isi')
         # DICOMMENT BUAT DEBUGGING AJA
+        tipe = request.POST.get('tipe')
+        if tipe == "harian":
+            
+            # EDIT INI KETIKA UDAH TAU FORMAT DATETIME APA YANG DIPAKE
+            mulai_utc = datetime.fromisoformat( request.POST.get('mulai') + " " + request.POST.get('deadlinejam') + ":00+07:00" )
+            selesai_utc = datetime.fromisoformat( request.POST.get('selesai') + " " + request.POST.get('deadlinejam') + ":00+07:00" )
+            # EDIT INI KETIKA UDAH TAU FORMAT DATETIME APA YANG DIPAKE
 
-        banyak_tugas = int(request.POST.get('banyak-tugas'))
-        # DICOMMENT BUAT DEBUGGING AJA
-        skip = banyak_tugas + 4
-        listnya = list(request.POST.keys())
-        for k in listnya[skip:]:
-            k = request.POST.get(k)
-            idnya = k.split("_")
-            id_eksekutif = int(idnya[1])
+            selisih = selesai_utc - mulai_utc
 
-            object_eksekutif = User.objects.get(pk=id_eksekutif)
+            if selisih.days > 0:
+                banyak_isi_tugas_rutin = selisih.days + 1
+                list_first_name_pemilik_tugas = kunci_post_request[8:]
 
-            if ceo:
-                tgs_rutin = TugasRutin(
-                    pemilik_tugas= object_eksekutif, 
-                    judul=data_judul,
-                    isi = data_isi,
-                    bagian = 'Management',
-                )
+                for nama in list_first_name_pemilik_tugas:
+                    deadline_pemilik = mulai_utc                    
+                    u = User.objects.get(first_name=nama)
+                    tr = TugasRutin(pemilik_tugas = u, judul = data_judul, isi = data_isi, bagian = u.last_name, archive = False)
+                    tr.save()
+
+                    for i in range(banyak_isi_tugas_rutin):
+                        itr = IsiTugasRutin(tugas_rutin = tr, deadline = deadline_pemilik, status = "On Progress", ketuntasan = False, judul = data_judul, isi = data_isi, komentar = "")
+                        itr.save()
+                        deadline_pemilik += timedelta(days=1)
+
+                return redirect('lihat_tugas')
             else:
-                tgs_rutin = TugasRutin(
-                pemilik_tugas= object_eksekutif, 
-                judul=data_judul,
-                isi = data_isi,
-                bagian = request.user.last_name,
-            )
-            tgs_rutin.save()
-
-            objek_tugas = TugasRutin.objects.get(pk=tgs_rutin.id)
-            statusnya = "On Progress"
-
-            tipe = request.POST.get('tipe')
-            if tipe == 'harian':
-                data_mulai = request.POST.get('mulai')
-                data_selesai = request.POST.get('selesai')
-
-                data_mulai += "T" + request.POST.get('deadlinejam')
-                data_selesai += "T" + request.POST.get('deadlinejam')
-
-                d_dikerjakan_dari = datetime.fromisoformat(data_mulai)
-                d_dikerjakan_sampai = datetime.fromisoformat(data_selesai)
-
-                d_dikerjakan_dari_utc = d_dikerjakan_dari.astimezone(pytz.utc)
-                # d_dikerjakan_sampai_utc = d_dikerjakan_sampai.astimezone(pytz.utc)
-
-                selisih = d_dikerjakan_sampai - d_dikerjakan_dari
-                banyak_hari = selisih.days + 1
-
-                tanggal = d_dikerjakan_dari_utc
-
-                for i in range(banyak_hari):
-                    isitgs_rutin = IsiTugasRutin(
-                        tugas_rutin = objek_tugas,
-                        deadline = tanggal,
-                        status = statusnya,
-                        judul = data_judul,
-                        isi = data_isi,
-                        ketuntasan = False
-                    )
-
-                    isitgs_rutin.save()
-                    tanggal += timedelta(days=1)
-            else:
-                # banyak_tugas adalah integer
-                banyak_tugas = int(request.POST.get('banyak-tugas'))
-                for i in range(banyak_tugas):
-                    isitgs_rutin = IsiTugasRutin(
-                        tugas_rutin = objek_tugas,
-                        deadline = request.POST.get('deadline' + str(i+1)),
-                        status = statusnya,
-                        judul = data_judul,
-                        isi = data_isi,
-                        link_bukti = '#'
-                    )
-                    isitgs_rutin.save()
+                # TAMABAHIN PESAN ERROR
+                redirect('input_tugas_rutin_kelompok')
                 
-        return redirect('lihat_tugas')
-        
+        else:
+            banyak_tugas = int(request.POST.get('banyak-tugas'))
+            pemilik_tugas = kunci_post_request[4+banyak_tugas:]
+
+            for nama in pemilik_tugas:
+                u = User.objects.get(first_name=nama)
+                tr = TugasRutin(pemilik_tugas = u, judul = data_judul, isi = data_isi, bagian = u.last_name, archive = False)
+                tr.save()
+
+                for i in range(banyak_tugas):
+                    deadlinenya = request.POST.get('deadline' + str(i+1))
+                    deadlinenya += ':00+07:00'
+                    deadlinenya = datetime.fromisoformat(deadlinenya)
+                    itr = IsiTugasRutin(tugas_rutin = tr, deadline = deadlinenya, status = "On Progress", ketuntasan = False, judul = data_judul, isi = data_isi, komentar = "")
+                    itr.save()
+
+            return redirect('lihat_tugas')
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
@@ -983,6 +953,7 @@ def lihat_tugas_per_nama(request, id_user):
     ceo = request.user.groups.filter(name='CEO').exists()
     anggota = anggotabagian(request.user.first_name, request.user.last_name)
     tp = TugasProyek.objects.filter(pemilik_tugas=User.objects.get(pk=id_user), ketuntasan=False).order_by('deadline')
+    
     # nama, id, tuntas, total tugas
     tr = rinci_tr_eksekutif(id_user)
     nama_pemilik_tugas = User.objects.get(pk=id_user).first_name
