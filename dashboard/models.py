@@ -613,6 +613,8 @@ class TanggalWeekendWeekdays(models.Model):
 
 class AssemblyProduct(models.Model):
     sku = models.CharField(max_length=30)
+    nama = models.CharField(max_length=100)
+    kategori = models.CharField(max_length=50)
     ayam = models.IntegerField()
 
 class TokenTest(models.Model):
