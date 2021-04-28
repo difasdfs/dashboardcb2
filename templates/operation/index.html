@@ -5,8 +5,249 @@
     <div class="row">
         {% include 'operation/sidebar.html' %}
         <div class="col">
-            <h1>Operation</h1>
+            <h1>Rekomendasi Produksi Ayam Harian</h1>
             
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                  <a class="nav-link active" id="nav-antapani-tab" data-toggle="tab" href="#nav-antapani" role="tab" aria-controls="nav-antapani" aria-selected="false">Antapani</a>
+                  <a class="nav-link" id="nav-cisitu-tab" data-toggle="tab" href="#nav-cisitu" role="tab" aria-controls="nav-cisitu" aria-selected="false">Cisitu</a>
+                  <a class="nav-link" id="nav-jatinangor-tab" data-toggle="tab" href="#nav-jatinangor" role="tab" aria-controls="nav-jatinangor" aria-selected="false">Jatinangor</a>
+                  <a class="nav-link" id="nav-metro-tab" data-toggle="tab" href="#nav-metro" role="tab" aria-controls="nav-metro" aria-selected="false">Metro</a>
+                  <a class="nav-link" id="nav-sukajadi-tab" data-toggle="tab" href="#nav-sukajadi" role="tab" aria-controls="nav-sukajadi" aria-selected="false">Sukajadi</a>
+                  <a class="nav-link" id="nav-sukabirus-tab" data-toggle="tab" href="#nav-sukabirus" role="tab" aria-controls="nav-sukabirus" aria-selected="false">Sukabirus</a>
+                  <a class="nav-link" id="nav-sukapura-tab" data-toggle="tab" href="#nav-sukapura" role="tab" aria-controls="nav-sukapura" aria-selected="false">Sukapura</a>
+                  <a class="nav-link" id="nav-unjani-tab" data-toggle="tab" href="#nav-unjani" role="tab" aria-controls="nav-unjani" aria-selected="false">Unjani</a>
+                </div>
+              </nav>
+
+              <!-- SEMUA KARYAWAN -->
+              <br>
+              <div class="tab-content" id="nav-tabContent">
+                <!-- ANTAPANI -->
+                <div class="tab-pane fade show active" id="nav-antapani" role="tabpanel" aria-labelledby="nav-antapani-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Antapani %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- CISITU -->
+                <div class="tab-pane fade" id="nav-cisitu" role="tabpanel" aria-labelledby="nav-cisitu-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Cisitu %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- JATINANGOR -->
+                <div class="tab-pane fade" id="nav-jatinangor" role="tabpanel" aria-labelledby="nav-jatinangor-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Jatinangor %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- METRO -->
+                <div class="tab-pane fade" id="nav-metro" role="tabpanel" aria-labelledby="nav-metro-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Metro %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SUKAJADI    -->
+                <div class="tab-pane fade" id="nav-sukajadi" role="tabpanel" aria-labelledby="nav-sukajadi-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Sukajadi %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SUKABIRUS -->
+                <div class="tab-pane fade" id="nav-sukabirus" role="tabpanel" aria-labelledby="nav-sukabirus-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Sukabirus %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SUKAPURA -->
+                <div class="tab-pane fade" id="nav-sukapura" role="tabpanel" aria-labelledby="nav-sukapura-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Sukapura %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- UNJANI -->
+                <div class="tab-pane fade" id="nav-unjani" role="tabpanel" aria-labelledby="nav-unjani-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Jam</th>
+                                <th scope="col">Rekomendasi Stok</th>
+                                <th scope="col">{{home_operation.seminggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">{{home_operation.dua_minggu_sebelum|date:"j M Y"}}</th>
+                                <th scope="col">Deviasi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for isi in home_operation.Unjani %}
+                            {% if forloop.counter > 0 %}
+                            <tr>
+                                <th scope="row">{{isi.0}}</th>
+                                <td>{{isi.1}}</td>
+                                <td>{{isi.2}}</td>
+                                <td>{{isi.3}}</td>
+                                <td>{{isi.4}}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
             
         </div>
     </div>
