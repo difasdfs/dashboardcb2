@@ -15,6 +15,7 @@ from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
 from .supply_chain import update_pemakaian_ayam, periksa_hari_dalam_pemakaian_ayam, query_rata_rata_deman_ayam
+from .operation import penentu_awal_akhir_jam
 from .models import *
 
 from django.utils import timezone
@@ -2734,6 +2735,20 @@ def index_supply_chain(request):
         context['data_kar'] = True
 
     return render(request, 'supply_chain/index.html', context)
+
+# ---------------------- OPERATION -------------------------------
+@login_required(login_url='login')
+def index_operation(request):
+    
+    context = {'nama' : request.user.first_name}
+    awal, akhir = penentu_awal_akhir_jam(date(2021, 4, 27), 11)
+    print(awal)
+    print(akhir)
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'operation/index.html', context)
 
 # ---------------------- LOGIC -------------------------------
 

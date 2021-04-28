@@ -120,7 +120,10 @@ urlpatterns = [
     path('detail_mystery_guest/<int:id_mystery_guest>', views.detail_mystery_guest, name='detail_mystery_guest'),
 
     # SUPPLY CHAIN
-    path('index_supply_chain/', views.index_supply_chain, name='index_supply_chain')
+    path('index_supply_chain/', views.index_supply_chain, name='index_supply_chain'),
+
+    # OPERATION
+    path('index_operation/', views.index_operation, name='index_operation')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
