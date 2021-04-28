@@ -48,7 +48,10 @@ def eksekusi_produksi_harian():
     banyak_hari = selisih.days
 
     for i in range(banyak_hari+1):
+        print("Tanggal " + str(awal) + " sedang dieksekusi")
         eksekusi(awal)
+        print("Tanggal " + str(awal) + " telah dieksekusi")
+        print()
         awal += timedelta(days=1)
 
     awal = date(2021, 3, 13)
@@ -58,7 +61,10 @@ def eksekusi_produksi_harian():
     banyak_hari = selisih.days
 
     for i in range(banyak_hari+1):
+        print("Tanggal " + str(awal) + " sedang dieksekusi")
         eksekusi(awal, puasa=True)
+        print("Tanggal " + str(awal) + " telah dieksekusi")
+        print()
         awal += timedelta(days=1)
 
 def bikin_produksi_harian():
