@@ -5,8 +5,67 @@
     <div class="row">
         {% include 'supply_chain/sidebar.html' %}
         <div class="col">
-            <h1>Demand Ayam</h1>
-            <br>
+            <h1>Demand Ayam Rata-rata</h1>
+            
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Cabang</th>
+                    <th scope="col">Weekday (pcs)</th>
+                    <th scope="col">Weekend (pcs)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">Antapani</th>
+                    <td>{{pemakaian_ayam_weekday.0}}</td>
+                    <td>{{pemakaian_ayam_weekend.0}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Jatinangor</th>
+                    <td>{{pemakaian_ayam_weekday.1}}</td>
+                    <td>{{pemakaian_ayam_weekend.1}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Metro</th>
+                    <td>{{pemakaian_ayam_weekday.2}}</td>
+                    <td>{{pemakaian_ayam_weekend.2}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sukapura</th>
+                    <td>{{pemakaian_ayam_weekday.3}}</td>
+                    <td>{{pemakaian_ayam_weekend.3}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sukabirus</th>
+                    <td>{{pemakaian_ayam_weekday.4}}</td>
+                    <td>{{pemakaian_ayam_weekend.4}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Unjani</th>
+                    <td>{{pemakaian_ayam_weekday.5}}</td>
+                    <td>{{pemakaian_ayam_weekend.5}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Cisitu</th>
+                    <td>{{pemakaian_ayam_weekday.6}}</td>
+                    <td>{{pemakaian_ayam_weekend.6}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Sukajadi</th>
+                    <td>{{pemakaian_ayam_weekday.7}}</td>
+                    <td>{{pemakaian_ayam_weekend.7}}</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Total</th>
+                    <td>{{pemakaian_ayam_weekday.8}}</td>
+                    <td>{{pemakaian_ayam_weekend.8}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Weekday : <strong>{{data_awal_akhir.weekday_awal|date:"j M Y"}}</strong> s.d. <strong>{{data_awal_akhir.weekday_akhir|date:"j M Y"}}</strong></p>
+              <p>Weekend : <strong>{{data_awal_akhir.weekend_awal|date:"j M Y"}}</strong> s.d. <strong>{{data_awal_akhir.weekend_akhir|date:"j M Y"}}</strong></p>
+              <br><br><br><br>
         </div>
     </div>
 </div>
