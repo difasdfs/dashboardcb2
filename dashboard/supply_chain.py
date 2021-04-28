@@ -111,7 +111,10 @@ def eksekusi_struk_sehari(tanggalnya):
             kumpulan_struk = hasil['receipts']
 
             for struk in kumpulan_struk:
-                outlet = rumus_id_outlet[struk['store_id']]
+                try:
+                    outlet = rumus_id_outlet[struk['store_id']]
+                except:
+                    continue
                 if struk['receipt_type'] == "SALE":
                     list_pesanan = struk['line_items'] # list of dict
                     for pesanan in list_pesanan:
@@ -143,6 +146,10 @@ def eksekusi_struk_sehari(tanggalnya):
             kumpulan_struk = hasil['receipts']
 
             for struk in kumpulan_struk:
+                try:
+                    outlet = rumus_id_outlet[struk['store_id']]
+                except:
+                    continue
                 if struk['receipt_type'] == "SALE":
                     list_pesanan = struk['line_items'] # list of dict
                     for pesanan in list_pesanan:
