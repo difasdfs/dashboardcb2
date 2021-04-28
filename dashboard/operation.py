@@ -33,7 +33,7 @@ def eksekusi_struk_sehari(tanggalnya, jamnya):
 
     """ mengupdate kelas PemakaianAyam sesuai tanggal dan jam yang dimasukkan """
 
-    objek_hari_produksi = HariProduksi.objects.get(tanggal=tanggalnya)
+    objek_hari_produksi = HariProduksi.objects.get(hari=tanggalnya)
     awal, akhir = penentu_awal_akhir_jam( tanggalnya, jamnya)
     baseUrl = 'https://api.loyverse.com/v1.0/receipts'
     access_token = '4a3e5665ac324711b13d677c8c05cac8'
