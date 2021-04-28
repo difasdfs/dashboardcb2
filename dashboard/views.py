@@ -2717,8 +2717,6 @@ def index_supply_chain(request):
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 
-    eksekusi_struk_sehari(date(2021,4,27))
-
     return render(request, 'supply_chain/index.html', context)
 
 # ---------------------- LOGIC -------------------------------
