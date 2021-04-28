@@ -617,6 +617,22 @@ class AssemblyProduct(models.Model):
     kategori = models.CharField(max_length=50, null=True)
     ayam = models.IntegerField()
 
+class PemakaianAyam(models.Model):
+    tanggal = models.DateField()
+    pemakaian_ayam = models.IntegerField(default=0)
+    pemakaian_ayam_antapani = models.IntegerField(default=0)
+    pemakaian_ayam_jatinangor = models.IntegerField(default=0)
+    pemakaian_ayam_metro = models.IntegerField(default=0)
+    pemakaian_ayam_sukapura = models.IntegerField(default=0)
+    pemakaian_ayam_sukabirus = models.IntegerField(default=0)
+    pemakaian_ayam_unjani = models.IntegerField(default=0)
+    pemakaian_ayam_cisitu = models.IntegerField(default=0)
+    pemakaian_ayam_sukajadi = models.IntegerField(default=0)
+    dieksekusi = models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.tanggal) + " - " + str(self.pemakaian_ayam)
+
 class TokenTest(models.Model):
     aktif = models.BooleanField(default=True)
     token = models.CharField(max_length=10, null=True)

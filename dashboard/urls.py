@@ -117,7 +117,10 @@ urlpatterns = [
     path('edit_complaint/<int:id_complaint>', views.edit_complaint, name='edit_complaint'),
     path('mystery_guest/', views.mystery_guest, name='mystery_guest'),
     path('input_mystery_guest/', views.input_mystery_guest, name='input_mystery_guest'),
-    path('detail_mystery_guest/<int:id_mystery_guest>', views.detail_mystery_guest, name='detail_mystery_guest')
+    path('detail_mystery_guest/<int:id_mystery_guest>', views.detail_mystery_guest, name='detail_mystery_guest'),
+
+    # SUPPLY CHAIN
+    path('index_supply_chain/', views.index_supply_chain, name='index_supply_chain')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

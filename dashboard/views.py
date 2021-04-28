@@ -14,12 +14,14 @@ from .index_sp import query_index_sp
 from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
+from .supply_chain import eksekusi_struk_sehari, periksa_hari_dalam_pemakaian_ayam
 from .models import *
 
 from django.utils import timezone
 from datetime import datetime, timedelta, date, time
 import pytz
 import django_excel
+
 
 from django.http import HttpResponse
 
@@ -477,6 +479,7 @@ def eksekusi_sp(request, id_periode_sp):
 def index_ceo(request):
 
     ngecekdeadline()
+    periksa_hari_dalam_pemakaian_ayam()
     nama = request.user.first_name
     context = {
         'nama': nama,
@@ -557,6 +560,7 @@ def edit_nilai(request, id_isi_tugas_rutin):
 def manager(request):
 
     ngecekdeadline()
+    periksa_hari_dalam_pemakaian_ayam()
 
     nama = request.user.first_name
     context = {'nama': nama}
@@ -1438,6 +1442,8 @@ def kembalikan_archive_rutin(request, id_tugas):
 @login_required(login_url='login')
 def eksekutif(request):
     
+    periksa_hari_dalam_pemakaian_ayam()
+
     nama = request.user.first_name
     context = {'nama' : nama}
 
@@ -2702,6 +2708,19 @@ def detail_kepuasan_pelanggan(request, id_kepuasan_pelanggan):
         context['data_kar'] = True
 
     return render(request, 'marketing/detail_kepuasan_pelanggan.html', context)
+
+# ---------------------- SUPPLY CHAIN -------------------------------
+
+@login_required(login_url='login')
+def index_supply_chain(request):
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    eksekusi_struk_sehari(date(2021,4,27))
+
+    return render(request, 'supply_chain/index.html', context)
+
 # ---------------------- LOGIC -------------------------------
 
 def ngecekdeadline():
