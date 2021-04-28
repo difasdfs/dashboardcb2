@@ -494,6 +494,8 @@ def index_ceo(request):
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
     context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
     context['tren_penjualan_harian'] = tren_penjualan_harian(PERIODE)
+    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
+    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
 
     if request.user.groups.filter(name='Eksekutif').exists() or request.user.groups.filter(name='Manager').exists():
         context['data_kar'] = False
@@ -568,9 +570,9 @@ def manager(request):
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
     periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
+    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
-    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
     context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
@@ -1457,6 +1459,8 @@ def eksekutif(request):
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
     context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
     context['tren_penjualan_harian'] = tren_penjualan_harian(PERIODE)
+    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
+    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
