@@ -4,6 +4,7 @@ import statistics as stat
 import pytz
 import requests
 import json
+import math
 
 rumus_id_outlet = {
         'dc2497ed-963e-42ff-96a2-aeb7a8b65668' : 'Crisbar Metro Margahayu',
@@ -815,9 +816,9 @@ def percantik_float(angkanya):
 def rekomendasi_stok_hari(seminggu_lalu, dua_minggu_lalu):
     ratarata = (seminggu_lalu + dua_minggu_lalu)/2
     deviasi = stat.stdev([seminggu_lalu, dua_minggu_lalu])
-    konstanta = 3
+    konstanta = 1
     hasil = ratarata + (deviasi * konstanta)
-    return percantik_float(hasil)
+    return math.ceil(hasil)
 
 def query_home_operation():
     rumus_hari = {
