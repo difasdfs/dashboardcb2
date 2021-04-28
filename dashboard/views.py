@@ -14,7 +14,7 @@ from .index_sp import query_index_sp
 from .periode_sp import evaluasi, dapet_sp_periode_ini
 from .rekap import query_rekap
 from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
-from .supply_chain import eksekusi_struk_sehari, periksa_hari_dalam_pemakaian_ayam
+from .supply_chain import update_pemakaian_ayam, periksa_hari_dalam_pemakaian_ayam, query_rata_rata_deman_ayam
 from .models import *
 
 from django.utils import timezone
@@ -2713,7 +2713,17 @@ def detail_kepuasan_pelanggan(request, id_kepuasan_pelanggan):
 
 @login_required(login_url='login')
 def index_supply_chain(request):
-    context = {'nama' : request.user.first_name}
+    
+    periksa_hari_dalam_pemakaian_ayam()
+    update_pemakaian_ayam()
+    pemakaian_ayam_weekday, pemakaian_ayam_weekend, data_awal_akhir = query_rata_rata_deman_ayam()
+    context = {
+        'nama' : request.user.first_name,
+        'pemakaian_ayam_weekday' : pemakaian_ayam_weekday,
+        'pemakaian_ayam_weekend' : pemakaian_ayam_weekend,
+        'data_awal_akhir' : data_awal_akhir
+        }
+    
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
 

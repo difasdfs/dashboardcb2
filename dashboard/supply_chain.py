@@ -84,6 +84,9 @@ def awal_akhir_hari_utc(hari):
     return string_awal_hari, string_akhir_hari
 
 def eksekusi_struk_sehari(tanggalnya):
+
+    """ mengupdate kelas PemakaianAyam sesuai tanggal yang dimasukkan """
+
     objek_pemakaian_ayam = PemakaianAyam.objects.get(tanggal=tanggalnya)
     awal_hari, akhir_hari = awal_akhir_hari_utc( tanggalnya )
     baseUrl = 'https://api.loyverse.com/v1.0/receipts'
@@ -199,3 +202,79 @@ def saring_tanggal_weekend_weekdays():
     tanggal_weekday = TanggalWeekendWeekdays.objects.filter(weekend=False, tanggal__range=[hari_lalu, hari_kemarin]).order_by('-tanggal')[:35]
     
     return tanggal_weekend, tanggal_weekday
+
+def update_pemakaian_ayam():
+    pemakaian_ayam = PemakaianAyam.objects.filter(dieksekusi=False)
+    if not pemakaian_ayam:
+        for p in pemakaian_ayam:
+            tanggalnya = p.tanggal
+            eksekusi_struk_sehari(tanggalnya)
+
+def query_rata_rata_deman_ayam():
+    tanggal_weekend, tanggal_weekday = saring_tanggal_weekend_weekdays()
+
+    weekday_awal = tanggal_weekday[len(tanggal_weekday) - 1].tanggal
+    weekday_akhir = tanggal_weekday[0].tanggal
+
+    weekend_awal = tanggal_weekend[len(tanggal_weekend) - 1].tanggal
+    weekend_akhir = tanggal_weekend[0].tanggal
+
+    data_awal_akhir = {
+        'weekday_awal' : weekday_awal,
+        'weekday_akhir' : weekday_akhir,
+        'weekend_awal' : weekend_awal,
+        'weekend_akhir' : weekend_akhir
+    }
+
+    ayam_weekend = ayam_weekend_sukajadi = ayam_weekend_cisitu = ayam_weekend_unjani = ayam_weekend_antapani = ayam_weekend_jatinangor = ayam_weekend_metro = ayam_weekend_sukapura = ayam_weekend_sukabirus = 0
+    ayam_weekday = ayam_weekday_sukajadi = ayam_weekday_unjani = ayam_weekday_cisitu = ayam_weekday_sukapura = ayam_weekday_sukabirus = ayam_weekday_metro = ayam_weekday_jatinangor = ayam_weekday_antapani = 0
+
+    for tw in tanggal_weekend:
+        p = PemakaianAyam.objects.get(tanggal=tw.tanggal)
+        ayam_weekend += p.pemakaian_ayam
+        ayam_weekend_antapani += p.pemakaian_ayam_antapani
+        ayam_weekend_jatinangor += p.pemakaian_ayam_jatinangor
+        ayam_weekend_metro += p.pemakaian_ayam_metro
+        ayam_weekend_sukapura += p.pemakaian_ayam_sukapura
+        ayam_weekend_sukabirus += p.pemakaian_ayam_sukabirus
+        ayam_weekend_unjani += p.pemakaian_ayam_unjani
+        ayam_weekend_cisitu += p.pemakaian_ayam_cisitu
+        ayam_weekend_sukajadi += p.pemakaian_ayam_sukajadi
+    
+    for tw in tanggal_weekday:
+        p = PemakaianAyam.objects.get(tanggal=tw.tanggal)
+        ayam_weekday += p.pemakaian_ayam
+        ayam_weekday_antapani += p.pemakaian_ayam_antapani
+        ayam_weekday_jatinangor += p.pemakaian_ayam_jatinangor
+        ayam_weekday_metro += p.pemakaian_ayam_metro
+        ayam_weekday_sukapura += p.pemakaian_ayam_sukapura
+        ayam_weekday_sukabirus += p.pemakaian_ayam_sukabirus
+        ayam_weekday_unjani += p.pemakaian_ayam_unjani
+        ayam_weekday_cisitu += p.pemakaian_ayam_cisitu
+        ayam_weekday_sukajadi += p.pemakaian_ayam_sukajadi
+
+    pemakaian_ayam_weekday = [
+        ayam_weekday_antapani//35,
+        ayam_weekday_jatinangor//35,
+        ayam_weekday_metro//35,
+        ayam_weekday_sukapura//35,
+        ayam_weekday_sukabirus//35,
+        ayam_weekday_unjani//35,
+        ayam_weekday_cisitu//35,
+        ayam_weekday_sukajadi//35,
+        ayam_weekday//35, 
+        ]
+
+    pemakaian_ayam_weekend = [
+        ayam_weekend_antapani//16,
+        ayam_weekend_jatinangor//16,
+        ayam_weekend_metro//16,
+        ayam_weekend_sukapura//16,
+        ayam_weekend_sukabirus//16,
+        ayam_weekend_unjani//16,
+        ayam_weekend_cisitu//16,
+        ayam_weekend_sukajadi//16,
+        ayam_weekend//16,
+        ]
+
+    return pemakaian_ayam_weekday, pemakaian_ayam_weekend, data_awal_akhir
