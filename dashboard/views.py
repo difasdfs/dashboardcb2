@@ -25,7 +25,7 @@ import django_excel
 
 from django.http import HttpResponse
 
-PERIODE = 4
+PERIODE = 5
 
 # Create your views here.
 
@@ -567,8 +567,10 @@ def manager(request):
 
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
+    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
+    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
     context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
