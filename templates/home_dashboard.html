@@ -30,7 +30,6 @@
         justify-content: space-evenly;
     }
     
-    {% comment %} ANAK DARI KONTAINER PAPAN SKOR {% endcomment %}
     .anak-flex1{
         background-color: #08bc04;
         color: white;
@@ -67,7 +66,6 @@
         margin: 5px;
         border-radius: 5px;
     }
-    {% comment %} ANAK DARI KONTAINER PAPAN SKOR {% endcomment %}
 
     .kaki-papan-skor{
         display: flex;
@@ -82,7 +80,6 @@
         font-size: 25px;
     }
 
-    {% comment %} KELAS STATUS {% endcomment %}
     .hati-hati{
         color: white;
         background-color: #ff0404;
@@ -162,7 +159,7 @@
 
     <br>
     <h3><strong>Komplain Pelanggan</strong></h3>
-    <h5>{{periode_kerja}} vs. Maret 2021</h5>
+    <h5>{{periode_kerja}} vs. {{periode_kerja_sebelumnya}}</h5>
     <table>
         <thead>
             <tr>
@@ -202,7 +199,7 @@
     
     <br>
     <h3><strong>Kepuasan Pelanggan</strong></h3>
-    <h5>April 2021 vs. Maret 2021</h5>
+    <h5>{{periode_kerja}} vs. {{periode_kerja_sebelumnya}}</h5>
     <table>
         <thead>
             <tr>
@@ -275,7 +272,7 @@
     <br>
     <h3><strong>Tren Penjualan Harian</strong></h3>
     <div class="row" style="margin-bottom:7px;">
-        <div class="col-md-auto"><h5>April 2021 vs. Maret 2021</h5></div>
+        <div class="col-md-auto"><h5>{{periode_kerja}} vs. {{periode_kerja_sebelumnya}}</h5></div>
         <div class="col-8"><a class="btn btn-success btn-sm" href="{% url 'update_dashboard' %}" role="button">Update</a></div>
     </div>
     
@@ -334,7 +331,7 @@
 
     <br>
     <h3><strong>Tren Pelanggan Harian</strong></h3>
-    <h5>April 2021 vs. Maret 2021</h5>
+    <h5>{{periode_kerja}} vs. {{periode_kerja_sebelumnya}}</h5>
     <table>
         <thead>
             <tr>
