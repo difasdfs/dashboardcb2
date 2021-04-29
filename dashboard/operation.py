@@ -20,8 +20,6 @@ rumus_id_outlet = {
 # tanggal = objek datetime.date
 # jam = integer
 def penentu_awal_akhir_jam(tanggal, jam):
-    
-    jam -= 1
 
     awal = datetime(tanggal.year, tanggal.month, tanggal.day, jam, 0, 1, tzinfo=pytz.UTC) - timedelta(hours=7)
     akhir = datetime(tanggal.year, tanggal.month, tanggal.day, jam, 59, 59, tzinfo=pytz.UTC) - timedelta(hours=7)
