@@ -303,9 +303,9 @@ def eksekusi_struk_sehari(tanggalnya, jamnya):
 
 def eksekusi(tanggal, puasa=False):
     if not puasa:
-        jamnya = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24]
+        jamnya = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0]
     else:
-        jamnya = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 1, 2, 3]
+        jamnya = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3]
 
     for jam in jamnya:
         eksekusi_struk_sehari(tanggal, jam)
