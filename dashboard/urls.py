@@ -87,6 +87,7 @@ urlpatterns = [
     # PESERTA PSIKOTES
     path('psikotes/', views.psikotes, name='psikotes'),
     path('data_peserta_psikotes/', views.data_peserta_psikotes, name='data_peserta_psikotes'),
+    path('pendahuluan/', views.pendahuluan, name='pendahuluan'),
     path('petunjuk_1/', views.petunjuk_1, name='petunjuk_1'),
     path('soal_se_2/', views.soal_se_2, name='soal_se_2'),
     path('petunjuk_3/', views.petunjuk_3, name='petunjuk_3'),

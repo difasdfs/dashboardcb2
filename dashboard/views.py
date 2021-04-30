@@ -2058,10 +2058,13 @@ def data_peserta_psikotes(request):
         p.hitung_umur()
         p.save()
         request.session['id_peserta'] = str(p.id)
-        return redirect('petunjuk_1')
+        return redirect('pendahuluan')
 
     context = {'tanggal_test' : date.today()}
     return render(request, 'psikotes/daftar_peserta_psikotes.html', context)
+
+def pendahuluan(request):
+    return render(request, 'psikotes/soal/pendahuluan.html')
 
 def petunjuk_1(request):
     if ('id_peserta' not in request.session):
