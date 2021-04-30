@@ -1,0 +1,41 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <p>Tes ini terdiri dari beberapa kelompok soal, dimana masing - masing kelompok soal memiliki aturan dan waktu yang berbeda. Tugas Saudara yaitu mengerjakan setiap kelompok soal sesuai dengan urutan yang di tentukan dengan sebaik dan teliti mungkin</p>
+                <p>Perhatian: ketika Saudara sudah membaca intruksi pada setiap kelompok soal silahkan di klik “mengerti” dan mulai mengerjakan waktu terbatas sesuai dengan yang tercantum pada setiap kelompok soal. Jika saudara sudah mengklik “mengerti” Saudara tidak bisa kembali ke halaman sebelumnya.</p>
+            </div>
+            <div class="mengerti">
+                <a class="btn btn-success" href="{% url 'petunjuk_1' %}">Mengerti</a>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+{% endblock %}
