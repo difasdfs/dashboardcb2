@@ -855,6 +855,103 @@ class JawabanIst(models.Model):
     me_19 = models.CharField(max_length=1, null=True)
     me_20 = models.CharField(max_length=1, null=True)
 
+    # DISC
+    # nomor 1
+    m1 = models.CharField(max_length=1, null=True)
+    l1 = models.CharField(max_length=1, null=True)
+
+    # nomor 2
+    m2 = models.CharField(max_length=1, null=True)
+    l2 = models.CharField(max_length=1, null=True)
+
+    # nomor 3
+    m3 = models.CharField(max_length=1, null=True)
+    l3 = models.CharField(max_length=1, null=True)
+    
+    # nomor 4
+    m4 = models.CharField(max_length=1, null=True)
+    l4 = models.CharField(max_length=1, null=True)
+    
+    # nomor 5
+    m5 = models.CharField(max_length=1, null=True)
+    l5 = models.CharField(max_length=1, null=True)
+    
+    # nomor 6
+    m6 = models.CharField(max_length=1, null=True)
+    l6 = models.CharField(max_length=1, null=True)
+    
+    # nomor 7
+    m7 = models.CharField(max_length=1, null=True)
+    l7 = models.CharField(max_length=1, null=True)
+    
+    # nomor 8
+    m8 = models.CharField(max_length=1, null=True)
+    l8 = models.CharField(max_length=1, null=True)
+    
+    # nomor 9
+    m9 = models.CharField(max_length=1, null=True)
+    l9 = models.CharField(max_length=1, null=True)
+    
+    # nomor 10
+    m10 = models.CharField(max_length=1, null=True)
+    l10 = models.CharField(max_length=1, null=True)
+    
+    # nomor 11
+    m11 = models.CharField(max_length=1, null=True)
+    l11 = models.CharField(max_length=1, null=True)
+    
+    # nomor 12
+    m12 = models.CharField(max_length=1, null=True)
+    l12 = models.CharField(max_length=1, null=True)
+    
+    # nomor 13
+    m13 = models.CharField(max_length=1, null=True)
+    l13 = models.CharField(max_length=1, null=True)
+    
+    # nomor 14
+    m14 = models.CharField(max_length=1, null=True)
+    l14 = models.CharField(max_length=1, null=True)
+    
+    # nomor 15
+    m15 = models.CharField(max_length=1, null=True)
+    l15 = models.CharField(max_length=1, null=True)
+    
+    # nomor 16
+    m16 = models.CharField(max_length=1, null=True)
+    l16 = models.CharField(max_length=1, null=True)
+    
+    # nomor 17
+    m17 = models.CharField(max_length=1, null=True)
+    l17 = models.CharField(max_length=1, null=True)
+    
+    # nomor 18
+    m18 = models.CharField(max_length=1, null=True)
+    l18 = models.CharField(max_length=1, null=True)
+    
+    # nomor 19
+    m19 = models.CharField(max_length=1, null=True)
+    l19 = models.CharField(max_length=1, null=True)
+    
+    # nomor 20
+    m20 = models.CharField(max_length=1, null=True)
+    l20 = models.CharField(max_length=1, null=True)
+    
+    # nomor 21
+    m21 = models.CharField(max_length=1, null=True)
+    l21 = models.CharField(max_length=1, null=True)
+    
+    # nomor 22
+    m22 = models.CharField(max_length=1, null=True)
+    l22 = models.CharField(max_length=1, null=True)
+    
+    # nomor 23
+    m23 = models.CharField(max_length=1, null=True)
+    l23 = models.CharField(max_length=1, null=True)
+    
+    # nomor 24
+    m24 = models.CharField(max_length=1, null=True)
+    l24 = models.CharField(max_length=1, null=True)
+
 class HariProduksi(models.Model):
     hari = models.DateField()
     
