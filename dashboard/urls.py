@@ -107,6 +107,7 @@ urlpatterns = [
     path('petunjuk_17/', views.petunjuk_17, name='petunjuk_17'),
     path('hafalan_18/', views.hafalan_18, name='hafalan_18'),
     path('soal_me_19/', views.soal_me_19, name='soal_me_19'),
+    path('disc/', views.disc, name='disc'),
 
     # REKAP
     path('rekap/', views.rekap, name='rekap'),

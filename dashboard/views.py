@@ -2480,6 +2480,121 @@ def soal_me_19(request):
 
     return render(request, 'psikotes/soal/19_me.html')
     
+
+def disc(request):
+
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['19', '20']):
+        return redirect('psikotes')
+
+    request.session['halaman'] = '20'
+
+    if request.method == 'POST':
+        j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
+        # nomor 1
+        j.m1 = request.POST.get('1_m_disc')
+        j.l1 = request.POST.get('1_l_disc')
+
+        # nomor 2
+        j.m2 = request.POST.get('2_m_disc')
+        j.l2 = request.POST.get('2_l_disc')
+
+        # nomor 3
+        j.m3 = request.POST.get('3_m_disc')
+        j.l3 = request.POST.get('3_l_disc')
+        
+        # nomor 4
+        j.m4 = request.POST.get('4_m_disc')
+        j.l4 = request.POST.get('4_l_disc')
+        
+        # nomor 5
+        j.m5 = request.POST.get('5_m_disc')
+        j.l5 = request.POST.get('5_l_disc')
+        
+        # nomor 6
+        j.m6 = request.POST.get('6_m_disc')
+        j.l6 = request.POST.get('6_l_disc')
+        
+        # nomor 7
+        j.m7 = request.POST.get('7_m_disc')
+        j.l7 = request.POST.get('7_l_disc')
+        
+        # nomor 8
+        j.m8 = request.POST.get('8_m_disc')
+        j.l8 = request.POST.get('8_l_disc')
+        
+        # nomor 9
+        j.m9 = request.POST.get('9_m_disc')
+        j.l9 = request.POST.get('9_l_disc')
+        
+        # nomor 10
+        j.m10 = request.POST.get('10_m_disc')
+        j.l10 = request.POST.get('10_l_disc')
+        
+        # nomor 11
+        j.m11 = request.POST.get('11_m_disc')
+        j.l11 = request.POST.get('11_l_disc')
+        
+        # nomor 12
+        j.m12 = request.POST.get('12_m_disc')
+        j.l12 = request.POST.get('12_l_disc')
+        
+        # nomor 13
+        j.m13 = request.POST.get('13_m_disc')
+        j.l13 = request.POST.get('13_l_disc')
+        
+        # nomor 14
+        j.m14 = request.POST.get('14_m_disc')
+        j.l14 = request.POST.get('14_l_disc')
+        
+        # nomor 15
+        j.m15 = request.POST.get('15_m_disc')
+        j.l15 = request.POST.get('15_l_disc')
+        
+        # nomor 16
+        j.m16 = request.POST.get('16_m_disc')
+        j.l16 = request.POST.get('16_l_disc')
+        
+        # nomor 17
+        j.m17 = request.POST.get('17_m_disc')
+        j.l17 = request.POST.get('17_l_disc')
+        
+        # nomor 18
+        j.m18 = request.POST.get('18_m_disc')
+        j.l18 = request.POST.get('18_l_disc')
+        
+        # nomor 19
+        j.m19 = request.POST.get('19_m_disc')
+        j.l19 = request.POST.get('19_l_disc')
+        
+        # nomor 20
+        j.m20 = request.POST.get('20_m_disc')
+        j.l20 = request.POST.get('20_l_disc')
+        
+        # nomor 21
+        j.m21 = request.POST.get('21_m_disc')
+        j.l21 = request.POST.get('21_l_disc')
+        
+        # nomor 22
+        j.m22 = request.POST.get('22_m_disc')
+        j.l22 = request.POST.get('22_l_disc')
+        
+        # nomor 23
+        j.m23 = request.POST.get('23_m_disc')
+        j.l23 = request.POST.get('23_l_disc')
+        
+        # nomor 24
+        j.m24 = request.POST.get('24_m_disc')
+        j.l24 = request.POST.get('24_l_disc')
+        j.save()
+        return redirect('psikotes')
+
+        # print(m1, m2, m3, m4, m5, m6, m7, m8, m9, m10, m11, m12, m13, m14, m15, m16, m17, m18, m19, m20, m21, m22, m23, m24)
+        # print(l1, l2, l3, l4, l5, l6, l7, l8, l9, l10, l11, l12, l13, l14, l15, l16, l17, l18, l19, l20, l21, l22, l23, l24)
+
+    return render(request, 'psikotes/soal/disc.html')
+
 # ---------------------- MARKETING -------------------------------
 @login_required(login_url='login')
 def complaint_list(request):
