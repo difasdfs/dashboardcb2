@@ -1,0 +1,1792 @@
+{% extends 'psikotes/main.html' %}
+{% block content %}
+
+<style>
+.kotak-petunjuk{
+    border: 1px solid black;
+    padding-top:5px;
+    padding-left: 40px;
+    padding-right: 30px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.mengerti{
+    padding-top:20px;
+    padding-bottom:30px;
+    border-radius: 10px;
+    display: flex;
+    justify-content:center;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.cell-pertanyaan{
+    text-align: left;
+}
+
+td, td {
+    padding : 10px;
+}
+
+.tabel-kosong{
+    background-color: #989494;
+}
+
+.kontainer-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.kontainer-tabel{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: stretch;
+}
+
+.custom-table{
+    width: 32%;
+}
+
+.perintah{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 70%;
+}
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="kotak-petunjuk">
+                <br>
+                <div class="perintah">
+                    <p>PERINTAH: <br>
+                        Setiap kotak di bawah ini memuat empat kalimat yang menggambarkan saudara di situasi bekerja.  Terdapat kolom M dan kolom L. Kolom M adalah kolom yang <strong>PALING MENGGAMBARKAN SAUDARA DI SITUASI BELERJA</strong>. Sedangkan Kolom L adalah kolom yang <strong>PALING TIDAK MENGGABARKAN SAUDARA DI SITUASI BEKERJA</strong>. Tugas saudara ada dua. Pertama, silahkan saudara pilih salah satu kalimat yang <strong>PALING MENGGAMBARKAN SAUDARA DI SITUASI BEKERJA</strong> pada kolom M.  Kedua, silahkan saudara pilih salah satu kalimat yang <strong>PALING TIDAK MENGGAMBARKAN SAUDARA DI SITUASI BEKERJA</strong> pada kolom L. Setiap tabel wajib diisi dan satu kalimat hanya dapat dipilih satu kali.</p>
+                </div>
+                <br>
+                <form action="" method="POST">
+                    {% csrf_token %}
+
+                    <div class="kontainer-flex">
+
+                        <!-- baris 1 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 1.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_m_disc" id="1_m_disc_d" value="d">
+                                            <label class="form-check-label" for="1_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_l_disc" id="1_l_disc_d" value="d">
+                                            <label class="form-check-label" for="1_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Gampangan, Mudah setuju</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_m_disc" id="1_m_disc_i" value="i">
+                                            <label class="form-check-label" for="1_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_l_disc" id="1_l_disc_i" value="i">
+                                            <label class="form-check-label" for="1_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Percaya, percaya pada orang</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_m_disc" id="1_m_disc_s" value="s">
+                                            <label class="form-check-label" for="1_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_l_disc" id="1_l_disc_s" value="s">
+                                            <label class="form-check-label" for="1_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Petualang, Mengambil resiko</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_m_disc" id="1_m_disc_c" value="c">
+                                            <label class="form-check-label" for="1_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="1_l_disc" id="1_l_disc_c" value="c">
+                                            <label class="form-check-label" for="1_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Toleran, Menghormati</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 1.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_m_disc" id="9_m_disc_d" value="d">
+                                            <label class="form-check-label" for="9_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_l_disc" id="9_l_disc_d" value="d">
+                                            <label class="form-check-label" for="9_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Hasil adalah penting</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_m_disc" id="9_m_disc_i" value="i">
+                                            <label class="form-check-label" for="9_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_l_disc" id="9_l_disc_i" value="i">
+                                            <label class="form-check-label" for="9_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Lakukan dengan benar, Akurasi penting</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_m_disc" id="9_m_disc_s" value="s">
+                                            <label class="form-check-label" for="9_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_l_disc" id="9_l_disc_s" value="s">
+                                            <label class="form-check-label" for="9_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Dibuat menyenangkan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_m_disc" id="9_m_disc_c" value="c">
+                                            <label class="form-check-label" for="9_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="9_l_disc" id="9_l_disc_c" value="c">
+                                            <label class="form-check-label" for="9_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Mari kerjakan bersama</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 1.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_m_disc" id="17_m_disc_d" value="d">
+                                            <label class="form-check-label" for="17_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_l_disc" id="17_l_disc_d" value="d">
+                                            <label class="form-check-label" for="17_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Pendidikan, Kebudayaan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_m_disc" id="17_m_disc_i" value="i">
+                                            <label class="form-check-label" for="17_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_l_disc" id="17_l_disc_i" value="i">
+                                            <label class="form-check-label" for="17_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Prestasi, Ganjaran</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_m_disc" id="17_m_disc_s" value="s">
+                                            <label class="form-check-label" for="17_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_l_disc" id="17_l_disc_s" value="s">
+                                            <label class="form-check-label" for="17_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Keselamatan, Keamanan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_m_disc" id="17_m_disc_c" value="c">
+                                            <label class="form-check-label" for="17_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="17_l_disc" id="17_l_disc_c" value="c">
+                                            <label class="form-check-label" for="17_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Sosial, Perkumpulan kelompok</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <!-- baris 2 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 2.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_m_disc" id="2_m_disc_d" value="d">
+                                            <label class="form-check-label" for="2_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_l_disc" id="2_l_disc_d" value="d">
+                                            <label class="form-check-label" for="2_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Lembut suara, Pendiam</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_m_disc" id="2_m_disc_i" value="i">
+                                            <label class="form-check-label" for="2_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_l_disc" id="2_l_disc_i" value="i">
+                                            <label class="form-check-label" for="2_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Optimistik, Visioner</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_m_disc" id="2_m_disc_s" value="s">
+                                            <label class="form-check-label" for="2_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_l_disc" id="2_l_disc_s" value="s">
+                                            <label class="form-check-label" for="2_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Pusat perhatian, Suka gaul</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_m_disc" id="2_m_disc_c" value="c">
+                                            <label class="form-check-label" for="2_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="2_l_disc" id="2_l_disc_c" value="c">
+                                            <label class="form-check-label" for="2_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Pendamai, Membawa harmoni</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 2.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_m_disc" id="10_m_disc_d" value="d">
+                                            <label class="form-check-label" for="10_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_l_disc" id="10_l_disc_d" value="d">
+                                            <label class="form-check-label" for="10_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Akan berjalan terus tanpa kontrol diri</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_m_disc" id="10_m_disc_i" value="i">
+                                            <label class="form-check-label" for="10_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_l_disc" id="10_l_disc_i" value="i">
+                                            <label class="form-check-label" for="10_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Akan membeli sesuai dorongan hati</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_m_disc" id="10_m_disc_s" value="s">
+                                            <label class="form-check-label" for="10_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_l_disc" id="10_l_disc_s" value="s">
+                                            <label class="form-check-label" for="10_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Akan menunggu, Tanpa tekanan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_m_disc" id="10_m_disc_c" value="c">
+                                            <label class="form-check-label" for="10_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="10_l_disc" id="10_l_disc_c" value="c">
+                                            <label class="form-check-label" for="10_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Akan mengusahakan apa yang kuinginkan</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 2.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_m_disc" id="18_disc_d" value="d">
+                                            <label class="form-check-label" for="18_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_l_disc" id="18_disc_d" value="d">
+                                            <label class="form-check-label" for="18_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Memimpin, Pendekatan langsung</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_m_disc" id="18_disc_i" value="i">
+                                            <label class="form-check-label" for="18_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_l_disc" id="18_disc_i" value="i">
+                                            <label class="form-check-label" for="18_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Suka bergaul, Antusias</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_m_disc" id="18_disc_s" value="s">
+                                            <label class="form-check-label" for="18_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_l_disc" id="18_disc_s" value="s">
+                                            <label class="form-check-label" for="18_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Dapat diramal, Konsisten</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_m_disc" id="18_disc_c" value="c">
+                                            <label class="form-check-label" for="18_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="18_l_disc" id="18_disc_c" value="c">
+                                            <label class="form-check-label" for="18_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Waspada, Hati-hati</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <!-- baris 3 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 3.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_m_disc" id="3_m_disc_d" value="d">
+                                            <label class="form-check-label" for="3_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_l_disc" id="3_l_disc_d" value="d">
+                                            <label class="form-check-label" for="3_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menyemangati orang</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_m_disc" id="3_m_disc_i" value="i">
+                                            <label class="form-check-label" for="3_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_l_disc" id="3_l_disc_i" value="i">
+                                            <label class="form-check-label" for="3_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Berusaha sempurna</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_m_disc" id="3_m_disc_s" value="s">
+                                            <label class="form-check-label" for="3_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_l_disc" id="3_l_disc_s" value="s">
+                                            <label class="form-check-label" for="3_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Bagian dari kelompok</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_m_disc" id="3_m_disc_c" value="c">
+                                            <label class="form-check-label" for="3_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="3_l_disc" id="3_l_disc_c" value="c">
+                                            <label class="form-check-label" for="3_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin membuat tujuan</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 3.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_m_disc" id="11_m_disc_d" value="d">
+                                            <label class="form-check-label" for="11_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_l_disc" id="11_l_disc_d" value="d">
+                                            <label class="form-check-label" for="11_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ramah, Mudah bergabung</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_m_disc" id="11_m_disc_i" value="i">
+                                            <label class="form-check-label" for="11_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_l_disc" id="11_l_disc_i" value="i">
+                                            <label class="form-check-label" for="11_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Unik, Bosan rutinitas</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_m_disc" id="11_m_disc_s" value="s">
+                                            <label class="form-check-label" for="11_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_l_disc" id="11_l_disc_s" value="s">
+                                            <label class="form-check-label" for="11_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Aktif mengubah sesuatu</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_m_disc" id="11_m_disc_c" value="c">
+                                            <label class="form-check-label" for="11_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="11_l_disc" id="11_l_disc_c" value="c">
+                                            <label class="form-check-label" for="11_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin hal-hal yang pasti</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 3.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_m_disc" id="19_disc_d" value="d">
+                                            <label class="form-check-label" for="19_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_l_disc" id="19_disc_d" value="d">
+                                            <label class="form-check-label" for="19_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tidak mudah dikalahkan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_m_disc" id="19_disc_i" value="i">
+                                            <label class="form-check-label" for="19_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_l_disc" id="19_disc_i" value="i">
+                                            <label class="form-check-label" for="19_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Kerjakan sesuai perintah, Ikut pemimpin</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_m_disc" id="19_disc_s" value="s">
+                                            <label class="form-check-label" for="19_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_l_disc" id="19_disc_s" value="s">
+                                            <label class="form-check-label" for="19_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Mudah terangsang, Riang</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_m_disc" id="19_disc_c" value="c">
+                                            <label class="form-check-label" for="19_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="19_l_disc" id="19_disc_c" value="c">
+                                            <label class="form-check-label" for="19_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin segalanya teratur, Rapi</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <!-- baris 4 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 4.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_m_disc" id="4_m_disc_d" value="d">
+                                            <label class="form-check-label" for="4_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_l_disc" id="4_l_disc_d" value="d">
+                                            <label class="form-check-label" for="4_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menjadi frustasi</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_m_disc" id="4_m_disc_i" value="i">
+                                            <label class="form-check-label" for="4_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_l_disc" id="4_l_disc_i" value="i">
+                                            <label class="form-check-label" for="4_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menyimpan perasaan saya</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_m_disc" id="4_m_disc_s" value="s">
+                                            <label class="form-check-label" for="4_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_l_disc" id="4_l_disc_s" value="s">
+                                            <label class="form-check-label" for="4_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menceritakan sisi saya</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_m_disc" id="4_m_disc_c" value="c">
+                                            <label class="form-check-label" for="4_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="4_l_disc" id="4_l_disc_c" value="c">
+                                            <label class="form-check-label" for="4_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Siap beroposisi</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 4.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_m_disc" id="12_m_disc_d" value="d">
+                                            <label class="form-check-label" for="12_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_l_disc" id="12_l_disc_d" value="d">
+                                            <label class="form-check-label" for="12_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Non-konfrontasi, Menyerah</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_m_disc" id="12_m_disc_i" value="i">
+                                            <label class="form-check-label" for="12_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_l_disc" id="12_l_disc_i" value="i">
+                                            <label class="form-check-label" for="12_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Dipenuhi hal detil</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_m_disc" id="12_m_disc_s" value="s">
+                                            <label class="form-check-label" for="12_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_l_disc" id="12_l_disc_s" value="s">
+                                            <label class="form-check-label" for="12_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Perubahan pada menit terakhir</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_m_disc" id="12_m_disc_c" value="c">
+                                            <label class="form-check-label" for="12_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="12_l_disc" id="12_l_disc_c" value="c">
+                                            <label class="form-check-label" for="12_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menuntut, Kasar</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 4.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_m_disc" id="20_disc_d" value="d">
+                                            <label class="form-check-label" for="20_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_l_disc" id="20_disc_d" value="d">
+                                            <label class="form-check-label" for="20_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Saya akan pimpin mereka</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_m_disc" id="20_disc_i" value="i">
+                                            <label class="form-check-label" for="20_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_l_disc" id="20_disc_i" value="i">
+                                            <label class="form-check-label" for="20_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Saya akan melaksanakan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_m_disc" id="20_disc_s" value="s">
+                                            <label class="form-check-label" for="20_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_l_disc" id="20_disc_s" value="s">
+                                            <label class="form-check-label" for="20_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Saya akan meyakinkan mereka</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_m_disc" id="20_disc_c" value="c">
+                                            <label class="form-check-label" for="20_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="20_l_disc" id="20_disc_c" value="c">
+                                            <label class="form-check-label" for="20_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Saya dapatkan fakta</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <!-- baris 5 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 5.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_m_disc" id="5_m_disc_d" value="d">
+                                            <label class="form-check-label" for="5_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_l_disc" id="5_l_disc_d" value="d">
+                                            <label class="form-check-label" for="5_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Hidup, Suka bicara</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_m_disc" id="5_m_disc_i" value="i">
+                                            <label class="form-check-label" for="5_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_l_disc" id="5_l_disc_i" value="i">
+                                            <label class="form-check-label" for="5_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Gerak cepat, Tekun</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_m_disc" id="5_m_disc_s" value="s">
+                                            <label class="form-check-label" for="5_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_l_disc" id="5_l_disc_s" value="s">
+                                            <label class="form-check-label" for="5_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Usaha menjaga keseimbangan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_m_disc" id="5_m_disc_c" value="c">
+                                            <label class="form-check-label" for="5_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="5_l_disc" id="5_l_disc_c" value="c">
+                                            <label class="form-check-label" for="5_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Usaha mengikuti aturan</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 5.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_m_disc" id="13_m_disc_d" value="d">
+                                            <label class="form-check-label" for="13_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_l_disc" id="13_l_disc_d" value="d">
+                                            <label class="form-check-label" for="13_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin kemajuan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_m_disc" id="13_m_disc_i" value="i">
+                                            <label class="form-check-label" for="13_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_l_disc" id="13_l_disc_i" value="i">
+                                            <label class="form-check-label" for="13_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Puas dengan segalanya, Senang</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_m_disc" id="13_m_disc_s" value="s">
+                                            <label class="form-check-label" for="13_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_l_disc" id="13_l_disc_s" value="s">
+                                            <label class="form-check-label" for="13_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Terbuka memperlihatkan perasaan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_m_disc" id="13_m_disc_c" value="c">
+                                            <label class="form-check-label" for="13_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="13_l_disc" id="13_l_disc_c" value="c">
+                                            <label class="form-check-label" for="13_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Rendah hati, sederhana</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 5.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_m_disc" id="21_disc_d" value="d">
+                                            <label class="form-check-label" for="21_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_l_disc" id="21_disc_d" value="d">
+                                            <label class="form-check-label" for="21_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Memikirkan orang dahulu</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_m_disc" id="21_disc_i" value="i">
+                                            <label class="form-check-label" for="21_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_l_disc" id="21_disc_i" value="i">
+                                            <label class="form-check-label" for="21_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Kompetetif, Suka tantangan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_m_disc" id="21_disc_s" value="s">
+                                            <label class="form-check-label" for="21_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_l_disc" id="21_disc_s" value="s">
+                                            <label class="form-check-label" for="21_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Optimis, Positif</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_m_disc" id="21_disc_c" value="c">
+                                            <label class="form-check-label" for="21_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="21_l_disc" id="21_disc_c" value="c">
+                                            <label class="form-check-label" for="21_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Pemikir logis, Sistematik</td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                        <br>
+
+                        <!-- baris 6 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 6.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_m_disc" id="6_m_disc_d" value="d">
+                                            <label class="form-check-label" for="6_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_l_disc" id="6_l_disc_d" value="d">
+                                            <label class="form-check-label" for="6_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Kelola waktu secara efisien</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_m_disc" id="6_m_disc_i" value="i">
+                                            <label class="form-check-label" for="6_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_l_disc" id="6_l_disc_i" value="i">
+                                            <label class="form-check-label" for="6_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Sering terburu-buru, Merasa tertekan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_m_disc" id="6_m_disc_s" value="s">
+                                            <label class="form-check-label" for="6_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_l_disc" id="6_l_disc_s" value="s">
+                                            <label class="form-check-label" for="6_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Masalah sosial itu penting</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_m_disc" id="6_m_disc_c" value="c">
+                                            <label class="form-check-label" for="6_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="6_l_disc" id="6_l_disc_c" value="c">
+                                            <label class="form-check-label" for="6_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Suka selesaikan apa yang saya mulai</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 6.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_m_disc" id="14_m_disc_d" value="d">
+                                            <label class="form-check-label" for="14_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_l_disc" id="14_l_disc_d" value="d">
+                                            <label class="form-check-label" for="14_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tenang, Pendiam</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_m_disc" id="14_m_disc_i" value="i">
+                                            <label class="form-check-label" for="14_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_l_disc" id="14_l_disc_i" value="i">
+                                            <label class="form-check-label" for="14_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Bahagia, Tanpa beban</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_m_disc" id="14_m_disc_s" value="s">
+                                            <label class="form-check-label" for="14_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_l_disc" id="14_l_disc_s" value="s">
+                                            <label class="form-check-label" for="14_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menyenangkan, Baik hati</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_m_disc" id="14_m_disc_c" value="c">
+                                            <label class="form-check-label" for="14_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="14_l_disc" id="14_l_disc_c" value="c">
+                                            <label class="form-check-label" for="14_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tak gentar, Berani</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 4.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_m_disc" id="22_disc_d" value="d">
+                                            <label class="form-check-label" for="22_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_l_disc" id="22_disc_d" value="d">
+                                            <label class="form-check-label" for="22_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menyenangkan orang, Mudah setuju</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_m_disc" id="22_disc_i" value="i">
+                                            <label class="form-check-label" for="22_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_l_disc" id="22_disc_i" value="i">
+                                            <label class="form-check-label" for="22_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tertawa lepas, Hidup</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_m_disc" id="22_disc_s" value="s">
+                                            <label class="form-check-label" for="22_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_l_disc" id="22_disc_s" value="s">
+                                            <label class="form-check-label" for="22_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Berani, Tak gentar</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_m_disc" id="22_disc_c" value="c">
+                                            <label class="form-check-label" for="22_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="22_l_disc" id="22_disc_c" value="c">
+                                            <label class="form-check-label" for="22_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tenang, Pendiam</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <br>
+
+                        <!-- baris 7 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 7.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_m_disc" id="7_m_disc_d" value="d">
+                                            <label class="form-check-label" for="7_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_l_disc" id="7_l_disc_d" value="d">
+                                            <label class="form-check-label" for="7_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tolak perubahan mendadak</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_m_disc" id="7_m_disc_i" value="i">
+                                            <label class="form-check-label" for="7_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_l_disc" id="7_l_disc_i" value="i">
+                                            <label class="form-check-label" for="7_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Cenderung janji berlebihan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_m_disc" id="7_m_disc_s" value="s">
+                                            <label class="form-check-label" for="7_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_l_disc" id="7_l_disc_s" value="s">
+                                            <label class="form-check-label" for="7_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tarik diri di tengah tekanan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_m_disc" id="7_m_disc_c" value="c">
+                                            <label class="form-check-label" for="7_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="7_l_disc" id="7_l_disc_c" value="c">
+                                            <label class="form-check-label" for="7_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Tidak takut bertempur</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 7.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_m_disc" id="15_m_disc_d" value="d">
+                                            <label class="form-check-label" for="15_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_l_disc" id="15_l_disc_d" value="d">
+                                            <label class="form-check-label" for="15_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menggunakan waktu berkualitas dengan teman</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_m_disc" id="15_m_disc_i" value="i">
+                                            <label class="form-check-label" for="15_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_l_disc" id="15_l_disc_i" value="i">
+                                            <label class="form-check-label" for="15_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Rencanakan masa depan, Bersiap</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_m_disc" id="15_m_disc_s" value="s">
+                                            <label class="form-check-label" for="15_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_l_disc" id="15_l_disc_s" value="s">
+                                            <label class="form-check-label" for="15_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Bepergian demi petualangan baru</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_m_disc" id="15_m_disc_c" value="c">
+                                            <label class="form-check-label" for="15_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="15_l_disc" id="15_l_disc_c" value="c">
+                                            <label class="form-check-label" for="15_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menerima ganjaran atas tujuan yang tercapai</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 7.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_m_disc" id="23_disc_d" value="d">
+                                            <label class="form-check-label" for="23_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_l_disc" id="23_disc_d" value="d">
+                                            <label class="form-check-label" for="23_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin otoritas lebih</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_m_disc" id="23_disc_i" value="i">
+                                            <label class="form-check-label" for="23_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_l_disc" id="23_disc_i" value="i">
+                                            <label class="form-check-label" for="23_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin kesempatan baru</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_m_disc" id="23_disc_s" value="s">
+                                            <label class="form-check-label" for="23_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_l_disc" id="23_disc_s" value="s">
+                                            <label class="form-check-label" for="23_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Menghindari konflik</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_m_disc" id="23_disc_c" value="c">
+                                            <label class="form-check-label" for="23_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="23_l_disc" id="23_disc_c" value="c">
+                                            <label class="form-check-label" for="23_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Ingin petunjuk yang jelas</td>
+                                </tr>
+                            </table>
+                        </div>
+
+
+                        <br>
+
+                        <!-- baris 8 -->
+                        <div class="kontainer-tabel">
+                            <!-- tabel 8.1 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_m_disc" id="8_m_disc_d" value="d">
+                                            <label class="form-check-label" for="8_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_l_disc" id="8_l_disc_d" value="d">
+                                            <label class="form-check-label" for="8_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Penyemangat yang baik</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_m_disc" id="8_m_disc_i" value="i">
+                                            <label class="form-check-label" for="8_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_l_disc" id="8_l_disc_i" value="i">
+                                            <label class="form-check-label" for="8_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Pendengar yang baik</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_m_disc" id="8_m_disc_s" value="s">
+                                            <label class="form-check-label" for="8_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_l_disc" id="8_l_disc_s" value="s">
+                                            <label class="form-check-label" for="8_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Penganalisa yang baik</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_m_disc" id="8_m_disc_c" value="c">
+                                            <label class="form-check-label" for="8_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="8_l_disc" id="8_l_disc_c" value="c">
+                                            <label class="form-check-label" for="8_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Delegator yang baik</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 8.2 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_m_disc" id="16_m_disc_d" value="d">
+                                            <label class="form-check-label" for="16_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_l_disc" id="16_l_disc_d" value="d">
+                                            <label class="form-check-label" for="16_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Aturan perlu dipertanyakan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_m_disc" id="16_m_disc_i" value="i">
+                                            <label class="form-check-label" for="16_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_l_disc" id="16_l_disc_i" value="i">
+                                            <label class="form-check-label" for="16_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Aturan membuat adil</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_m_disc" id="16_m_disc_s" value="s">
+                                            <label class="form-check-label" for="16_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_l_disc" id="16_l_disc_s" value="s">
+                                            <label class="form-check-label" for="16_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Aturan membuat bosan</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_m_disc" id="16_m_disc_c" value="c">
+                                            <label class="form-check-label" for="16_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="16_l_disc" id="16_l_disc_c" value="c">
+                                            <label class="form-check-label" for="16_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Aturan membuat aman</td>
+                                </tr>
+                            </table>
+
+                            <!-- tabel 8.3 -->
+                            <table class="custom-table">
+                                <tr>
+                                    <th>M</th>
+                                    <th>L</th> 
+                                    <th class="tabel-kosong"></th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_m_disc" id="24_disc_d" value="d">
+                                            <label class="form-check-label" for="24_m_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_l_disc" id="24_disc_d" value="d">
+                                            <label class="form-check-label" for="24_l_disc_d"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Dapat diandalkan, Dapat dipercaya</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_m_disc" id="24_disc_i" value="i">
+                                            <label class="form-check-label" for="24_m_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_l_disc" id="24_disc_i" value="i">
+                                            <label class="form-check-label" for="24_l_disc_i"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Kreatif, Unik</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_m_disc" id="24_disc_s" value="s">
+                                            <label class="form-check-label" for="24_m_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_l_disc" id="24_disc_s" value="s">
+                                            <label class="form-check-label" for="24_l_disc_s"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Garis dasar, Orientasi hasil</td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_m_disc" id="24_disc_c" value="c">
+                                            <label class="form-check-label" for="24_m_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="24_l_disc" id="24_disc_c" value="c">
+                                            <label class="form-check-label" for="24_l_disc_c"></label>
+                                        </div>
+                                    </td>
+                                    <td class="cell-pertanyaan">Jalankan standar yang tinggi, Akurat</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="mengerti">
+                        <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+            
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br>
+{% endblock %}
