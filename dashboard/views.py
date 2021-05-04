@@ -2019,15 +2019,15 @@ def hasil_psikotes(request):
     return render(request, 'human_resource/hasil_psikotes.html', context)
 
 # seharusnya ada id_peserta sebagai argumen
-def download_hasil_psikotes(request):
+def download_hasil_psikotes(request, id_peserta):
 
-    # p = PesertaTest.objects.get(pk=id_peserta)
-    # j = JawabanIst.objects.get(peserta_test=p)
+    p = PesertaTest.objects.get(pk=id_peserta)
+    j = JawabanIst.objects.get(peserta_test=p)
 
     # list of list, tiap list dalam merepresentasikan baris
     datanya = [
-        ['data 1', 'data 2'],
-        ['data 1 doang ga ada data 2', 'a']
+        ['Nama : ', p.nama],
+        ['Tgl Lahir / Usia : ', p.tanggal_lahir.strftime("%d %b %Y") + " / " + str(p.umur)]
     ]
 
     return django_excel.make_response_from_array(datanya, "xls", file_name="hasil_psikotes")
