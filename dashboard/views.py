@@ -2032,7 +2032,7 @@ def download_hasil_psikotes(request, id_peserta):
         ['Pendidikan : ', p.pendidikan_terakhir],
         ['', ''],
         ['SE', '', '', 'WA', '', '', 'AN', '', '', 'GE', '', '', 'RA', '', '', 'ZR', '', '', 'FA', '', '', 'WU', '', '', 'ME'],
-        ['No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien']
+        ['No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien', '', 'No', 'Jawaban Klien'],
         ['1. ', j.se_1, '',  '21', j.wa_1, '', '41', j.an_1, '', '61', j.ge_1,  '', '77', j.ra_1,  '', '97', j.zr_1,  '',  '117', j.fa_1,  '', '137', j.wu_1,  '', '157', j.me_1],
         ['2. ', j.se_2, '',  '22', j.wa_2, '', '42', j.an_2, '', '62', j.ge_2,  '', '78', j.ra_2,  '', '98', j.zr_2,  '',  '118', j.fa_2,  '', '138', j.wu_2,  '', '158',j.me_2],
         ['3. ', j.se_3, '',  '23', j.wa_3, '', '43', j.an_3, '', '63', j.ge_3,  '', '79', j.ra_3,  '', '99', j.zr_3,  '',  '119', j.fa_3,  '', '139', j.wu_3,  '', '159',j.me_3],
