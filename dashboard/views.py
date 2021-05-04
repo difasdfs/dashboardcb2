@@ -24,7 +24,7 @@ import pytz
 import django_excel
 
 
-from django.http import HttpResponse
+from django.http import HttpResponse, request
 
 PERIODE = 5
 
@@ -179,8 +179,6 @@ def export_data_karyawan(request):
 
         datanya.append([i, d.no_id_fingerprint, d.nik, d.nama, d.area, d.level_manajemen, d.nama_posisi, d.kode_posisi, d.status_pegawai, tanggal_masuk, d.lama_bekerja, d.no_ktp, d.tempat_lahir, tanggal_lahir, d.umur, d.jenis_kelamin, d.agama, d.pendidikan, d.jurusan, d.alamat, d.no_hp, d.marital_status, d.anak, d.no_rekening, d.bpjs_ketenagakerjaan])
         i += 1
-    
-    # print(datanya)
 
     return django_excel.make_response_from_array(datanya, "xls", file_name="data_karyawan")
 
@@ -2019,6 +2017,20 @@ def hasil_psikotes(request):
         context['data_kar'] = True
     
     return render(request, 'human_resource/hasil_psikotes.html', context)
+
+# seharusnya ada id_peserta sebagai argumen
+def download_hasil_psikotes(request):
+
+    # p = PesertaTest.objects.get(pk=id_peserta)
+    # j = JawabanIst.objects.get(peserta_test=p)
+
+    # list of list, tiap list dalam merepresentasikan baris
+    datanya = [
+        ['data 1', 'data 2'],
+        ['data 1 doang ga ada data 2', 'a']
+    ]
+
+    return django_excel.make_response_from_array(datanya, "xls", file_name="hasil_psikotes")
 
 # ---------------------- PESERTA PSIKOTES -------------------------------
 def psikotes(request):

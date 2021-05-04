@@ -83,6 +83,7 @@ urlpatterns = [
     path('generate_token/', views.generate_token, name='generate_token'),
     path('daftar_token/', views.daftar_token, name='daftar_token'),
     path('hasil_psikotes/', views.hasil_psikotes, name='hasil_psikotes'),
+    path('download_hasil_psikotes/', views.download_hasil_psikotes, name='download_hasil_psikotes'),
 
     # PESERTA PSIKOTES
     path('psikotes/', views.psikotes, name='psikotes'),
