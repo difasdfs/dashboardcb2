@@ -2027,7 +2027,7 @@ def download_hasil_psikotes(request):
     # list of list, tiap list dalam merepresentasikan baris
     datanya = [
         ['data 1', 'data 2'],
-        ['data 1 doang ga ada data 2', 'a']
+        ['data 1 doang ga ada data 2']
     ]
 
     return django_excel.make_response_from_array(datanya, "xls", file_name="hasil_psikotes")
