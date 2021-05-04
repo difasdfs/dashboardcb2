@@ -2027,7 +2027,7 @@ def download_hasil_psikotes(request):
     # list of list, tiap list dalam merepresentasikan baris
     datanya = [
         ['data 1', 'data 2'],
-        ['data 1 doang ga ada data 2']
+        ['data 1 doang ga ada data 2', 'a']
     ]
 
     return django_excel.make_response_from_array(datanya, "xls", file_name="hasil_psikotes")
@@ -2092,26 +2092,26 @@ def soal_se_2(request):
         peserta = PesertaTest.objects.get(pk=int(request.session['id_peserta']))
         j = JawabanIst(
             peserta_test = peserta,
-            se_1 = request.POST.get('1_se'),
-            se_2 = request.POST.get('2_se'),
-            se_3 = request.POST.get('3_se'),
-            se_4 = request.POST.get('4_se'),
-            se_5 = request.POST.get('5_se'),
-            se_6 = request.POST.get('6_se'),
-            se_7 = request.POST.get('7_se'),
-            se_8 = request.POST.get('8_se'),
-            se_9 = request.POST.get('9_se'),
-            se_10 = request.POST.get('10_se'),
-            se_11 = request.POST.get('11_se'),
-            se_12 = request.POST.get('12_se'),
-            se_13 = request.POST.get('13_se'),
-            se_14 = request.POST.get('14_se'),
-            se_15 = request.POST.get('15_se'),
-            se_16 = request.POST.get('16_se'),
-            se_17 = request.POST.get('17_se'),
-            se_18 = request.POST.get('18_se'),
-            se_19 = request.POST.get('19_se'),
-            se_20 = request.POST.get('20_se')
+            se_1 = request.POST.get('1_se') if request.POST.get('1_se') != None else '',
+            se_2 = request.POST.get('2_se') if request.POST.get('2_se') != None else '',
+            se_3 = request.POST.get('3_se') if request.POST.get('3_se') != None else '',
+            se_4 = request.POST.get('4_se') if request.POST.get('4_se') != None else '',
+            se_5 = request.POST.get('5_se') if request.POST.get('5_se') != None else '',
+            se_6 = request.POST.get('6_se') if request.POST.get('6_se') != None else '',
+            se_7 = request.POST.get('7_se') if request.POST.get('7_se') != None else '',
+            se_8 = request.POST.get('8_se') if request.POST.get('8_se') != None else '',
+            se_9 = request.POST.get('9_se') if request.POST.get('9_se') != None else '',
+            se_10 = request.POST.get('10_se') if request.POST.get('10_se') != None else '',
+            se_11 = request.POST.get('11_se') if request.POST.get('11_se') != None else '',
+            se_12 = request.POST.get('12_se') if request.POST.get('12_se') != None else '',
+            se_13 = request.POST.get('13_se') if request.POST.get('13_se') != None else '',
+            se_14 = request.POST.get('14_se') if request.POST.get('14_se') != None else '',
+            se_15 = request.POST.get('15_se') if request.POST.get('15_se') != None else '',
+            se_16 = request.POST.get('16_se') if request.POST.get('16_se') != None else '',
+            se_17 = request.POST.get('17_se') if request.POST.get('17_se') != None else '',
+            se_18 = request.POST.get('18_se') if request.POST.get('18_se') != None else '',
+            se_19 = request.POST.get('19_se') if request.POST.get('19_se') != None else '',
+            se_20 = request.POST.get('20_se') if request.POST.get('20_se') != None else ''
         )
         j.save()
         del request.session['id_peserta']
@@ -2143,26 +2143,26 @@ def soal_wa_4(request):
     request.session['halaman'] = '4'
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.wa_1 = request.POST.get('1_wa')
-        j.wa_2 = request.POST.get('2_wa')
-        j.wa_3 = request.POST.get('3_wa')
-        j.wa_4 = request.POST.get('4_wa')
-        j.wa_5 = request.POST.get('5_wa')
-        j.wa_6 = request.POST.get('6_wa')
-        j.wa_7 = request.POST.get('7_wa')
-        j.wa_8 = request.POST.get('8_wa')
-        j.wa_9 = request.POST.get('9_wa')
-        j.wa_10 = request.POST.get('10_wa')
-        j.wa_11 = request.POST.get('11_wa')
-        j.wa_12 = request.POST.get('12_wa')
-        j.wa_13 = request.POST.get('13_wa')
-        j.wa_14 = request.POST.get('14_wa')
-        j.wa_15 = request.POST.get('15_wa')
-        j.wa_16 = request.POST.get('16_wa')
-        j.wa_17 = request.POST.get('17_wa')
-        j.wa_18 = request.POST.get('18_wa')
-        j.wa_19 = request.POST.get('19_wa')
-        j.wa_20 = request.POST.get('20_wa')
+        j.wa_1 = request.POST.get('1_wa') if request.POST.get('1_wa') != None else ''
+        j.wa_2 = request.POST.get('2_wa') if request.POST.get('2_wa') != None else ''
+        j.wa_3 = request.POST.get('3_wa') if request.POST.get('3_wa') != None else ''
+        j.wa_4 = request.POST.get('4_wa') if request.POST.get('4_wa') != None else ''
+        j.wa_5 = request.POST.get('5_wa') if request.POST.get('5_wa') != None else ''
+        j.wa_6 = request.POST.get('6_wa') if request.POST.get('6_wa') != None else ''
+        j.wa_7 = request.POST.get('7_wa') if request.POST.get('7_wa') != None else ''
+        j.wa_8 = request.POST.get('8_wa') if request.POST.get('8_wa') != None else ''
+        j.wa_9 = request.POST.get('9_wa') if request.POST.get('9_wa') != None else ''
+        j.wa_10 = request.POST.get('10_wa') if request.POST.get('10_wa') != None else ''
+        j.wa_11 = request.POST.get('11_wa') if request.POST.get('11_wa') != None else ''
+        j.wa_12 = request.POST.get('12_wa') if request.POST.get('12_wa') != None else ''
+        j.wa_13 = request.POST.get('13_wa') if request.POST.get('13_wa') != None else ''
+        j.wa_14 = request.POST.get('14_wa') if request.POST.get('14_wa') != None else ''
+        j.wa_15 = request.POST.get('15_wa') if request.POST.get('15_wa') != None else ''
+        j.wa_16 = request.POST.get('16_wa') if request.POST.get('16_wa') != None else ''
+        j.wa_17 = request.POST.get('17_wa') if request.POST.get('17_wa') != None else ''
+        j.wa_18 = request.POST.get('18_wa') if request.POST.get('18_wa') != None else ''
+        j.wa_19 = request.POST.get('19_wa') if request.POST.get('19_wa') != None else ''
+        j.wa_20 = request.POST.get('20_wa') if request.POST.get('20_wa') != None else ''
         j.save()
         return redirect('petunjuk_5')
 
@@ -2188,26 +2188,26 @@ def soal_an_6(request):
     request.session['halaman'] = '6'
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.an_1 = request.POST.get('1_an')
-        j.an_2 = request.POST.get('2_an')
-        j.an_3 = request.POST.get('3_an')
-        j.an_4 = request.POST.get('4_an')
-        j.an_5 = request.POST.get('5_an')
-        j.an_6 = request.POST.get('6_an')
-        j.an_7 = request.POST.get('7_an')
-        j.an_8 = request.POST.get('8_an')
-        j.an_9 = request.POST.get('9_an')
-        j.an_10 = request.POST.get('10_an')
-        j.an_11 = request.POST.get('11_an')
-        j.an_12 = request.POST.get('12_an')
-        j.an_13 = request.POST.get('13_an')
-        j.an_14 = request.POST.get('14_an')
-        j.an_15 = request.POST.get('15_an')
-        j.an_16 = request.POST.get('16_an')
-        j.an_17 = request.POST.get('17_an')
-        j.an_18 = request.POST.get('18_an')
-        j.an_19 = request.POST.get('19_an')
-        j.an_20 = request.POST.get('20_an')
+        j.an_1 = request.POST.get('1_an') if request.POST.get('1_an') != None else ''
+        j.an_2 = request.POST.get('2_an') if request.POST.get('2_an') != None else ''
+        j.an_3 = request.POST.get('3_an') if request.POST.get('3_an') != None else ''
+        j.an_4 = request.POST.get('4_an') if request.POST.get('4_an') != None else ''
+        j.an_5 = request.POST.get('5_an') if request.POST.get('5_an') != None else ''
+        j.an_6 = request.POST.get('6_an') if request.POST.get('6_an') != None else ''
+        j.an_7 = request.POST.get('7_an') if request.POST.get('7_an') != None else ''
+        j.an_8 = request.POST.get('8_an') if request.POST.get('8_an') != None else ''
+        j.an_9 = request.POST.get('9_an') if request.POST.get('9_an') != None else ''
+        j.an_10 = request.POST.get('10_an') if request.POST.get('10_an') != None else ''
+        j.an_11 = request.POST.get('11_an') if request.POST.get('11_an') != None else ''
+        j.an_12 = request.POST.get('12_an') if request.POST.get('12_an') != None else ''
+        j.an_13 = request.POST.get('13_an') if request.POST.get('13_an') != None else ''
+        j.an_14 = request.POST.get('14_an') if request.POST.get('14_an') != None else ''
+        j.an_15 = request.POST.get('15_an') if request.POST.get('15_an') != None else ''
+        j.an_16 = request.POST.get('16_an') if request.POST.get('16_an') != None else ''
+        j.an_17 = request.POST.get('17_an') if request.POST.get('17_an') != None else ''
+        j.an_18 = request.POST.get('18_an') if request.POST.get('18_an') != None else ''
+        j.an_19 = request.POST.get('19_an') if request.POST.get('19_an') != None else ''
+        j.an_20 = request.POST.get('20_an') if request.POST.get('20_an') != None else ''
         j.save()
         return redirect('petunjuk_7')
 
@@ -2234,22 +2234,22 @@ def soal_ge_8(request):
 
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.ge_1 = request.POST.get('1_ge')
-        j.ge_2 = request.POST.get('2_ge')
-        j.ge_3 = request.POST.get('3_ge')
-        j.ge_4 = request.POST.get('4_ge')
-        j.ge_5 = request.POST.get('5_ge')
-        j.ge_6 = request.POST.get('6_ge')
-        j.ge_7 = request.POST.get('7_ge')
-        j.ge_8 = request.POST.get('8_ge')
-        j.ge_9 = request.POST.get('9_ge')
-        j.ge_10 = request.POST.get('10_ge')
-        j.ge_11 = request.POST.get('11_ge')
-        j.ge_12 = request.POST.get('12_ge')
-        j.ge_13 = request.POST.get('13_ge')
-        j.ge_14 = request.POST.get('14_ge')
-        j.ge_15 = request.POST.get('15_ge')
-        j.ge_16 = request.POST.get('16_ge')
+        j.ge_1 = request.POST.get('1_ge') if request.POST.get('1_ge') != None else ''
+        j.ge_2 = request.POST.get('2_ge') if request.POST.get('2_ge') != None else ''
+        j.ge_3 = request.POST.get('3_ge') if request.POST.get('3_ge') != None else ''
+        j.ge_4 = request.POST.get('4_ge') if request.POST.get('4_ge') != None else ''
+        j.ge_5 = request.POST.get('5_ge') if request.POST.get('5_ge') != None else ''
+        j.ge_6 = request.POST.get('6_ge') if request.POST.get('6_ge') != None else ''
+        j.ge_7 = request.POST.get('7_ge') if request.POST.get('7_ge') != None else ''
+        j.ge_8 = request.POST.get('8_ge') if request.POST.get('8_ge') != None else ''
+        j.ge_9 = request.POST.get('9_ge') if request.POST.get('9_ge') != None else ''
+        j.ge_10 = request.POST.get('10_ge') if request.POST.get('10_ge') != None else ''
+        j.ge_11 = request.POST.get('11_ge') if request.POST.get('11_ge') != None else ''
+        j.ge_12 = request.POST.get('12_ge') if request.POST.get('12_ge') != None else ''
+        j.ge_13 = request.POST.get('13_ge') if request.POST.get('13_ge') != None else ''
+        j.ge_14 = request.POST.get('14_ge') if request.POST.get('14_ge') != None else ''
+        j.ge_15 = request.POST.get('15_ge') if request.POST.get('15_ge') != None else ''
+        j.ge_16 = request.POST.get('16_ge') if request.POST.get('16_ge') != None else ''
         j.save()
         return redirect('petunjuk_9')
 
@@ -2276,26 +2276,26 @@ def soal_ra_10(request):
 
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.ra_1 = request.POST.get('1_ra')
-        j.ra_2 = request.POST.get('2_ra')
-        j.ra_3 = request.POST.get('3_ra')
-        j.ra_4 = request.POST.get('4_ra')
-        j.ra_5 = request.POST.get('5_ra')
-        j.ra_6 = request.POST.get('6_ra')
-        j.ra_7 = request.POST.get('7_ra')
-        j.ra_8 = request.POST.get('8_ra')
-        j.ra_9 = request.POST.get('9_ra')
-        j.ra_10 = request.POST.get('10_ra')
-        j.ra_11 = request.POST.get('11_ra')
-        j.ra_12 = request.POST.get('12_ra')
-        j.ra_13 = request.POST.get('13_ra')
-        j.ra_14 = request.POST.get('14_ra')
-        j.ra_15 = request.POST.get('15_ra')
-        j.ra_16 = request.POST.get('16_ra')
-        j.ra_17 = request.POST.get('17_ra')
-        j.ra_18 = request.POST.get('18_ra')
-        j.ra_19 = request.POST.get('19_ra')
-        j.ra_20 = request.POST.get('20_ra')
+        j.ra_1 = request.POST.get('1_ra') if request.POST.get('1_ra') != None else ''
+        j.ra_2 = request.POST.get('2_ra') if request.POST.get('2_ra') != None else ''
+        j.ra_3 = request.POST.get('3_ra') if request.POST.get('3_ra') != None else ''
+        j.ra_4 = request.POST.get('4_ra') if request.POST.get('4_ra') != None else ''
+        j.ra_5 = request.POST.get('5_ra') if request.POST.get('5_ra') != None else ''
+        j.ra_6 = request.POST.get('6_ra') if request.POST.get('6_ra') != None else ''
+        j.ra_7 = request.POST.get('7_ra') if request.POST.get('7_ra') != None else ''
+        j.ra_8 = request.POST.get('8_ra') if request.POST.get('8_ra') != None else ''
+        j.ra_9 = request.POST.get('9_ra') if request.POST.get('9_ra') != None else ''
+        j.ra_10 = request.POST.get('10_ra') if request.POST.get('10_ra') != None else ''
+        j.ra_11 = request.POST.get('11_ra') if request.POST.get('11_ra') != None else ''
+        j.ra_12 = request.POST.get('12_ra') if request.POST.get('12_ra') != None else ''
+        j.ra_13 = request.POST.get('13_ra') if request.POST.get('13_ra') != None else ''
+        j.ra_14 = request.POST.get('14_ra') if request.POST.get('14_ra') != None else ''
+        j.ra_15 = request.POST.get('15_ra') if request.POST.get('15_ra') != None else ''
+        j.ra_16 = request.POST.get('16_ra') if request.POST.get('16_ra') != None else ''
+        j.ra_17 = request.POST.get('17_ra') if request.POST.get('17_ra') != None else ''
+        j.ra_18 = request.POST.get('18_ra') if request.POST.get('18_ra') != None else ''
+        j.ra_19 = request.POST.get('19_ra') if request.POST.get('19_ra') != None else ''
+        j.ra_20 = request.POST.get('20_ra') if request.POST.get('20_ra') != None else ''
         j.save()
         return redirect('petunjuk_11')
 
@@ -2322,26 +2322,26 @@ def soal_zr_12(request):
 
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.zr_1 = request.POST.get('1_zr')
-        j.zr_2 = request.POST.get('2_zr')
-        j.zr_3 = request.POST.get('3_zr')
-        j.zr_4 = request.POST.get('4_zr')
-        j.zr_5 = request.POST.get('5_zr')
-        j.zr_6 = request.POST.get('6_zr')
-        j.zr_7 = request.POST.get('7_zr')
-        j.zr_8 = request.POST.get('8_zr')
-        j.zr_9 = request.POST.get('9_zr')
-        j.zr_10 = request.POST.get('10_zr')
-        j.zr_11 = request.POST.get('11_zr')
-        j.zr_12 = request.POST.get('12_zr')
-        j.zr_13 = request.POST.get('13_zr')
-        j.zr_14 = request.POST.get('14_zr')
-        j.zr_15 = request.POST.get('15_zr')
-        j.zr_16 = request.POST.get('16_zr')
-        j.zr_17 = request.POST.get('17_zr')
-        j.zr_18 = request.POST.get('18_zr')
-        j.zr_19 = request.POST.get('19_zr')
-        j.zr_20 = request.POST.get('20_zr')
+        j.zr_1 = request.POST.get('1_zr') if request.POST.get('1_zr') != None else ''
+        j.zr_2 = request.POST.get('2_zr') if request.POST.get('2_zr') != None else ''
+        j.zr_3 = request.POST.get('3_zr') if request.POST.get('3_zr') != None else ''
+        j.zr_4 = request.POST.get('4_zr') if request.POST.get('4_zr') != None else ''
+        j.zr_5 = request.POST.get('5_zr') if request.POST.get('5_zr') != None else ''
+        j.zr_6 = request.POST.get('6_zr') if request.POST.get('6_zr') != None else ''
+        j.zr_7 = request.POST.get('7_zr') if request.POST.get('7_zr') != None else ''
+        j.zr_8 = request.POST.get('8_zr') if request.POST.get('8_zr') != None else ''
+        j.zr_9 = request.POST.get('9_zr') if request.POST.get('9_zr') != None else ''
+        j.zr_10 = request.POST.get('10_zr') if request.POST.get('10_zr') != None else ''
+        j.zr_11 = request.POST.get('11_zr') if request.POST.get('11_zr') != None else ''
+        j.zr_12 = request.POST.get('12_zr') if request.POST.get('12_zr') != None else ''
+        j.zr_13 = request.POST.get('13_zr') if request.POST.get('13_zr') != None else ''
+        j.zr_14 = request.POST.get('14_zr') if request.POST.get('14_zr') != None else ''
+        j.zr_15 = request.POST.get('15_zr') if request.POST.get('15_zr') != None else ''
+        j.zr_16 = request.POST.get('16_zr') if request.POST.get('16_zr') != None else ''
+        j.zr_17 = request.POST.get('17_zr') if request.POST.get('17_zr') != None else ''
+        j.zr_18 = request.POST.get('18_zr') if request.POST.get('18_zr') != None else ''
+        j.zr_19 = request.POST.get('19_zr') if request.POST.get('19_zr') != None else ''
+        j.zr_20 = request.POST.get('20_zr') if request.POST.get('20_zr') != None else ''
         j.save()
         return redirect('petunjuk_13')
 
@@ -2368,26 +2368,26 @@ def soal_fa_14(request):
 
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.fa_1 = request.POST.get('1_fa')
-        j.fa_2 = request.POST.get('2_fa')
-        j.fa_3 = request.POST.get('3_fa')
-        j.fa_4 = request.POST.get('4_fa')
-        j.fa_5 = request.POST.get('5_fa')
-        j.fa_6 = request.POST.get('6_fa')
-        j.fa_7 = request.POST.get('7_fa')
-        j.fa_8 = request.POST.get('8_fa')
-        j.fa_9 = request.POST.get('9_fa')
-        j.fa_10 = request.POST.get('10_fa')
-        j.fa_11 = request.POST.get('11_fa')
-        j.fa_12 = request.POST.get('12_fa')
-        j.fa_13 = request.POST.get('13_fa')
-        j.fa_14 = request.POST.get('14_fa')
-        j.fa_15 = request.POST.get('15_fa')
-        j.fa_16 = request.POST.get('16_fa')
-        j.fa_17 = request.POST.get('17_fa')
-        j.fa_18 = request.POST.get('18_fa')
-        j.fa_19 = request.POST.get('19_fa')
-        j.fa_20 = request.POST.get('20_fa')
+        j.fa_1 = request.POST.get('1_fa') if request.POST.get('1_fa') != None else ''
+        j.fa_2 = request.POST.get('2_fa') if request.POST.get('2_fa') != None else ''
+        j.fa_3 = request.POST.get('3_fa') if request.POST.get('3_fa') != None else ''
+        j.fa_4 = request.POST.get('4_fa') if request.POST.get('4_fa') != None else ''
+        j.fa_5 = request.POST.get('5_fa') if request.POST.get('5_fa') != None else ''
+        j.fa_6 = request.POST.get('6_fa') if request.POST.get('6_fa') != None else ''
+        j.fa_7 = request.POST.get('7_fa') if request.POST.get('7_fa') != None else ''
+        j.fa_8 = request.POST.get('8_fa') if request.POST.get('8_fa') != None else ''
+        j.fa_9 = request.POST.get('9_fa') if request.POST.get('9_fa') != None else ''
+        j.fa_10 = request.POST.get('10_fa') if request.POST.get('10_fa') != None else ''
+        j.fa_11 = request.POST.get('11_fa') if request.POST.get('11_fa') != None else ''
+        j.fa_12 = request.POST.get('12_fa') if request.POST.get('12_fa') != None else ''
+        j.fa_13 = request.POST.get('13_fa') if request.POST.get('13_fa') != None else ''
+        j.fa_14 = request.POST.get('14_fa') if request.POST.get('14_fa') != None else ''
+        j.fa_15 = request.POST.get('15_fa') if request.POST.get('15_fa') != None else ''
+        j.fa_16 = request.POST.get('16_fa') if request.POST.get('16_fa') != None else ''
+        j.fa_17 = request.POST.get('17_fa') if request.POST.get('17_fa') != None else ''
+        j.fa_18 = request.POST.get('18_fa') if request.POST.get('18_fa') != None else ''
+        j.fa_19 = request.POST.get('19_fa') if request.POST.get('19_fa') != None else ''
+        j.fa_20 = request.POST.get('20_fa') if request.POST.get('20_fa') != None else ''
         j.save()
         return redirect('petunjuk_15')
 
@@ -2414,26 +2414,26 @@ def soal_wu_16(request):
 
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.wu_1 = request.POST.get('1_wu')
-        j.wu_2 = request.POST.get('2_wu')
-        j.wu_3 = request.POST.get('3_wu')
-        j.wu_4 = request.POST.get('4_wu')
-        j.wu_5 = request.POST.get('5_wu')
-        j.wu_6 = request.POST.get('6_wu')
-        j.wu_7 = request.POST.get('7_wu')
-        j.wu_8 = request.POST.get('8_wu')
-        j.wu_9 = request.POST.get('9_wu')
-        j.wu_10 = request.POST.get('10_wu')
-        j.wu_11 = request.POST.get('11_wu')
-        j.wu_12 = request.POST.get('12_wu')
-        j.wu_13 = request.POST.get('13_wu')
-        j.wu_14 = request.POST.get('14_wu')
-        j.wu_15 = request.POST.get('15_wu')
-        j.wu_16 = request.POST.get('16_wu')
-        j.wu_17 = request.POST.get('17_wu')
-        j.wu_18 = request.POST.get('18_wu')
-        j.wu_19 = request.POST.get('19_wu')
-        j.wu_20 = request.POST.get('20_wu')
+        j.wu_1 = request.POST.get('1_wu') if request.POST.get('1_wu') != None else ''
+        j.wu_2 = request.POST.get('2_wu') if request.POST.get('2_wu') != None else ''
+        j.wu_3 = request.POST.get('3_wu') if request.POST.get('3_wu') != None else ''
+        j.wu_4 = request.POST.get('4_wu') if request.POST.get('4_wu') != None else ''
+        j.wu_5 = request.POST.get('5_wu') if request.POST.get('5_wu') != None else ''
+        j.wu_6 = request.POST.get('6_wu') if request.POST.get('6_wu') != None else ''
+        j.wu_7 = request.POST.get('7_wu') if request.POST.get('7_wu') != None else ''
+        j.wu_8 = request.POST.get('8_wu') if request.POST.get('8_wu') != None else ''
+        j.wu_9 = request.POST.get('9_wu') if request.POST.get('9_wu') != None else ''
+        j.wu_10 = request.POST.get('10_wu') if request.POST.get('10_wu') != None else ''
+        j.wu_11 = request.POST.get('11_wu') if request.POST.get('11_wu') != None else ''
+        j.wu_12 = request.POST.get('12_wu') if request.POST.get('12_wu') != None else ''
+        j.wu_13 = request.POST.get('13_wu') if request.POST.get('13_wu') != None else ''
+        j.wu_14 = request.POST.get('14_wu') if request.POST.get('14_wu') != None else ''
+        j.wu_15 = request.POST.get('15_wu') if request.POST.get('15_wu') != None else ''
+        j.wu_16 = request.POST.get('16_wu') if request.POST.get('16_wu') != None else ''
+        j.wu_17 = request.POST.get('17_wu') if request.POST.get('17_wu') != None else ''
+        j.wu_18 = request.POST.get('18_wu') if request.POST.get('18_wu') != None else ''
+        j.wu_19 = request.POST.get('19_wu') if request.POST.get('19_wu') != None else ''
+        j.wu_20 = request.POST.get('20_wu') if request.POST.get('20_wu') != None else ''
         j.save()
         return redirect('petunjuk_17')
 
@@ -2468,26 +2468,26 @@ def soal_me_19(request):
 
     if request.method == "POST":
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
-        j.me_1 = request.POST.get('1_me')
-        j.me_2 = request.POST.get('2_me')
-        j.me_3 = request.POST.get('3_me')
-        j.me_4 = request.POST.get('4_me')
-        j.me_5 = request.POST.get('5_me')
-        j.me_6 = request.POST.get('6_me')
-        j.me_7 = request.POST.get('7_me')
-        j.me_8 = request.POST.get('8_me')
-        j.me_9 = request.POST.get('9_me')
-        j.me_10 = request.POST.get('10_me')
-        j.me_11 = request.POST.get('11_me')
-        j.me_12 = request.POST.get('12_me')
-        j.me_13 = request.POST.get('13_me')
-        j.me_14 = request.POST.get('14_me')
-        j.me_15 = request.POST.get('15_me')
-        j.me_16 = request.POST.get('16_me')
-        j.me_17 = request.POST.get('17_me')
-        j.me_18 = request.POST.get('18_me')
-        j.me_19 = request.POST.get('19_me')
-        j.me_20 = request.POST.get('20_me')
+        j.me_1 = request.POST.get('1_me') if request.POST.get('1_me') != None else ''
+        j.me_2 = request.POST.get('2_me') if request.POST.get('2_me') != None else ''
+        j.me_3 = request.POST.get('3_me') if request.POST.get('3_me') != None else ''
+        j.me_4 = request.POST.get('4_me') if request.POST.get('4_me') != None else ''
+        j.me_5 = request.POST.get('5_me') if request.POST.get('5_me') != None else ''
+        j.me_6 = request.POST.get('6_me') if request.POST.get('6_me') != None else ''
+        j.me_7 = request.POST.get('7_me') if request.POST.get('7_me') != None else ''
+        j.me_8 = request.POST.get('8_me') if request.POST.get('8_me') != None else ''
+        j.me_9 = request.POST.get('9_me') if request.POST.get('9_me') != None else ''
+        j.me_10 = request.POST.get('10_me') if request.POST.get('10_me') != None else ''
+        j.me_11 = request.POST.get('11_me') if request.POST.get('11_me') != None else ''
+        j.me_12 = request.POST.get('12_me') if request.POST.get('12_me') != None else ''
+        j.me_13 = request.POST.get('13_me') if request.POST.get('13_me') != None else ''
+        j.me_14 = request.POST.get('14_me') if request.POST.get('14_me') != None else ''
+        j.me_15 = request.POST.get('15_me') if request.POST.get('15_me') != None else ''
+        j.me_16 = request.POST.get('16_me') if request.POST.get('16_me') != None else ''
+        j.me_17 = request.POST.get('17_me') if request.POST.get('17_me') != None else ''
+        j.me_18 = request.POST.get('18_me') if request.POST.get('18_me') != None else ''
+        j.me_19 = request.POST.get('19_me') if request.POST.get('19_me') != None else ''
+        j.me_20 = request.POST.get('20_me') if request.POST.get('20_me') != None else ''
         return redirect('psikotes')
 
     return render(request, 'psikotes/soal/19_me.html')
@@ -2505,100 +2505,100 @@ def disc(request):
     if request.method == 'POST':
         j = JawabanIst.objects.get(pk=int(request.session['id_jawaban']))
         # nomor 1
-        j.m1 = request.POST.get('1_m_disc')
-        j.l1 = request.POST.get('1_l_disc')
+        j.m1 = request.POST.get('1_m_disc') if request.POST.get('1_m_disc') != None else ''
+        j.l1 = request.POST.get('1_l_disc') if request.POST.get('1_l_disc') != None else ''
 
         # nomor 2
-        j.m2 = request.POST.get('2_m_disc')
-        j.l2 = request.POST.get('2_l_disc')
+        j.m2 = request.POST.get('2_m_disc') if request.POST.get('2_m_disc') != None else ''
+        j.l2 = request.POST.get('2_l_disc') if request.POST.get('2_l_disc') != None else ''
 
         # nomor 3
-        j.m3 = request.POST.get('3_m_disc')
-        j.l3 = request.POST.get('3_l_disc')
+        j.m3 = request.POST.get('3_m_disc') if request.POST.get('3_m_disc') != None else ''
+        j.l3 = request.POST.get('3_l_disc') if request.POST.get('3_l_disc') != None else ''
         
         # nomor 4
-        j.m4 = request.POST.get('4_m_disc')
-        j.l4 = request.POST.get('4_l_disc')
+        j.m4 = request.POST.get('4_m_disc') if request.POST.get('4_m_disc') != None else ''
+        j.l4 = request.POST.get('4_l_disc') if request.POST.get('4_l_disc') != None else ''
         
         # nomor 5
-        j.m5 = request.POST.get('5_m_disc')
-        j.l5 = request.POST.get('5_l_disc')
+        j.m5 = request.POST.get('5_m_disc') if request.POST.get('5_m_disc') != None else ''
+        j.l5 = request.POST.get('5_l_disc') if request.POST.get('5_l_disc') != None else ''
         
         # nomor 6
-        j.m6 = request.POST.get('6_m_disc')
-        j.l6 = request.POST.get('6_l_disc')
+        j.m6 = request.POST.get('6_m_disc') if request.POST.get('6_m_disc') != None else ''
+        j.l6 = request.POST.get('6_l_disc') if request.POST.get('6_l_disc') != None else ''
         
         # nomor 7
-        j.m7 = request.POST.get('7_m_disc')
-        j.l7 = request.POST.get('7_l_disc')
+        j.m7 = request.POST.get('7_m_disc') if request.POST.get('7_m_disc') != None else ''
+        j.l7 = request.POST.get('7_l_disc') if request.POST.get('7_l_disc') != None else ''
         
         # nomor 8
-        j.m8 = request.POST.get('8_m_disc')
-        j.l8 = request.POST.get('8_l_disc')
+        j.m8 = request.POST.get('8_m_disc') if request.POST.get('8_m_disc') != None else ''
+        j.l8 = request.POST.get('8_l_disc') if request.POST.get('8_l_disc') != None else ''
         
         # nomor 9
-        j.m9 = request.POST.get('9_m_disc')
-        j.l9 = request.POST.get('9_l_disc')
+        j.m9 = request.POST.get('9_m_disc') if request.POST.get('9_m_disc') != None else ''
+        j.l9 = request.POST.get('9_l_disc') if request.POST.get('9_l_disc') != None else ''
         
         # nomor 10
-        j.m10 = request.POST.get('10_m_disc')
-        j.l10 = request.POST.get('10_l_disc')
+        j.m10 = request.POST.get('10_m_disc') if request.POST.get('10_m_disc') != None else ''
+        j.l10 = request.POST.get('10_l_disc') if request.POST.get('10_l_disc') != None else ''
         
         # nomor 11
-        j.m11 = request.POST.get('11_m_disc')
-        j.l11 = request.POST.get('11_l_disc')
+        j.m11 = request.POST.get('11_m_disc') if request.POST.get('11_m_disc') != None else ''
+        j.l11 = request.POST.get('11_l_disc') if request.POST.get('11_l_disc') != None else ''
         
         # nomor 12
-        j.m12 = request.POST.get('12_m_disc')
-        j.l12 = request.POST.get('12_l_disc')
+        j.m12 = request.POST.get('12_m_disc') if request.POST.get('12_m_disc') != None else ''
+        j.l12 = request.POST.get('12_l_disc') if request.POST.get('12_l_disc') != None else ''
         
         # nomor 13
-        j.m13 = request.POST.get('13_m_disc')
-        j.l13 = request.POST.get('13_l_disc')
+        j.m13 = request.POST.get('13_m_disc') if request.POST.get('13_m_disc') != None else ''
+        j.l13 = request.POST.get('13_l_disc') if request.POST.get('13_l_disc') != None else ''
         
         # nomor 14
-        j.m14 = request.POST.get('14_m_disc')
-        j.l14 = request.POST.get('14_l_disc')
+        j.m14 = request.POST.get('14_m_disc') if request.POST.get('14_m_disc') != None else ''
+        j.l14 = request.POST.get('14_l_disc') if request.POST.get('14_l_disc') != None else ''
         
         # nomor 15
-        j.m15 = request.POST.get('15_m_disc')
-        j.l15 = request.POST.get('15_l_disc')
+        j.m15 = request.POST.get('15_m_disc') if request.POST.get('15_m_disc') != None else ''
+        j.l15 = request.POST.get('15_l_disc') if request.POST.get('15_l_disc') != None else ''
         
         # nomor 16
-        j.m16 = request.POST.get('16_m_disc')
-        j.l16 = request.POST.get('16_l_disc')
+        j.m16 = request.POST.get('16_m_disc') if request.POST.get('16_m_disc') != None else ''
+        j.l16 = request.POST.get('16_l_disc') if request.POST.get('16_l_disc') != None else ''
         
         # nomor 17
-        j.m17 = request.POST.get('17_m_disc')
-        j.l17 = request.POST.get('17_l_disc')
+        j.m17 = request.POST.get('17_m_disc') if request.POST.get('17_m_disc') != None else ''
+        j.l17 = request.POST.get('17_l_disc') if request.POST.get('17_l_disc') != None else ''
         
         # nomor 18
-        j.m18 = request.POST.get('18_m_disc')
-        j.l18 = request.POST.get('18_l_disc')
+        j.m18 = request.POST.get('18_m_disc') if request.POST.get('18_m_disc') != None else ''
+        j.l18 = request.POST.get('18_l_disc') if request.POST.get('18_l_disc') != None else ''
         
         # nomor 19
-        j.m19 = request.POST.get('19_m_disc')
-        j.l19 = request.POST.get('19_l_disc')
+        j.m19 = request.POST.get('19_m_disc') if request.POST.get('19_m_disc') != None else ''
+        j.l19 = request.POST.get('19_l_disc') if request.POST.get('19_l_disc') != None else ''
         
         # nomor 20
-        j.m20 = request.POST.get('20_m_disc')
-        j.l20 = request.POST.get('20_l_disc')
+        j.m20 = request.POST.get('20_m_disc') if request.POST.get('20_m_disc') != None else ''
+        j.l20 = request.POST.get('20_l_disc') if request.POST.get('20_l_disc') != None else ''
         
         # nomor 21
-        j.m21 = request.POST.get('21_m_disc')
-        j.l21 = request.POST.get('21_l_disc')
+        j.m21 = request.POST.get('21_m_disc') if request.POST.get('21_m_disc') != None else ''
+        j.l21 = request.POST.get('21_l_disc') if request.POST.get('21_l_disc') != None else ''
         
         # nomor 22
-        j.m22 = request.POST.get('22_m_disc')
-        j.l22 = request.POST.get('22_l_disc')
+        j.m22 = request.POST.get('22_m_disc') if request.POST.get('22_m_disc') != None else ''
+        j.l22 = request.POST.get('22_l_disc') if request.POST.get('22_l_disc') != None else ''
         
         # nomor 23
-        j.m23 = request.POST.get('23_m_disc')
-        j.l23 = request.POST.get('23_l_disc')
+        j.m23 = request.POST.get('23_m_disc') if request.POST.get('23_m_disc') != None else ''
+        j.l23 = request.POST.get('23_l_disc') if request.POST.get('23_l_disc') != None else ''
         
         # nomor 24
-        j.m24 = request.POST.get('24_m_disc')
-        j.l24 = request.POST.get('24_l_disc')
+        j.m24 = request.POST.get('24_m_disc') if request.POST.get('24_m_disc') != None else ''
+        j.l24 = request.POST.get('24_l_disc') if request.POST.get('24_l_disc') != None else ''
         j.save()
         return redirect('psikotes')
 
