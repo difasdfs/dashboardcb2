@@ -28,7 +28,7 @@
                         <td>{{t.umur}}</td>
                         <td>{{t.pendidikan_terakhir}}</td>
                         <td>{{t.tanggal_test|date:"j M Y"}}</td>
-                        <td><a class="btn btn-success btn-sm" href="#">Download</a></td>
+                        <td><a class="btn btn-success btn-sm" href="{% url 'download_hasil_psikotes' t.id %}">Download</a></td>
                     </tr>
                     {% endfor %}
                 </tbody>
