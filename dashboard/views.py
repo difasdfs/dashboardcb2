@@ -2487,16 +2487,11 @@ def petunjuk_17(request):
 
 def hafalan_18(request):
 
-    # if 'halaman' not in request.session:
-    #     return redirect('psikotes')
-    # elif (request.session['halaman'] not in ['17', '18']):
-    #     return redirect('psikotes')
+    if 'halaman' not in request.session:
+        return redirect('psikotes')
+    elif (request.session['halaman'] not in ['17', '18']):
+        return redirect('psikotes')
 
-    id_peserta = 2
-    p = PesertaTest.objects.get(pk=2)
-    j = JawabanIst.objects.get(peserta_test=p)
-
-    request.session['id_jawaban'] = 2
 
     request.session['halaman'] = '18'
     return render(request, 'psikotes/soal/18_hafalan.html')
