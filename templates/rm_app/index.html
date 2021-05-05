@@ -1,0 +1,231 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+{% include 'rm_app/navbar.html' %}
+
+<style>
+    .lebar-tabel{
+        width: 60%;
+    }
+
+    .lebar-tanggal{
+        width: 30%;
+    }
+</style>
+
+<hr>
+<div class="container">
+
+
+    <form method="GET">
+        <form>
+            <div class="form-group lebar-tanggal">
+                <label for="tanggal">Tanggal</label>
+                <input onchange="this.form.submit()" type="date" class="form-control" id="tanggal" name="tanggal" value="{{hari_ini}}">
+            </div>
+        </form>
+    </form>
+
+    <br>
+    <h5>Crisbar {{nama_cabang}}</h5>
+    <h1>{{nama_hari}}, {{query_data.tanggal|date:"j M Y"}}</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Jam</th>
+                    <th scope="col">Produksi Ayam (Pcs)</th>
+                    <th scope="col">Produksi Nasi (Gram)</th>
+                    <th scope="col">Produksi Teh Sisri (sachet)</th>
+                    <th scope="col">Produksi Milo (Gram)</th>
+                    <th scope="col">Produksi Orange (Gram)</th>
+                    <th scope="col">Produksi Lemon Tea (Gram)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">11:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_11" id="angka_produksi_ayam_11" value="{{query_data.jam_11_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_11" id="angka_produksi_nasi_11" value="{{query_data.jam_11_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_11" id="angka_produksi_teh_11" value="{{query_data.jam_11_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_11" id="angka_produksi_milo_11" value="{{query_data.jam_11_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_11" id="angka_produksi_orange_11" value="{{query_data.jam_11_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_11" id="angka_produksi_lemontea_11" value="{{query_data.jam_11_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">12:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_12" id="angka_produksi_ayam_12" value="{{query_data.jam_12_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_12" id="angka_produksi_nasi_12" value="{{query_data.jam_12_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_12" id="angka_produksi_teh_12" value="{{query_data.jam_12_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_12" id="angka_produksi_milo_12" value="{{query_data.jam_12_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_12" id="angka_produksi_orange_12" value="{{query_data.jam_12_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_12" id="angka_produksi_lemontea_12" value="{{query_data.jam_12_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">13:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_13" id="angka_produksi_ayam_13" value="{{query_data.jam_13_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_13" id="angka_produksi_nasi_13" value="{{query_data.jam_13_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_13" id="angka_produksi_teh_13" value="{{query_data.jam_13_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_13" id="angka_produksi_milo_13" value="{{query_data.jam_13_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_13" id="angka_produksi_orange_13" value="{{query_data.jam_13_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_13" id="angka_produksi_lemontea_13" value="{{query_data.jam_13_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">14:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_14" id="angka_produksi_ayam_14" value="{{query_data.jam_14_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_14" id="angka_produksi_nasi_14" value="{{query_data.jam_14_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_14" id="angka_produksi_teh_14" value="{{query_data.jam_14_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_14" id="angka_produksi_milo_14" value="{{query_data.jam_14_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_14" id="angka_produksi_orange_14" value="{{query_data.jam_14_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_14" id="angka_produksi_lemontea_14" value="{{query_data.jam_14_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">15:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_15" id="angka_produksi_ayam_15" value="{{query_data.jam_15_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_15" id="angka_produksi_nasi_15" value="{{query_data.jam_15_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_15" id="angka_produksi_teh_15" value="{{query_data.jam_15_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_15" id="angka_produksi_milo_15" value="{{query_data.jam_15_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_15" id="angka_produksi_orange_15" value="{{query_data.jam_15_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_15" id="angka_produksi_lemontea_15" value="{{query_data.jam_15_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">16:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_16" id="angka_produksi_ayam_16" value="{{query_data.jam_16_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_16" id="angka_produksi_nasi_16" value="{{query_data.jam_16_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_16" id="angka_produksi_teh_16" value="{{query_data.jam_16_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_16" id="angka_produksi_milo_16" value="{{query_data.jam_16_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_16" id="angka_produksi_orange_16" value="{{query_data.jam_16_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_16" id="angka_produksi_lemontea_16" value="{{query_data.jam_16_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">17:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_17" id="angka_produksi_ayam_17" value="{{query_data.jam_17_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_17" id="angka_produksi_nasi_17" value="{{query_data.jam_17_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_17" id="angka_produksi_teh_17" value="{{query_data.jam_17_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_17" id="angka_produksi_milo_17" value="{{query_data.jam_17_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_17" id="angka_produksi_orange_17" value="{{query_data.jam_17_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_17" id="angka_produksi_lemontea_17" value="{{query_data.jam_17_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">18:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_18" id="angka_produksi_ayam_18" value="{{query_data.jam_18_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_18" id="angka_produksi_nasi_18" value="{{query_data.jam_18_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_18" id="angka_produksi_teh_18" value="{{query_data.jam_18_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_18" id="angka_produksi_milo_18" value="{{query_data.jam_18_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_18" id="angka_produksi_orange_18" value="{{query_data.jam_18_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_18" id="angka_produksi_lemontea_18" value="{{query_data.jam_18_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">19:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_19" id="angka_produksi_ayam_19" value="{{query_data.jam_19_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_19" id="angka_produksi_nasi_19" value="{{query_data.jam_19_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_19" id="angka_produksi_teh_19" value="{{query_data.jam_19_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_19" id="angka_produksi_milo_19" value="{{query_data.jam_19_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_19" id="angka_produksi_orange_19" value="{{query_data.jam_19_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_19" id="angka_produksi_lemontea_19" value="{{query_data.jam_19_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">20:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_20" id="angka_produksi_ayam_20" value="{{query_data.jam_20_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_20" id="angka_produksi_nasi_20" value="{{query_data.jam_20_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_20" id="angka_produksi_teh_20" value="{{query_data.jam_20_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_20" id="angka_produksi_milo_20" value="{{query_data.jam_20_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_20" id="angka_produksi_orange_20" value="{{query_data.jam_20_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_20" id="angka_produksi_lemontea_20" value="{{query_data.jam_20_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">21:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_21" id="angka_produksi_ayam_21" value="{{query_data.jam_21_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_21" id="angka_produksi_nasi_21" value="{{query_data.jam_21_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_21" id="angka_produksi_teh_21" value="{{query_data.jam_21_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_21" id="angka_produksi_milo_21" value="{{query_data.jam_21_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_21" id="angka_produksi_orange_21" value="{{query_data.jam_21_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_21" id="angka_produksi_lemontea_21" value="{{query_data.jam_21_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">22:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_22" id="angka_produksi_ayam_22" value="{{query_data.jam_22_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_22" id="angka_produksi_nasi_22" value="{{query_data.jam_22_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_22" id="angka_produksi_teh_22" value="{{query_data.jam_22_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_22" id="angka_produksi_milo_22" value="{{query_data.jam_22_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_22" id="angka_produksi_orange_22" value="{{query_data.jam_22_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_22" id="angka_produksi_lemontea_22" value="{{query_data.jam_22_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">23:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_23" id="angka_produksi_ayam_23" value="{{query_data.jam_23_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_23" id="angka_produksi_nasi_23" value="{{query_data.jam_23_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_23" id="angka_produksi_teh_23" value="{{query_data.jam_23_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_23" id="angka_produksi_milo_23" value="{{query_data.jam_23_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_23" id="angka_produksi_orange_23" value="{{query_data.jam_23_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_23" id="angka_produksi_lemontea_23" value="{{query_data.jam_23_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">24:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_24" id="angka_produksi_ayam_24" value="{{query_data.jam_24_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_24" id="angka_produksi_nasi_24" value="{{query_data.jam_24_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_24" id="angka_produksi_teh_24" value="{{query_data.jam_24_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_24" id="angka_produksi_milo_24" value="{{query_data.jam_24_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_24" id="angka_produksi_orange_24" value="{{query_data.jam_24_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_24" id="angka_produksi_lemontea_24" value="{{query_data.jam_24_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">1:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_1" id="angka_produksi_ayam_1" value="{{query_data.jam_1_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_1" id="angka_produksi_nasi_1" value="{{query_data.jam_1_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_1" id="angka_produksi_teh_1" value="{{query_data.jam_1_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_1" id="angka_produksi_milo_1" value="{{query_data.jam_1_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_1" id="angka_produksi_orange_1" value="{{query_data.jam_1_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_1" id="angka_produksi_lemontea_1" value="{{query_data.jam_1_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">2:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_2" id="angka_produksi_ayam_2" value="{{query_data.jam_2_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_2" id="angka_produksi_nasi_2" value="{{query_data.jam_2_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_2" id="angka_produksi_teh_2" value="{{query_data.jam_2_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_2" id="angka_produksi_milo_2" value="{{query_data.jam_2_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_2" id="angka_produksi_orange_2" value="{{query_data.jam_2_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_2" id="angka_produksi_lemontea_2" value="{{query_data.jam_2_lemontea}}"></td>
+                </tr>
+                <tr>
+                    <th scope="row">3:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_ayam_3" id="angka_produksi_ayam_3" value="{{query_data.jam_3_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_nasi_3" id="angka_produksi_nasi_3" value="{{query_data.jam_3_nasi}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_teh_3" id="angka_produksi_teh_3" value="{{query_data.jam_3_teh}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_milo_3" id="angka_produksi_milo_3" value="{{query_data.jam_3_milo}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_orange_3" id="angka_produksi_orange_3" value="{{query_data.jam_3_orange}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="angka_produksi_lemontea_3" id="angka_produksi_lemontea_3" value="{{query_data.jam_3_lemontea}}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <h2>Opname jam 24:00</h2>
+
+        <table class="table table-sm table-striped table-bordered lebar-tabel">
+            <thead>
+                <tr>
+                    <th scope="col">Jam</th>
+                    <th scope="col">Stok Ayam (Gram)</th>
+                    <th scope="col">Stok Chicken Skin (Gram)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">24:00</th>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="stok_ayam" id="stok_ayam" value="{{query_data.stok_ayam}}"></td>
+                    <td><input onchange="this.form.submit()" min="0" type="number" class="form-control" name="stok_chicken_skin" id="stok_chicken_skin" value="{{query_data.stok_chicken_skin}}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="submit" class="btn btn-danger">Save</button>
+    </form>  
+
+</div>
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}
