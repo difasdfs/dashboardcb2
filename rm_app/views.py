@@ -68,6 +68,7 @@ def index_rm(request):
             a = ProduksiAyam.objects.filter(cabang = cabangnya, tanggal = hari_ini)[0]
 
     else:
+        cek_hari(request.user.id, hari_ini, cabangnya)
         a = ProduksiAyam.objects.filter(cabang = cabangnya, tanggal = hari_ini)[0]
 
     if request.method == "POST":
