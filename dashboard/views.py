@@ -2486,10 +2486,17 @@ def petunjuk_17(request):
     return render(request, 'psikotes/soal/17_petunjuk.html')
 
 def hafalan_18(request):
-    if 'halaman' not in request.session:
-        return redirect('psikotes')
-    elif (request.session['halaman'] not in ['17', '18']):
-        return redirect('psikotes')
+
+    # if 'halaman' not in request.session:
+    #     return redirect('psikotes')
+    # elif (request.session['halaman'] not in ['17', '18']):
+    #     return redirect('psikotes')
+
+    id_peserta = 2
+    p = PesertaTest.objects.get(pk=2)
+    j = JawabanIst.objects.get(peserta_test=p)
+
+    request.session['id_jawaban'] = 2
 
     request.session['halaman'] = '18'
     return render(request, 'psikotes/soal/18_hafalan.html')
@@ -2525,7 +2532,7 @@ def soal_me_19(request):
         j.me_18 = request.POST.get('18_me') if request.POST.get('18_me') != None else ''
         j.me_19 = request.POST.get('19_me') if request.POST.get('19_me') != None else ''
         j.me_20 = request.POST.get('20_me') if request.POST.get('20_me') != None else ''
-        return redirect('psikotes')
+        return redirect('disc')
 
     return render(request, 'psikotes/soal/19_me.html')
     
