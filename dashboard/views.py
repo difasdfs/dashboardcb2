@@ -2527,6 +2527,7 @@ def soal_me_19(request):
         j.me_18 = request.POST.get('18_me') if request.POST.get('18_me') != None else ''
         j.me_19 = request.POST.get('19_me') if request.POST.get('19_me') != None else ''
         j.me_20 = request.POST.get('20_me') if request.POST.get('20_me') != None else ''
+        j.save()
         return redirect('disc')
 
     return render(request, 'psikotes/soal/19_me.html')
