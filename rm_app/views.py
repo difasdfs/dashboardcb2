@@ -52,7 +52,12 @@ def logoutuser(request):
 def index_rm(request):
     is_rm(request.user)
 
-    profile = ProfilPengguna.objects.get(pengguna=User.objects.get(pk=request.user.id))
+    try:
+        profile = ProfilPengguna.objects.get(pengguna=User.objects.get(pk=request.user.id))
+    except:
+        messages.info(request, 'Gunakan akun RM untuk login')
+        return redirect('logoutuser')
+
     cabangnya = profile.cabang
 
     hari_ini = date.today()
