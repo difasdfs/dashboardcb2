@@ -255,7 +255,7 @@ def saring_tanggal_weekend_weekdays():
 def update_pemakaian_ayam():
     pemakaian_ayam = PemakaianAyam.objects.filter(dieksekusi=False)
     print(pemakaian_ayam)
-    if not pemakaian_ayam:
+    if pemakaian_ayam:
         print("ini dieksekusi (bener 1)")
         for p in pemakaian_ayam:
             print("ini dieksekusi (bener 2)")
