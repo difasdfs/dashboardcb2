@@ -20,8 +20,8 @@ def fungsi_inisialisasi():
     f = open("buat_chicken_skin.csv")
     for baris in f.readlines():
         baris = baris.split(',')
-        a = AssemblyProduct.objects.get(pk=int(f[0]))
-        a.chicken_skin = int(f[-1])
+        a = AssemblyProduct.objects.get(pk=int(baris[0]))
+        a.chicken_skin = int(baris[-1])
         a.save()
     f.close()
 
