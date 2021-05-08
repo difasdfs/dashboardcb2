@@ -109,6 +109,16 @@ def eksekusi_struk_sehari(tanggalnya):
     ayam_cisitu = 0
     ayam_sukajadi = 0
 
+    pemakaian_chicken_skin = 0
+    pemakaian_chicken_skin_antapani = 0
+    pemakaian_chicken_skin_jatinangor = 0
+    pemakaian_chicken_skin_metro = 0
+    pemakaian_chicken_skin_sukapura = 0
+    pemakaian_chicken_skin_sukabirus = 0
+    pemakaian_chicken_skin_unjani = 0
+    pemakaian_chicken_skin_cisitu = 0
+    pemakaian_chicken_skin_sukajadi = 0
+
     while True:
         if "cursor" in hasil.keys():
             kumpulan_struk = hasil['receipts']
@@ -126,20 +136,35 @@ def eksekusi_struk_sehari(tanggalnya):
                         kuantitas = pesanan['quantity'] # integer
                         if "Antapani" in outlet:
                             ayam_antapani += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_antapani += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Jatinangor" in outlet:
                             ayam_jatinangor += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_jatinangor += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Metro" in outlet:
                             ayam_metro += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_metro += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Sukapura" in outlet:
                             ayam_sukapura += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_sukapura += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Sukabirus" in outlet:
                             ayam_sukabirus += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_sukabirus += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Unjani" in outlet:
                             ayam_unjani += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_unjani += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Cisitu" in outlet:
                             ayam_cisitu += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_cisitu += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Sukajadi" in outlet:
                             ayam_sukajadi += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_sukajadi += (kuantitas * objek_assembly_product.chicken_skin)
                 else:
                     continue
 
@@ -161,20 +186,35 @@ def eksekusi_struk_sehari(tanggalnya):
                         kuantitas = pesanan['quantity'] # integer
                         if "Antapani" in outlet:
                             ayam_antapani += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_antapani += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Jatinangor" in outlet:
                             ayam_jatinangor += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_jatinangor += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Metro" in outlet:
                             ayam_metro += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_metro += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Sukapura" in outlet:
                             ayam_sukapura += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_sukapura += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Sukabirus" in outlet:
                             ayam_sukabirus += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_sukabirus += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Unjani" in outlet:
                             ayam_unjani += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_unjani += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Cisitu" in outlet:
                             ayam_cisitu += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_cisitu += (kuantitas * objek_assembly_product.chicken_skin)
+
                         elif "Sukajadi" in outlet:
                             ayam_sukajadi += (kuantitas * objek_assembly_product.ayam)
+                            pemakaian_chicken_skin_sukajadi += (kuantitas * objek_assembly_product.chicken_skin)
                 else:
                     continue
 
@@ -188,6 +228,15 @@ def eksekusi_struk_sehari(tanggalnya):
     objek_pemakaian_ayam.pemakaian_ayam_unjani = ayam_unjani
     objek_pemakaian_ayam.pemakaian_ayam_cisitu = ayam_cisitu
     objek_pemakaian_ayam.pemakaian_ayam_sukajadi = ayam_sukajadi
+    objek_pemakaian_ayam.pemakaian_chicken_skin = pemakaian_chicken_skin
+    objek_pemakaian_ayam.pemakaian_chicken_skin_antapani = pemakaian_chicken_skin_antapani
+    objek_pemakaian_ayam.pemakaian_chicken_skin_jatinangor = pemakaian_chicken_skin_jatinangor
+    objek_pemakaian_ayam.pemakaian_chicken_skin_metro = pemakaian_chicken_skin_metro
+    objek_pemakaian_ayam.pemakaian_chicken_skin_sukapura = pemakaian_chicken_skin_sukapura
+    objek_pemakaian_ayam.pemakaian_chicken_skin_sukabirus = pemakaian_chicken_skin_sukabirus
+    objek_pemakaian_ayam.pemakaian_chicken_skin_unjani = pemakaian_chicken_skin_unjani
+    objek_pemakaian_ayam.pemakaian_chicken_skin_cisitu = pemakaian_chicken_skin_cisitu
+    objek_pemakaian_ayam.pemakaian_chicken_skin_sukajadi = pemakaian_chicken_skin_sukajadi
     objek_pemakaian_ayam.dieksekusi = True
     objek_pemakaian_ayam.save()
 
@@ -205,8 +254,11 @@ def saring_tanggal_weekend_weekdays():
 
 def update_pemakaian_ayam():
     pemakaian_ayam = PemakaianAyam.objects.filter(dieksekusi=False)
+    print(pemakaian_ayam)
     if not pemakaian_ayam:
+        print("ini dieksekusi (bener 1)")
         for p in pemakaian_ayam:
+            print("ini dieksekusi (bener 2)")
             tanggalnya = p.tanggal
             eksekusi_struk_sehari(tanggalnya)
 
