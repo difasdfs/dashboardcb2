@@ -616,6 +616,7 @@ class AssemblyProduct(models.Model):
     nama = models.CharField(max_length=100, null=True)
     kategori = models.CharField(max_length=50, null=True)
     ayam = models.IntegerField()
+    chicken_skin = models.IntegerField(null=True, default=0)
 
 class PemakaianAyam(models.Model):
     tanggal = models.DateField()
@@ -628,6 +629,17 @@ class PemakaianAyam(models.Model):
     pemakaian_ayam_unjani = models.IntegerField(default=0)
     pemakaian_ayam_cisitu = models.IntegerField(default=0)
     pemakaian_ayam_sukajadi = models.IntegerField(default=0)
+
+    pemakaian_chicken_skin = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_antapani = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_jatinangor = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_metro = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_sukapura = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_sukabirus = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_unjani = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_cisitu = models.IntegerField(default=0, null=True)
+    pemakaian_chicken_skin_sukajadi = models.IntegerField(default=0, null=True)
+
     dieksekusi = models.BooleanField(default=False)
 
     def __str__(self):

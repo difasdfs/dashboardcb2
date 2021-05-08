@@ -219,6 +219,7 @@ def eksekusi_struk_sehari(tanggalnya):
                     continue
 
             break
+        
     objek_pemakaian_ayam.pemakaian_ayam = ayam_antapani + ayam_sukajadi + ayam_cisitu + ayam_jatinangor + ayam_metro + ayam_sukabirus + ayam_unjani + ayam_sukapura
     objek_pemakaian_ayam.pemakaian_ayam_antapani = ayam_antapani
     objek_pemakaian_ayam.pemakaian_ayam_jatinangor = ayam_jatinangor
@@ -228,6 +229,7 @@ def eksekusi_struk_sehari(tanggalnya):
     objek_pemakaian_ayam.pemakaian_ayam_unjani = ayam_unjani
     objek_pemakaian_ayam.pemakaian_ayam_cisitu = ayam_cisitu
     objek_pemakaian_ayam.pemakaian_ayam_sukajadi = ayam_sukajadi
+
     objek_pemakaian_ayam.pemakaian_chicken_skin = pemakaian_chicken_skin
     objek_pemakaian_ayam.pemakaian_chicken_skin_antapani = pemakaian_chicken_skin_antapani
     objek_pemakaian_ayam.pemakaian_chicken_skin_jatinangor = pemakaian_chicken_skin_jatinangor
