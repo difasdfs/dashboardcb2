@@ -132,7 +132,10 @@ def eksekusi_struk_sehari(tanggalnya):
                     list_pesanan = struk['line_items'] # list of dict
                     for pesanan in list_pesanan:
                         skunya = pesanan['sku'] # string
-                        objek_assembly_product = AssemblyProduct.objects.get(sku=skunya)
+                        try:
+                            objek_assembly_product = AssemblyProduct.objects.get(sku=skunya)
+                        except:
+                            continue
                         kuantitas = pesanan['quantity'] # integer
                         if "Antapani" in outlet:
                             ayam_antapani += (kuantitas * objek_assembly_product.ayam)
