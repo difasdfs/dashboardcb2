@@ -416,8 +416,8 @@ def eval_per_periode(request):
     context['mei1'] = mei1
 
     mei2 = evaluasi(5)
-    mei1.sort(key=lambda tup: tup[6])
-    mei1 = mei1[::-1]
+    mei2.sort(key=lambda tup: tup[6])
+    mei2 = mei2[::-1]
     context['mei2'] = mei2
     # ---------------------------------------------
 
