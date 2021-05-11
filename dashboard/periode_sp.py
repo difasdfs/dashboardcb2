@@ -22,11 +22,13 @@ def evaluasi(periode):
         25, # hanifah
         26, # bu santi
         28, # pak beben
-        30, # farhan
         31, # rara
         32, # salma
         37, # pak dicky
         38, # denna
+        40, # pak jofy
+        41, # pak hikmatullah
+        42, # pak ilyas
     ]
 
     hasil = []
