@@ -293,6 +293,7 @@ def rekap(request):
     periode2 = query_rekap(2, request.user.id)
     periode3 = query_rekap(3, request.user.id)
     periode4 = query_rekap(4, request.user.id)
+    periode5 = query_rekap(5, request.user.id)
 
     context = {
         'bagian': bagian, 
@@ -301,6 +302,7 @@ def rekap(request):
         'periode2' : periode2,
         'periode3' : periode3,
         'periode4' : periode4,
+        'periode5' : periode5
     }
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
@@ -412,6 +414,11 @@ def eval_per_periode(request):
     mei1.sort(key=lambda tup: tup[6])
     mei1 = mei1[::-1]
     context['mei1'] = mei1
+
+    mei2 = evaluasi(5)
+    mei1.sort(key=lambda tup: tup[6])
+    mei1 = mei1[::-1]
+    context['mei2'] = mei2
     # ---------------------------------------------
 
 
