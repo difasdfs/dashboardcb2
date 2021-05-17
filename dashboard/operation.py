@@ -811,13 +811,16 @@ def percantik_float(angkanya):
     hasil = "{:.2f}".format(angkanya)
     return float(hasil)
 
-def rekomendasi_stok_hari(seminggu_lalu, dua_minggu_lalu, tiga_minggu_lalu=0):
+def rekomendasi_stok_hari(seminggu_lalu, dua_minggu_lalu, tiga_minggu_lalu=0, empat_minggu_lalu=0):
     if tiga_minggu_lalu == 0:
         ratarata = (seminggu_lalu+dua_minggu_lalu)/2
         deviasi = stat.stdev([seminggu_lalu, dua_minggu_lalu])
-    else:
+    elif empat_minggu_lalu == 0:
         ratarata = (seminggu_lalu+dua_minggu_lalu+tiga_minggu_lalu)/3
-        deviasi = stat.stdev([seminggu_lalu, dua_minggu_lalu, tiga_minggu_lalu])
+        deviasi = stat.stdev([seminggu_lalu, dua_minggu_lalu,tiga_minggu_lalu])
+    else:
+        ratarata = (seminggu_lalu+dua_minggu_lalu+tiga_minggu_lalu+empat_minggu_lalu)/4
+        deviasi = stat.stdev([seminggu_lalu, dua_minggu_lalu, tiga_minggu_lalu+empat_minggu_lalu])
     
     konstanta = 1
     hasil = ratarata + (deviasi * konstanta)
@@ -1039,14 +1042,250 @@ def query_produksi_ayam(harinya):
 
     return querynya
 
+def query_setelah_puasa(tanggal_hari_ini):
+    a = tanggal_hari_ini.weekday() # integer
+    if a == 0:
+        tanggal = [date(2021, 4, 5), date(2021, 3, 29), date(2021, 3, 22), date(2021, 3, 15)]
+        print('senin')
+    elif a == 1:
+        tanggal = [date(2021, 4, 6), date(2021, 3, 30), date(2021, 3, 23), date(2021, 3, 16)]
+        print('selasa')
+    elif a == 2:
+        tanggal = [date(2021, 4, 7), date(2021, 3, 31), date(2021, 3, 24), date(2021, 3, 17)]
+        print('rabu')
+    elif a == 3:
+        tanggal = [date(2021, 4, 8), date(2021, 4, 1), date(2021, 3, 25), date(2021, 3, 18)]
+        print('kamis')
+    elif a == 4:
+        tanggal = [date(2021, 4, 9), date(2021, 4, 2), date(2021, 3, 26), date(2021, 3, 19)]
+        print('jumat')
+    elif a == 5:
+        tanggal = [date(2021, 4, 10), date(2021, 4, 3), date(2021, 3, 27), date(2021, 3, 20)]
+        print('sabtu')
+    elif a == 6:
+        tanggal = [date(2021, 4, 11), date(2021, 4, 4), date(2021, 3, 28), date(2021, 3, 21)]
+        print('minggu')
+
+    rumus_hari = {
+        "0" : "Senin",
+        "1" : "Selasa",
+        "2" : "Rabu",
+        "3" : "Kamis",
+        "4" : "Jumat",
+        "5" : "Sabtu",
+        "6" : "Minggu",
+    }
+    cek_hari()
+    harinya = tanggal_hari_ini
+    hari_ini_hari_apa = rumus_hari[str(harinya.weekday())]
+
+    q = [HariProduksi.objects.get(hari=tanggal[0]), HariProduksi.objects.get(hari=tanggal[1]), HariProduksi.objects.get(hari=tanggal[2]), HariProduksi.objects.get(hari=tanggal[3])]
+
+    querynya = {
+            "Hari" : hari_ini_hari_apa,
+            "Tanggal" : harinya,
+            "Antapani" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].antapani_1, q[1].antapani_1, q[2].antapani_1, q[3].antapani_1),
+                rekomendasi_stok_hari(q[0].antapani_2, q[1].antapani_2, q[2].antapani_2, q[3].antapani_2),
+                rekomendasi_stok_hari(q[0].antapani_3, q[1].antapani_3, q[2].antapani_3, q[3].antapani_3),
+                rekomendasi_stok_hari(q[0].antapani_9, q[1].antapani_9, q[2].antapani_9, q[3].antapani_9),
+                rekomendasi_stok_hari(q[0].antapani_10, q[1].antapani_10, q[2].antapani_10, q[3].antapani_10),
+                rekomendasi_stok_hari(q[0].antapani_11, q[1].antapani_11, q[2].antapani_11, q[3].antapani_11),
+                rekomendasi_stok_hari(q[0].antapani_12, q[1].antapani_12, q[2].antapani_12, q[3].antapani_12),
+                rekomendasi_stok_hari(q[0].antapani_13, q[1].antapani_13, q[2].antapani_13, q[3].antapani_13),
+                rekomendasi_stok_hari(q[0].antapani_14, q[1].antapani_14, q[2].antapani_14, q[3].antapani_14),
+                rekomendasi_stok_hari(q[0].antapani_15, q[1].antapani_15, q[2].antapani_15, q[3].antapani_15),
+                rekomendasi_stok_hari(q[0].antapani_16, q[1].antapani_16, q[2].antapani_16, q[3].antapani_16),
+                rekomendasi_stok_hari(q[0].antapani_17, q[1].antapani_17, q[2].antapani_17, q[3].antapani_17),
+                rekomendasi_stok_hari(q[0].antapani_18, q[1].antapani_18, q[2].antapani_18, q[3].antapani_18),
+                rekomendasi_stok_hari(q[0].antapani_19, q[1].antapani_19, q[2].antapani_19, q[3].antapani_19),
+                rekomendasi_stok_hari(q[0].antapani_20, q[1].antapani_20, q[2].antapani_20, q[3].antapani_20),
+                rekomendasi_stok_hari(q[0].antapani_21, q[1].antapani_21, q[2].antapani_21, q[3].antapani_21),
+                rekomendasi_stok_hari(q[0].antapani_22, q[1].antapani_22, q[2].antapani_22, q[3].antapani_22),
+                rekomendasi_stok_hari(q[0].antapani_23, q[1].antapani_23, q[2].antapani_23, q[3].antapani_23),
+                rekomendasi_stok_hari(q[0].antapani_24, q[1].antapani_24, q[2].antapani_24, q[3].antapani_24),   
+            ],
+       
+            "Jatinangor" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].jatinangor_1, q[1].jatinangor_1, q[2].jatinangor_1, q[3].jatinangor_1),
+                rekomendasi_stok_hari(q[0].jatinangor_2, q[1].jatinangor_2, q[2].jatinangor_2, q[3].jatinangor_2),
+                rekomendasi_stok_hari(q[0].jatinangor_3, q[1].jatinangor_3, q[2].jatinangor_3, q[3].jatinangor_3),
+                rekomendasi_stok_hari(q[0].jatinangor_9, q[1].jatinangor_9, q[2].jatinangor_9, q[3].jatinangor_9),
+                rekomendasi_stok_hari(q[0].jatinangor_10, q[1].jatinangor_10, q[2].jatinangor_10, q[3].jatinangor_10),
+                rekomendasi_stok_hari(q[0].jatinangor_11, q[1].jatinangor_11, q[2].jatinangor_11, q[3].jatinangor_11),
+                rekomendasi_stok_hari(q[0].jatinangor_12, q[1].jatinangor_12, q[2].jatinangor_12, q[3].jatinangor_12),
+                rekomendasi_stok_hari(q[0].jatinangor_13, q[1].jatinangor_13, q[2].jatinangor_13, q[3].jatinangor_13),
+                rekomendasi_stok_hari(q[0].jatinangor_14, q[1].jatinangor_14, q[2].jatinangor_14, q[3].jatinangor_14),
+                rekomendasi_stok_hari(q[0].jatinangor_15, q[1].jatinangor_15, q[2].jatinangor_15, q[3].jatinangor_15),
+                rekomendasi_stok_hari(q[0].jatinangor_16, q[1].jatinangor_16, q[2].jatinangor_16, q[3].jatinangor_16),
+                rekomendasi_stok_hari(q[0].jatinangor_17, q[1].jatinangor_17, q[2].jatinangor_17, q[3].jatinangor_17),
+                rekomendasi_stok_hari(q[0].jatinangor_18, q[1].jatinangor_18, q[2].jatinangor_18, q[3].jatinangor_18),
+                rekomendasi_stok_hari(q[0].jatinangor_19, q[1].jatinangor_19, q[2].jatinangor_19, q[3].jatinangor_19),
+                rekomendasi_stok_hari(q[0].jatinangor_20, q[1].jatinangor_20, q[2].jatinangor_20, q[3].jatinangor_20),
+                rekomendasi_stok_hari(q[0].jatinangor_21, q[1].jatinangor_21, q[2].jatinangor_21, q[3].jatinangor_21),
+                rekomendasi_stok_hari(q[0].jatinangor_22, q[1].jatinangor_22, q[2].jatinangor_22, q[3].jatinangor_22),
+                rekomendasi_stok_hari(q[0].jatinangor_23, q[1].jatinangor_23, q[2].jatinangor_23, q[3].jatinangor_23),
+                rekomendasi_stok_hari(q[0].jatinangor_24, q[1].jatinangor_24, q[2].jatinangor_24, q[3].jatinangor_24),
+            ],
+
+            "Metro" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].metro_1, q[1].metro_1, q[2].metro_1, q[3].metro_1),
+                rekomendasi_stok_hari(q[0].metro_2, q[1].metro_2, q[2].metro_2, q[3].metro_2),
+                rekomendasi_stok_hari(q[0].metro_3, q[1].metro_3, q[2].metro_3, q[3].metro_3),
+                rekomendasi_stok_hari(q[0].metro_9, q[1].metro_9, q[2].metro_9, q[3].metro_9),
+                rekomendasi_stok_hari(q[0].metro_10, q[1].metro_10, q[2].metro_10, q[3].metro_10),
+                rekomendasi_stok_hari(q[0].metro_11, q[1].metro_11, q[2].metro_11, q[3].metro_11),
+                rekomendasi_stok_hari(q[0].metro_12, q[1].metro_12, q[2].metro_12, q[3].metro_12),
+                rekomendasi_stok_hari(q[0].metro_13, q[1].metro_13, q[2].metro_13, q[3].metro_13),
+                rekomendasi_stok_hari(q[0].metro_14, q[1].metro_14, q[2].metro_14, q[3].metro_14),
+                rekomendasi_stok_hari(q[0].metro_15, q[1].metro_15, q[2].metro_15, q[3].metro_15),
+                rekomendasi_stok_hari(q[0].metro_16, q[1].metro_16, q[2].metro_16, q[3].metro_16),
+                rekomendasi_stok_hari(q[0].metro_17, q[1].metro_17, q[2].metro_17, q[3].metro_17),
+                rekomendasi_stok_hari(q[0].metro_18, q[1].metro_18, q[2].metro_18, q[3].metro_18),
+                rekomendasi_stok_hari(q[0].metro_19, q[1].metro_19, q[2].metro_19, q[3].metro_19),
+                rekomendasi_stok_hari(q[0].metro_20, q[1].metro_20, q[2].metro_20, q[3].metro_20),
+                rekomendasi_stok_hari(q[0].metro_21, q[1].metro_21, q[2].metro_21, q[3].metro_21),
+                rekomendasi_stok_hari(q[0].metro_22, q[1].metro_22, q[2].metro_22, q[3].metro_22),
+                rekomendasi_stok_hari(q[0].metro_23, q[1].metro_23, q[2].metro_23, q[3].metro_23),
+                rekomendasi_stok_hari(q[0].metro_24, q[1].metro_24, q[2].metro_24, q[3].metro_24),
+            ],
+    
+            "Sukapura" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].sukapura_1, q[1].sukapura_1, q[2].sukapura_1, q[3].sukapura_1),
+                rekomendasi_stok_hari(q[0].sukapura_2, q[1].sukapura_2, q[2].sukapura_2, q[3].sukapura_2),
+                rekomendasi_stok_hari(q[0].sukapura_3, q[1].sukapura_3, q[2].sukapura_3, q[3].sukapura_3),
+                rekomendasi_stok_hari(q[0].sukapura_9, q[1].sukapura_9, q[2].sukapura_9, q[3].sukapura_9),
+                rekomendasi_stok_hari(q[0].sukapura_10, q[1].sukapura_10, q[2].sukapura_10, q[3].sukapura_10),
+                rekomendasi_stok_hari(q[0].sukapura_11, q[1].sukapura_11, q[2].sukapura_11, q[3].sukapura_11),
+                rekomendasi_stok_hari(q[0].sukapura_12, q[1].sukapura_12, q[2].sukapura_12, q[3].sukapura_12),
+                rekomendasi_stok_hari(q[0].sukapura_13, q[1].sukapura_13, q[2].sukapura_13, q[3].sukapura_13),
+                rekomendasi_stok_hari(q[0].sukapura_14, q[1].sukapura_14, q[2].sukapura_14, q[3].sukapura_14),
+                rekomendasi_stok_hari(q[0].sukapura_15, q[1].sukapura_15, q[2].sukapura_15, q[3].sukapura_15),
+                rekomendasi_stok_hari(q[0].sukapura_16, q[1].sukapura_16, q[2].sukapura_16, q[3].sukapura_16),
+                rekomendasi_stok_hari(q[0].sukapura_17, q[1].sukapura_17, q[2].sukapura_17, q[3].sukapura_17),
+                rekomendasi_stok_hari(q[0].sukapura_18, q[1].sukapura_18, q[2].sukapura_18, q[3].sukapura_18),
+                rekomendasi_stok_hari(q[0].sukapura_19, q[1].sukapura_19, q[2].sukapura_19, q[3].sukapura_19),
+                rekomendasi_stok_hari(q[0].sukapura_20, q[1].sukapura_20, q[2].sukapura_20, q[3].sukapura_20),
+                rekomendasi_stok_hari(q[0].sukapura_21, q[1].sukapura_21, q[2].sukapura_21, q[3].sukapura_21),
+                rekomendasi_stok_hari(q[0].sukapura_22, q[1].sukapura_22, q[2].sukapura_22, q[3].sukapura_22),
+                rekomendasi_stok_hari(q[0].sukapura_23, q[1].sukapura_23, q[2].sukapura_23, q[3].sukapura_23),
+                rekomendasi_stok_hari(q[0].sukapura_24, q[1].sukapura_24, q[2].sukapura_24, q[3].sukapura_24),
+            ],
+
+            "Sukabirus" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].sukabirus_1, q[1].sukabirus_1, q[2].sukabirus_1, q[3].sukabirus_1),
+                rekomendasi_stok_hari(q[0].sukabirus_2, q[1].sukabirus_2, q[2].sukabirus_2, q[3].sukabirus_2),
+                rekomendasi_stok_hari(q[0].sukabirus_3, q[1].sukabirus_3, q[2].sukabirus_3, q[3].sukabirus_3),
+                rekomendasi_stok_hari(q[0].sukabirus_9, q[1].sukabirus_9, q[2].sukabirus_9, q[3].sukabirus_9),
+                rekomendasi_stok_hari(q[0].sukabirus_10, q[1].sukabirus_10, q[2].sukabirus_10, q[3].sukabirus_10),
+                rekomendasi_stok_hari(q[0].sukabirus_11, q[1].sukabirus_11, q[2].sukabirus_11, q[3].sukabirus_11),
+                rekomendasi_stok_hari(q[0].sukabirus_12, q[1].sukabirus_12, q[2].sukabirus_12, q[3].sukabirus_12),
+                rekomendasi_stok_hari(q[0].sukabirus_13, q[1].sukabirus_13, q[2].sukabirus_13, q[3].sukabirus_13),
+                rekomendasi_stok_hari(q[0].sukabirus_14, q[1].sukabirus_14, q[2].sukabirus_14, q[3].sukabirus_14),
+                rekomendasi_stok_hari(q[0].sukabirus_15, q[1].sukabirus_15, q[2].sukabirus_15, q[3].sukabirus_15),
+                rekomendasi_stok_hari(q[0].sukabirus_16, q[1].sukabirus_16, q[2].sukabirus_16, q[3].sukabirus_16),
+                rekomendasi_stok_hari(q[0].sukabirus_17, q[1].sukabirus_17, q[2].sukabirus_17, q[3].sukabirus_17),
+                rekomendasi_stok_hari(q[0].sukabirus_18, q[1].sukabirus_18, q[2].sukabirus_18, q[3].sukabirus_18),
+                rekomendasi_stok_hari(q[0].sukabirus_19, q[1].sukabirus_19, q[2].sukabirus_19, q[3].sukabirus_19),
+                rekomendasi_stok_hari(q[0].sukabirus_20, q[1].sukabirus_20, q[2].sukabirus_20, q[3].sukabirus_20),
+                rekomendasi_stok_hari(q[0].sukabirus_21, q[1].sukabirus_21, q[2].sukabirus_21, q[3].sukabirus_21),
+                rekomendasi_stok_hari(q[0].sukabirus_22, q[1].sukabirus_22, q[2].sukabirus_22, q[3].sukabirus_22),
+                rekomendasi_stok_hari(q[0].sukabirus_23, q[1].sukabirus_23, q[2].sukabirus_23, q[3].sukabirus_23),
+                rekomendasi_stok_hari(q[0].sukabirus_24, q[1].sukabirus_24, q[2].sukabirus_24, q[3].sukabirus_24),
+            ],
+
+            "Unjani" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].unjani_1, q[1].unjani_1, q[2].unjani_1, q[3].unjani_1),
+                rekomendasi_stok_hari(q[0].unjani_2, q[1].unjani_2, q[2].unjani_2, q[3].unjani_2),
+                rekomendasi_stok_hari(q[0].unjani_3, q[1].unjani_3, q[2].unjani_3, q[3].unjani_3),
+                rekomendasi_stok_hari(q[0].unjani_9, q[1].unjani_9, q[2].unjani_9, q[3].unjani_9),
+                rekomendasi_stok_hari(q[0].unjani_10, q[1].unjani_10, q[2].unjani_10, q[3].unjani_10),
+                rekomendasi_stok_hari(q[0].unjani_11, q[1].unjani_11, q[2].unjani_11, q[3].unjani_11),
+                rekomendasi_stok_hari(q[0].unjani_12, q[1].unjani_12, q[2].unjani_12, q[3].unjani_12),
+                rekomendasi_stok_hari(q[0].unjani_13, q[1].unjani_13, q[2].unjani_13, q[3].unjani_13),
+                rekomendasi_stok_hari(q[0].unjani_14, q[1].unjani_14, q[2].unjani_14, q[3].unjani_14),
+                rekomendasi_stok_hari(q[0].unjani_15, q[1].unjani_15, q[2].unjani_15, q[3].unjani_15),
+                rekomendasi_stok_hari(q[0].unjani_16, q[1].unjani_16, q[2].unjani_16, q[3].unjani_16),
+                rekomendasi_stok_hari(q[0].unjani_17, q[1].unjani_17, q[2].unjani_17, q[3].unjani_17),
+                rekomendasi_stok_hari(q[0].unjani_18, q[1].unjani_18, q[2].unjani_18, q[3].unjani_18),
+                rekomendasi_stok_hari(q[0].unjani_19, q[1].unjani_19, q[2].unjani_19, q[3].unjani_19),
+                rekomendasi_stok_hari(q[0].unjani_20, q[1].unjani_20, q[2].unjani_20, q[3].unjani_20),
+                rekomendasi_stok_hari(q[0].unjani_21, q[1].unjani_21, q[2].unjani_21, q[3].unjani_21),
+                rekomendasi_stok_hari(q[0].unjani_22, q[1].unjani_22, q[2].unjani_22, q[3].unjani_22),
+                rekomendasi_stok_hari(q[0].unjani_23, q[1].unjani_23, q[2].unjani_23, q[3].unjani_23),
+                rekomendasi_stok_hari(q[0].unjani_24, q[1].unjani_24, q[2].unjani_24, q[3].unjani_24),
+            ],
+
+            "Cisitu" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].cisitu_1, q[1].cisitu_1, q[2].cisitu_1, q[3].cisitu_1),
+                rekomendasi_stok_hari(q[0].cisitu_2, q[1].cisitu_2, q[2].cisitu_2, q[3].cisitu_2),
+                rekomendasi_stok_hari(q[0].cisitu_3, q[1].cisitu_3, q[2].cisitu_3, q[3].cisitu_3),
+                rekomendasi_stok_hari(q[0].cisitu_9, q[1].cisitu_9, q[2].cisitu_9, q[3].cisitu_9),
+                rekomendasi_stok_hari(q[0].cisitu_10, q[1].cisitu_10, q[2].cisitu_10, q[3].cisitu_10),
+                rekomendasi_stok_hari(q[0].cisitu_11, q[1].cisitu_11, q[2].cisitu_11, q[3].cisitu_11),
+                rekomendasi_stok_hari(q[0].cisitu_12, q[1].cisitu_12, q[2].cisitu_12, q[3].cisitu_12),
+                rekomendasi_stok_hari(q[0].cisitu_13, q[1].cisitu_13, q[2].cisitu_13, q[3].cisitu_13),
+                rekomendasi_stok_hari(q[0].cisitu_14, q[1].cisitu_14, q[2].cisitu_14, q[3].cisitu_14),
+                rekomendasi_stok_hari(q[0].cisitu_15, q[1].cisitu_15, q[2].cisitu_15, q[3].cisitu_15),
+                rekomendasi_stok_hari(q[0].cisitu_16, q[1].cisitu_16, q[2].cisitu_16, q[3].cisitu_16),
+                rekomendasi_stok_hari(q[0].cisitu_17, q[1].cisitu_17, q[2].cisitu_17, q[3].cisitu_17),
+                rekomendasi_stok_hari(q[0].cisitu_18, q[1].cisitu_18, q[2].cisitu_18, q[3].cisitu_18),
+                rekomendasi_stok_hari(q[0].cisitu_19, q[1].cisitu_19, q[2].cisitu_19, q[3].cisitu_19),
+                rekomendasi_stok_hari(q[0].cisitu_20, q[1].cisitu_20, q[2].cisitu_20, q[3].cisitu_20),
+                rekomendasi_stok_hari(q[0].cisitu_21, q[1].cisitu_21, q[2].cisitu_21, q[3].cisitu_21),
+                rekomendasi_stok_hari(q[0].unjani_22, q[1].unjani_22, q[2].cisitu_22, q[3].cisitu_22),
+                rekomendasi_stok_hari(q[0].unjani_23, q[1].unjani_23, q[2].cisitu_23, q[3].cisitu_23),
+                rekomendasi_stok_hari(q[0].cisitu_24, q[1].cisitu_24, q[2].cisitu_24, q[3].cisitu_24),
+            ],
+            "Sukajadi" : 
+            [   
+                # rekomendasi stok, seminggu lalu, 2 minggu lalu, standar deviasi
+                rekomendasi_stok_hari(q[0].sukajadi_1, q[1].sukajadi_1, q[2].sukajadi_1, q[3].sukajadi_1),
+                rekomendasi_stok_hari(q[0].sukajadi_2, q[1].sukajadi_2, q[2].sukajadi_2, q[3].sukajadi_2),
+                rekomendasi_stok_hari(q[0].sukajadi_3, q[1].sukajadi_3, q[2].sukajadi_3, q[3].sukajadi_3),
+                rekomendasi_stok_hari(q[0].sukajadi_9, q[1].sukajadi_9, q[2].sukajadi_9, q[3].sukajadi_9),
+                rekomendasi_stok_hari(q[0].sukajadi_10, q[1].sukajadi_10, q[2].sukajadi_10, q[3].sukajadi_10),
+                rekomendasi_stok_hari(q[0].sukajadi_11, q[1].sukajadi_11, q[2].sukajadi_11, q[3].sukajadi_11),
+                rekomendasi_stok_hari(q[0].sukajadi_12, q[1].sukajadi_12, q[2].sukajadi_12, q[3].sukajadi_12),
+                rekomendasi_stok_hari(q[0].sukajadi_13, q[1].sukajadi_13, q[2].sukajadi_13, q[3].sukajadi_13),
+                rekomendasi_stok_hari(q[0].sukajadi_14, q[1].sukajadi_14, q[2].sukajadi_14, q[3].sukajadi_14),
+                rekomendasi_stok_hari(q[0].sukajadi_15, q[1].sukajadi_15, q[2].sukajadi_15, q[3].sukajadi_15),
+                rekomendasi_stok_hari(q[0].sukajadi_16, q[1].sukajadi_16, q[2].sukajadi_16, q[3].sukajadi_16),
+                rekomendasi_stok_hari(q[0].sukajadi_17, q[1].sukajadi_17, q[2].sukajadi_17, q[3].sukajadi_17),
+                rekomendasi_stok_hari(q[0].sukajadi_18, q[1].sukajadi_18, q[2].sukajadi_18, q[3].sukajadi_18),
+                rekomendasi_stok_hari(q[0].sukajadi_19, q[1].sukajadi_19, q[2].sukajadi_19, q[3].sukajadi_19),
+                rekomendasi_stok_hari(q[0].sukajadi_20, q[1].sukajadi_20, q[2].sukajadi_20, q[3].sukajadi_20),
+                rekomendasi_stok_hari(q[0].sukajadi_21, q[1].sukajadi_21, q[2].sukajadi_21, q[3].sukajadi_21),
+                rekomendasi_stok_hari(q[0].sukajadi_22, q[1].sukajadi_22, q[2].sukajadi_22, q[3].sukajadi_22),
+                rekomendasi_stok_hari(q[0].sukajadi_23, q[1].sukajadi_23, q[2].sukajadi_23, q[3].sukajadi_23),
+                rekomendasi_stok_hari(q[0].sukajadi_24, q[1].sukajadi_24, q[2].sukajadi_24, q[3].sukajadi_24),
+            ],
+        }
+
+    return querynya
+
 def coba_query():
-    hari_0 = query_produksi_ayam(date.today())
-    hari_1 = query_produksi_ayam(date.today() + timedelta(days=1))
-    hari_2 = query_produksi_ayam(date.today() + timedelta(days=2))
-    hari_3 = query_produksi_ayam(date.today() + timedelta(days=3))
-    hari_4 = query_produksi_ayam(date.today() + timedelta(days=4))
-    hari_5 = query_produksi_ayam(date.today() + timedelta(days=5))
-    hari_6 = query_produksi_ayam(date.today() + timedelta(days=6))
+    hari_0 = query_setelah_puasa(date.today())
+    hari_1 = query_setelah_puasa(date.today() + timedelta(days=1))
+    hari_2 = query_setelah_puasa(date.today() + timedelta(days=2))
+    hari_3 = query_setelah_puasa(date.today() + timedelta(days=3))
+    hari_4 = query_setelah_puasa(date.today() + timedelta(days=4))
+    hari_5 = query_setelah_puasa(date.today() + timedelta(days=5))
+    hari_6 = query_setelah_puasa(date.today() + timedelta(days=6))
 
     header = [
         "Jam", 
@@ -1062,9 +1301,8 @@ def coba_query():
     isi = {
         "Antapani" :
         [ 
-            [ "1:00", hari_0["Antapani"][0], hari_1["Antapani"][0], hari_2["Antapani"][0], hari_3["Antapani"][0], hari_4["Antapani"][0], hari_5["Antapani"][0], hari_6["Antapani"][0] ],
-            [ "2:00", hari_0["Antapani"][1], hari_1["Antapani"][1], hari_2["Antapani"][1], hari_3["Antapani"][1], hari_4["Antapani"][1], hari_5["Antapani"][1], hari_6["Antapani"][1] ],
-            [ "3:00", hari_0["Antapani"][2], hari_1["Antapani"][2], hari_2["Antapani"][2], hari_3["Antapani"][2], hari_4["Antapani"][2], hari_5["Antapani"][2], hari_6["Antapani"][2] ],
+            [ "9:00", hari_0["Antapani"][3], hari_1["Antapani"][3], hari_2["Antapani"][3], hari_3["Antapani"][3], hari_4["Antapani"][3], hari_5["Antapani"][3], hari_6["Antapani"][3] ],
+            [ "10:00", hari_0["Antapani"][4], hari_1["Antapani"][4], hari_2["Antapani"][4], hari_3["Antapani"][4], hari_4["Antapani"][4], hari_5["Antapani"][4], hari_6["Antapani"][4] ],
             [ "11:00", hari_0["Antapani"][5], hari_1["Antapani"][5], hari_2["Antapani"][5], hari_3["Antapani"][5], hari_4["Antapani"][5], hari_5["Antapani"][5], hari_6["Antapani"][5] ],
             [ "12:00", hari_0["Antapani"][6], hari_1["Antapani"][6], hari_2["Antapani"][6], hari_3["Antapani"][6], hari_4["Antapani"][6], hari_5["Antapani"][6], hari_6["Antapani"][6] ],
             [ "13:00", hari_0["Antapani"][7], hari_1["Antapani"][7], hari_2["Antapani"][7], hari_3["Antapani"][7], hari_4["Antapani"][7], hari_5["Antapani"][7], hari_6["Antapani"][7] ],
@@ -1083,9 +1321,8 @@ def coba_query():
 
         "Jatinangor" : 
         [
-            [ "1:00", hari_0["Jatinangor"][0], hari_1["Jatinangor"][0], hari_2["Jatinangor"][0], hari_3["Jatinangor"][0], hari_4["Jatinangor"][0], hari_5["Jatinangor"][0], hari_6["Jatinangor"][0] ],
-            [ "2:00", hari_0["Jatinangor"][1], hari_1["Jatinangor"][1], hari_2["Jatinangor"][1], hari_3["Jatinangor"][1], hari_4["Jatinangor"][1], hari_5["Jatinangor"][1], hari_6["Jatinangor"][1] ],
-            [ "3:00", hari_0["Jatinangor"][2], hari_1["Jatinangor"][2], hari_2["Jatinangor"][2], hari_3["Jatinangor"][2], hari_4["Jatinangor"][2], hari_5["Jatinangor"][2], hari_6["Jatinangor"][2] ],
+            [ "9:00", hari_0["Jatinangor"][3], hari_1["Jatinangor"][3], hari_2["Jatinangor"][3], hari_3["Jatinangor"][3], hari_4["Jatinangor"][3], hari_5["Jatinangor"][3], hari_6["Jatinangor"][3] ],
+            [ "10:00", hari_0["Jatinangor"][4], hari_1["Jatinangor"][4], hari_2["Jatinangor"][4], hari_3["Jatinangor"][4], hari_4["Jatinangor"][4], hari_5["Jatinangor"][4], hari_6["Jatinangor"][4] ],
             [ "11:00", hari_0["Jatinangor"][5], hari_1["Jatinangor"][5], hari_2["Jatinangor"][5], hari_3["Jatinangor"][5], hari_4["Jatinangor"][5], hari_5["Jatinangor"][5], hari_6["Jatinangor"][5] ],
             [ "12:00", hari_0["Jatinangor"][6], hari_1["Jatinangor"][6], hari_2["Jatinangor"][6], hari_3["Jatinangor"][6], hari_4["Jatinangor"][6], hari_5["Jatinangor"][6], hari_6["Jatinangor"][6] ],
             [ "13:00", hari_0["Jatinangor"][7], hari_1["Jatinangor"][7], hari_2["Jatinangor"][7], hari_3["Jatinangor"][7], hari_4["Jatinangor"][7], hari_5["Jatinangor"][7], hari_6["Jatinangor"][7] ],
@@ -1104,9 +1341,8 @@ def coba_query():
 
         "Metro" :
         [
-            [ "1:00", hari_0["Metro"][0], hari_1["Metro"][0], hari_2["Metro"][0], hari_3["Metro"][0], hari_4["Metro"][0], hari_5["Metro"][0], hari_6["Metro"][0] ],
-            [ "2:00", hari_0["Metro"][1], hari_1["Metro"][1], hari_2["Metro"][1], hari_3["Metro"][1], hari_4["Metro"][1], hari_5["Metro"][1], hari_6["Metro"][1] ],
-            [ "3:00", hari_0["Metro"][2], hari_1["Metro"][2], hari_2["Metro"][2], hari_3["Metro"][2], hari_4["Metro"][2], hari_5["Metro"][2], hari_6["Metro"][2] ],
+            [ "9:00", hari_0["Metro"][3], hari_1["Metro"][3], hari_2["Metro"][3], hari_3["Metro"][3], hari_4["Metro"][3], hari_5["Metro"][3], hari_6["Metro"][3] ],
+            [ "10:00", hari_0["Metro"][4], hari_1["Metro"][4], hari_2["Metro"][4], hari_3["Metro"][4], hari_4["Metro"][4], hari_5["Metro"][4], hari_6["Metro"][4] ],
             [ "11:00", hari_0["Metro"][5], hari_1["Metro"][5], hari_2["Metro"][5], hari_3["Metro"][5], hari_4["Metro"][5], hari_5["Metro"][5], hari_6["Metro"][5] ],
             [ "12:00", hari_0["Metro"][6], hari_1["Metro"][6], hari_2["Metro"][6], hari_3["Metro"][6], hari_4["Metro"][6], hari_5["Metro"][6], hari_6["Metro"][6] ],
             [ "13:00", hari_0["Metro"][7], hari_1["Metro"][7], hari_2["Metro"][7], hari_3["Metro"][7], hari_4["Metro"][7], hari_5["Metro"][7], hari_6["Metro"][7] ],
@@ -1125,9 +1361,8 @@ def coba_query():
 
         "Sukapura" : 
         [
-            [ "1:00", hari_0["Sukapura"][0], hari_1["Sukapura"][0], hari_2["Sukapura"][0], hari_3["Sukapura"][0], hari_4["Sukapura"][0], hari_5["Sukapura"][0], hari_6["Sukapura"][0] ],
-            [ "2:00", hari_0["Sukapura"][1], hari_1["Sukapura"][1], hari_2["Sukapura"][1], hari_3["Sukapura"][1], hari_4["Sukapura"][1], hari_5["Sukapura"][1], hari_6["Sukapura"][1] ],
-            [ "3:00", hari_0["Sukapura"][2], hari_1["Sukapura"][2], hari_2["Sukapura"][2], hari_3["Sukapura"][2], hari_4["Sukapura"][2], hari_5["Sukapura"][2], hari_6["Sukapura"][2] ],
+            [ "9:00", hari_0["Sukapura"][3], hari_1["Sukapura"][3], hari_2["Sukapura"][3], hari_3["Sukapura"][3], hari_4["Sukapura"][3], hari_5["Sukapura"][3], hari_6["Sukapura"][3] ],
+            [ "10:00", hari_0["Sukapura"][4], hari_1["Sukapura"][4], hari_2["Sukapura"][4], hari_3["Sukapura"][4], hari_4["Sukapura"][4], hari_5["Sukapura"][4], hari_6["Sukapura"][4] ],
             [ "11:00", hari_0["Sukapura"][5], hari_1["Sukapura"][5], hari_2["Sukapura"][5], hari_3["Sukapura"][5], hari_4["Sukapura"][5], hari_5["Sukapura"][5], hari_6["Sukapura"][5] ],
             [ "12:00", hari_0["Sukapura"][6], hari_1["Sukapura"][6], hari_2["Sukapura"][6], hari_3["Sukapura"][6], hari_4["Sukapura"][6], hari_5["Sukapura"][6], hari_6["Sukapura"][6] ],
             [ "13:00", hari_0["Sukapura"][7], hari_1["Sukapura"][7], hari_2["Sukapura"][7], hari_3["Sukapura"][7], hari_4["Sukapura"][7], hari_5["Sukapura"][7], hari_6["Sukapura"][7] ],
@@ -1146,9 +1381,8 @@ def coba_query():
 
         "Sukabirus" : 
         [
-            [ "1:00", hari_0["Sukabirus"][0], hari_1["Sukabirus"][0], hari_2["Sukabirus"][0], hari_3["Sukabirus"][0], hari_4["Sukabirus"][0], hari_5["Sukabirus"][0], hari_6["Sukabirus"][0] ],
-            [ "2:00", hari_0["Sukabirus"][1], hari_1["Sukabirus"][1], hari_2["Sukabirus"][1], hari_3["Sukabirus"][1], hari_4["Sukabirus"][1], hari_5["Sukabirus"][1], hari_6["Sukabirus"][1] ],
-            [ "3:00", hari_0["Sukabirus"][2], hari_1["Sukabirus"][2], hari_2["Sukabirus"][2], hari_3["Sukabirus"][2], hari_4["Sukabirus"][2], hari_5["Sukabirus"][2], hari_6["Sukabirus"][2] ],
+            [ "9:00", hari_0["Sukabirus"][3], hari_1["Sukabirus"][3], hari_2["Sukabirus"][3], hari_3["Sukabirus"][3], hari_4["Sukabirus"][3], hari_5["Sukabirus"][3], hari_6["Sukabirus"][3] ],
+            [ "10:00", hari_0["Sukabirus"][4], hari_1["Sukabirus"][4], hari_2["Sukabirus"][4], hari_3["Sukabirus"][4], hari_4["Sukabirus"][4], hari_5["Sukabirus"][4], hari_6["Sukabirus"][4] ],
             [ "11:00", hari_0["Sukabirus"][5], hari_1["Sukabirus"][5], hari_2["Sukabirus"][5], hari_3["Sukabirus"][5], hari_4["Sukabirus"][5], hari_5["Sukabirus"][5], hari_6["Sukabirus"][5] ],
             [ "12:00", hari_0["Sukabirus"][6], hari_1["Sukabirus"][6], hari_2["Sukabirus"][6], hari_3["Sukabirus"][6], hari_4["Sukabirus"][6], hari_5["Sukabirus"][6], hari_6["Sukabirus"][6] ],
             [ "13:00", hari_0["Sukabirus"][7], hari_1["Sukabirus"][7], hari_2["Sukabirus"][7], hari_3["Sukabirus"][7], hari_4["Sukabirus"][7], hari_5["Sukabirus"][7], hari_6["Sukabirus"][7] ],
@@ -1167,9 +1401,8 @@ def coba_query():
 
         "Unjani" : 
         [
-            [ "1:00", hari_0["Unjani"][0], hari_1["Unjani"][0], hari_2["Unjani"][0], hari_3["Unjani"][0], hari_4["Unjani"][0], hari_5["Unjani"][0], hari_6["Unjani"][0] ],
-            [ "2:00", hari_0["Unjani"][1], hari_1["Unjani"][1], hari_2["Unjani"][1], hari_3["Unjani"][1], hari_4["Unjani"][1], hari_5["Unjani"][1], hari_6["Unjani"][1] ],
-            [ "3:00", hari_0["Unjani"][2], hari_1["Unjani"][2], hari_2["Unjani"][2], hari_3["Unjani"][2], hari_4["Unjani"][2], hari_5["Unjani"][2], hari_6["Unjani"][2] ],
+            [ "9:00", hari_0["Unjani"][3], hari_1["Unjani"][3], hari_2["Unjani"][3], hari_3["Unjani"][3], hari_4["Unjani"][3], hari_5["Unjani"][3], hari_6["Unjani"][3] ],
+            [ "10:00", hari_0["Unjani"][4], hari_1["Unjani"][4], hari_2["Unjani"][4], hari_3["Unjani"][4], hari_4["Unjani"][4], hari_5["Unjani"][4], hari_6["Unjani"][4] ],
             [ "11:00", hari_0["Unjani"][5], hari_1["Unjani"][5], hari_2["Unjani"][5], hari_3["Unjani"][5], hari_4["Unjani"][5], hari_5["Unjani"][5], hari_6["Unjani"][5] ],
             [ "12:00", hari_0["Unjani"][6], hari_1["Unjani"][6], hari_2["Unjani"][6], hari_3["Unjani"][6], hari_4["Unjani"][6], hari_5["Unjani"][6], hari_6["Unjani"][6] ],
             [ "13:00", hari_0["Unjani"][7], hari_1["Unjani"][7], hari_2["Unjani"][7], hari_3["Unjani"][7], hari_4["Unjani"][7], hari_5["Unjani"][7], hari_6["Unjani"][7] ],
@@ -1188,9 +1421,8 @@ def coba_query():
 
         "Cisitu" : 
         [
-            [ "1:00", hari_0["Cisitu"][0], hari_1["Cisitu"][0], hari_2["Cisitu"][0], hari_3["Cisitu"][0], hari_4["Cisitu"][0], hari_5["Cisitu"][0], hari_6["Cisitu"][0] ],
-            [ "2:00", hari_0["Cisitu"][1], hari_1["Cisitu"][1], hari_2["Cisitu"][1], hari_3["Cisitu"][1], hari_4["Cisitu"][1], hari_5["Cisitu"][1], hari_6["Cisitu"][1] ],
-            [ "3:00", hari_0["Cisitu"][2], hari_1["Cisitu"][2], hari_2["Cisitu"][2], hari_3["Cisitu"][2], hari_4["Cisitu"][2], hari_5["Cisitu"][2], hari_6["Cisitu"][2] ],
+            [ "9:00", hari_0["Cisitu"][3], hari_1["Cisitu"][3], hari_2["Cisitu"][3], hari_3["Cisitu"][3], hari_4["Cisitu"][3], hari_5["Cisitu"][3], hari_6["Cisitu"][3] ],
+            [ "10:00", hari_0["Cisitu"][4], hari_1["Cisitu"][4], hari_2["Cisitu"][4], hari_3["Cisitu"][4], hari_4["Cisitu"][4], hari_5["Cisitu"][4], hari_6["Cisitu"][4] ],
             [ "11:00", hari_0["Cisitu"][5], hari_1["Cisitu"][5], hari_2["Cisitu"][5], hari_3["Cisitu"][5], hari_4["Cisitu"][5], hari_5["Cisitu"][5], hari_6["Cisitu"][5] ],
             [ "12:00", hari_0["Cisitu"][6], hari_1["Cisitu"][6], hari_2["Cisitu"][6], hari_3["Cisitu"][6], hari_4["Cisitu"][6], hari_5["Cisitu"][6], hari_6["Cisitu"][6] ],
             [ "13:00", hari_0["Cisitu"][7], hari_1["Cisitu"][7], hari_2["Cisitu"][7], hari_3["Cisitu"][7], hari_4["Cisitu"][7], hari_5["Cisitu"][7], hari_6["Cisitu"][7] ],
@@ -1209,9 +1441,8 @@ def coba_query():
 
         "Sukajadi" : 
         [
-            [ "1:00", hari_0["Sukajadi"][0], hari_1["Sukajadi"][0], hari_2["Sukajadi"][0], hari_3["Sukajadi"][0], hari_4["Sukajadi"][0], hari_5["Sukajadi"][0], hari_6["Sukajadi"][0] ],
-            [ "2:00", hari_0["Sukajadi"][1], hari_1["Sukajadi"][1], hari_2["Sukajadi"][1], hari_3["Sukajadi"][1], hari_4["Sukajadi"][1], hari_5["Sukajadi"][1], hari_6["Sukajadi"][1] ],
-            [ "3:00", hari_0["Sukajadi"][2], hari_1["Sukajadi"][2], hari_2["Sukajadi"][2], hari_3["Sukajadi"][2], hari_4["Sukajadi"][2], hari_5["Sukajadi"][2], hari_6["Sukajadi"][2] ],
+            [ "9:00", hari_0["Sukajadi"][3], hari_1["Sukajadi"][3], hari_2["Sukajadi"][3], hari_3["Sukajadi"][3], hari_4["Sukajadi"][3], hari_5["Sukajadi"][3], hari_6["Sukajadi"][3] ],
+            [ "10:00", hari_0["Sukajadi"][4], hari_1["Sukajadi"][4], hari_2["Sukajadi"][4], hari_3["Sukajadi"][4], hari_4["Sukajadi"][4], hari_5["Sukajadi"][4], hari_6["Sukajadi"][4] ],
             [ "11:00", hari_0["Sukajadi"][5], hari_1["Sukajadi"][5], hari_2["Sukajadi"][5], hari_3["Sukajadi"][5], hari_4["Sukajadi"][5], hari_5["Sukajadi"][5], hari_6["Sukajadi"][5] ],
             [ "12:00", hari_0["Sukajadi"][6], hari_1["Sukajadi"][6], hari_2["Sukajadi"][6], hari_3["Sukajadi"][6], hari_4["Sukajadi"][6], hari_5["Sukajadi"][6], hari_6["Sukajadi"][6] ],
             [ "13:00", hari_0["Sukajadi"][7], hari_1["Sukajadi"][7], hari_2["Sukajadi"][7], hari_3["Sukajadi"][7], hari_4["Sukajadi"][7], hari_5["Sukajadi"][7], hari_6["Sukajadi"][7] ],
