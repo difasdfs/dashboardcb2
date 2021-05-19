@@ -14,9 +14,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'index' %}">Home</a>
                 </li>
+
                 {% if data_kar %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="humanResource" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -28,6 +30,7 @@
                     </div>
                 </li>
                 {% endif %}
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="marketing" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Marketing
@@ -40,6 +43,7 @@
                     <a href="{% url 'kepuasan_pelanggan' %}" class="dropdown-item">Kepuasan Pelanggan</a>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="sistemsc" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Supply Chain
@@ -48,14 +52,17 @@
                     <a href="{% url 'index_supply_chain' %}" class="dropdown-item">Demand Ayam</a>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="operation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Operation
                     </a>
                     <div class="dropdown-menu" aria-labelledby="operation">
                     <a href="{% url 'index_operation' %}" class="dropdown-item">Produksi Harian</a>
+                    <a href="{% url 'index_rm_app' %}" class="dropdown-item">RM App</a>
                     </div>
                 </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="sistemsp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Sistem SP
