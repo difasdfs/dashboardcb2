@@ -80,6 +80,20 @@ def index_rm(request):
         a.id_pelapor = request.user.id
         a.waktu_lapor = timezone.now()
 
+        a.jam_11_ayam = request.POST.get('angka_produksi_ayam_9') if request.POST.get('angka_produksi_ayam_9') != '' else a.jam_11_ayam
+        a.jam_11_nasi = request.POST.get('angka_produksi_nasi_9') if request.POST.get('angka_produksi_nasi_9') != '' else a.jam_11_nasi
+        a.jam_11_teh = request.POST.get('angka_produksi_teh_9') if request.POST.get('angka_produksi_teh_9') != '' else a.jam_11_teh
+        a.jam_11_milo = request.POST.get('angka_produksi_milo_9') if request.POST.get('angka_produksi_milo_9') != '' else a.jam_11_milo
+        a.jam_11_orange = request.POST.get('angka_produksi_orange_9') if request.POST.get('angka_produksi_orange_9') != '' else a.jam_11_orange
+        a.jam_11_lemontea = request.POST.get('angka_produksi_lemontea_9') if request.POST.get('angka_produksi_lemontea_9') != '' else a.jam_11_lemontea
+
+        a.jam_11_ayam = request.POST.get('angka_produksi_ayam_10') if request.POST.get('angka_produksi_ayam_10') != '' else a.jam_11_ayam
+        a.jam_11_nasi = request.POST.get('angka_produksi_nasi_10') if request.POST.get('angka_produksi_nasi_10') != '' else a.jam_11_nasi
+        a.jam_11_teh = request.POST.get('angka_produksi_teh_10') if request.POST.get('angka_produksi_teh_10') != '' else a.jam_11_teh
+        a.jam_11_milo = request.POST.get('angka_produksi_milo_10') if request.POST.get('angka_produksi_milo_10') != '' else a.jam_11_milo
+        a.jam_11_orange = request.POST.get('angka_produksi_orange_10') if request.POST.get('angka_produksi_orange_10') != '' else a.jam_11_orange
+        a.jam_11_lemontea = request.POST.get('angka_produksi_lemontea_10') if request.POST.get('angka_produksi_lemontea_10') != '' else a.jam_11_lemontea
+
         a.jam_11_ayam = request.POST.get('angka_produksi_ayam_11') if request.POST.get('angka_produksi_ayam_11') != '' else a.jam_11_ayam
         a.jam_11_nasi = request.POST.get('angka_produksi_nasi_11') if request.POST.get('angka_produksi_nasi_11') != '' else a.jam_11_nasi
         a.jam_11_teh = request.POST.get('angka_produksi_teh_11') if request.POST.get('angka_produksi_teh_11') != '' else a.jam_11_teh

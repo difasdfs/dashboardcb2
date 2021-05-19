@@ -24,6 +24,20 @@ class ProduksiAyam(models.Model):
     tanggal = models.DateField()
     waktu_lapor = models.DateTimeField()
 
+    jam_9_ayam = models.IntegerField(default=0)
+    jam_9_nasi = models.IntegerField(default=0)
+    jam_9_teh = models.IntegerField(default=0)
+    jam_9_milo = models.IntegerField(default=0)
+    jam_9_orange = models.IntegerField(default=0)
+    jam_9_lemontea = models.IntegerField(default=0)
+
+    jam_10_ayam = models.IntegerField(default=0)
+    jam_10_nasi = models.IntegerField(default=0)
+    jam_10_teh = models.IntegerField(default=0)
+    jam_10_milo = models.IntegerField(default=0)
+    jam_10_orange = models.IntegerField(default=0)
+    jam_10_lemontea = models.IntegerField(default=0)
+
     jam_11_ayam = models.IntegerField(default=0)
     jam_11_nasi = models.IntegerField(default=0)
     jam_11_teh = models.IntegerField(default=0)
