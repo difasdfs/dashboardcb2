@@ -126,7 +126,8 @@ urlpatterns = [
     path('index_supply_chain/', views.index_supply_chain, name='index_supply_chain'),
 
     # OPERATION
-    path('index_operation/', views.index_operation, name='index_operation')
+    path('index_operation/', views.index_operation, name='index_operation'),
+    path('index_rm_app/', views.index_rm_app, name='index_rm_app')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

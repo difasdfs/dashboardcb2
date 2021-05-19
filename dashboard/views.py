@@ -17,6 +17,9 @@ from .rinci_tugas_rutin import rinci_tr, rinci_tr_eksekutif
 from .supply_chain import update_pemakaian_ayam, periksa_hari_dalam_pemakaian_ayam, query_rata_rata_deman_ayam
 from .operation import coba_query
 from .models import *
+from .rm_app import query_rm_app
+
+from rm_app.models import ProduksiAyam
 
 from django.utils import timezone
 from datetime import datetime, timedelta, date, time
@@ -2933,6 +2936,32 @@ def index_operation(request):
         context['data_kar'] = True
 
     return render(request, 'operation/index.html', context)
+
+@login_required(login_url='login')
+def index_rm_app(request):
+    
+    context = {'nama' : request.user.first_name}
+
+    if 'tanggal' in request.GET.keys():
+        hari_ini = date.fromisoformat(request.GET.get('tanggal'))
+        
+        if hari_ini >= date.today():
+            hari_ini = date.today()
+            
+        querynya = query_rm_app(hari_ini)
+    else:
+        hari_ini = date.today()
+        querynya = query_rm_app(hari_ini)
+
+    header = ['Jam', 'Produksi Ayam (Pcs)', 'Produksi Nasi (Gram)', 'Produksi Teh Sisri (sachet)', 'Produksi Milo (Gram)', 'Produksi Orange (Gram)', 'Produksi Lemon Tea (Gram)']
+    context['header'] = header
+    context['tanggal'] = str(hari_ini)
+    context['querynya'] = querynya    
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'operation/index_rm_app.html', context)
 
 # ---------------------- LOGIC -------------------------------
 
