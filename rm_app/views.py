@@ -80,19 +80,19 @@ def index_rm(request):
         a.id_pelapor = request.user.id
         a.waktu_lapor = timezone.now()
 
-        a.jam_11_ayam = request.POST.get('angka_produksi_ayam_9') if request.POST.get('angka_produksi_ayam_9') != '' else a.jam_11_ayam
-        a.jam_11_nasi = request.POST.get('angka_produksi_nasi_9') if request.POST.get('angka_produksi_nasi_9') != '' else a.jam_11_nasi
-        a.jam_11_teh = request.POST.get('angka_produksi_teh_9') if request.POST.get('angka_produksi_teh_9') != '' else a.jam_11_teh
-        a.jam_11_milo = request.POST.get('angka_produksi_milo_9') if request.POST.get('angka_produksi_milo_9') != '' else a.jam_11_milo
-        a.jam_11_orange = request.POST.get('angka_produksi_orange_9') if request.POST.get('angka_produksi_orange_9') != '' else a.jam_11_orange
-        a.jam_11_lemontea = request.POST.get('angka_produksi_lemontea_9') if request.POST.get('angka_produksi_lemontea_9') != '' else a.jam_11_lemontea
+        a.jam_9_ayam = request.POST.get('angka_produksi_ayam_9') if request.POST.get('angka_produksi_ayam_9') != '' else a.jam_11_ayam
+        a.jam_9_nasi = request.POST.get('angka_produksi_nasi_9') if request.POST.get('angka_produksi_nasi_9') != '' else a.jam_11_nasi
+        a.jam_9_teh = request.POST.get('angka_produksi_teh_9') if request.POST.get('angka_produksi_teh_9') != '' else a.jam_11_teh
+        a.jam_9_milo = request.POST.get('angka_produksi_milo_9') if request.POST.get('angka_produksi_milo_9') != '' else a.jam_11_milo
+        a.jam_9_orange = request.POST.get('angka_produksi_orange_9') if request.POST.get('angka_produksi_orange_9') != '' else a.jam_11_orange
+        a.jam_9_lemontea = request.POST.get('angka_produksi_lemontea_9') if request.POST.get('angka_produksi_lemontea_9') != '' else a.jam_11_lemontea
 
-        a.jam_11_ayam = request.POST.get('angka_produksi_ayam_10') if request.POST.get('angka_produksi_ayam_10') != '' else a.jam_11_ayam
-        a.jam_11_nasi = request.POST.get('angka_produksi_nasi_10') if request.POST.get('angka_produksi_nasi_10') != '' else a.jam_11_nasi
-        a.jam_11_teh = request.POST.get('angka_produksi_teh_10') if request.POST.get('angka_produksi_teh_10') != '' else a.jam_11_teh
-        a.jam_11_milo = request.POST.get('angka_produksi_milo_10') if request.POST.get('angka_produksi_milo_10') != '' else a.jam_11_milo
-        a.jam_11_orange = request.POST.get('angka_produksi_orange_10') if request.POST.get('angka_produksi_orange_10') != '' else a.jam_11_orange
-        a.jam_11_lemontea = request.POST.get('angka_produksi_lemontea_10') if request.POST.get('angka_produksi_lemontea_10') != '' else a.jam_11_lemontea
+        a.jam_10_ayam = request.POST.get('angka_produksi_ayam_10') if request.POST.get('angka_produksi_ayam_10') != '' else a.jam_11_ayam
+        a.jam_10_nasi = request.POST.get('angka_produksi_nasi_10') if request.POST.get('angka_produksi_nasi_10') != '' else a.jam_11_nasi
+        a.jam_10_teh = request.POST.get('angka_produksi_teh_10') if request.POST.get('angka_produksi_teh_10') != '' else a.jam_11_teh
+        a.jam_10_milo = request.POST.get('angka_produksi_milo_10') if request.POST.get('angka_produksi_milo_10') != '' else a.jam_11_milo
+        a.jam_10_orange = request.POST.get('angka_produksi_orange_10') if request.POST.get('angka_produksi_orange_10') != '' else a.jam_11_orange
+        a.jam_10_lemontea = request.POST.get('angka_produksi_lemontea_10') if request.POST.get('angka_produksi_lemontea_10') != '' else a.jam_11_lemontea
 
         a.jam_11_ayam = request.POST.get('angka_produksi_ayam_11') if request.POST.get('angka_produksi_ayam_11') != '' else a.jam_11_ayam
         a.jam_11_nasi = request.POST.get('angka_produksi_nasi_11') if request.POST.get('angka_produksi_nasi_11') != '' else a.jam_11_nasi
@@ -192,26 +192,26 @@ def index_rm(request):
         a.jam_24_orange = request.POST.get('angka_produksi_orange_24') if request.POST.get('angka_produksi_orange_24') != '' else a.jam_24_orange
         a.jam_24_lemontea = request.POST.get('angka_produksi_lemontea_24') if request.POST.get('angka_produksi_lemontea_24') != '' else a.jam_24_lemontea
 
-        a.jam_1_ayam = request.POST.get('angka_produksi_ayam_1') if request.POST.get('angka_produksi_ayam_1') != '' else a.jam_1_ayam
-        a.jam_1_nasi = request.POST.get('angka_produksi_nasi_1') if request.POST.get('angka_produksi_nasi_1') != '' else a.jam_1_nasi
-        a.jam_1_teh = request.POST.get('angka_produksi_teh_1') if request.POST.get('angka_produksi_teh_1') != '' else a.jam_1_teh
-        a.jam_1_milo = request.POST.get('angka_produksi_milo_1') if request.POST.get('angka_produksi_milo_1') != '' else a.jam_1_milo
-        a.jam_1_orange = request.POST.get('angka_produksi_orange_1') if request.POST.get('angka_produksi_orange_1') != '' else a.jam_1_orange
-        a.jam_1_lemontea = request.POST.get('angka_produksi_lemontea_1') if request.POST.get('angka_produksi_lemontea_1') != '' else a.jam_1_lemontea
+        a.jam_1_ayam = 0
+        a.jam_1_nasi = 0
+        a.jam_1_teh = 0
+        a.jam_1_milo = 0
+        a.jam_1_orange = 0
+        a.jam_1_lemontea = 0
 
-        a.jam_2_ayam = request.POST.get('angka_produksi_ayam_2') if request.POST.get('angka_produksi_ayam_2') != '' else a.jam_2_ayam
-        a.jam_2_nasi = request.POST.get('angka_produksi_nasi_2') if request.POST.get('angka_produksi_nasi_2') != '' else a.jam_2_nasi
-        a.jam_2_teh = request.POST.get('angka_produksi_teh_2') if request.POST.get('angka_produksi_teh_2') != '' else a.jam_2_teh
-        a.jam_2_milo = request.POST.get('angka_produksi_milo_2') if request.POST.get('angka_produksi_milo_2') != '' else a.jam_2_milo
-        a.jam_2_orange = request.POST.get('angka_produksi_orange_2') if request.POST.get('angka_produksi_orange_2') != '' else a.jam_2_orange
-        a.jam_2_lemontea = request.POST.get('angka_produksi_lemontea_2') if request.POST.get('angka_produksi_lemontea_2') != '' else a.jam_2_lemontea
+        a.jam_2_ayam = 0
+        a.jam_2_nasi = 0
+        a.jam_2_teh = 0
+        a.jam_2_milo = 0
+        a.jam_2_orange = 0
+        a.jam_2_lemontea = 0
 
-        a.jam_3_ayam = request.POST.get('angka_produksi_ayam_3') if request.POST.get('angka_produksi_ayam_3') != '' else a.jam_3_ayam
-        a.jam_3_nasi = request.POST.get('angka_produksi_nasi_3') if request.POST.get('angka_produksi_nasi_3') != '' else a.jam_3_nasi
-        a.jam_3_teh = request.POST.get('angka_produksi_teh_3') if request.POST.get('angka_produksi_teh_3') != '' else a.jam_3_teh
-        a.jam_3_milo = request.POST.get('angka_produksi_milo_3') if request.POST.get('angka_produksi_milo_3') != '' else a.jam_3_milo
-        a.jam_3_orange = request.POST.get('angka_produksi_orange_3') if request.POST.get('angka_produksi_orange_3') != '' else a.jam_3_orange
-        a.jam_3_lemontea = request.POST.get('angka_produksi_lemontea_3') if request.POST.get('angka_produksi_lemontea_3') != '' else a.jam_3_lemontea
+        a.jam_3_ayam = 0
+        a.jam_3_nasi = 0
+        a.jam_3_teh = 0
+        a.jam_3_milo = 0
+        a.jam_3_orange = 0
+        a.jam_3_lemontea = 0
 
         a.stok_ayam = request.POST.get('stok_ayam') if request.POST.get('stok_ayam') != '' else a.stok_ayam
         a.stok_chicken_skin = request.POST.get('stok_chicken_skin') if request.POST.get('stok_chicken_skin') != '' else a.stok_chicken_skin
