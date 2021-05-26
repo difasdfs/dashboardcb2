@@ -14,7 +14,6 @@ def evaluasi(periode):
         2, # pak randy
         3, # difa
         4, # teddy
-        6, # astia
         8, # vivi
         22, # bu novi
         23, # hafizh
@@ -25,7 +24,6 @@ def evaluasi(periode):
         31, # rara
         32, # salma
         37, # pak dicky
-        38, # denna
         40, # pak jofy
         41, # pak hikmatullah
         42, # pak ilyas
