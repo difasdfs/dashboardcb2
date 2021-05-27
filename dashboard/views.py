@@ -432,7 +432,7 @@ def eval_per_periode(request):
     mei2 = mei2[::-1]
     context['mei2'] = mei2
 
-    juni1 = evaluasi(5)
+    juni1 = evaluasi(6)
     juni1.sort(key=lambda tup: tup[6])
     juni1 = juni1[::-1]
     context['juni1'] = juni1
