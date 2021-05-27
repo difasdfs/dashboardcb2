@@ -403,6 +403,9 @@ def eval_per_periode(request):
     kenasp_periode_mei2 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 5, 26))
     context['kenasp_periode_mei2'] = kenasp_periode_mei2
 
+    kenasp_periode_juni1 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 6, 11))
+    context['kenasp_periode_juni1'] = kenasp_periode_juni1
+
     # ---------------------------------------------
     hasil = evaluasi(1)
     hasil.sort(key=lambda tup: tup[6])
@@ -428,6 +431,11 @@ def eval_per_periode(request):
     mei2.sort(key=lambda tup: tup[6])
     mei2 = mei2[::-1]
     context['mei2'] = mei2
+
+    juni1 = evaluasi(5)
+    juni1.sort(key=lambda tup: tup[6])
+    juni1 = juni1[::-1]
+    context['juni1'] = juni1
     # ---------------------------------------------
 
 
