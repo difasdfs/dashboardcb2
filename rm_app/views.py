@@ -223,7 +223,7 @@ def index_rm(request):
         "2" : "Rabu",
         "3" : "Kamis",
         "4" : "Jumat",
-        "5" : "Sabut",
+        "5" : "Sabtu",
         "6" : "Minggu"
     }
 
