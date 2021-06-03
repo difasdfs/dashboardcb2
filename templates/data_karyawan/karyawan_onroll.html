@@ -1,0 +1,249 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+    .hati-hati{
+        color: white;
+        background-color: #ff0404;
+    }
+</style>
+
+<hr>
+<div class="container">
+    <div class="row">
+        {% include 'data_karyawan/sidebar.html' %}
+        <div class="col">
+
+            <h1>Data Karyawan Onroll</h1>
+            
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                Edit Onroll & Target Labor
+            </button>
+            <br><br>
+
+            <table class="table table-bordered table-sm table-hover" style="text-align:center">
+                <thead>
+                  <tr>
+                    <th scope="col">NO</th>
+                    <th scope="col">AREA</th>
+                    <th scope="col">ONROLL</th>
+                    <th scope="col">ACTUAL</th>
+                    <th scope="col">LEBIH / KURANG</th>
+                    <th scope="col">TARGET LABOUR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>CISITU</td>
+                    <td>{{data_onroll.0.onrollnya}}</td>
+                    <td>{{data_actual.0}}</td>
+                    {% if selisih.0 >= 0 %}
+                        <td>{{selisih.0}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.0}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.0.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>SUKAJADI</td>
+                    <td>{{data_onroll.1.onrollnya}}</td>
+                    <td>{{data_actual.1}}</td>
+                    {% if selisih.1 >= 0 %}
+                        <td>{{selisih.1}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.1}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.1.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>METRO</td>
+                    <td>{{data_onroll.2.onrollnya}}</td>
+                    <td>{{data_actual.2}}</td>
+                    {% if selisih.2 >= 0 %}
+                        <td>{{selisih.2}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.2}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.2.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">4</th>
+                    <td>ANTAPANI</td>
+                    <td>{{data_onroll.3.onrollnya}}</td>
+                    <td>{{data_actual.3}}</td>
+                    {% if selisih.3 >= 0 %}
+                        <td>{{selisih.3}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.3}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.3.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">5</th>
+                    <td>UNJANI</td>
+                    <td>{{data_onroll.4.onrollnya}}</td>
+                    <td>{{data_actual.4}}</td>
+                    {% if selisih.4 >= 0 %}
+                        <td>{{selisih.4}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.4}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.4.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">6</th>
+                    <td>SUKAPURA</td>
+                    <td>{{data_onroll.5.onrollnya}}</td>
+                    <td>{{data_actual.5}}</td>
+                    {% if selisih.5 >= 0 %}
+                        <td>{{selisih.5}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.5}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.5.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">7</th>
+                    <td>SUKABIRUS</td>
+                    <td>{{data_onroll.6.onrollnya}}</td>
+                    <td>{{data_actual.6}}</td>
+                    {% if selisih.6 >= 0 %}
+                        <td>{{selisih.6}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.6}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.6.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">8</th>
+                    <td>KOPO</td>
+                    <td>{{data_onroll.7.onrollnya}}</td>
+                    <td>{{data_actual.7}}</td>
+                    {% if selisih.7 >= 0 %}
+                        <td>{{selisih.7}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.7}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.7.target_labour}}%</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">9</th>
+                    <td>JATINANGOR</td>
+                    <td>{{data_onroll.8.onrollnya}}</td>
+                    <td>{{data_actual.8}}</td>
+                    {% if selisih.8 >= 0 %}
+                        <td>{{selisih.8}}</td>
+                    {% else %}
+                        <td class='hati-hati'><strong>{{selisih.8}}</strong></td>
+                    {% endif %}
+                    <td>{{data_onroll.8.target_labour}}%</td>
+                  </tr>
+                </tbody>
+              </table>
+              
+        </div>
+    </div>
+
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <form method="POST">
+                    {% csrf_token %}
+                    <table class="table table-bordered table-sm table-hover" style="text-align:center">
+                        <thead>
+                        <tr>
+                            <th scope="col">NO</th>
+                            <th scope="col">AREA</th>
+                            <th scope="col">ONROLL</th>
+                            <th scope="col">TARGET LABOUR</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>CISITU</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_cisitu" id="enroll_cisitu" value="{{data_onroll.0.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_cisitu" id="target_labour_cisitu" value="{{data_onroll.0.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>SUKAJADI</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_sukajadi" id="enroll_sukajadi" value="{{data_onroll.1.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_sukajadi" id="target_labour_sukajadi" value="{{data_onroll.1.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>METRO</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_metro" id="enroll_metro" value="{{data_onroll.2.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_metro" id="target_labour_metro" value="{{data_onroll.2.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>ANTAPANI</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_antapani" id="enroll_antapani" value="{{data_onroll.3.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_antapani" id="target_labour_antapani" value="{{data_onroll.3.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>UNJANI</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_unjani" id="enroll_unjani" value="{{data_onroll.4.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_unjani" id="target_labour_unjani" value="{{data_onroll.4.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>SUKAPURA</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_sukapura" id="enroll_sukapura" value="{{data_onroll.5.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_sukapura" id="target_labour_sukapura" value="{{data_onroll.5.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>SUKABIRUS</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_sukabirus" id="enroll_sukabirus" value="{{data_onroll.6.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_sukabirus" id="target_labour_sukabirus" value="{{data_onroll.6.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">8</th>
+                            <td>KOPO</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_kopo" id="enroll_kopo" value="{{data_onroll.7.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_kopo" id="target_labour_kopo" value="{{data_onroll.7.target_labour}}"></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">9</th>
+                            <td>JATINANGOR</td>
+                            <td><input min="0" type="number" class="form-control" name="enroll_jatinangor" id="enroll_jatinangor" value="{{data_onroll.8.onrollnya}}"></td>
+                            <td><input min="0" type="number" class="form-control" name="target_labour_jatinangor" id="target_labour_jatinangor" value="{{data_onroll.8.target_labour}}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+            
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$('#myModal').on('shown.bs.modal', function (){
+  $('#myInput').trigger('focus')
+})
+</script>
+{% endblock %}
