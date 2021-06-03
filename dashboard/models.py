@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from rm_app.models import Cabang
 import datetime
 import pytz
 import locale
@@ -217,6 +218,10 @@ class DataKaryawan(models.Model):
 
             self.lama_bekerja = str(tahun) + " tahun, " + str(bulan) + " bulan, " + str(selisih) + " hari"
 
+class Onroll(models.Model):
+    cabangnya = models.CharField(max_length=70)
+    onrollnya = models.IntegerField()
+    target_labour = models.FloatField()
 
 class DataStruk(models.Model):
     nomor_struk = models.CharField(max_length=50)

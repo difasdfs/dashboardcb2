@@ -77,6 +77,7 @@ urlpatterns = [
     path('kepuasan_pelanggan/', views.kepuasan_pelanggan, name='kepuasan_pelanggan'),
     path('input_kepuasan_pelanggan/', views.input_kepuasan_pelanggan, name="input_kepuasan_pelanggan"),
     path('detail_kepuasan_pelanggan/<int:id_kepuasan_pelanggan>', views.detail_kepuasan_pelanggan, name="detail_kepuasan_pelanggan"),
+    path('karyawan_onroll/', views.karyawan_onroll, name='karyawan_onroll'),
 
     # ADMIN PSIKOTES
     path('index_alat_test/', views.index_alat_test, name='index_alat_test'),

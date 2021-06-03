@@ -1969,6 +1969,114 @@ def halaman_edit(request, id_karyawan):
     return render(request, 'data_karyawan/halaman_edit.html', context)
 
 
+@login_required(login_url='login')
+def karyawan_onroll(request):
+
+    if request.method == "POST":
+
+        enroll_cisitu = request.POST.get('enroll_cisitu')
+        enroll_sukajadi = request.POST.get('enroll_sukajadi')
+        enroll_metro = request.POST.get('enroll_metro')
+        enroll_antapani = request.POST.get('enroll_antapani')
+        enroll_unjani = request.POST.get('enroll_unjani')
+        enroll_sukapura = request.POST.get('enroll_sukapura')
+        enroll_sukabirus = request.POST.get('enroll_sukabirus')
+        enroll_kopo = request.POST.get('enroll_kopo')
+        enroll_jatinangor = request.POST.get('enroll_jatinangor')
+
+        targer_labour_cisitu = request.POST.get('target_labour_cisitu')
+        targer_labour_sukajadi = request.POST.get('target_labour_sukajadi')
+        targer_labour_metro = request.POST.get('target_labour_metro')
+        targer_labour_antapani = request.POST.get('target_labour_antapani')
+        targer_labour_unjani = request.POST.get('target_labour_unjani')
+        targer_labour_sukapura = request.POST.get('target_labour_sukapura')
+        targer_labour_sukabirus = request.POST.get('target_labour_sukabirus')
+        targer_labour_kopo = request.POST.get('target_labour_kopo')
+        targer_labour_jatinangor = request.POST.get('target_labour_jatinangor')
+
+        cabang = ['Cisitu', 'Sukajadi', 'Metro', 'Antapani', 'Unjani', 'Telkom Sukapura', 'Telkom Sukabirus', 'Kopo', 'Jatinangor',]
+        kumpulan = [
+            [enroll_cisitu, targer_labour_cisitu],
+            [enroll_sukajadi, targer_labour_sukajadi],
+            [enroll_metro, targer_labour_metro],
+            [enroll_antapani, targer_labour_antapani],
+            [enroll_unjani, targer_labour_unjani],
+            [enroll_sukapura, targer_labour_sukapura],
+            [enroll_sukabirus, targer_labour_sukabirus],
+            [enroll_kopo, targer_labour_kopo],
+            [enroll_jatinangor, targer_labour_jatinangor],
+        ]
+        i = 0
+        for c in cabang:
+            onroll_dan_labour = kumpulan[i]
+            i += 1      
+            objek_onroll = Onroll.objects.get(cabangnya=c)
+            objek_onroll.onrollnya = int(onroll_dan_labour[0])
+            objek_onroll.target_labour = float(onroll_dan_labour[1])
+            objek_onroll.save()
+
+    karyawan_cisitu = len(DataKaryawan.objects.filter(area='Cisitu', status='AKTIF'))
+    karyawan_sukajadi = len(DataKaryawan.objects.filter(area='Sukajadi', status='AKTIF'))
+    karyawan_metro = len(DataKaryawan.objects.filter(area='Metro', status='AKTIF'))
+    karyawan_antapani = len(DataKaryawan.objects.filter(area='Antapani', status='AKTIF'))
+    karyawan_unjani = len(DataKaryawan.objects.filter(area='Unjani', status='AKTIF'))
+    karyawan_telkom_sukapura = len(DataKaryawan.objects.filter(area='Telkom Sukapura', status='AKTIF'))
+    karyawan_telkom_sukabirus = len(DataKaryawan.objects.filter(area='Telkom Sukabirus', status='AKTIF'))
+    karyawan_kopo = len(DataKaryawan.objects.filter(area='Kopo', status='AKTIF'))
+    karyawan_jatinangor = len(DataKaryawan.objects.filter(area='Jatinangor', status='AKTIF'))
+    
+    onroll_cisitu = Onroll.objects.get(cabangnya='Cisitu')
+    onroll_sukajadi = Onroll.objects.get(cabangnya='Sukajadi')
+    onroll_metro = Onroll.objects.get(cabangnya='Metro')
+    onroll_antapani = Onroll.objects.get(cabangnya='Antapani')
+    onroll_unjani = Onroll.objects.get(cabangnya='Unjani')
+    onroll_telkom_sukapura = Onroll.objects.get(cabangnya='Telkom Sukapura')
+    onroll_telkom_sukabirus = Onroll.objects.get(cabangnya='Telkom Sukabirus')
+    onroll_kopo = Onroll.objects.get(cabangnya='Kopo')
+    onroll_jatinangor = Onroll.objects.get(cabangnya='Jatinangor')
+
+    data_actual = [
+        karyawan_cisitu,
+        karyawan_sukajadi,
+        karyawan_metro,
+        karyawan_antapani,
+        karyawan_unjani,
+        karyawan_telkom_sukapura,
+        karyawan_telkom_sukabirus,
+        karyawan_kopo,
+        karyawan_jatinangor,
+    ]
+
+    data_onroll = [
+        onroll_cisitu,
+        onroll_sukajadi,
+        onroll_metro,
+        onroll_antapani,
+        onroll_unjani,
+        onroll_telkom_sukapura,
+        onroll_telkom_sukabirus,
+        onroll_kopo,
+        onroll_jatinangor,
+    ]
+
+    # actual - onroll
+    selisih = []
+    i = 0
+    for data in data_actual:
+        selisih.append(data - data_onroll[i].onrollnya)
+        i += 1
+
+    context = {
+        'nama' : request.user.first_name,
+        'data_actual' : data_actual,
+        'data_onroll' : data_onroll,
+        'selisih' : selisih
+        }
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'data_karyawan/karyawan_onroll.html', context)
+
 # ---------------------- HUMAN RESOURCE -----------------------
 @login_required(login_url='login')
 def index_alat_test(request):
