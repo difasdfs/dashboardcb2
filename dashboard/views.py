@@ -2066,10 +2066,25 @@ def karyawan_onroll(request):
         selisih.append(data - data_onroll[i].onrollnya)
         i += 1
 
+    list_data_onroll = [a.onrollnya for a in data_onroll]
+    list_target_labour = [a.target_labour for a in data_onroll]
+
+    total_actual = sum(data_actual)
+    total_selisih = sum(selisih)
+    total_onroll = sum(list_data_onroll)
+    total_target_labour = sum(list_target_labour) / len(list_target_labour)
+    total_target_labour = str(total_target_labour).split('.')
+    total_target_labour = total_target_labour[0] + '.' + total_target_labour[1][:2]
+    
+
     context = {
         'nama' : request.user.first_name,
         'data_actual' : data_actual,
         'data_onroll' : data_onroll,
+        'total_actual' : total_actual,
+        'total_selisih' : total_selisih,
+        'total_onroll' : total_onroll,
+        'total_target_labour' : total_target_labour,
         'selisih' : selisih
         }
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
