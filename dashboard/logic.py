@@ -92,6 +92,24 @@ def query_kepuasan_pelanggan_dashboard():
     sesudah = sesudah_sebelum_kp[0]
     sebelum = sesudah_sebelum_kp[1]
 
+    if sesudah.google_kopo == None:
+        sesudah.google_kopo = 0.0
+    if sesudah.gofood_kopo == None:
+        sesudah.gofood_kopo = 0.0
+    if sesudah.grabfood_kopo == None:
+        sesudah.grabfood_kopo = 0.0
+    if sesudah.survei_kopo == None:
+        sesudah.survei_kopo = 0.0
+
+    if sebelum.google_kopo == None:
+        sebelum.google_kopo = 0.0
+    if sebelum.gofood_kopo == None:
+        sebelum.gofood_kopo = 0.0
+    if sebelum.grabfood_kopo == None:
+        sebelum.grabfood_kopo = 0.0
+    if sebelum.survei_kopo == None:
+        sebelum.survei_kopo = 0.0
+
     hasil = [
         ["Antapani", 
         sesudah.google_antapani, berselisih(sesudah.google_antapani, sebelum.google_antapani), 
@@ -115,6 +133,14 @@ def query_kepuasan_pelanggan_dashboard():
         sesudah.grabfood_jatinangor, berselisih(sesudah.grabfood_jatinangor, sebelum.grabfood_jatinangor), 
         sesudah.survei_jatinangor, berselisih(sesudah.survei_jatinangor, sebelum.survei_jatinangor),
         sesudah.dapat_average("Jatinangor"), berselisih(sesudah.dapat_average("Jatinangor"), sebelum.dapat_average("Jatinangor"))
+        ],
+
+        ["Kopo",
+        sesudah.google_kopo, berselisih(sesudah.google_kopo, sebelum.google_kopo), 
+        sesudah.gofood_kopo, berselisih(sesudah.gofood_kopo, sebelum.gofood_kopo), 
+        sesudah.grabfood_kopo, berselisih(sesudah.grabfood_kopo, sebelum.grabfood_kopo), 
+        sesudah.survei_kopo, berselisih(sesudah.survei_kopo, sebelum.survei_kopo),
+        sesudah.dapat_average("Kopo"), berselisih(sesudah.dapat_average("Kopo"), sebelum.dapat_average("Kopo"))
         ],
 
         ["Metro", 

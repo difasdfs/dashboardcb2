@@ -541,6 +541,7 @@ class KepuasanPelanggan(models.Model):
     google_cisitu = models.FloatField()
     google_jatinangor = models.FloatField()
     google_metro = models.FloatField()
+    google_kopo = models.FloatField(null=True, default=0)
     google_sukabirus = models.FloatField()
     google_sukapura = models.FloatField()
     google_sukajadi = models.FloatField()
@@ -549,6 +550,7 @@ class KepuasanPelanggan(models.Model):
     gofood_antapani = models.FloatField()
     gofood_cisitu = models.FloatField()
     gofood_jatinangor = models.FloatField()
+    gofood_kopo = models.FloatField(null=True, default=0)
     gofood_metro = models.FloatField()
     gofood_sukabirus = models.FloatField()
     gofood_sukapura = models.FloatField()
@@ -559,6 +561,7 @@ class KepuasanPelanggan(models.Model):
     grabfood_cisitu = models.FloatField()
     grabfood_jatinangor = models.FloatField()
     grabfood_metro = models.FloatField()
+    grabfood_kopo = models.FloatField(null=True, default=0)
     grabfood_sukabirus = models.FloatField()
     grabfood_sukapura = models.FloatField()
     grabfood_sukajadi = models.FloatField()
@@ -568,6 +571,7 @@ class KepuasanPelanggan(models.Model):
     survei_cisitu = models.FloatField()
     survei_jatinangor = models.FloatField()
     survei_metro = models.FloatField()
+    survei_kopo = models.FloatField(null=True, default=0)
     survei_sukabirus = models.FloatField()
     survei_sukapura = models.FloatField()
     survei_sukajadi = models.FloatField()
@@ -586,6 +590,8 @@ class KepuasanPelanggan(models.Model):
             hasil = self.google_jatinangor + self.gofood_jatinangor + self.grabfood_jatinangor + self.survei_jatinangor
         elif cabang == "Metro" :
             hasil = self.google_metro + self.gofood_metro + self.grabfood_metro + self.survei_metro
+        elif cabang == "Kopo" :
+            hasil = self.google_kopo + self.gofood_kopo + self.grabfood_kopo + self.survei_kopo
         elif cabang == "Sukabirus" :
             hasil = self.google_sukabirus + self.gofood_sukabirus + self.grabfood_sukabirus + self.survei_sukabirus
         elif cabang == "Sukapura" :
@@ -599,10 +605,20 @@ class KepuasanPelanggan(models.Model):
         return hasil
 
     def dapat_average_semua(self):
-        hasil = self.google_antapani + self.google_cisitu + self.google_jatinangor + self.google_metro + self.google_sukabirus + self.google_sukapura + self.google_sukajadi + self.google_unjani
-        hasil += self.gofood_antapani + self.gofood_cisitu + self.gofood_jatinangor + self.gofood_metro + self.gofood_sukabirus + self.gofood_sukapura + self.gofood_sukajadi + self.gofood_unjani
-        hasil += self.grabfood_antapani + self.grabfood_cisitu + self.grabfood_jatinangor + self.grabfood_metro + self.grabfood_sukabirus + self.grabfood_sukapura + self.grabfood_sukajadi + self.grabfood_unjani
-        hasil += self.survei_antapani + self.survei_cisitu + self.survei_jatinangor + self.survei_metro + self.survei_sukabirus + self.survei_sukapura + self.survei_sukajadi + self.survei_unjani
+
+        if self.google_kopo == None:
+            self.google_kopo = 0
+        if self.gofood_kopo == None:
+            self.gofood_kopo = 0
+        if self.grabfood_kopo == None:
+            self.grabfood_kopo = 0
+        if self.survei_kopo == None:
+            self.survei_kopo = 0
+                
+        hasil = self.google_antapani + self.google_cisitu + self.google_jatinangor + self.google_metro + self.google_kopo + self.google_sukabirus + self.google_sukapura + self.google_sukajadi + self.google_unjani
+        hasil += self.gofood_antapani + self.gofood_cisitu + self.gofood_jatinangor + self.gofood_metro + self.gofood_kopo + self.gofood_sukabirus + self.gofood_sukapura + self.gofood_sukajadi + self.gofood_unjani
+        hasil += self.grabfood_antapani + self.grabfood_cisitu + self.grabfood_jatinangor + self.grabfood_metro + self.grabfood_kopo + self.grabfood_sukabirus + self.grabfood_sukapura + self.grabfood_sukajadi + self.grabfood_unjani
+        hasil += self.survei_antapani + self.survei_cisitu + self.survei_jatinangor + self.survei_metro + self.survei_kopo + self.survei_sukabirus + self.survei_sukapura + self.survei_sukajadi + self.survei_unjani
         hasil /= 32
 
         hasil = "{:.2f}".format(hasil)
