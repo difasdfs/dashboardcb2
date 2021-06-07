@@ -74,7 +74,7 @@ def query_complaint_dashboard(PERIODE):
     periode = PeriodeKerja.objects.get(pk=PERIODE)
     periode_sebelumnya = PeriodeKerja.objects.get(pk=(PERIODE-1))
     
-    CABANG = ['Antapani', 'Cisitu', 'Jatinangor', 'Metro', 'Sukabirus', 'Sukapura', 'Sukajadi', 'Unjani', 'All Crisbar']
+    CABANG = ['Antapani', 'Cisitu', 'Jatinangor', 'Kopo', 'Metro', 'Sukabirus', 'Sukapura', 'Sukajadi', 'Unjani', 'All Crisbar']
 
     c = Complaint.objects.all()
     c = c.exclude(jenis="Lainnya")
@@ -82,9 +82,9 @@ def query_complaint_dashboard(PERIODE):
     complaint_periode_sebelumnya = c.filter(tanggal__range=[periode_sebelumnya.awal_periode, periode_sebelumnya.akhir_periode])
     
     complaint_cabang = [fungsi_helper_untuk_fungsi_di_bawah(c, complaint_periode, complaint_periode_sebelumnya) for c in CABANG]
-    antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar = complaint_cabang
+    antapani, cisitu, jatinangor, kopo, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar = complaint_cabang
 
-    return antapani, cisitu, jatinangor, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar
+    return antapani, cisitu, jatinangor, kopo, metro, sukabirus, sukapura, sukajadi, unjani, all_crisbar
 
 def query_kepuasan_pelanggan_dashboard():
     semua_kp = KepuasanPelanggan.objects.all().order_by('-tanggal')
