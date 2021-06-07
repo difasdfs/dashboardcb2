@@ -381,7 +381,7 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">Metro</th>
+                <th scope="row">Kopo</th>
                 {% for a in complaint.3 %}
                     {% if a.1.0 == '-' %}
                         <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
@@ -393,7 +393,7 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">Sukabirus</th>
+                <th scope="row">Metro</th>
                 {% for a in complaint.4 %}
                     {% if a.1.0 == '-' %}
                         <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
@@ -405,7 +405,7 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">Sukapura</th>
+                <th scope="row">Sukabirus</th>
                 {% for a in complaint.5 %}
                     {% if a.1.0 == '-' %}
                         <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
@@ -417,7 +417,7 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">Sukajadi</th>
+                <th scope="row">Sukapura</th>
                 {% for a in complaint.6 %}
                     {% if a.1.0 == '-' %}
                         <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
@@ -429,7 +429,7 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">Unjani</th>
+                <th scope="row">Sukajadi</th>
                 {% for a in complaint.7 %}
                     {% if a.1.0 == '-' %}
                         <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
@@ -441,8 +441,20 @@
                 {% endfor %}
             </tr>
             <tr>
-                <th scope="row">All Crisbar</th>
+                <th scope="row">Unjani</th>
                 {% for a in complaint.8 %}
+                    {% if a.1.0 == '-' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
+                    {% elif a.1.0 == '+' %}
+                        <td><strong>{{a.0}}</strong> <span style="color:red; opacity:50%;">({{a.1}})</span></td>
+                    {% else %}
+                        <td><strong>{{a.0}}</strong></td>
+                    {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>
+                <th scope="row">All Crisbar</th>
+                {% for a in complaint.9 %}
                     {% if a.1.0 == '-' %}
                         <td><strong>{{a.0}}</strong> <span style="color:green; opacity:50%;">({{a.1}})</span></td>
                     {% elif a.1.0 == '+' %}
