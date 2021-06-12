@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'dashboard',
     'member',
     'rm_app',
+    'investorkopo'
 ]
 
 MIDDLEWARE = [
