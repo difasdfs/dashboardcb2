@@ -1,0 +1,318 @@
+{% load tz %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Investor Kopo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <style>
+        body{
+            font-family: 'Roboto';
+            font-size: 22px;
+            padding-top: 2em;
+            padding-left: 2em;
+            background-color: #f8f4f4;
+        }
+        .janji-crisbar{
+            color: #fc1414;
+            text-align: center;
+        }
+        .penjualan-crisbar-kopo{
+            text-align: center;
+            padding-top: 1em;
+        }
+        .kontainer-flexbox{
+            /* kontainer untuk kotak hijau merah kuning biru */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: stretch;
+            padding-top: 1em;
+        }
+        .anak-kontainer{
+            /* anak dari kotak hijau merah kuning biru */
+            padding: 1em;
+            padding-top: 0.4em;
+            border-radius: 3px;
+            text-align: center;
+            width: 250px;
+        }
+        .satu{
+            /* hijau */
+            background-color: #08bc04;
+            color: white;
+        }
+        .dua{
+            /* merah */
+            background-color: #f8541c;
+            color: white;
+        }
+        .tiga{
+            /* kuning */
+            background-color: #ffdc64;
+            color: white;
+        }
+        .empat{
+            /* biru */
+            background-color: #709cec;
+            color: white;
+        }
+        .tengah-kotak{
+            /* untuk yang ada di tengan kotak */
+            font-size: 1.7em;
+        }
+        .kontainer-sebelum-trend{
+            /* kontainer flexbox untuk sebelum dan trend */
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+        .flexbox-tanggal{
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            align-items: flex-end;            
+        }
+        .anak-flexbox-tanggal{
+            margin: 1em;
+        }
+        .tombol-button{
+            margin-left: 1.4em;
+        }
+        .bar-graph-label{
+            font-size: 0.7em;
+        }
+    </style>
+    <style>
+        
+        .bar-graph {
+            padding: 0;
+            width: 100%;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-align-items: flex-end;
+                -ms-flex-align: end;
+                    align-items: flex-end;
+            height: 425px;
+            margin: 0;
+        }
+
+        .bar-graph li {
+            display: block;
+            padding: 1.5625rem 0;
+            position: relative;
+            text-align: center;
+            vertical-align: bottom;
+            border-radius: 4px 4px 0 0;
+            max-width: 20%;
+            height: 100%;
+            margin: 0 1.8% 0 0;
+            -webkit-flex: 1 1 15%;
+                -ms-flex: 1 1 15%;
+                    flex: 1 1 15%;
+        }
+
+        .bar-graph .bar-graph-axis {
+            -webkit-flex: 1 1 8%;
+                -ms-flex: 1 1 8%;
+                    flex: 1 1 8%;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-flex-direction: column;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+            -webkit-justify-content: space-between;
+                -ms-flex-pack: justify;
+                    justify-content: space-between;
+        }
+
+        .bar-graph .bar-graph-label {
+            margin: 0;
+            background-color: none;
+            color: #8a8a8a;
+            position: relative;
+        }
+
+        @media print, screen and (min-width: 40em) {
+            .bar-graph .bar-graph-label:before, .bar-graph .bar-graph-label:after {
+                content: "";
+                position: absolute;
+                border-bottom: 1px dashed #8a8a8a;
+                top: 0;
+                left: 0;
+                height: 50%;
+                width: 20%;
+            }
+        }
+
+        @media print, screen and (min-width: 40em) and (min-width: 64em) {
+            .bar-graph .bar-graph-label:before, .bar-graph .bar-graph-label:after {
+                width: 30%;
+            }
+        }
+
+        @media print, screen and (min-width: 40em) {
+            .bar-graph .bar-graph-label:after {
+                left: auto;
+                right: 0;
+            }
+        }
+
+        .bar-graph .percent {
+            letter-spacing: -3px;
+            opacity: 0.4;
+            width: 100%;
+            font-size: 1.875rem;
+            position: absolute;
+        }
+
+        @media print, screen and (min-width: 40em) {
+            .bar-graph .percent {
+                font-size: 3.875rem;
+            }
+        }
+
+        .bar-graph .percent span {
+            font-size: 1.875rem;
+        }
+
+        .bar-graph .description {
+            font-weight: 800;
+            opacity: 0.5;
+            text-transform: uppercase;
+            width: 100%;
+            font-size: 14px;
+            bottom: 20px;
+            position: absolute;
+            font-size: 1rem;
+            overflow: hidden;
+        }
+
+        .bar-graph .bar.primary {
+            border: 1px solid #90c44c;
+            background: linear-gradient(#90c44c, #90c44c 70%);
+        }
+
+        .bar-graph .bar.secondary {
+            border: 1px solid #767676;
+            background: linear-gradient(#909090, #767676 70%);
+        }
+
+        .bar-graph .bar.success {
+            border: 1px solid #3adb76;
+            background: linear-gradient(#65e394, #3adb76 70%);
+        }
+
+        .bar-graph .bar.warning {
+            border: 1px solid #ffae00;
+            background: linear-gradient(#ffbe33, #ffae00 70%);
+        }
+
+        .bar-graph .bar.alert {
+            border: 1px solid #cc4b37;
+            background: linear-gradient(#d67060, #cc4b37 70%);
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <!-- konten -->
+        <h1><strong>Visi Crisbar</strong></h1>
+        <p>Menjadi merek jaringan makanan <em>cepat saji <strong>favorit</strong></em> dan <em><strong>langganan</strong></em> Indonesia</p>
+        <h1><strong>Janji Crisbar</strong></h1>
+        <h3 class="janji-crisbar"><strong>SENYUM MANIS, RASA MANIS, MOMEN MANIS</strong></h3>
+
+        <div class="penjualan-crisbar-kopo">
+            <h2><strong>PENJUALAN</strong></h2>
+            <h3><strong>Crisbar Kopo</strong></h3>
+        </div>
+
+        <!-- input tanggal -->
+        <form method="POST">
+            {% csrf_token %}
+            <div class="flexbox-tanggal">
+                <div class="mb-3 anak-flexbox-tanggal">
+                    <label for="tanggal_awal" class="form-label">Tanggal Awal</label>
+                    <input type="date" class="form-control" id="tanggal_awal" name="tanggal_awal" value="{{tanggal_awal}}">
+                </div>
+                <div class="mb-3 anak-flexbox-tanggal">
+                    <label for="tanggal_akhir" class="form-label">Tanggal Akhir</label>
+                    <input type="date" class="form-control" id="tanggal_akhir" name="tanggal_akhir" value="{{tanggal_akhir}}">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary tombol-button">Submit</button>  
+        </form>
+        <!-- akhir input tanggal -->
+
+        <!-- khusus flexbox -->
+        <div class="kontainer-flexbox">
+
+            <div class="satu anak-kontainer">
+                TOTAL<br>PENJUALAN
+                <br><strong class="tengah-kotak">{{total_penjualan}}</strong>
+            </div>
+            <div class="dua anak-kontainer">
+                JUMLAH<br>STRUK
+                <br><strong class="tengah-kotak">{{jumlah_struk}}</strong>
+            </div>
+            <div class="tiga anak-kontainer"
+                >AVERAGE<br>SPEND
+                <br><strong class="tengah-kotak">{{average_spend}}</strong>
+            </div>
+            <div class="empat anak-kontainer">
+                REVENUE<br>SHARING
+                <br><strong class="tengah-kotak">{{revenue_sharing}}</strong>
+            </div>
+        <!-- akhir flexbox -->
+        
+        <!-- chart 2 -->
+        <ul class="bar-graph">
+            <li class="bar-graph-axis">
+                {% for a in urutan_grafik %}
+                    <div class="bar-graph-label">{{a}}</div>
+                {% endfor %}
+            </li>
+        
+            {% for p in query_grafik %}
+            <li class="bar primary" style="height: {{p.0}}%;" title="{{p.2}}">
+                <div class="description">{{p.1|date:"j M Y"}}</div>
+            </li>
+            {% endfor %}
+
+        </ul>
+          
+          
+        <!-- chart 2 -->
+
+
+        </div>
+        <!-- akhir konten -->
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script>
+        $(function() {
+            $('input[name="daterange"]').daterangepicker({
+                opens: 'left'
+            }, function(start, end, label) {
+            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+            });
+        });
+    </script>
+    
+</body>
+</html>
