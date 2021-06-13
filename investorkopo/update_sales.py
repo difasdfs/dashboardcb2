@@ -66,7 +66,8 @@ def main():
     hari_ini = date.today()
 
     semua_sales = Sales.objects.all()
-    primary_key = len(semua_sales) - 2
+    sales_akhir = semua_sales[len(semua_sales) - 1]
+    primary_key = sales_akhir.id
     sales_akhir = Sales.objects.get(pk=primary_key)
 
     if sales_akhir.tanggal != hari_ini:
