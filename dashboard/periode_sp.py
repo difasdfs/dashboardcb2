@@ -27,6 +27,9 @@ def evaluasi(periode):
         40, # pak jofy
         41, # pak hikmatullah
         42, # pak ilyas
+        51, # tyo
+        52, # iwang
+        53, # annisa puzianti
     ]
 
     hasil = []

@@ -8,17 +8,22 @@ def query_index_sp():
         2, # pak randy
         3, # difa
         4, # teddy
-        6, # astia
         8, # vivi
         22, # bu novi
         23, # hafizh
         24, # bu ratih
         25, # hanifah
         26, # bu santi
-        28, # pak beben        
-        30, # farhan
+        28, # pak beben
         31, # rara
         32, # salma
+        37, # pak dicky
+        40, # pak jofy
+        41, # pak hikmatullah
+        42, # pak ilyas
+        51, # tyo
+        52, # iwang
+        53, # annisa puzianti
     ]
 
     hasil = []
