@@ -31,7 +31,7 @@ def query_trend_pola_complaint():
         awal = object_periode_kerja.awal_periode
         akhir = object_periode_kerja.akhir_periode
 
-        if akhir >= date.today():
+        if awal >= date.today():
             continue
         
         dictionary_cabang_perbulan = {}
