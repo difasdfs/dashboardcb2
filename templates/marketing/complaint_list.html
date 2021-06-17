@@ -5,46 +5,360 @@
 <div class="container">
     <h1>Complaint List</h1><br>
     <a href="{% url 'input_complaint' %}" class="btn btn-success btn-sm" role="button">Input Complaint</a>
+    
     <br><br>
-    <table class="table table-hover table-bordered border-dark">
-        <thead>
-            <tr>
-                <th scope="col">Tanggal</th>
-                <th scope="col">Jam Operasional</th>
-                <th scope="col">Complaint</th>
-                <th scope="col">Cabang</th>
-                <th scope="col">Jenis</th>
-                <th scope="col">Status</th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for a in complaint %}
-            <tr>
-                <td>{{a.tanggal|date:"j M Y"}}</td>
-                <td>{{a.jam_operasional|time:"H.i"}}</td>
-                <td><a href="{% url 'detail_complaint' a.id %}">{{a.complaint}}</a></td>
-                <td>{{a.cabang}}</td>
-                <td>{{a.jenis}}</td>
-                <td>{{a.status}}</td>
-                <td><a href="{% url 'edit_complaint' a.id %}" class="btn btn-warning btn-sm" role="button">Edit</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <ul class="pagination">
-        {% for i in banyak_halaman %}
-            {% if i == halaman_aktif %}
-            <li class="page-item active">
-                <a class="page-link" href="?page={{i}}">{{i}}</a>
-            </li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{i}}">{{i}}</a>
-            </li>
-            {% endif %}
-        {% endfor %}
-    </ul>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-link active" id="nav-complain-tab" data-toggle="tab" href="#nav-complain" role="tab" aria-controls="nav-complain" aria-selected="true">Complaint</a>
+            <a class="nav-link" id="nav-trencomplain-tab" data-toggle="tab" href="#nav-trencomplain" role="tab" aria-controls="nav-trencomplain" aria-selected="false">Tren & Pola Complaint</a>
+        </div>
+    </nav>
+    
+    <!-- Compaint -->
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-complain" role="tabpanel" aria-labelledby="nav-complain-tab">
+            <!-- isinya -->
+            <br>
+            <table class="table table-hover table-bordered border-dark table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col">Tanggal</th>
+                        <th scope="col">Jam Operasional</th>
+                        <th scope="col">Complaint</th>
+                        <th scope="col">Cabang</th>
+                        <th scope="col">Jenis</th>
+                        <th scope="col">Status</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for a in complaint %}
+                    <tr>
+                        <td>{{a.tanggal|date:"j M Y"}}</td>
+                        <td>{{a.jam_operasional|time:"H.i"}}</td>
+                        <td><a href="{% url 'detail_complaint' a.id %}">{{a.complaint}}</a></td>
+                        <td>{{a.cabang}}</td>
+                        <td>{{a.jenis}}</td>
+                        <td>{{a.status}}</td>
+                        <td><a href="{% url 'edit_complaint' a.id %}" class="btn btn-warning btn-sm" role="button">Edit</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <ul class="pagination">
+                {% for i in banyak_halaman %}
+                    {% if i == halaman_aktif %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{i}}">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{i}}">{{i}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <!-- akhir isi -->
+        </div>
+
+        <!-- OFFICE -->
+        <div class="tab-pane fade" id="nav-trencomplain" role="tabpanel" aria-labelledby="nav-trencomplain-tab">
+            <!-- isinya -->
+            <br>
+            <div>
+                <!-- header -->
+                <h4>Cabang Antapani</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Periode</th>
+                        <th scope="col">Total Komplain</th>
+                        <th scope="col">Kualitas Produk</th>
+                        <th scope="col">Kebersihan</th>
+                        <th scope="col">Pelayanan</th>
+                        <th scope="col">Tidak Lengkap</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in data %}
+                    <tr>
+                        <th scope="row">{{d.periode}}</th>
+                        <td>{{d.data_komplain.Antapani.total_komplain}}</td>
+                        <td>{{d.data_komplain.Antapani.kualitas_produk}}</td>
+                        <td>{{d.data_komplain.Antapani.kebersihan}}</td>
+                        <td>{{d.data_komplain.Antapani.pelayanan}}</td>
+                        <td>{{d.data_komplain.Antapani.tidak_lengkap}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Cisitu</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Cisitu.total_komplain}}</td>
+                            <td>{{d.data_komplain.Cisitu.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Cisitu.kebersihan}}</td>
+                            <td>{{d.data_komplain.Cisitu.pelayanan}}</td>
+                            <td>{{d.data_komplain.Cisitu.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Jatinangor</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Jatinangor.total_komplain}}</td>
+                            <td>{{d.data_komplain.Jatinangor.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Jatinangor.kebersihan}}</td>
+                            <td>{{d.data_komplain.Jatinangor.pelayanan}}</td>
+                            <td>{{d.data_komplain.Jatinangor.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Kopo</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Kopo.total_komplain}}</td>
+                            <td>{{d.data_komplain.Kopo.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Kopo.kebersihan}}</td>
+                            <td>{{d.data_komplain.Kopo.pelayanan}}</td>
+                            <td>{{d.data_komplain.Kopo.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Metro</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Metro.total_komplain}}</td>
+                            <td>{{d.data_komplain.Metro.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Metro.kebersihan}}</td>
+                            <td>{{d.data_komplain.Metro.pelayanan}}</td>
+                            <td>{{d.data_komplain.Metro.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Sukapura</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Sukapura.total_komplain}}</td>
+                            <td>{{d.data_komplain.Sukapura.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Sukapura.kebersihan}}</td>
+                            <td>{{d.data_komplain.Sukapura.pelayanan}}</td>
+                            <td>{{d.data_komplain.Sukapura.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Sukabirus</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Sukabirus.total_komplain}}</td>
+                            <td>{{d.data_komplain.Sukabirus.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Sukabirus.kebersihan}}</td>
+                            <td>{{d.data_komplain.Sukabirus.pelayanan}}</td>
+                            <td>{{d.data_komplain.Sukabirus.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Sukajadi</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Sukajadi.total_komplain}}</td>
+                            <td>{{d.data_komplain.Sukajadi.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Sukajadi.kebersihan}}</td>
+                            <td>{{d.data_komplain.Sukajadi.pelayanan}}</td>
+                            <td>{{d.data_komplain.Sukajadi.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+            </div>
+            <div>
+                <!-- header -->
+                <h4>Cabang Unjani</h4>
+        
+                <!-- table -->
+                <table class="table table-bordered table-hover table-sm table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Periode</th>
+                            <th scope="col">Total Komplain</th>
+                            <th scope="col">Kualitas Produk</th>
+                            <th scope="col">Kebersihan</th>
+                            <th scope="col">Pelayanan</th>
+                            <th scope="col">Tidak Lengkap</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for d in data %}
+                        <tr>
+                            <th scope="row">{{d.periode}}</th>
+                            <td>{{d.data_komplain.Unjani.total_komplain}}</td>
+                            <td>{{d.data_komplain.Unjani.kualitas_produk}}</td>
+                            <td>{{d.data_komplain.Unjani.kebersihan}}</td>
+                            <td>{{d.data_komplain.Unjani.pelayanan}}</td>
+                            <td>{{d.data_komplain.Unjani.tidak_lengkap}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- table -->
+        
+                </div>
+            <!-- akhir isi -->
+        </div>
+    </div>
+
+    <br><br>
+    
 </div>
 
 {% endblock %}
