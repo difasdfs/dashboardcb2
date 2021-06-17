@@ -28,4 +28,4 @@ class Sales(models.Model):
     verified = models.BooleanField(default=False)
     
     def __str__(self):
-        return str(self.tanggal)
+        return str(self.tanggal) + " - " + set(self.verified)
