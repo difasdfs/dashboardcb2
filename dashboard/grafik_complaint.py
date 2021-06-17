@@ -40,8 +40,8 @@ def query_trend_pola_complaint():
             
             komplain_kualitas_produk = len(komplain.filter(jenis="Kualitas Produk"))
             komplain_kebersihan = len(komplain.filter(jenis="Kebersihan"))
-            komplain_pelayanan = len(komplain.filter(jenis="Kualitas Produk"))
-            komplain_tidak_lengkap = len(komplain.filter(jenis="Kualitas Produk"))
+            komplain_pelayanan = len(komplain.filter(jenis="Pelayanan"))
+            komplain_tidak_lengkap = len(komplain.filter(jenis="Tidak Lengkap"))
             komplain_total = komplain_kualitas_produk + komplain_kebersihan + komplain_pelayanan + komplain_tidak_lengkap
             
             dictionary_cabang_perbulan[nama_cabang] = {
