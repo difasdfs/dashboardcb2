@@ -59,7 +59,8 @@ def index(request):
 
     kumpulan_sales = Sales.objects.filter(tanggal__range=[tanggal_awal, tanggal_akhir])
     list_sales = [a.total_sales for a in kumpulan_sales]
-    
+    print(list_sales)
+
     total_sales = sum(list_sales)
 
     maksimum = max(list_sales)
@@ -91,7 +92,10 @@ def index(request):
         'urutan_grafik' : urutan,
         'persenan' : persenan,
         'list_tanggal' : list_tanggal,
-        'query_grafik' : query_grafik
+        'list_sales' : list_sales,
+        'query_grafik' : query_grafik,
+        'tanggal_awal_date' : tanggal_awal,
+        'tanggal_akhir_date' : tanggal_akhir,
     }
     
     return render(request, 'investorkopo/index.html', context)
