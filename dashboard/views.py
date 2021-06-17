@@ -18,6 +18,7 @@ from .supply_chain import update_pemakaian_ayam, periksa_hari_dalam_pemakaian_ay
 from .operation import coba_query
 from .models import *
 from .rm_app import query_rm_app
+from .grafik_complaint import query_trend_pola_complaint
 
 from rm_app.models import ProduksiAyam
 
@@ -2826,6 +2827,7 @@ def complaint_list(request):
     context['banyak_halaman'] = banyak_halaman
     context['halaman_aktif'] = str(page_num)
     context['complaint'] = page
+    context['data'] = query_trend_pola_complaint()
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
