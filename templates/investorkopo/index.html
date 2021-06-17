@@ -87,139 +87,17 @@
         .bar-graph-label{
             font-size: 0.7em;
         }
+
+        /* untuk ngatur lebar grafiknya */
+        .lebar-grafik{
+            margin-left: auto;
+            margin-right: auto;
+            width: 85%;
+        }
+        /* untuk ngatur lebar grafiknya */
+
     </style>
-    <style>
-        
-        .bar-graph {
-            padding: 0;
-            width: 100%;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-align-items: flex-end;
-                -ms-flex-align: end;
-                    align-items: flex-end;
-            height: 425px;
-            margin: 0;
-        }
-
-        .bar-graph li {
-            display: block;
-            padding: 1.5625rem 0;
-            position: relative;
-            text-align: center;
-            vertical-align: bottom;
-            border-radius: 4px 4px 0 0;
-            max-width: 20%;
-            height: 100%;
-            margin: 0 1.8% 0 0;
-            -webkit-flex: 1 1 15%;
-                -ms-flex: 1 1 15%;
-                    flex: 1 1 15%;
-        }
-
-        .bar-graph .bar-graph-axis {
-            -webkit-flex: 1 1 8%;
-                -ms-flex: 1 1 8%;
-                    flex: 1 1 8%;
-            display: -webkit-flex;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-flex-direction: column;
-                -ms-flex-direction: column;
-                    flex-direction: column;
-            -webkit-justify-content: space-between;
-                -ms-flex-pack: justify;
-                    justify-content: space-between;
-        }
-
-        .bar-graph .bar-graph-label {
-            margin: 0;
-            background-color: none;
-            color: #8a8a8a;
-            position: relative;
-        }
-
-        @media print, screen and (min-width: 40em) {
-            .bar-graph .bar-graph-label:before, .bar-graph .bar-graph-label:after {
-                content: "";
-                position: absolute;
-                border-bottom: 1px dashed #8a8a8a;
-                top: 0;
-                left: 0;
-                height: 50%;
-                width: 20%;
-            }
-        }
-
-        @media print, screen and (min-width: 40em) and (min-width: 64em) {
-            .bar-graph .bar-graph-label:before, .bar-graph .bar-graph-label:after {
-                width: 30%;
-            }
-        }
-
-        @media print, screen and (min-width: 40em) {
-            .bar-graph .bar-graph-label:after {
-                left: auto;
-                right: 0;
-            }
-        }
-
-        .bar-graph .percent {
-            letter-spacing: -3px;
-            opacity: 0.4;
-            width: 100%;
-            font-size: 1.875rem;
-            position: absolute;
-        }
-
-        @media print, screen and (min-width: 40em) {
-            .bar-graph .percent {
-                font-size: 3.875rem;
-            }
-        }
-
-        .bar-graph .percent span {
-            font-size: 1.875rem;
-        }
-
-        .bar-graph .description {
-            font-weight: 800;
-            opacity: 0.5;
-            text-transform: uppercase;
-            width: 100%;
-            font-size: 14px;
-            bottom: 20px;
-            position: absolute;
-            font-size: 1rem;
-            overflow: hidden;
-        }
-
-        .bar-graph .bar.primary {
-            border: 1px solid #90c44c;
-            background: linear-gradient(#90c44c, #90c44c 70%);
-        }
-
-        .bar-graph .bar.secondary {
-            border: 1px solid #767676;
-            background: linear-gradient(#909090, #767676 70%);
-        }
-
-        .bar-graph .bar.success {
-            border: 1px solid #3adb76;
-            background: linear-gradient(#65e394, #3adb76 70%);
-        }
-
-        .bar-graph .bar.warning {
-            border: 1px solid #ffae00;
-            background: linear-gradient(#ffbe33, #ffae00 70%);
-        }
-
-        .bar-graph .bar.alert {
-            border: 1px solid #cc4b37;
-            background: linear-gradient(#d67060, #cc4b37 70%);
-        }
-    </style>
+    
 </head>
 <body>
     
@@ -271,48 +149,83 @@
                 REVENUE<br>SHARING
                 <br><strong class="tengah-kotak">{{revenue_sharing}}</strong>
             </div>
-        <!-- akhir flexbox -->
-        
-        <!-- chart 2 -->
-        <ul class="bar-graph">
-            <li class="bar-graph-axis">
-                {% for a in urutan_grafik %}
-                    <div class="bar-graph-label">{{a}}</div>
-                {% endfor %}
-            </li>
-        
-            {% for p in query_grafik %}
-            <li class="bar primary" style="height: {{p.0}}%;" title="{{p.2}}">
-                <div class="description">{{p.1|date:"j M Y"}}</div>
-            </li>
-            {% endfor %}
-
-        </ul>
-          
-          
-        <!-- chart 2 -->
-
 
         </div>
+        <!-- akhir flexbox -->
+        
+        <br>
+        <h1><strong>Grafik Penjualan</strong></h1>
+        <h3>{{tanggal_awal_date|date:"j M Y"}} - {{tanggal_akhir_date|date:"j M Y"}}</h3>
+
+        <!-- grafiknya -->
+        <div class="lebar-grafik">
+            <canvas id="myChart"></canvas>
+        </div>
+        <!-- grafiknya -->
+
         <!-- akhir konten -->
 
         <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     </div>
 
+    <!-- manggil librarynya grafik -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- manggil librarynya grafik -->
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    
+    
+
+    <!-- ini script untuk ngatur grafiknya -->
     <script>
-        $(function() {
-            $('input[name="daterange"]').daterangepicker({
-                opens: 'left'
-            }, function(start, end, label) {
-            console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
-            });
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var labelnya = []
+        {% for t in list_tanggal %}
+            labelnya.push("{{t|date:"j M Y"}}");
+        {% endfor %}
+
+        var datanya = []
+        {% for s in list_sales %}
+            datanya.push(parseInt({{s}}))
+        {% endfor %}
+
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labelnya,
+                datasets: [{
+                    label: 'Grafik Penjualan',
+                    data: datanya,
+                    backgroundColor: [
+                        'r#90c44c',
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c'
+                    ],
+                    borderColor: [
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c',
+                        '#90c44c'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
     </script>
-    
+    <!-- ini script untuk ngatur grafiknya -->
 </body>
 </html>
