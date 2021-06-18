@@ -3,7 +3,7 @@ from investormetro.models import Struk, Sales
 import pytz
 
 def main():
-    awal_buka = date(2021, 5, 29)
+    awal_buka = date(2020, 9, 12)
     sekarang = date.today()
 
     while True:
