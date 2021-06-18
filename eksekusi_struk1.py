@@ -1,20 +1,20 @@
 import requests
 import json
-from investorkopo.models import IdCabangKopo, StrukTerakhir, Struk
+from investormetro.models import IdCabangMetro, StrukTerakhir, Struk
 
 def main():
     try:
-        q = IdCabangKopo.objects.get(pk=1)
+        q = IdCabangMetro.objects.get(pk=1)
     except:
-        q = IdCabangKopo(
-            id_cabang = 'a3adef0d-dc49-4b3b-82cc-09329bcd48b3'
+        q = IdCabangMetro(
+            id_cabang = 'dc2497ed-963e-42ff-96a2-aeb7a8b65668'
         )
         q.save()
     try:
         s = StrukTerakhir.objects.get(pk=1)
     except:
         s = StrukTerakhir(
-            nomor_struk = "54-1027"
+            nomor_struk = "36-1024"
         )
         s.save()
 

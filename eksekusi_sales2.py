@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta
-from investorkopo.models import Struk, Sales
+from investormetro.models import Struk, Sales
 import pytz
 
 def main():
