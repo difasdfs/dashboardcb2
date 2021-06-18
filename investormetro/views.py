@@ -12,10 +12,10 @@ from .decorators import unauthenticated_user
 def logoutuser(request):
     # ini halaman logout
     logout(request)
-    return redirect('loginpage')
+    return redirect('halaman_login')
 
 @unauthenticated_user
-def loginpage(request):
+def halaman_login(request):
 
     context = {}
  
@@ -36,10 +36,10 @@ def loginpage(request):
             messages.info(request, 'username atau password salah')
             return render(request, 'investormetro/login.html', context)
 
-    return render(request, 'login.html', context)
+    return render(request, 'investormetro/login.html', context)
 
 
-@login_required(login_url='loginpage')
+@login_required(login_url='halaman_login')
 def index(request):
     update_struk.main()
     update_sales.main()
