@@ -1,0 +1,116 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    th{
+        text-align: center;
+    }
+    .tabelnya{
+        width: 100%;
+    }
+</style>
+<hr>
+<div class="container">
+    <div class="row">
+        {% include 'operation/sidebar.html' %}
+        <div class="col-sm-10">
+            <h1>Kaizen Dari Tim Outlet</h1>
+            
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered border-dark table-sm tabelnya">
+                    <thead>
+                        <tr>
+                            <th scope="col">Jam & Tanggal Operasional</th>
+                            <th scope="col">Complaint</th>
+                            <th scope="col">Cabang</th>
+                            <th scope="col">Jenis</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Solusi sekarang / FIX IT NOW</th>
+                            <th scope="col">Kronologis kejadian</th>
+                            <th scope="col">Analisa AKAR MASALAHNYA</th>
+                            <th scope="col">Action Plan Kaizen</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for a in complaint %}
+                        <tr>
+                            <td>{{a.complaint.jam_operasional|time:"H.i"}}, <br> {{a.complaint.tanggal|date:"j M Y"}}</td>
+                            <td><a href="{% url 'detail_complaint' a.complaint.id %}">{{a.complaint.complaint}}</a></td>
+                            <td>{{a.complaint.cabang}}</td>
+                            <td>{{a.complaint.jenis}}</td>
+                            <td>{{a.complaint.status}}</td>
+                            <td>{{a.solusi_sekarang}}</td>
+                            <td>{{a.kronologis_kejadian}}</td>
+                            <td>{{a.analisis_akar_masalah}}</td>
+                            <td>{{a.action_plan_kaizen}}</td>
+                            <td><a href="#" class="btn btn-warning btn-sm" role="button"><button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#complaint{{a.id}}">Edit</button></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <ul class="pagination">
+                {% for i in banyak_halaman %}
+                    {% if i == halaman_aktif %}
+                    <li class="page-item active">
+                        <a class="page-link" href="?page={{i}}">{{i}}</a>
+                    </li>
+                    {% else %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{i}}">{{i}}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            
+        </div>
+    </div>
+</div>
+  
+{% for c in complaint %}
+<!-- Modal -->
+<div class="modal fade" id="complaint{{c.id}}" tabindex="-1" role="dialog" aria-labelledby="labelcomplaint{{c.id}}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="labelcomplaint{{c.id}}">{{c.complaint.tanggal|date:"j M Y"}} - {{c.complaint.complaint}} - {{c.complaint.cabang}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <!-- isi form modal -->
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" id="idcomplaint" name="idcomplaint" value="{{c.id}}">
+                    <div class="form-group">
+                        <label for="solusisekarang{{c.id}}">Solusi sekarang / FIX IT NOW</label>
+                        <textarea class="form-control" id="solusisekarang{{c.id}}" name="solusisekarang{{c.id}}" rows="3">{{c.solusi_sekarang}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="kronologiskejadian{{c.id}}">Kronologis Kejadian</label>
+                        <textarea class="form-control" id="kronologiskejadian{{c.id}}" name="kronologiskejadian{{c.id}}" rows="3">{{c.kronologis_kejadian}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="analisisakarmasalah{{c.id}}">Analisa AKAR MASALAHNYA</label>
+                        <textarea class="form-control" id="analisisakarmasalah{{c.id}}" name="analisisakarmasalah{{c.id}}" rows="3">{{c.analisis_akar_masalah}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="actionplankaizen{{c.id}}">Action Plan Kaizen</label>
+                        <textarea class="form-control" id="actionplankaizen{{c.id}}" name="actionplankaizen{{c.id}}" rows="3">{{c.action_plan_kaizen}}</textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!-- akhir isi form modal -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- akhir modal -->
+{% endfor %}
+
+<br><br><br>
+{% endblock %}
