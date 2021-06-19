@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
+from django.db.models.fields.related import ForeignKey
 from django.utils import timezone
 from rm_app.models import Cabang
 import datetime
@@ -624,6 +626,13 @@ class KepuasanPelanggan(models.Model):
         hasil = "{:.2f}".format(hasil)
 
         return float(hasil)
+
+class KaizenTimOutlet(models.Model):
+    complaint = models.ForeignKey(Complaint, on_delete=models.CASCADE)
+    solusi_sekarang = models.TextField()
+    kronologis_kejadian = models.TextField()
+    analisis_akar_masalah  = models.TextField()
+    action_plan_kaizen = models.TextField()
 
 class TanggalWeekendWeekdays(models.Model):
     tanggal = models.DateField()

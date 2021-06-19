@@ -128,7 +128,8 @@ urlpatterns = [
 
     # OPERATION
     path('index_operation/', views.index_operation, name='index_operation'),
-    path('index_rm_app/', views.index_rm_app, name='index_rm_app')
+    path('index_rm_app/', views.index_rm_app, name='index_rm_app'),
+    path('complaint_operasional/', views.complaint_operasional, name='complaint_operasional')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

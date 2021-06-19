@@ -2902,6 +2902,16 @@ def input_complaint(request):
             status = input_status
         )
         c.save()
+
+        kto = KaizenTimOutlet(
+            complaint = c,
+            solusi_sekarang = '',
+            kronologis_kejadian = '',
+            analisis_akar_masalah  = '',
+            action_plan_kaizen = ''
+        )
+        kto.save()
+
         return redirect('complaint_list')
 
     context = {'nama' : request.user.first_name}
@@ -3108,6 +3118,53 @@ def index_rm_app(request):
         context['data_kar'] = True
 
     return render(request, 'operation/index_rm_app.html', context)
+
+@login_required(login_url='login')
+def complaint_operasional(request):
+    context = {'nama' : request.user.first_name}
+
+    if request.method == "POST":
+        idcomplaint = request.POST.get('idcomplaint')
+        solusisekarang = request.POST.get('solusisekarang' + idcomplaint)
+        kronologiskejadian = request.POST.get('kronologiskejadian' + idcomplaint)
+        analisisakarmasalah = request.POST.get('analisisakarmasalah' + idcomplaint)
+        actionplankaizen = request.POST.get('actionplankaizen' + idcomplaint)
+
+        kto = KaizenTimOutlet.objects.get(pk=int(idcomplaint))
+        kto.solusi_sekarang = solusisekarang
+        kto.kronologis_kejadian = kronologiskejadian
+        kto.analisis_akar_masalah  = analisisakarmasalah
+        kto.action_plan_kaizen = actionplankaizen
+        kto.save()
+
+
+    c = Complaint.objects.all().order_by('-tanggal')
+    kto = [KaizenTimOutlet.objects.get(complaint=compl) for compl in c]
+
+    # i = 0
+    # for complaint in c:
+    #     kt = KaizenTimOutlet.objects.get(pk=i)
+    #     print(str(complaint.id) + ' - ' + str(kt.id))
+
+    banyak_data_per_page = 10
+    p = Paginator(kto, banyak_data_per_page)
+    page_num = request.GET.get('page', 1)
+
+    try:
+	    page = p.page(page_num)
+    except EmptyPage:
+	    page = p.page(1)
+
+    banyak_halaman = [str(a+1) for a in range(p.num_pages)]
+    context['banyak_halaman'] = banyak_halaman
+    context['halaman_aktif'] = str(page_num)
+    context['complaint'] = page
+    context['data'] = query_trend_pola_complaint()
+
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+
+    return render(request, 'operation/complaint.html', context)
 
 # ---------------------- LOGIC -------------------------------
 
