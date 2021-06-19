@@ -1,0 +1,24 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <h1>New Item</h1>
+
+            <form action="{% url 'layermanager:add_item_post' %}" method="post">
+                {% csrf_token %}
+                <label for="kategori_id">Choose Kategori:</label><br>
+                <select class="btn btn-dropdown" id="kategori_id" name="kategori_id">
+                    {% for kategori in kategori_list %}
+                        <option value="{{ kategori.id }}">{{ kategori.nama }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <label for="nama">Nama Item: </label><br>
+                <input type="text" class="form-control" id="nama" name="nama"><br>
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

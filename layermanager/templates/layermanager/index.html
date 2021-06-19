@@ -1,0 +1,37 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col">
+            <div class="card" style="width:40vw;">
+                <div class="content">
+                    <h1>Layer</h1>
+                    <p>Pilih salah satu <b>Layer</b> di bawah ini</p>
+                    {% if layer_list %}
+                    {% for layer in layer_list %}
+                    <a href="{% url 'layermanager:detail' layer.id %}" class="btn btn-outline-warning" style="font-size:125%; border-radius: 60px 60px 60px 60px; width:50%; margin-top:1%; text-align:left;">{{ layer.nama }}</a><br>
+                    {% endfor %}
+                    {% else %}
+                        <p>No Layer is available</p>
+                    {% endif %}
+                    <a class="btn btn-primary" href="{% url 'layermanager:add_layer' %}" role="button" style="margin-top:3%; margin-bottom:1%;">Add new Layer</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card" style="width:40vw;">
+                <div class="content">
+                    <h1>Items</h1>
+                    <p>Jumlah Item yang tersedia : {{ item_count }}</p>
+                    <p>Jumlah Modifier yang tersedia : {{ modifier_count }}</p>
+                    <a class="btn btn-primary" href="{% url 'layermanager:list_item' %}" role="button">Item & Modifier List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

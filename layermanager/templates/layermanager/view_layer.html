@@ -1,0 +1,85 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container-fluid" style="width:60vw">
+    <div class="row">
+
+        
+        <div class="col">
+            <div class="card">
+                <form action="{% url 'layermanager:update_layer' layer.id %}" method="post">
+                    <div class="content" style="margin:2%;">
+                        {% csrf_token %}
+                        <label for="nama"><h2>Nama Layer: </h2></label><br>
+                        <div class="input-group">
+                            <input class="form-control" type="text" id="nama" name="nama" value="{{ layer.nama }}">
+                            <span class="input-group-btn">
+                                <input type="submit" class="btn btn-primary" style="border-radius:0px 5px 5px 0px;" value="Save">
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="card">
+                <div class="content" style="margin:2%;">
+                    <h2>Cabang</h2>
+                    <form action="{% url 'layermanager:add_cabang' layer.id %}">
+                        <input type="submit" class="btn btn-primary" value="Add new Cabang">
+                    </form>
+            
+                    {% if layer.cabang_set %}
+                    <ul>
+                    {% for cabang in layer.cabang_set.all %}
+                        <li>{{ cabang.nama }}</li>
+                    {% endfor %}
+                    </ul>
+                    {% else %}
+                    This layer does not have any Cabang
+                    {% endif %}
+                </div>
+            </div>        
+        </div>
+
+
+        <div class="col">
+            <div class="card" style="position:absolute; width:60vw;">
+                <div class="content" style="margin:2%;">
+                    <h2>Harga</h2>
+                    <form action="{% url 'layermanager:add_harga' layer.id %}"><input type="submit" class="btn btn-primary" value="Add new harga"></form>
+                    {% if layer.harga_set %}
+                    <table class="table" style="width:100%; color:white;">
+                        <tr>
+                            <th>Item</th>
+                            <th>Kategori</th>
+                            <th>Harga DineIn</th>
+                            <th>Harga Takeaway</th>
+                            <th>Harga GoFood</th>
+                            <th>Harga GrabFood</th>
+                            <th>Harga ShopeeFood</th>
+                        </tr>
+                        {% for harga in layer.harga_set.all %}
+                            <tr>
+                                <th>{{ harga.item.nama }}</th>
+                                <th>{{ harga.item.kategori }}</th>
+                                <th>Rp{{ harga.harga_dinein }}</th>
+                                <th>Rp{{ harga.harga_takeaway }}</th>
+                                <th>Rp{{ harga.harga_gofood }}</th>
+                                <th>Rp{{ harga.harga_grabfood }}</th>
+                                <th>Rp{{ harga.harga_shopeefood }}</th>
+                                <th><form action="{% url 'layermanager:edit_harga' harga.id %}"><input type="submit" class="btn btn-primary" value="Edit"></form></th>
+                            </tr>    
+                        {% endfor %}
+                    </table>
+                    {% else %}
+                    Tidak ada data harga
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+{% endblock %}

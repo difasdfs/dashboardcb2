@@ -1,0 +1,49 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+        <div class="card" style="width:25vw;">
+            <div class="content">
+
+                <h1>Edit Harga: </h1>
+                <h3>{{ harga.item.nama }}</h3><br>
+
+                <form action="{% url 'layermanager:edit_harga_post' harga.id %}" method="post">
+                    {% csrf_token %}
+                    
+                    <label for="harga_dinein">Harga DineIn: </label>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_dinein" name="harga_dinein" value="{{ harga.harga_dinein }}"><br></div>
+                    </div>
+
+                    <label for="harga_takeaway">Harga Takeaway: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_takeaway" name="harga_takeaway" value="{{ harga.harga_takeaway }}"><br></div>
+                    </div>
+
+                    <label for="harga_gofood">Harga GoFood: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_gofood" name="harga_gofood" value="{{ harga.harga_gofood }}"><br></div>
+                    </div>
+
+                    <label for="harga_grabfood">Harga GrabFood: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_grabfood" name="harga_grabfood" value="{{ harga.harga_grabfood }}"><br></div>
+                    </div>
+
+                    <label for="harga_shopeefood">Harga ShopeeFood: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control"id="harga_shopeefood" name="harga_shopeefood" value="{{ harga.harga_shopeefood }}"><br></div>
+                    </div>
+                    
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+            </div>
+        </div>
+</div>
+{% endblock %}

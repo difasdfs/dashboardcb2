@@ -1,0 +1,27 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <h1>Edit Varian: {{ varian.nama }}</h1>
+
+            <form action="{% url 'layermanager:edit_modifier_varian_post' varian.id %}" method="post">
+                {% csrf_token %}
+                <label for="nama">Nama Varian: </label><br>
+                <input type="text" class="form-control" id="nama" name="nama" value="{{ varian.nama }}"><br>
+                <label for="harga">Harga: </label><br>
+                <div class="row">
+                    <div class="col col-sm-1">
+                        <h4>Rp.</h4>
+                    </div>
+                    <div class="col col-lg">
+                        <input type="number" class="form-control" id="harga" name="harga" min=0 value="{{ varian.harga }}"><br>
+                    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

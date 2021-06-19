@@ -1,0 +1,18 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <h1>New Layer</h1>
+
+            <form action="{% url 'layermanager:add_layer_post' %}" method="post">
+                {% csrf_token %}
+                <label for="nama">Nama Layer: </label><br>
+                <input class="form-control" type="text" id="nama" name="nama"><br>
+                <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

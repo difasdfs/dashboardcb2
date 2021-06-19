@@ -1,0 +1,37 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <h1>New Modifier Varian</h1>
+
+            <form action="{% url 'layermanager:add_modifier_varian_post' %}" method="post">
+                {% csrf_token %}
+                <label for="modifier_id">Choose Modifier:</label><br>
+                <select id="modifier_id" class="btn btn-dropdown" name="modifier_id">
+                    {% for modifier in modifier_list %}
+                        <option value="{{ modifier.id }}">{{ modifier.nama }}</option>
+                    {% endfor %}
+                </select><br><br>
+
+                <label for="nama">Nama Varian: </label>
+                <input type="text" class="form-control" id="nama" name="nama"><br>
+                
+                <label for="harga">Harga: </label><br>
+                <div class="row">
+                    <div class="col col-sm-1">
+                        <h4>Rp.</h4>
+                    </div>
+                    <div class="col col-lg">
+                        <input type="number" class="form-control" id="harga" name="harga" min=0 value=0><br>
+                    </div>
+                </div>
+
+                <input type="submit" class="btn btn-primary" value="Submit">
+        </div>
+    </div>
+</form>
+</div>
+
+{% endblock %}

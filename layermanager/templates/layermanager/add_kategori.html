@@ -1,0 +1,18 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <h1>New Kategori</h1>
+
+            <form action="{% url 'layermanager:add_kategori_post' %}" method="post">
+                {% csrf_token %}
+                <label for="nama">Nama Kategori: </label><br>
+                <input type="text" class="form-control" id="nama" name="nama"><br>
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

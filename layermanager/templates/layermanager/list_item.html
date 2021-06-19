@@ -1,0 +1,107 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container-fluid" style="width:90vw">
+    {% if messages %}
+        {% for messages in messages %}
+            <div class="alert alert-{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="row">
+        <div class="col">
+
+
+            <div class="card">
+                <div class="content">
+                    <h1>Item</h1>
+                    <a href="{% url 'layermanager:add_kategori' %}" class="button">Add new Kategori</a><br>
+                    <a href="{% url 'layermanager:add_item' %}" class="button">Add new Item</a><br>
+                    <a href="{% url 'layermanager:add_modifier_item' %}" class="button">Add Modifier to Item</a><br>
+                </div>
+            </div>
+
+
+            {% if kategori_list %}
+                    {% for kategori in kategori_list %}
+                    <div class="card">
+                        <div class="content">
+                            <h3> {{ kategori.nama }} </h3>
+                            <table class="table" style="width:100%; text-align:left; color:white;">
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Modifiers</th>
+                                </tr>
+                                {% for item in kategori.item_set.all %}
+                                <tr>
+                                    <th>{{ item.nama }}</th>
+                                    <th>
+                                        {% for modifier in item.modifier_set.all %} 
+                                        <a href="{% url 'layermanager:remove_modifier_item' item.id modifier.id %}" class="btn btn-danger" style="border-radius:60px 60px 60px 60px; margin-top:1%">X</a> {{ modifier }}<br>
+                                        {% endfor %}
+                                        <br><br>
+                                    </th>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+				<div class="card">
+					<div class="content">
+						<p>No Item is available</p>
+					</div>
+				</div>
+                {% endif %}
+
+
+        </div>
+
+        
+        <div class="col-sm">
+                
+
+            <div class="card">
+                <div class="content">
+                    <h1>Modifier</h1>
+                    <a href="{% url 'layermanager:add_modifier' %}" class="button">Add new Modifier Kategori</a><br>
+                    <a href="{% url 'layermanager:add_modifier_varian' %}" class="button">Add new Modifier Varian</a><br>
+                </div>
+            </div>
+
+
+            {% if modifier_list %}
+                    {% for modifier in modifier_list %}
+                    <div class="card"">
+                        <div class="content">
+                            <h3> {{ modifier.nama }} </h3>
+                            <table class="table" style="text-align:left; color:white;">
+                            <tr>
+                                <th>Nama Varian</th>
+                                <th>Harga</th>
+                            </tr>
+                            {% for varian in modifier.varian_set.all %}
+                            <tr>
+                                <th>{{ varian.nama }}</th>
+                                <th>Rp{{ varian.harga }}</th>
+                                <th><form action="{% url 'layermanager:edit_modifier_varian' varian.id %}"><input type="submit" class="btn btn-primary" value="Edit"></form></th>
+                            </tr>
+                            {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                {% else %}
+                <div class="card">
+					<div class="content">
+						<p>No Modifier is available</p>
+					</div>
+                </div>
+                {% endif %}
+
+
+        </div>
+    </div>
+</div>
+{% endblock %}

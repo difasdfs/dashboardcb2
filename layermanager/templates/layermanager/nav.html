@@ -1,0 +1,20 @@
+<div class="card">
+    <div class="content">
+        <h4 style="color:white">Layer & Harga v0.1B</h4>
+        <b style="color:white;">Main Menu Links :</b>
+        <div class="btn-group" role="group" aria-label="shortcut-main">
+            <a href="{% url 'layermanager:index' %}" class="btn btn-success" style="border-radius: 60px 0px 0px 60px;">Home</a>
+            <a href="{% url 'layermanager:list_item' %}" class="btn btn-success" style="border-radius: 0px 60px 60px 0px; margin-left:2px">Item & Modifier</a>
+        </div>
+        <b style="margin-left:2%; color:white;">Items Options :</b>
+        <div class="btn-group" role="group" aria-label="shortcut-items">
+            <a href="{% url 'layermanager:add_kategori' %}" class="btn btn-success" style="border-radius: 60px 0px 0px 60px; margin-left:2px">+ Kategori</a>
+            <a href="{% url 'layermanager:add_item' %}" class="btn btn-success" style="border-radius: 0px 60px 60px 0px; margin-left:2px">+ Item</a>
+        </div>
+        <b style="margin-left:2%; color:white;">Modifier Options :</b>
+        <div class="btn-group" role="group" aria-label="shortcut-items">
+            <a href="{% url 'layermanager:add_modifier' %}" class="btn btn-success" style="border-radius: 60px 0px 0px 60px; margin-left:2px">+ Modifier</a>
+            <a href="{% url 'layermanager:add_modifier_varian' %}" class="btn btn-success" style="border-radius: 0px 60px 60px 0px; margin-left:2px">+ Varian</a>
+        </div>
+    </div>
+</div>

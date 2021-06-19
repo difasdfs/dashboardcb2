@@ -1,0 +1,28 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card">
+        <div class="content">
+            <h1>Add Modifier to Item</h1>
+
+            <form action="{% url 'layermanager:add_modifier_item_post' %}" method="post">
+                {% csrf_token %}
+                <label for="item_id">Choose Item:</label><br>
+                <select class="btn btn-dropdown" id="item_id" name="item_id">
+                    {% for item in item_list %}
+                        <option value="{{ item.id }}">{{ item.nama }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <label for="modifier_id">Choose Modifier:</label><br>
+                <select class="btn btn-dropdown" id="modifier_id" name="modifier_id">
+                    {% for modifier in modifier_list %}
+                        <option value="{{ modifier.id }}">{{ modifier.nama }}</option>
+                    {% endfor %}
+                </select><br><br>
+                <input type="submit" class="btn btn-primary" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

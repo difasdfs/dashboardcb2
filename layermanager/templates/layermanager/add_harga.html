@@ -1,0 +1,56 @@
+{% extends 'layermanager\base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="card" style="width:25vw;">
+        <div class="content">
+            <h1>New Harga</h1><br>
+
+            <form action="{% url 'layermanager:add_harga_post' layer.id %}" method="post">
+                {% csrf_token %}
+                <div class="form-control-group">
+                    <label for="item_id">Choose Item:</label><br>
+                    <select class="btn btn-default dropdown-toggle" id="item_id" name="item_id">
+                        {% for item in item_list %}
+                        <option value="{{ item.id }}">{{ item.nama }}</option>
+                        {% endfor %}
+                    </select><br><br>
+                    
+                    <label for="harga_dinein">Harga DineIn: </label>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_dinein" name="harga_dinein" value=0><br></div>
+                    </div>
+
+                    <label for="harga_takeaway">Harga Takeaway: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_takeaway" name="harga_takeaway" value=0><br></div>
+                    </div>
+
+                    <label for="harga_gofood">Harga GoFood: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_gofood" name="harga_gofood" value=0><br></div>
+                    </div>
+
+                    <label for="harga_grabfood">Harga GrabFood: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control" id="harga_grabfood" name="harga_grabfood" value=0><br></div>
+                    </div>
+
+                    <label for="harga_shopeefood">Harga ShopeeFood: </label><br>
+                    <div class="row">
+                        <div class="col col-sm-2"><h4>Rp</h4></div>
+                        <div class="col col-lg"><input type="number" class="form-control"id="harga_shopeefood" name="harga_shopeefood" value=0><br></div>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
