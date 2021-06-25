@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.utils import timezone
 
 from datetime import date
+from django.core.paginator import Paginator, EmptyPage
 
 from rm_app.logika.isrm import is_rm
 from rm_app.logika.ngecek_hari import cek_hari
@@ -349,12 +350,84 @@ def absen(request):
     # querynya nama dan id object kelas DataKaryawan untuk modals
     query_karyawan = [(a.nama, str(a.id), a.nik) for a in karyawan]
     
+    banyak_data_per_page = 10
+    p = Paginator(query_absen_tanggal, banyak_data_per_page)
+    page_num = request.GET.get('page', 1)
+
+    try:
+	    page = p.page(page_num)
+    except EmptyPage:
+	    page = p.page(1)
+
+    banyak_halaman = [str(a+1) for a in range(p.num_pages)]
 
     context = {
         'profile' : profile,
         'data_karyawan_cabang' : query_karyawan,
-        'query_absen_tanggal' : query_absen_tanggal,
-        'hari_ini' : str(date.today())
+        'query_absen_tanggal' : page,
+        'hari_ini' : str(date.today()),
+        'banyak_halaman' : banyak_halaman,
+        'halaman_aktif' : str(page_num)
     }
 
     return render(request, 'rm_app/absen.html', context)
+
+@login_required(login_url='login_page')
+def shift(request):
+
+    u = User.objects.get(pk=request.user.id)
+    profile = ProfilPengguna.objects.get(pengguna = u)
+
+    context = {
+        'profile' : profile,
+    }
+
+    return render(request, 'rm_app/shift.html', context)
+
+@login_required(login_url='login_page')
+def jadwal_kerja_rencana(request):
+
+    u = User.objects.get(pk=request.user.id)
+    profile = ProfilPengguna.objects.get(pengguna = u)
+
+    context = {
+        'profile' : profile,
+    }
+
+    return render(request, 'rm_app/jadwal_kerja_rencana.html', context)
+
+@login_required(login_url='login_page')
+def statistik_jadwal_kerja(request):
+
+    u = User.objects.get(pk=request.user.id)
+    profile = ProfilPengguna.objects.get(pengguna = u)
+
+    context = {
+        'profile' : profile,
+    }
+
+    return render(request, 'rm_app/statistik_jadwal_kerja.html', context)
+
+@login_required(login_url='login_page')
+def varian_shift(request):
+
+    u = User.objects.get(pk=request.user.id)
+    profile = ProfilPengguna.objects.get(pengguna = u)
+
+    if request.method == "POST":
+        so = ShiftOperasional(
+            cabang = profile.cabang,
+            kode = request.POST.get('kode_shift'),
+            deskripsi = request.POST.get('deskripsi_shift'),
+            warna  = request.POST.get('warna')
+        )
+        so.save()
+        
+    shift_operasional = ShiftOperasional.objects.filter(cabang=profile.cabang)
+
+    context = {
+        'profile' : profile,
+        'shift_operasional' : shift_operasional
+    }
+
+    return render(request, 'rm_app/varian_shift.html', context)

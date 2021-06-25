@@ -44,6 +44,15 @@ class AbsenKaryawan(models.Model):
     tanggal = models.ForeignKey(AbsenTanggal, on_delete=models.CASCADE)
     absen = models.CharField(max_length=10, choices=STATUS_ABSEN)
 
+class ShiftOperasional(models.Model):
+    cabang = models.ForeignKey(Cabang, on_delete=models.CASCADE)
+    kode = models.CharField(max_length=10)
+    deskripsi = models.CharField(max_length=70)
+    warna = models.CharField(max_length=12, null=True)
+
+    def __str__(self):
+        return self.cabang.nama_cabang + ' - ' + self.kode + ' - ' + self. deskripsi
+
 class ProduksiAyam(models.Model):
     id_pelapor = models.IntegerField()
     cabang = models.ForeignKey(Cabang, on_delete=models.CASCADE)
