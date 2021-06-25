@@ -265,3 +265,96 @@ def ubah_akun(request):
     }
 
     return render(request, 'rm_app/ubah_akun.html', context)
+
+from dashboard.models import DataKaryawan
+@login_required(login_url='login_page')
+def absen(request):
+
+    u = User.objects.get(pk=request.user.id)
+    profile = ProfilPengguna.objects.get(pengguna = u)
+
+    if request.method == "POST":
+        kunci = request.POST.keys()
+        tanggalnya = date.fromisoformat(request.POST.get("tanggal"))
+        cabangnya = profile.cabang.nama_cabang
+
+        at = AbsenTanggal(
+            tanggal = tanggalnya,
+            cabang = cabangnya
+        )
+        at.save()
+
+        for k in kunci:
+            if "idkaryawan" in k:
+                absennya = request.POST.get(k)
+                k = k.split('-')
+                iddatakaryawan = int(k[1])
+                karyawan = DataKaryawan.objects.get(pk=iddatakaryawan)
+
+                absensi = AbsenKaryawan(
+                    nik = karyawan.nik,
+                    tanggal = at,
+                    absen = absennya
+                )
+                absensi.save()
+
+    cabangnya = profile.cabang.nama_cabang
+    absen_tanggal = AbsenTanggal.objects.filter(cabang=cabangnya).order_by("-tanggal")
+    # Hadir, Sakit, Libur, Cuti, Izin, Alpha, WFH
+
+    # list of dictionary [(tanggal, jumlah hadir, sakit, libur, cuti, izin, alpha, wfh)]
+    query_absen_tanggal = []
+    for at in absen_tanggal:
+        jumlah_hadir = 0
+        jumlah_sakit = 0
+        jumlah_libur = 0
+        jumlah_cuti = 0
+        jumlah_izin = 0
+        jumlah_alpha = 0
+        jumlah_wfh = 0
+        absen_karyawan = AbsenKaryawan.objects.filter(tanggal=at)
+        nik_nama_absen = []
+        for ak in absen_karyawan:
+            kar = DataKaryawan.objects.get(nik=ak.nik)
+            nik_nama_absen.append( (ak.nik, kar.nama, ak.absen) )
+            if "Hadir" in ak.absen:
+                jumlah_hadir += 1
+            elif "Sakit" in ak.absen:
+                jumlah_sakit += 1
+            elif "Libur" in ak.absen:
+                jumlah_libur += 1
+            elif "Cuti" in ak.absen:
+                jumlah_cuti += 1
+            elif "Izin" in ak.absen:
+                jumlah_izin += 1
+            elif "Alpha" in ak.absen:
+                jumlah_alpha += 1
+            elif "WHF" in ak.absen:
+                jumlah_wfh += 1
+        query_absen_tanggal.append({
+                "tanggal" : at.tanggal.strftime("%d %B %Y"), 
+                "jumlah_hadir" : jumlah_hadir,
+                "jumlah_sakit" : jumlah_sakit,
+                "jumlah_libur" : jumlah_libur,
+                "jumlah_cuti" : jumlah_cuti,
+                "jumlah_izin" : jumlah_izin,
+                "jumlah_alpha" : jumlah_alpha,
+                "jumlah_wfh" : jumlah_wfh,
+                "nik_nama_absen" : nik_nama_absen
+        })
+    print(query_absen_tanggal)
+    
+    karyawan = DataKaryawan.objects.filter(area=cabangnya, status="AKTIF")
+
+    # querynya nama dan id object kelas DataKaryawan untuk modals
+    query_karyawan = [(a.nama, str(a.id), a.nik) for a in karyawan]
+    
+
+    context = {
+        'profile' : profile,
+        'data_karyawan_cabang' : query_karyawan,
+        'query_absen_tanggal' : query_absen_tanggal,
+        'hari_ini' : str(date.today())
+    }
+
+    return render(request, 'rm_app/absen.html', context)

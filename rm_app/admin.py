@@ -6,3 +6,5 @@ from .models import *
 admin.site.register(Cabang)
 admin.site.register(ProfilPengguna)
 admin.site.register(ProduksiAyam)
+admin.site.register(AbsenKaryawan)
+admin.site.register(AbsenTanggal)

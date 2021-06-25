@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+# from dashboard.models import DataKaryawan
 
 # Create your models here.
 class Cabang(models.Model):
@@ -17,6 +18,31 @@ class ProfilPengguna(models.Model):
 
     def __str__(self):
         return self.pengguna.first_name + ' - ' + self.cabang.nama_cabang
+
+# untuk query di halaman absen RM Apps
+class AbsenTanggal(models.Model):
+    tanggal = models.DateField()
+    cabang = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.tanggal.strftime("%d %B %Y") + " - " + self.cabang
+
+# untuk menyimpan data absen karyawan
+class AbsenKaryawan(models.Model):
+
+    STATUS_ABSEN = (
+        ("Hadir", "Hadir"),
+        ("Izin", "Izin"),
+        ("Sakit", "Sakit"),
+        ("Libur", "Libur"),
+        ("Cuti", "Cuti"),
+        ("Alpha", "Alpha"),
+        ("WFH", "WFH"),
+    )
+
+    nik = models.CharField(max_length=10)
+    tanggal = models.ForeignKey(AbsenTanggal, on_delete=models.CASCADE)
+    absen = models.CharField(max_length=10, choices=STATUS_ABSEN)
 
 class ProduksiAyam(models.Model):
     id_pelapor = models.IntegerField()
