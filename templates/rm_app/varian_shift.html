@@ -1,0 +1,107 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+{% include 'rm_app/navbar.html' %}
+
+<style>
+    .warna-shift{
+        width: 30%;
+    }
+</style>
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <!-- awal row -->
+    <div class="row">
+        {% include 'rm_app/sidebar_absen.html' %}
+
+        <!-- awal col-sm-10/konten -->
+        <div class="col-sm-10">
+            <h1>Varian Shift Crisbar {{profile.cabang.nama_cabang}}</h1>
+            <p>Jenis-jenis shift yang ada di outlet Crisbar {{profile.cabang.nama_cabang}}</p>
+            
+            <!-- awal modal -->
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#exampleModal">
+                Buat Shift
+            </button>
+
+            <br><br>
+            <!-- konten -->
+            <table class="table table-striped table-bordered table-hover table-sm">
+                <thead class="table-dark">
+                <tr>
+                    <th scope="col">Kode</th>
+                    <th scope="col">Deskripsi</th>
+                    <th scope="col">Warna</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for so in shift_operasional %}
+                    <tr>
+                        <th scope="row">{{so.kode}}</th>
+                        <td>{{so.deskripsi}}</td>
+                        <td>
+                            <div class="shift-color" style="background-color: {{so.warna}}; color:transparent; border-radius:5px; width: 50%;">
+                                a
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- akhir konten -->
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="formbuatshift" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="formbuatshift">Buat Shift Baru</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <!-- isi modal -->
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="kode_shift">Kode Shift</label>
+                                    <input type="text" class="form-control" id="kode_shift" name="kode_shift" aria-describedby="codehelp">
+                                    <small id="codehelp" class="form-text text-muted">Contoh : P1</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="deskripsi_shift">Deskripsi Shift</label>
+                                    <input type="text" class="form-control" id="deskripsi_shift" name="deskripsi_shift" aria-describedby="deskripsihelp">
+                                    <small id="deskripsihelp" class="form-text text-muted">Contoh : Pagi 1 (07.00 - 16.00 WIB)</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="warna">Warna</label>
+                                    <input type="color" class="form-control warna-shift" id="warna" name="warna" aria-describedby="warnahelp">
+                                    <small id="warnahelp" class="form-text text-muted">Warna shift untuk membedakan tampilan di jadwal kerja.</small>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                </div>
+                            </form>
+                            <!-- akhir isi modal -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- akhir modal -->
+
+        <!-- akhir col-sm-10/konten -->
+
+
+    </div>
+    <!-- akhir row -->
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}
