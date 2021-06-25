@@ -1,0 +1,28 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+{% include 'rm_app/navbar.html' %}
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <!-- awal row -->
+    <div class="row">
+        {% include 'rm_app/sidebar_absen.html' %}
+
+        <!-- awal col-sm-10/konten -->
+        <div class="col-sm-10">
+            <h1>Jadwal Kerja Rencana Crisbar {{profile.cabang.nama_cabang}}</h1>
+
+        
+        <!-- akhir col-sm-10/konten -->
+
+
+    </div>
+    <!-- akhir row -->
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}
