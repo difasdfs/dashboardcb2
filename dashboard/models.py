@@ -679,6 +679,7 @@ class AssemblyProduct(models.Model):
     milo_takeaway = models.IntegerField(null=True, default=0)
     orange_takeaway = models.IntegerField(null=True, default=0)
     air_mineral = models.IntegerField(null=True, default=0)
+    wings = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.sku + ' - ' + self.nama + ' - ' + self.kategori
