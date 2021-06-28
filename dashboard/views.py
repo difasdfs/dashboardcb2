@@ -300,6 +300,7 @@ def rekap(request):
     periode5 = query_rekap(5, request.user.id)
     periode6 = query_rekap(6, request.user.id)
     periode7 = query_rekap(7, request.user.id)
+    periode8 = query_rekap(8, request.user.id)
 
     context = {
         'bagian': bagian, 
@@ -412,8 +413,11 @@ def eval_per_periode(request):
     kenasp_periode_juni1 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 6, 11))
     context['kenasp_periode_juni1'] = kenasp_periode_juni1
 
-    kenasp_periode_juni1 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 6, 26))
-    context['kenasp_periode_juni1'] = kenasp_periode_juni1
+    kenasp_periode_juni2 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 6, 26))
+    context['kenasp_periode_juni2'] = kenasp_periode_juni2
+
+    kenasp_periode_juli1 = SuratPeringatan.objects.filter(mulai_sp=date(2021, 7, 11))
+    context['kenasp_periode_juli1'] = kenasp_periode_juli1
 
     # ---------------------------------------------
     hasil = evaluasi(1)
@@ -450,6 +454,11 @@ def eval_per_periode(request):
     juni2.sort(key=lambda tup: tup[7])
     juni2 = juni2[::-1]
     context['juni2'] = juni2
+
+    juli1 = evaluasi(8)
+    juli1.sort(key=lambda tup: tup[7])
+    juli1 = juli1[::-1]
+    context['juli1'] = juli1
     # ---------------------------------------------
 
 
