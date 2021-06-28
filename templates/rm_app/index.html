@@ -18,12 +18,11 @@
 
 
     <form method="GET">
-        <form>
-            <div class="form-group lebar-tanggal">
-                <label for="tanggal">Tanggal</label>
-                <input onchange="this.form.submit()" type="date" class="form-control" id="tanggal" name="tanggal" value="{{hari_ini}}">
-            </div>
-        </form>
+        {% csrf_token %}
+        <div class="form-group lebar-tanggal">
+            <label for="tanggal">Tanggal</label>
+            <input onchange="this.form.submit()" type="date" class="form-control" id="tanggal" name="tanggal" value="{{hari_ini}}">
+        </div>
     </form>
 
     <br>
