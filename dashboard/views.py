@@ -312,6 +312,7 @@ def rekap(request):
         'periode5' : periode5,
         'periode6' : periode6,
         'periode7' : periode7,
+        'periode8' : periode8
         
     }
 
