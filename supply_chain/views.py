@@ -4,7 +4,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 
 from .models import KategoriLoyverse
-from . import logika_api
+from . import logika_api, logika_api_item
 
 # Create your views here.
 @login_required(login_url='login')
@@ -58,6 +58,9 @@ def sku(request):
 def update_sku(request):
 
     context = {'nama' : request.user.first_name}
+
+    sku_ga_ada = logika_api_item.main()
+    context['sku_tidak_ada'] = sku_ga_ada
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
