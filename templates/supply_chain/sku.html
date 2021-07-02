@@ -1,0 +1,119 @@
+{% extends 'main.html' %}
+{% block content %}
+<hr>
+<div class="container">
+    <div class="row">
+        {% include 'supply_chain/sidebar_data_sold.html' %}
+        <div class="col-sm-10">
+            <h1>SKU</h1>
+            <p>Data SKU dalam server</p>
+
+            <table class="table table-bordered table-hover table-sm table-responsive">
+                <thead>
+                    <tr>
+                        <th scope="col">SKU</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">Kategori</th>
+                        <th scope="col">Ayam</th>
+                        <th scope="col">Paper Cost Takeaway L</th>
+                        <th scope="col">Paper Cost Takeaway M</th>
+                        <th scope="col">Paper Cost Takeaway Paper Bag</th>
+                        <th scope="col">Paper Cost Dine In Paper Tray</th>
+                        <th scope="col">Topping Crisbar</th>
+                        <th scope="col">Topping Saus Gravy</th>
+                        <th scope="col">Topping Matah</th>
+                        <th scope="col">Topping Mamah</th>
+                        <th scope="col">Topping Manis</th>
+                        <th scope="col">Topping Keju</th>
+                        <th scope="col">Chicken Skin</th>
+                        <th scope="col">Tahu Crispy</th>
+                        <th scope="col">Tempe Crispy</th>
+                        <th scope="col">Terong Crispy</th>
+                        <th scope="col">Telur Sayur</th>
+                        <th scope="col">Kol Crispy</th>
+                        <th scope="col">Sigulmer Manis Biscuit</th>
+                        <th scope="col">Perkedel</th>
+                        <th scope="col">Nasi Dine In</th>
+                        <th scope="col">Es Teh Dine In</th>
+                        <th scope="col">Lemon Tea Dine In</th>
+                        <th scope="col">Milo Dine In</th>
+                        <th scope="col">Orange Dine In</th>
+                        <th scope="col">Nasi Takeaway</th>
+                        <th scope="col">Es Teh Takeaway</th>
+                        <th scope="col">Lemon Tea Takeaway</th>
+                        <th scope="col">Milo Takeaway</th>
+                        <th scope="col">Orange Takeaway</th>
+                        <th scope="col">Air Mineral</th>
+                        <th scope="col">Wings</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    {% for d in data %}
+                    <tr>
+                        <td>{{d.sku}}</td>
+                        <td>{{d.nama}}</td>
+                        <td>{{d.kategori}}</td>
+                        <td>{{d.ayam}}</td>
+                        <td>{{d.paper_cost_takeaway_l}}</td>
+                        <td>{{d.paper_cost_takeaway_m}}</td>
+                        <td>{{d.paper_cost_takeaway_paper_bag}}</td>
+                        <td>{{d.paper_cost_dine_in_paper_tray}}</td>
+                        <td>{{d.topping_crisbar}}</td>
+                        <td>{{d.topping_saus_gravy}}</td>
+                        <td>{{d.topping_matah}}</td>
+                        <td>{{d.topping_mamah}}</td>
+                        <td>{{d.topping_manis}}</td>
+                        <td>{{d.topping_keju}}</td>
+                        <td>{{d.chicken_skin}}</td>
+                        <td>{{d.tahu_crispy}}</td>
+                        <td>{{d.tempe_crispy}}</td>
+                        <td>{{d.terong_crispy}}</td>
+                        <td>{{d.telur_sayur}}</td>
+                        <td>{{d.kol_crispy}}</td>
+                        <td>{{d.sigulmer_manis_biscuit}}</td>
+                        <td>{{d.perkedel}}</td>
+                        <td>{{d.nasi_dine_in}}</td>
+                        <td>{{d.es_teh_dine_in}}</td>
+                        <td>{{d.lemon_tea_dine_in}}</td>
+                        <td>{{d.milo_dine_in}}</td>
+                        <td>{{d.orange_dine_in}}</td>
+                        <td>{{d.nasi_takeaway}}</td>
+                        <td>{{d.es_teh_takeaway}}</td>
+                        <td>{{d.lemon_tea_takeaway}}</td>
+                        <td>{{d.milo_takeaway}}</td>
+                        <td>{{d.orange_takeaway}}</td>
+                        <td>{{d.air_mineral}}</td>
+                        <td>{{d.wings}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table> 
+
+            <p style="display: inline-block;">Page</p>
+            <form method="GET" style="display: inline-block; width: 7%;">
+                <div class="form-group" style="width:100%">
+                    <input type="number" class="form-control" id="halaman_aktif" name="page" value="{{halaman_aktif}}" onchange="this.form.submit()">
+                </div>
+            </form>
+            <p style="display: inline-block;"> of {{jumlah_halaman}}</p>
+            
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+
+                    {% if info_pagination.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{info_pagination.halaman_sebelumnya}}">Previous</a></li>
+                    {% endif %}
+
+                    {% if info_pagination.has_next%}
+                    <li class="page-item"><a class="page-link" href="?page={{info_pagination.halaman_selanjutnya}}">Next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+
+            <br><br><br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

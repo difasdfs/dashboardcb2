@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+{% block content %}
+<hr>
+<div class="container">
+    <div class="row">
+        {% include 'supply_chain/sidebar_data_sold.html' %}
+        <div class="col">
+            <h1>Kategori</h1>
+            <p>Aplikasi update kategori</p>
+            
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Nama Kategori</th>
+                    <th scope="col">ID Loyverse</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{d.nama_kategori}}</td>
+                    <td>{{d.id_loyverse}}</td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+            <br><br><br><br>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
