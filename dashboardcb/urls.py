@@ -24,6 +24,7 @@ from django.contrib.staticfiles.storage import staticfiles_storage
 urlpatterns = [
     path('rm_app/', include('rm_app.urls')),
     path('it_dept/', admin.site.urls),
+    path('supply_chain/', include('supply_chain.urls')),
     path('member/', include('member.urls')),
     path('crisbarkopo/', include('investorkopo.urls')),
     path('crisbarmetro/', include('investormetro.urls')),
