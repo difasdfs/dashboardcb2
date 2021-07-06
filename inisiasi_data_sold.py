@@ -33,7 +33,8 @@ def main():
 
                 if i == 1:
                     i += 1
-                    n = NomorStrukSoldTerakhir(nomor_struk = struk['receipt_number'])
+                    n = NomorStrukSoldTerakhir.objects.get(pk=1)
+                    n.nomor_struk = struk['receipt_number']
                     n.save()
 
                 nomor_struk = struk['receipt_number']
