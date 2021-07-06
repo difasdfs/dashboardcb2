@@ -16,10 +16,17 @@ class CabangLoyverse(models.Model):
     def __str__(self):
         return self.nama_cabang + " - " + self.id_loyverse
 
+class NomorStrukSoldTerakhir(models.Model):
+    nomor_struk = models.CharField(max_length=80)
+
+    def __str__(self):
+        return self.nomor_struk
+
 class StrukSold(models.Model):
     nomor_struk = models.CharField(max_length=80)
     nama_cabang = models.CharField(max_length=80)
     waktu_struk = models.DateTimeField("Waktu Struk")
+    status = models.CharField(max_length=80, null=True)
 
     jumlah_ayam = models.IntegerField(default=0)
     jumlah_chicken_skin = models.IntegerField(null=True, default=0)
@@ -55,6 +62,16 @@ class StrukSold(models.Model):
     jumlah_orange_takeaway = models.IntegerField(null=True, default=0)
     jumlah_air_mineral = models.IntegerField(null=True, default=0)
     jumlah_wings = models.IntegerField(null=True, default=0)
+
+    level_0 = models.IntegerField(null=True, default=0)
+    level_1 = models.IntegerField(null=True, default=0)
+    level_2 = models.IntegerField(null=True, default=0)
+    level_3 = models.IntegerField(null=True, default=0)
+    level_4 = models.IntegerField(null=True, default=0)
+    level_5 = models.IntegerField(null=True, default=0)
+    level_max = models.IntegerField(null=True, default=0)
+
+    geprek = models.IntegerField(null=True, default=0)
 
     def __str__(self):
         return self.nomor_struk

@@ -4,12 +4,12 @@ from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 
 from .models import KategoriLoyverse
-from . import logika_api, logika_api_item
+from . import logika_api, logika_api_item, logika_update_struk
 
 # Create your views here.
 @login_required(login_url='login')
 def data_sold(request):
-
+    logika_update_struk.main()
     context = {'nama' : request.user.first_name}
 
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
