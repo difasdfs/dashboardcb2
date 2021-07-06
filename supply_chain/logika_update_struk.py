@@ -1,4 +1,5 @@
-from supply_chain.models import CabangLoyverse, StrukSold, NomorStrukSoldTerakhir
+from supply_chain.models import CabangLoyverse
+# , StrukSold, NomorStrukSoldTerakhir
 from dashboard.models import AssemblyProduct
 from datetime import datetime
 
