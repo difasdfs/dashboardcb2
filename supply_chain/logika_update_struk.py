@@ -1,5 +1,4 @@
-from supply_chain.models import CabangLoyverse
-# , StrukSold, NomorStrukSoldTerakhir
+from supply_chain.models import CabangLoyverse, StrukSold, NomorStrukSoldTerakhir
 from dashboard.models import AssemblyProduct
 from datetime import datetime
 
@@ -30,7 +29,10 @@ def main():
     while True:
         if "cursor" in hasil.keys():
             
-            for struk in hasil['receipts']:
+            kumpulan_struk = hasil['receipts']
+            kumpulan_struk.reverse()
+
+            for struk in kumpulan_struk:
 
                 if i == 1:                    
                     no_struk.nomor_struk = struk['receipt_number']
