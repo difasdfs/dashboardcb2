@@ -34,8 +34,8 @@ def main():
 
                 if i == 1:
                     i += 1
-                    n = no_struk.nomor_struk = struk['receipt_number']
-                    n.save()
+                    no_struk.nomor_struk = struk['receipt_number']
+                    no_struk.save()
 
                 nomor_struk = struk['receipt_number']
                 tipe_struk = struk['receipt_type']
