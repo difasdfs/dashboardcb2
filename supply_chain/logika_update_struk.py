@@ -12,13 +12,12 @@ def main():
         id_cabang_loyverse[objek.id_loyverse] = objek.nama_cabang
 
     no_struk = NomorStrukSoldTerakhir.objects.get(pk=1)
-    no_struk = no_struk.nomor_struk
     baseUrl = 'https://api.loyverse.com/v1.0/receipts/'
     access_token = '4a3e5665ac324711b13d677c8c05cac8'
     header = {'Authorization' : 'Bearer ' + access_token}
 
     payload = {
-        "since_receipt_number" : no_struk,
+        "since_receipt_number" : no_struk.nomor_struk,
         'limit' : 250
         }
 
@@ -32,11 +31,10 @@ def main():
             
             for struk in hasil['receipts']:
 
-                if i == 1:
+                if i == 1:                    
+                    no_struk.nomor_struk = struk['receipt_number']
+                    no_struk.save()
                     i += 1
-                    n = NomorStrukSoldTerakhir.objects.get(pk=1)
-                    n.nomor_struk = struk['receipt_number']
-                    n.save()
 
                 nomor_struk = struk['receipt_number']
                 tipe_struk = struk['receipt_type']
