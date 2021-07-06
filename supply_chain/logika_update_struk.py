@@ -12,6 +12,7 @@ def main():
         id_cabang_loyverse[objek.id_loyverse] = objek.nama_cabang
 
     no_struk = NomorStrukSoldTerakhir.objects.get(pk=1)
+    no_struk = no_struk.nomor_struk
     baseUrl = 'https://api.loyverse.com/v1.0/receipts/'
     access_token = '4a3e5665ac324711b13d677c8c05cac8'
     header = {'Authorization' : 'Bearer ' + access_token}
@@ -37,7 +38,6 @@ def main():
                     n.save()
 
                 nomor_struk = struk['receipt_number']
-
                 tipe_struk = struk['receipt_type']
 
                 if "SALE" in tipe_struk:
