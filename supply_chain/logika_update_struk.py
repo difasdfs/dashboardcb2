@@ -253,7 +253,7 @@ def main():
                     kuantitas = item['quantity']
 
                     ayam += object_assembly.ayam * kuantitas * pengali
-                    chicken_skin += object_assembly.chicken_skun  * kuantitas * pengali
+                    chicken_skin += object_assembly.chicken_skin  * kuantitas * pengali
                     paper_cost_takeaway_l += object_assembly.paper_cost_takeaway_l * kuantitas * pengali
                     paper_cost_takeaway_m += object_assembly.paper_cost_takeaway_m * kuantitas * pengali
                     paper_cost_takeaway_paper_bag += object_assembly.paper_cost_takeaway_paper_bag * kuantitas * pengali
