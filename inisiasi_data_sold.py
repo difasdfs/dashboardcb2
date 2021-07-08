@@ -11,7 +11,7 @@ def main():
     for objek in object_cabang_loyverse:
         id_cabang_loyverse[objek.id_loyverse] = objek.nama_cabang
 
-    no_struk = "44-7789"
+    no_struk = "44-8294"
     baseUrl = 'https://api.loyverse.com/v1.0/receipts/'
     access_token = '4a3e5665ac324711b13d677c8c05cac8'
     header = {'Authorization' : 'Bearer ' + access_token}
@@ -25,14 +25,10 @@ def main():
     hasil = json.loads(respon.text)
 
     i = 1
-
     while True:
         if "cursor" in hasil.keys():
-            
-            kumpulan_struk = hasil['receipts']
-            kumpulan_struk.reverse()
 
-            for struk in kumpulan_struk:
+            for struk in hasil['receipts']:
 
                 if i == 1:
                     i += 1
@@ -40,7 +36,6 @@ def main():
                     n.save()
 
                 nomor_struk = struk['receipt_number']
-
                 tipe_struk = struk['receipt_type']
 
                 if "SALE" in tipe_struk:
@@ -50,7 +45,7 @@ def main():
 
                 waktu_struk = struk['receipt_date'][:-1] + "+00:00"
                 waktu_struk_datetime = datetime.fromisoformat(waktu_struk)
-                print(waktu_struk_datetime)
+                print(struk['created_at'])
 
                 # try except
                 try:
@@ -192,6 +187,11 @@ def main():
 
             for struk in hasil['receipts']:
 
+                if i == 1:
+                    i += 1
+                    n = NomorStrukSoldTerakhir(nomor_struk = struk['receipt_number'])
+                    n.save()
+
                 nomor_struk = struk['receipt_number']
                 tipe_struk = struk['receipt_type']
 
@@ -202,7 +202,7 @@ def main():
 
                 waktu_struk = struk['receipt_date'][:-1] + "+00:00"
                 waktu_struk_datetime = datetime.fromisoformat(waktu_struk)
-                print(waktu_struk_datetime)
+                print(struk['created_at'])
 
                 # try except
                 try:
@@ -229,7 +229,7 @@ def main():
                 terong_crispy =0
                 telur_sayur = 0
                 kol_crispy = 0
-                kerupuk =0
+                kerupuk = 0
                 sigulmer_manis_biscuit =0
                 perkedel = 0
                 nasi_dine_in = 0
@@ -337,7 +337,4 @@ def main():
                     jumlah_wings = wings
                 )
                 ss.save()
-
-                i += 1
-
             break
