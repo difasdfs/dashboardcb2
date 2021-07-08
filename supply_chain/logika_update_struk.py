@@ -11,7 +11,7 @@ def main():
     for objek in object_cabang_loyverse:
         id_cabang_loyverse[objek.id_loyverse] = objek.nama_cabang
 
-    no_struk = NomorStrukSoldTerakhir.objects.get(pk=1)
+    no_struk = NomorStrukSoldTerakhir.objects.get(pk=2)
     baseUrl = 'https://api.loyverse.com/v1.0/receipts/'
     access_token = '4a3e5665ac324711b13d677c8c05cac8'
     header = {'Authorization' : 'Bearer ' + access_token}
@@ -24,17 +24,22 @@ def main():
     respon = requests.get(baseUrl, headers=header, params=payload)
     hasil = json.loads(respon.text)
 
+    # print(hasil)
+
+    if hasil['receipts'] == []:
+        return 0
+
     i = 1
 
+    
+
     while True:
+        
         if "cursor" in hasil.keys():
-            
-            kumpulan_struk = hasil['receipts']
-            kumpulan_struk.reverse()
 
-            for struk in kumpulan_struk:
-
-                if i == 1:                    
+            for struk in hasil['receipts']:
+                
+                if i == 1:                
                     no_struk.nomor_struk = struk['receipt_number']
                     no_struk.save()
                     i += 1
@@ -49,7 +54,6 @@ def main():
 
                 waktu_struk = struk['receipt_date'][:-1] + "+00:00"
                 waktu_struk_datetime = datetime.fromisoformat(waktu_struk)
-                print(waktu_struk_datetime)
 
                 # try except
                 try:
@@ -191,6 +195,11 @@ def main():
 
             for struk in hasil['receipts']:
 
+                if i == 1:                
+                    no_struk.nomor_struk = struk['receipt_number']
+                    no_struk.save()
+                    i += 1
+
                 nomor_struk = struk['receipt_number']
                 tipe_struk = struk['receipt_type']
 
@@ -201,7 +210,6 @@ def main():
 
                 waktu_struk = struk['receipt_date'][:-1] + "+00:00"
                 waktu_struk_datetime = datetime.fromisoformat(waktu_struk)
-                print(waktu_struk_datetime)
 
                 # try except
                 try:
