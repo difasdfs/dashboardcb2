@@ -5,14 +5,16 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 
 from .models import KategoriLoyverse, StrukSold
-from . import logika_api, logika_api_item, logika_update_struk, logika_query_struk
+from . import logika_api, logika_api_item, logika_update_struk, logika_query_struk, logika_query_struk_outlet
 
 import pytz
 
 # Create your views here.
 @login_required(login_url='login')
 def data_sold(request):
-    # logika_update_struk.main()
+    logika_update_struk.main()
+
+    # print(logika_query_struk_outlet.main())
 
     # Urutan Pareto
     # sambel-sambelan
@@ -45,7 +47,7 @@ def data_sold(request):
     # Page Data
     context['waktu_akhir'] = waktu_akhir_default.strftime("%Y-%m-%dT%H:%M")
     context['waktu_awal'] = waktu_awal_default.strftime("%Y-%m-%dT%H:%M")
-    context['selisih_hari'] = abs((waktu_akhir_default - waktu_awal_default).days)
+    context['selisih_hari'] = abs((waktu_akhir_default - waktu_awal_default).days) + 1
     context['data_struk'] = logika_query_struk.main(waktu_awal_default, waktu_akhir_default)
     # Page Data
 
