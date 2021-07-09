@@ -1,13 +1,193 @@
 {% extends 'main.html' %}
 {% block content %}
+<style>
+    #deskripsi-selisih{
+        padding-top: 10px;
+    }
+</style>
 <hr>
 <div class="container">
     <div class="row">
         {% include 'supply_chain/sidebar_data_sold.html' %}
-        <div class="col">
+        <div class="col-sm-10">
             <h1>Data Sold</h1>
             <p>Data pengeluaran product</p>
-                <br><br><br><br>
+
+            <!-- input -->
+            <form method="POST">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-sm-4">
+                        <!-- contoh value: 2017-06-01T08:30 -->
+                        <label for="waktuawal">Waktu Awal</label>
+                        <input id="waktuawal" name="waktuawal" type="datetime-local" class="form-control" value="{{waktu_awal}}" max="{{waktu_akhir}}">
+                    </div>
+                    <div class="col-sm-4">
+                        <label for="waktuakhir">Waktu Akhir</label>
+                        <input id="waktuakhir" name="waktuakhir" type="datetime-local" class="form-control" value="{{waktu_akhir}}" max="{{waktu_akhir}}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-sm" style="margin-top: 8px;">Submit</button>
+                <p id="deskripsi-selisih">Selisih <strong>{{selisih_hari}}</strong> hari</p> 
+
+            </form>
+            <!-- akhir input -->
+
+
+            <!-- KONTEN -->
+            <h3>SOLD PARETO</h3>
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" width="35%">Nama Item</th>
+                        <th scope="col" width="65%">Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Ayam</th>
+                        <td>{{data_struk.ayam}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Wings</th>
+                        <td>{{data_struk.wings}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">Topping Crisbar</th>
+                        <td>{{data_struk.topping_crisbar}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th scope="row">Topping Saus Gravy</th>
+                        <td>{{data_struk.topping_saus_gravy}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Topping Matah</th>
+                        <td>{{data_struk.topping_matah}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Topping Mamah</th>
+                        <td>{{data_struk.topping_mamah}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Topping Manis</th>
+                        <td>{{data_struk.topping_manis}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Topping Keju</th>
+                        <td>{{data_struk.topping_keju}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paper Cost Takeaway L</th>
+                        <td>{{data_struk.paper_cost_takeaway_l}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paper Cost Takeaway M</th>
+                        <td>{{data_struk.paper_cost_takeaway_m}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paper Cost Takeaway Paper Bag</th>
+                        <td>{{data_struk.paper_cost_takeaway_paper_bag}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Paper Cost Dine In Paper Tray</th>
+                        <td>{{data_struk.paper_cost_dine_in_paper_tray}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nasi Dine In</th>
+                        <td>{{data_struk.nasi_dine_in}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Nasi Takeaway</th>
+                        <td>{{data_struk.nasi_takeaway}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <hr>
+
+            <h3>SOLD SIDE DISH, DESSERT, DAN MINUMAN</h3>
+
+            <table class="table table-bordered table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th scope="col" width="35%">Nama Item</th>
+                        <th scope="col" width="65%">Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">Chicken Skin</th>
+                        <td>{{data_struk.chicken_skin}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tahu Crispy</th>
+                        <td>{{data_struk.tahu_crispy}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tempe Crispy</th>
+                        <td>{{data_struk.tempe_crispy}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Terong Crispy</th>
+                        <td>{{data_struk.terong_crispy}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Telur Sayur</th>
+                        <td>{{data_struk.telur_sayur}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Kol Crispy</th>
+                        <td>{{data_struk.kol_crispy}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Perkedel</th>
+                        <td>{{data_struk.perkedel}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sigulmer Manis Biscuit</th>
+                        <td>{{data_struk.sigulmer_manis_biscuit}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Teh Dine In</th>
+                        <td>{{data_struk.es_teh_dine_in}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Teh Takeaway</th>
+                        <td>{{data_struk.es_teh_takeaway}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Lemon Tea Dine In</th>
+                        <td>{{data_struk.lemon_tea_dine_in}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Lemon Tea Takeaway</th>
+                        <td>{{data_struk.lemon_tea_takeaway}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Orange Dine In</th>
+                        <td>{{data_struk.orange_dine_in}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Orange Takeaway</th>
+                        <td>{{data_struk.orange_takeaway}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Milo Dine In</th>
+                        <td>{{data_struk.milo_dine_in}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Es Milo Takeaway</th>
+                        <td>{{data_struk.milo_takeaway}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- AKHIR KONTEN -->
+
+
+            <br><br><br><br>
         </div>
     </div>
 </div>
