@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 
 from .models import KategoriLoyverse, CabangLoyverse
-from . import logika_api, logika_api_item, logika_update_struk, logika_query_struk, logika_query_struk_outlet
+from . import logika_api, logika_api_item, logika_update_struk, logika_query_struk
 
 import pytz
 
