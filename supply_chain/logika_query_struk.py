@@ -3,16 +3,20 @@ from .models import StrukSold
 
 import pytz
 
-def main(waktu_awal, waktu_akhir):
+def main(waktu_awal, waktu_akhir, outlet="semua"):
     waktu_akhir_default_utc = pytz.utc.localize(waktu_akhir - timedelta(hours=7))
     waktu_awal_default_utc = pytz.utc.localize(waktu_awal - timedelta(hours=7))
 
-    ss = StrukSold.objects.filter(waktu_struk__range=[waktu_awal_default_utc, waktu_akhir_default_utc])
+    if outlet != "semua":
+        ss = StrukSold.objects.filter(waktu_struk__range = [waktu_awal_default_utc, waktu_akhir_default_utc])
+        ss = ss.filter(nama_cabang = outlet).order_by("-waktu_struk")
+    else:
+        ss = StrukSold.objects.filter(waktu_struk__range = [waktu_awal_default_utc, waktu_akhir_default_utc])
 
     data_ayam = 0
-    data_chicken_skin =0
+    data_chicken_skin = 0
     data_paper_cost_takeaway_l = 0
-    data_paper_cost_takeaway_m =0
+    data_paper_cost_takeaway_m = 0
     data_paper_cost_takeaway_paper_bag = 0
     data_paper_cost_dine_in_paper_tray = 0
     data_topping_crisbar = 0
@@ -25,7 +29,7 @@ def main(waktu_awal, waktu_akhir):
     data_topping_keju = 0
     data_tahu_crispy = 0
     data_tempe_crispy = 0
-    data_terong_crispy =0
+    data_terong_crispy = 0
     data_telur_sayur = 0
     data_kol_crispy = 0
     data_kerupuk = 0
@@ -33,15 +37,15 @@ def main(waktu_awal, waktu_akhir):
     data_perkedel = 0
     data_nasi_dine_in = 0
     data_es_teh_dine_in = 0
-    data_lemon_tea_dine_in =0
-    data_milo_dine_in =0
-    data_orange_dine_in =0
-    data_nasi_takeaway =0
+    data_lemon_tea_dine_in = 0
+    data_milo_dine_in = 0
+    data_orange_dine_in = 0
+    data_nasi_takeaway = 0
     data_es_teh_takeaway = 0
     data_lemon_tea_takeaway = 0
     data_milo_takeaway = 0
     data_orange_takeaway = 0
-    data_air_mineral =0
+    data_air_mineral = 0
     data_wings = 0
 
     for s in ss:

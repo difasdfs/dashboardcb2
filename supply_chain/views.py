@@ -4,25 +4,16 @@ from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta
 
-from .models import KategoriLoyverse, StrukSold
-from . import logika_api, logika_api_item, logika_update_struk, logika_query_struk
+from .models import KategoriLoyverse, CabangLoyverse
+from . import logika_api, logika_api_item, logika_update_struk, logika_query_struk, logika_query_struk_outlet
 
 import pytz
 
 # Create your views here.
 @login_required(login_url='login')
 def data_sold(request):
+    
     logika_update_struk.main()
-
-    # print(logika_query_struk_outlet.main())
-
-    # Urutan Pareto
-    # sambel-sambelan
-    # ayam
-    # packaging
-    # nasi
-    # side dish
-    # minum
 
     # ----------------- VARIABEL WAKTU ------------------------
     waktu_akhir_default = datetime.utcnow() + timedelta(hours=7)
@@ -34,15 +25,15 @@ def data_sold(request):
 
         if waktu_awal_default > waktu_akhir_default:
             waktu_awal_default, waktu_akhir_default = waktu_akhir_default, waktu_awal_default
-
     # ----------------- VARIABEL WAKTU ------------------------
 
-    context = {'nama' : request.user.first_name}
 
+    # ----------------- JANGAN DIUBAH ------------------------
+    context = {'nama' : request.user.first_name}
     if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
         context['data_kar'] = True
+    # ----------------- JANGAN DIUBAH ------------------------
 
-    print(logika_query_struk.main(waktu_awal_default, waktu_akhir_default))
 
     # Page Data
     context['waktu_akhir'] = waktu_akhir_default.strftime("%Y-%m-%dT%H:%M")
@@ -52,6 +43,42 @@ def data_sold(request):
     # Page Data
 
     return render(request, 'supply_chain/data_sold.html', context)
+
+@login_required(login_url='login')
+def data_sold_percabang(request):
+    # logika_update_struk.main()
+
+    # ----------------- VARIABEL WAKTU ------------------------
+    waktu_akhir_default = datetime.utcnow() + timedelta(hours=7)
+    waktu_awal_default = waktu_akhir_default - timedelta(days=6)
+    pilihan_cabang = "semua"
+
+    if request.method == "POST":
+        pilihan_cabang = request.POST.get('pilihan-cabang')
+        waktu_awal_default = datetime.fromisoformat(request.POST.get('waktuawal'))
+        waktu_akhir_default = datetime.fromisoformat(request.POST.get('waktuakhir'))
+
+        if waktu_awal_default > waktu_akhir_default:
+            waktu_awal_default, waktu_akhir_default = waktu_akhir_default, waktu_awal_default
+    # ----------------- VARIABEL WAKTU ------------------------
+
+
+    # ----------------- JANGAN DIUBAH ------------------------
+    context = {'nama' : request.user.first_name}
+    if not request.user.groups.filter(name='Eksekutif').exists() or request.user.last_name == 'Human Resource':
+        context['data_kar'] = True
+    # ----------------- JANGAN DIUBAH ------------------------
+
+
+    # Page Data
+    context['waktu_akhir'] = waktu_akhir_default.strftime("%Y-%m-%dT%H:%M")
+    context['waktu_awal'] = waktu_awal_default.strftime("%Y-%m-%dT%H:%M")
+    context['selisih_hari'] = abs((waktu_akhir_default - waktu_awal_default).days) + 1
+    context['data_struk'] = logika_query_struk.main(waktu_awal_default, waktu_akhir_default, pilihan_cabang)
+    context['data_nama_cabang'] = CabangLoyverse.objects.all()
+    # Page Data
+
+    return render(request, 'supply_chain/data_sold_percabang.html', context)
 
 
 @login_required(login_url='login')
