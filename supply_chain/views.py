@@ -76,6 +76,7 @@ def data_sold_percabang(request):
     context['selisih_hari'] = abs((waktu_akhir_default - waktu_awal_default).days) + 1
     context['data_struk'] = logika_query_struk.main(waktu_awal_default, waktu_akhir_default, pilihan_cabang)
     context['data_nama_cabang'] = CabangLoyverse.objects.all()
+    context['cabang_terpilih'] = pilihan_cabang
     # Page Data
 
     return render(request, 'supply_chain/data_sold_percabang.html', context)
