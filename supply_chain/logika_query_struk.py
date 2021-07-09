@@ -49,7 +49,7 @@ def main(waktu_awal, waktu_akhir):
         data_chicken_skin += s.jumlah_chicken_skin
         data_paper_cost_takeaway_l += s.jumlah_paper_cost_takeaway_l
         data_paper_cost_takeaway_m += s.jumlah_paper_cost_takeaway_m
-        data_paper_cost_takeaway_paper_bag += s.jumlah_paper_cost_takeaway_m
+        data_paper_cost_takeaway_paper_bag += s.jumlah_paper_cost_takeaway_paper_bag
         data_paper_cost_dine_in_paper_tray += s.jumlah_paper_cost_dine_in_paper_tray
         data_topping_crisbar += s.jumlah_topping_crisbar
         data_topping_saus_gravy += s.jumlah_topping_saus_gravy
