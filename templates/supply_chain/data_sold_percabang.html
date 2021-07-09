@@ -22,21 +22,25 @@
                             <label for="pilihan-cabang">Cabang</label>
                             <select onchange="this.form.submit()" name="pilihan-cabang" class="form-control" id="pilihan-cabang">
                                 {% if cabang_terpilih == 'semua' %}
+
                                     <option value="semua" selected>Semua Cabang</option>
                                     {% for c in data_nama_cabang %}
-                                    <option value="{{c.nama_cabang}}">{{c.nama_cabang}}</option>
+                                        <option value="{{c.nama_cabang}}">{{c.nama_cabang}}</option>
                                     {% endfor %}
+
                                 {% else %}
+
                                     <option value="semua">Semua Cabang</option>
                                     {% for c in data_nama_cabang %}
 
                                         {% if cabang_terpilih == c.nama_cabang %}
-                                        <option value="{{c.nama_cabang}}" selected>{{c.nama_cabang}}</option>
+                                            <option value="{{c.nama_cabang}}" selected>{{c.nama_cabang}}</option>
                                         {% else %}
-                                        <option value="{{c.nama_cabang}}">{{c.nama_cabang}}</option>
+                                            <option value="{{c.nama_cabang}}">{{c.nama_cabang}}</option>
                                         {% endif %}
 
                                     {% endfor %}
+                                    
                                 {% endif %}
                             </select>
                         </div>
