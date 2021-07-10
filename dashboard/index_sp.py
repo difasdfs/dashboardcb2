@@ -15,14 +15,12 @@ def query_index_sp():
         25, # hanifah
         26, # bu santi
         28, # pak beben
-        31, # rara
         32, # salma
         37, # pak dicky
         40, # pak jofy
         41, # pak hikmatullah
         42, # pak ilyas
         51, # tyo
-        52, # iwang
         53, # annisa puzianti
     ]
 
