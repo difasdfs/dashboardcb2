@@ -28,6 +28,7 @@ def evaluasi(periode):
         42, # pak ilyas
         51, # tyo
         53, # annisa puzianti
+        57, # bu karin
     ]
 
     hasil = []
