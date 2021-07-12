@@ -464,7 +464,7 @@ def eval_per_periode(request):
     juli1 = juli1[::-1]
     context['juli1'] = juli1
 
-    juli2 = evaluasi(8)
+    juli2 = evaluasi(9)
     juli2.sort(key=lambda tup: tup[7])
     juli2 = juli2[::-1]
     context['juli2'] = juli2
