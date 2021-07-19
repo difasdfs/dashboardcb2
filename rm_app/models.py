@@ -15,6 +15,9 @@ class ProfilPengguna(models.Model):
     password = models.CharField(max_length=40)
     cabang = models.ForeignKey(Cabang, on_delete=models.CASCADE)
     jabatan = models.CharField(max_length=50)
+    nomor_hp = models.CharField(max_length=40, null=True)
+    alamat = models.CharField(max_length=60, null=True)
+    nama = models.CharField(max_length=40, null=True)
 
     def __str__(self):
         return self.pengguna.first_name + ' - ' + self.cabang.nama_cabang
