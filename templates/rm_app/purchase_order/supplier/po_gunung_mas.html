@@ -1,0 +1,147 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+<style>
+    table, td, th {
+      border: 1px solid black;
+      padding: 3px;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .tanda-tangan{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin-top: 1px;
+    }
+    .isi-tanda-tangan{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .nama-pembuat-tanda-tangan{
+        margin: 30px;
+    }
+</style>
+
+<!-- <div class="container"><button onclick="takeshot()">Download</button></div> -->
+
+<div id="section_to_capture">
+
+<!-- awal kontainer -->
+<div class="container">
+    <!-- awal row -->
+    <div class="row">
+
+        <!-- awal col-sm-10 -->
+        <div class="col-sm-10">
+            <h1>Purchase Order</h1>
+            <ul>
+                <li>Perusahaan : PT. Reka Cipta Selera</li>
+                <li>Supplier : Gunung Mas</li>
+                <li>No. PO : {{po.nomor_po}} </li>
+                <li>Cabang : Ayam {{po.profil_pengguna.cabang.nama_cabang}}</li>
+                <li>Telp (PIC) : {{po.nomor_pic}}</li>
+                <li>Alamat : {{po.alamat}}</li>
+                <li>Tanggal buat PO : {{po.format_tanggal.0}}</li>
+                <li>Tanggal Kirim : {{tanggal_kirim}}</li>
+            </ul>
+            
+            <br>
+            <!-- table non dc -->
+            {% if barang_non_dc %}
+            <table class="table table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Order QTY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in barang_non_dc %}
+                    <tr>
+                        <td>{{b.nama_item}}</td>
+                        <td>{{b.satuan}}</td>
+                        <td>{{b.jumlah_order}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            <!-- table non dc -->
+
+            <!-- table dc -->
+            {% if barang_dc %}
+            <br>
+            <h3>Distribution Center</h3>
+            <table class="table table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Order QTY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in barang_dc %}
+                    <tr>
+                        <td>{{b.nama_item}}</td>
+                        <td>{{b.satuan}}</td>
+                        <td>{{b.jumlah_order}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            <!-- table dc -->
+            <div class="tanda-tangan">
+                <div class="isi-tanda-tangan">
+                    <div class="nama-pembuat-tanda-tangan"><strong>Pembuat Order</strong></div>
+                    <div class="nama-pembuat-tanda-tangan"><strong>{{profile.nama}}</strong></div>
+                </div>
+            </div>
+
+        </div>
+        <!-- akhir col-sm-10 -->
+
+    </div>
+    <!-- akhir row -->
+
+</div>
+<!-- akhir kontainer -->
+</div>
+<br><br><br><br><br><br><br><br><br><br>
+
+<script type="text/javascript">
+
+    // Define the function
+    // to screenshot the div
+    function takeshot() {
+        let div = document.getElementById("section_to_capture");
+
+        // Use the html2canvas
+        // function to take a screenshot
+        // and append it
+        // to the output div
+        html2canvas(div).then(
+            function (canvas) {
+                const a = document.createElement("a");
+                document.body.appendChild(a);
+                
+                a.target = "_blank"
+                a.href = canvas.toDataURL("images/jpeg"); 
+                a.download = "{{po.nomor_po}}.jpg";
+                a.click();
+                document.body.remove(a); 
+        })
+    }
+
+    window.onload = takeshot();
+
+</script>
+
+{% endblock %}

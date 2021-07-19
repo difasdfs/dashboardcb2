@@ -1,0 +1,93 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+<style>
+    li{
+        margin: 5px;
+    }
+</style>
+
+{% include 'rm_app/navbar.html' %}
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <!-- awal row -->
+    <div class="row">
+        {% include 'rm_app/purchase_order/sidebar_po.html' %}
+
+        <!-- awal col-sm-10 -->
+        <div class="col-sm-10">
+            <h1>From PO Cabang</h1>
+            <a href="{% url 'po_gunung_mas' id_po %}" target="_blank" class="btn btn-success btn-sm">Download JPEG</a>
+            <ul>
+                <li>Perusahaan : PT. Reka Cipta Selera</li>
+                <li>Supplier : Gunung Mas</li>
+                <li>No. PO : {{po.nomor_po}} </li>
+                <li>Cabang : Ayam {{po.profil_pengguna.cabang.nama_cabang}}</li>
+                <li>Telp (PIC) : {{po.nomor_pic}}</li>
+                <li>Alamat : {{po.alamat}}</li>
+                <li>Tanggal buat PO : {{po.format_tanggal.0}}</li>
+                <li>Tanggal Kirim : {{tanggal_kirim}}</li>
+            </ul>
+
+            <!-- table non dc -->
+            {% if barang_non_dc %}
+            <table class="table table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Order QTY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in barang_non_dc %}
+                    <tr>
+                        <td>{{b.nama_item}}</td>
+                        <td>{{b.satuan}}</td>
+                        <td>{{b.jumlah_order}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            <!-- table non dc -->
+
+            <!-- table dc -->
+            {% if barang_dc %}
+            <br>
+            <h3>Distribution Center</h3>
+            <table class="table table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Order QTY</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in barang_dc %}
+                    <tr>
+                        <td>{{b.nama_item}}</td>
+                        <td>{{b.satuan}}</td>
+                        <td>{{b.jumlah_order}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %}
+            <!-- table dc -->
+
+        </div>
+        <!-- akhir col-sm-10 -->
+
+    </div>
+    <!-- akhir row -->
+
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

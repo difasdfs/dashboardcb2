@@ -1,0 +1,86 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+{% include 'rm_app/navbar.html' %}
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <div class="row">
+        {% include 'rm_app/purchase_order/sidebar_po.html' %}
+
+        <!-- awal col-sm-10 -->
+        <div class="col-sm-10">
+            <h1>Penerimaan</h1>
+
+            <!-- JIKA BELUM DITERIMA -->
+            {% if belum_diterima %}
+
+            <ul>
+                <li>Nomor PO : {{barang_po.purchase_order.nomor_po}}</li>
+            </ul>
+
+            <form method="POST">
+                {% csrf_token %}
+                <table class="table table-bordered table-sm table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Diterima</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for b in barang_po %}
+                        <tr>
+                            <td>{{b.nama_item}}</td>
+                            <td>{{b.satuan}}</td>
+                            <td><input type="number" class="form-control" id="item_idnya-{{b.id}}" name="item_idnya-{{b.id}}" placeholder="{{b.satuan}}"></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+            </form>
+            <!-- JIKA BELUM DITERIMA -->
+
+            {% else %}
+
+            <ul>
+                <li>Nomor PO : {{barang_po.0.purchase_order.nomor_po}}</li>
+            </ul>
+
+            <table class="table table-bordered table-sm table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nama Barang</th>
+                        <th scope="col">Unit</th>
+                        <th scope="col">Jumlah Order</th>
+                        <th scope="col">Diterima</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in barang_po %}
+                    <tr>
+                        <td>{{b.nama_barang}}</td>
+                        <td>{{b.diterima_sebenarnya.satuan}}</td>
+                        <td>{{b.diterima_sebenarnya.jumlah_order}}</td>
+                        <td>{{b.jumlah_diterima}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% endif %}
+            
+
+        </div>
+        <!-- akhir col-sm-10 -->
+    </div>
+    <!-- akhir row -->
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

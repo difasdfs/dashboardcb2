@@ -1,0 +1,218 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+<style>
+    .custom-hr{
+        color: black;
+        background-color: black;
+    }
+</style>
+
+{% include 'rm_app/navbar.html' %}
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <div class="row">
+        <!-- {% include 'rm_app/sidebar_absen.html' %} -->
+
+        <!-- awal col-sm-10 -->
+        <div class="col-sm-10">
+            <h1>Supplier Gunung Mas</h1>
+            <hr>
+            
+            <!-- AWAL FORM -->
+            <h3>Input OPNAME (ON HAND)</h3>
+            <br>
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group row">
+                    <div class="col-sm-4">
+                        <strong>Nama Item</strong>
+                    </div>
+                    <div class="col-sm-8">
+                        <strong>On Hand</strong>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="minyak_goreng" class="col-sm-4 col-form-label">Minyak Goreng</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus (18 Liter)" class="form-control" id="minyak_goreng" name="minyak_goreng" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="tisu_livi_eco_multipurpose" class="col-sm-4 col-form-label">Tisu Livi ECO Multipurpose 150's</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus" class="form-control" id="tisu_livi_eco_multipurpose" name="tisu_livi_eco_multipurpose" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="tisu_livi_kitchen_towel" class="col-sm-4 col-form-label">Tisu Livi Kitchen Towel</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus" class="form-control" id="tisu_livi_kitchen_towel" name="tisu_livi_kitchen_towel" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="lakban_bening" class="col-sm-4 col-form-label">Lakban Bening 1/2'</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack" class="form-control" id="lakban_bening" name="lakban_bening" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="beras_sania" class="col-sm-4 col-form-label">Beras Sania 20 Kg</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Karung (20 Kg)" class="form-control" id="beras_sania" name="beras_sania" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <br>
+                <hr class="custom-hr">
+                
+                <h3>Distribution Center</h3>
+                <br>
+
+                <div class="form-group row">
+                    <label for="kertas_roll_printer" class="col-sm-4 col-form-label">Dus Kertas Roll Printer</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus" class="form-control" id="kertas_roll_printer" name="kertas_roll_printer" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="kertas_nasi_puas" class="col-sm-4 col-form-label">Kertas Nasi Puas</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (500 lbr)" class="form-control" id="kertas_nasi_puas" name="kertas_nasi_puas" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="packaging_combo" class="col-sm-4 col-form-label">Packaging Combo</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (500 pcs)" class="form-control" id="packaging_combo" name="packaging_combo" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="packaging_ala_carte" class="col-sm-4 col-form-label">Packaging Ala Carte</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (500 pcs)" class="form-control" id="packaging_ala_carte" name="packaging_ala_carte" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="packaging_paper_tray_dine_in" class="col-sm-4 col-form-label">Packaging Paper Tray Dine In</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (500 pcs)" class="form-control" id="packaging_paper_tray_dine_in" name="packaging_paper_tray_dine_in" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="packaging_paper_bag_cokelat" class="col-sm-4 col-form-label">Packaging Paper Bag Cokelat</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (500 pcs)" class="form-control" id="packaging_paper_bag_cokelat" name="packaging_paper_bag_cokelat" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="paper_bowl_crisbee_5oz" class="col-sm-4 col-form-label">Paper Bowl Crisbee 5oz</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus (1000 pcs)" class="form-control" id="paper_bowl_crisbee_5oz" name="paper_bowl_crisbee_5oz" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="tutup_lid_paper_bowl_5oz" class="col-sm-4 col-form-label">Tutup Lid Paper Bowl 5oz</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus (1000 pcs)" class="form-control" id="tutup_lid_paper_bowl_5oz" name="tutup_lid_paper_bowl_5oz" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="brccbs" class="col-sm-4 col-form-label">BRCCBS 735 G (Crisbar)</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (50 Porsi)" class="form-control" id="brccbs" name="brccbs" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="srmatcs" class="col-sm-4 col-form-label">SRMATCS 345 G (Matah)</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (30 Porsi)" class="form-control" id="srmatcs" name="srmatcs" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="srmamcs" class="col-sm-4 col-form-label">SRMAMCS 250 G (Mamah)</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (10 Porsi)" class="form-control" id="srmamcs" name="srmamcs" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="jrbcss" class="col-sm-4 col-form-label">JRBCSS 573 G (Gravy Crisbee)</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Pack (30 Porsi)" class="form-control" id="jrbcss" name="jrbcss" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dus_teh_sisri" class="col-sm-4 col-form-label">Dus Teh Sisri</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus (720 Sachet)" class="form-control" id="dus_teh_sisri" name="dus_teh_sisri" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dus_silky_pudding" class="col-sm-4 col-form-label">Dus Silky Pudding</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Box" class="form-control" id="dus_silky_pudding" name="dus_silky_pudding" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dus_perkedelku" class="col-sm-4 col-form-label">Dus Perkedelku</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Bungkus" class="form-control" id="dus_perkedelku" name="dus_perkedelku" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="sak_tepung_fc" class="col-sm-4 col-form-label">Sak Tepung FC</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Sak (15 Kg)" class="form-control" id="sak_tepung_fc" name="sak_tepung_fc" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="dus_sambal_sachet" class="col-sm-4 col-form-label">Dus Sambal Sachet</label>
+                    <div class="col-sm-8">
+                        <input type="number" placeholder="Dus (480 Sachet)" class="form-control" id="dus_sambal_sachet" name="dus_sambal_sachet" min="0" step="0.01">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+            <!-- AKHIR FORM -->
+
+        </div>
+        <!-- akhir col-sm-10 -->
+
+    </div>
+    <!-- akhir row -->
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

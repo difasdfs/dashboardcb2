@@ -1,0 +1,29 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+{% include 'rm_app/navbar.html' %}
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <div class="row">
+        {% include 'rm_app/purchase_order/sidebar_po.html' %}
+
+        <!-- awal col-sm-10 -->
+        <div class="col-sm-10">
+            <h1>Purchase Order</h1>
+
+            <div class="list-group">
+                <a href="{% url 'gunung_mas' %}" class="list-group-item list-group-item-action">Gunung Mas</a>
+            </div>
+
+        </div>
+        <!-- akhir col-sm-10 -->
+    </div>
+    <!-- akhir row -->
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}

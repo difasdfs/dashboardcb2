@@ -1,0 +1,58 @@
+{% extends 'rm_app/main.html' %}
+{% block content %}
+
+{% include 'rm_app/navbar.html' %}
+
+<hr>
+<!-- awal kontainer -->
+<div class="container">
+    <!-- awal row -->
+    <div class="row">
+
+        <!-- awal col-sm-10 -->
+        <div class="col">
+            <h1>Konfirmasi Order</h1>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <!-- awal table -->
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Nama Barang</th>
+                            <th scope="col">Unit</th>
+                            <th scope="col">Order</th>
+                            <th scope="col">Minimal Order</th>
+                            <th scope="col">Maksimal Order</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in query_konfirmasi_order %}
+                        <tr>
+                            <td>{{p.0}}</td>
+                            <td>{{p.1}}</td>
+                            <td><input type="number" class="form-control" name="{{p.0}}" value="{{p.2}}" step="1"></td>
+                            <td>{{p.3}}</td>
+                            <td>{{p.4}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <!-- akhir table -->
+
+                <button type="submit" class="btn btn-danger">Confirm</button>
+            </form>
+
+        </div>
+        <!-- akhir col-sm-10 -->
+
+    </div>
+    <!-- akhir row -->
+
+</div>
+<!-- akhir kontainer -->
+
+<br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}
