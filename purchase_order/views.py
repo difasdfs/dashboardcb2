@@ -90,12 +90,12 @@ def gunung_mas(request):
             "Crisbar Unjani" : "UN" + tanggal_po.strftime("%d%m%y"),
             "Crisbar Cisitu" : "CT" + tanggal_po.strftime("%d%m%y"),
             "Crisbar Sukajadi" : "BT" + tanggal_po.strftime("%d%m%y"),
-            "Crisbar Kopo" : "UN" + tanggal_po.strftime("%d%m%y"),
+            "Crisbar Kopo" : "KP" + tanggal_po.strftime("%d%m%y"),
             "Crisbar Sukapura" : "SP" + tanggal_po.strftime("%d%m%y"),
             "Crisbar Sukabirus" : "SB" + tanggal_po.strftime("%d%m%y"),
             "Crisbar Antapani" : "AP" + tanggal_po.strftime("%d%m%y"),
             "Crisbar Jatinangor" : "JT" + tanggal_po.strftime("%d%m%y"),
-            "Crisbar Metro Margahayu" : "UN" + tanggal_po.strftime("%d%m%y"),
+            "Crisbar Metro Margahayu" : "MT" + tanggal_po.strftime("%d%m%y"),
         }
 
         total_po = logika_po_gunung_mas.main(on_hand, profile.cabang.nama_cabang)
