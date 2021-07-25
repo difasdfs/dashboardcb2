@@ -537,12 +537,14 @@ def index_ceo(request):
     ngecekdeadline()
     periksa_hari_dalam_pemakaian_ayam()
 
-    nama = request.user.first_name
-    context = {'nama': nama, 'data_kar' : True}
-
     # -------------- BARU -------------- 
     logika_update_datastruk.main()
+    print(logika_query_tren_pelanggan.main(PERIODE))
+    print(logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE))
     # -------------- BARU -------------- 
+
+    nama = request.user.first_name
+    context = {'nama': nama}
 
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
@@ -558,6 +560,8 @@ def index_ceo(request):
     context['tren_penjualan'] = logika_tren_penjualan.main(PERIODE)
     context['tren_penjualan_sebelum'] = logika_tren_penjualan.main(PERIODE-1, kemarin = True)
     context['selisih_tren_penjualan'] = logika_tren_penjualan.selisih_tren(PERIODE)
+    context['query_table_tren_pelanggan'] = logika_query_tren_pelanggan.main(PERIODE)
+    context['tren_pelanggan_box'] = logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE)
     # -------------- BARU -------------- 
 
 
@@ -1524,12 +1528,14 @@ def eksekutif(request):
     
     periksa_hari_dalam_pemakaian_ayam()
 
-    nama = request.user.first_name
-    context = {'nama' : nama}
-
     # -------------- BARU -------------- 
     logika_update_datastruk.main()
+    print(logika_query_tren_pelanggan.main(PERIODE))
+    print(logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE))
     # -------------- BARU -------------- 
+
+    nama = request.user.first_name
+    context = {'nama': nama}
 
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
@@ -1545,6 +1551,8 @@ def eksekutif(request):
     context['tren_penjualan'] = logika_tren_penjualan.main(PERIODE)
     context['tren_penjualan_sebelum'] = logika_tren_penjualan.main(PERIODE-1, kemarin = True)
     context['selisih_tren_penjualan'] = logika_tren_penjualan.selisih_tren(PERIODE)
+    context['query_table_tren_pelanggan'] = logika_query_tren_pelanggan.main(PERIODE)
+    context['tren_pelanggan_box'] = logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE)
     # -------------- BARU -------------- 
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
