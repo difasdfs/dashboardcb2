@@ -21,7 +21,7 @@ from .rm_app import query_rm_app
 from .grafik_complaint import query_trend_pola_complaint
 
 from rm_app.models import ProduksiAyam
-from home_dashboard import logika_update_datastruk, logika_query_tren_penjualan, logika_tren_penjualan
+from home_dashboard import logika_update_datastruk, logika_query_tren_penjualan, logika_tren_penjualan, logika_query_tren_pelanggan
 
 from django.utils import timezone
 from datetime import datetime, timedelta, date, time
@@ -630,6 +630,8 @@ def manager(request):
 
     # -------------- BARU -------------- 
     logika_update_datastruk.main()
+    print(logika_query_tren_pelanggan.main(PERIODE))
+    print(logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE))
     # -------------- BARU -------------- 
 
     nama = request.user.first_name
@@ -649,6 +651,8 @@ def manager(request):
     context['tren_penjualan'] = logika_tren_penjualan.main(PERIODE)
     context['tren_penjualan_sebelum'] = logika_tren_penjualan.main(PERIODE-1, kemarin = True)
     context['selisih_tren_penjualan'] = logika_tren_penjualan.selisih_tren(PERIODE)
+    context['query_table_tren_pelanggan'] = logika_query_tren_pelanggan.main(PERIODE)
+    context['tren_pelanggan_box'] = logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE)
     # -------------- BARU -------------- 
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
