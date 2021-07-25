@@ -129,15 +129,20 @@
         </div>
         <div class="anak-flex3">
             <h5 class="judul-dalam-anak">TREN <br> PENJUALAN</h5>
-            <div class="angka-dalam-anak"><strong>36,7jt</strong></div>
+            <div class="angka-dalam-anak"><strong>{{tren_penjualan}}</strong></div>
             <div class="kaki-papan-skor">
                 <div>
                     <div>Sebelum</div>
-                    <div><strong>36,5jt</strong></div>
+                    <div><strong>{{tren_penjualan_sebelum}}</strong></div>
                 </div>
                 <div>
                     <div>Trend</div>
-                    <div><strong>+0,2jt↑</strong></div>
+                    {% if selisih_tren_penjualan.0 == '-' %}
+                    <div><strong>{{selisih_tren_penjualan}}↓</strong></div>
+                    {% else %}
+                    <div><strong>+{{selisih_tren_penjualan}}↑</strong></div>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>
@@ -273,61 +278,56 @@
     <h3><strong>Tren Penjualan Harian</strong></h3>
     <div class="row" style="margin-bottom:7px;">
         <div class="col-md-auto"><h5>{{periode_kerja}} vs. {{periode_kerja_sebelumnya}}</h5></div>
-        <div class="col-8"><a class="btn btn-success btn-sm" href="{% url 'update_dashboard' %}" role="button">Update</a></div>
     </div>
-    
+
+    <!-- # GO FOOD, GRABFOOD, SHOPEE FOOD, DINE IN TAKEAWAY -->
     <table>
         <thead>
             <tr>
-                <th scope="col" class="judul-tabel" style="width:14%">Cabang</th>
-                <th scope="col" class="judul-tabel" style="width:18%">Dine in Take Away</th>
-                <th scope="col" class="judul-tabel" style="width:14%">Go Food</th>
-                <th scope="col" class="judul-tabel" style="width:15%">Grab Food</th>
-                <th scope="col" class="judul-tabel" style="width:17%">TOTAL</th>
-                {% comment %} <th scope="col" class="judul-tabel" style="width:22%">STATUS</th> {% endcomment %}
+                <th scope="col" class="judul-tabel" style="width:20%">CABANG</th>
+                <th scope="col" class="judul-tabel" style="width:20%">DINE IN & TAKEAWAY</th>
+                <th scope="col" class="judul-tabel" style="width:20%">GO FOOD</th>
+                <th scope="col" class="judul-tabel" style="width:20%">GRAB FOOD</th>
+                <th scope="col" class="judul-tabel" style="width:20%">SHOPEE FOOD</th>
+                
             </tr>
         </thead>
         <tbody>
-            {% for isi in tren_penjualan_harian%}
-                <tr>
-                    <td><strong>{{isi.0}}</strong></td>
+            {% for isi in query_table_penjualan %}
+            <tr>
+                <td><strong>{{isi.0}}</strong></td>
 
-                    {% if isi.1.1.0 == "+" %}
-                        <td><strong>{{isi.1.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.1.1}})</span></td>
-                    {% elif isi.1.1.0 == "-" %}
-                        <td><strong>{{isi.1.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.1.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{isi.1.0}}</strong> <br> ({{isi.1.1}})</td>
-                    {% endif %}
+                {% if isi.4.1.0 == '-' %}
+                    <td><strong>{{isi.4.0}}</strong><br><span style="color:red; opacity:50%;">({{isi.4.1}})</span></td>
+                {% else %}
+                    <td><strong>{{isi.4.0}}</strong><br><span style="color:green; opacity:50%;">(+{{isi.4.1}})</span></td>
+                {% endif %}
 
-                    {% if isi.2.1.0 == "+" %}
-                        <td><strong>{{isi.2.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.2.1}})</span></td>
-                    {% elif isi.2.1.0 == "-" %}
-                        <td><strong>{{isi.2.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.2.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{isi.2.0}}</strong> <br> ({{isi.2.1}})</td>
-                    {% endif %}
+                {% if isi.1.1.0 == '-' %}
+                    <td><strong>{{isi.1.0}}</strong><br><span style="color:red; opacity:50%;">({{isi.1.1}})</span></td>
+                {% else %}
+                    <td><strong>{{isi.1.0}}</strong><br><span style="color:green; opacity:50%;">(+{{isi.1.1}})</span></td>
+                {% endif %}
 
-                    {% if isi.3.1.0 == "+" %}
-                        <td><strong>{{isi.3.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.3.1}})</span></td>
-                    {% elif isi.3.1.0 == "-" %}
-                        <td><strong>{{isi.3.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.3.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{isi.3.0}}</strong> <br> ({{isi.3.1}})</td>
-                    {% endif %}
+                {% if isi.2.1.0 == '-' %}
+                    <td><strong>{{isi.2.0}}</strong><br><span style="color:red; opacity:50%;">({{isi.2.1}})</span></td>
+                {% else %}
+                    <td><strong>{{isi.2.0}}</strong><br><span style="color:green; opacity:50%;">(+{{isi.2.1}})</span></td>
+                {% endif %}
 
-                    {% if isi.4.1.0 == "+" %}
-                        <td><strong>{{isi.4.0}}</strong> <br> <span style="color:green; opacity:50%;">({{isi.4.1}})</span></td>
-                    {% elif isi.4.1.0 == "-" %}
-                        <td><strong>{{isi.4.0}}</strong> <br> <span style="color:red; opacity:50%;">({{isi.4.1}})</span></td>
-                    {% else %}
-                        <td><strong>{{isi.4.0}}</strong> <br> ({{isi.4.1}})</td>
-                    {% endif %}
+                {% if isi.3.1.0 == '-' %}
+                    <td><strong>{{isi.3.0}}</strong><br><span style="color:red; opacity:50%;">({{isi.3.1}})</span></td>
+                {% else %}
+                    <td><strong>{{isi.3.0}}</strong><br><span style="color:green; opacity:50%;">(+{{isi.3.1}})</span></td>
+                {% endif %}
 
-                </tr>
+                
+            </tr>
             {% endfor %}
         </tbody>
     </table>
+
+    
 
     <br>
     <h3><strong>Tren Pelanggan Harian</strong></h3>
