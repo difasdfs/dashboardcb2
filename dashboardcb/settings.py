@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'investorkopo',
     'investormetro',
     'supply_chain',
-    'purchase_order'
+    'purchase_order',
+    'home_dashboard'
 ]
 
 MIDDLEWARE = [
