@@ -21,6 +21,7 @@ from .rm_app import query_rm_app
 from .grafik_complaint import query_trend_pola_complaint
 
 from rm_app.models import ProduksiAyam
+from home_dashboard import logika_update_datastruk, logika_query_tren_penjualan, logika_tren_penjualan
 
 from django.utils import timezone
 from datetime import datetime, timedelta, date, time
@@ -535,22 +536,30 @@ def index_ceo(request):
 
     ngecekdeadline()
     periksa_hari_dalam_pemakaian_ayam()
+
     nama = request.user.first_name
-    context = {
-        'nama': nama,
-        'data_kar' : True,
-    }
+    context = {'nama': nama, 'data_kar' : True}
+
+    # -------------- BARU -------------- 
+    logika_update_datastruk.main()
+    # -------------- BARU -------------- 
 
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
+    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
+    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
-    context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
-    context['tren_penjualan_harian'] = tren_penjualan_harian(PERIODE)
-    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
-    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
+
+    # -------------- BARU -------------- 
+    context['query_table_penjualan'] = logika_query_tren_penjualan.main(PERIODE)
+    context['tren_penjualan'] = logika_tren_penjualan.main(PERIODE)
+    context['tren_penjualan_sebelum'] = logika_tren_penjualan.main(PERIODE-1, kemarin = True)
+    context['selisih_tren_penjualan'] = logika_tren_penjualan.selisih_tren(PERIODE)
+    # -------------- BARU -------------- 
+
 
     if request.user.groups.filter(name='Eksekutif').exists() or request.user.groups.filter(name='Manager').exists():
         context['data_kar'] = False
@@ -619,6 +628,10 @@ def manager(request):
     ngecekdeadline()
     periksa_hari_dalam_pemakaian_ayam()
 
+    # -------------- BARU -------------- 
+    logika_update_datastruk.main()
+    # -------------- BARU -------------- 
+
     nama = request.user.first_name
     context = {'nama': nama}
 
@@ -630,9 +643,13 @@ def manager(request):
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
-    context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
-    context['tren_penjualan_harian'] = tren_penjualan_harian(PERIODE)
-    tren_penjualan_harian_all_crisbar(PERIODE)
+
+    # -------------- BARU -------------- 
+    context['query_table_penjualan'] = logika_query_tren_penjualan.main(PERIODE)
+    context['tren_penjualan'] = logika_tren_penjualan.main(PERIODE)
+    context['tren_penjualan_sebelum'] = logika_tren_penjualan.main(PERIODE-1, kemarin = True)
+    context['selisih_tren_penjualan'] = logika_tren_penjualan.selisih_tren(PERIODE)
+    # -------------- BARU -------------- 
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:
@@ -1506,16 +1523,25 @@ def eksekutif(request):
     nama = request.user.first_name
     context = {'nama' : nama}
 
+    # -------------- BARU -------------- 
+    logika_update_datastruk.main()
+    # -------------- BARU -------------- 
+
     query_complaint = query_complaint_dashboard(PERIODE)
     periode_kerja = PeriodeKerja.objects.get(pk=PERIODE)
+    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
+    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
     context['complaint'] = query_complaint
     context['periode_kerja'] = periode_kerja
     context['query_box_home'] = query_box_home(PERIODE)
     context['query_kepuasan_pelanggan'] = query_kepuasan_pelanggan_dashboard()
-    context['query_penjualan_harian'] = query_penjualan_harian_dashboard(PERIODE)
-    context['tren_penjualan_harian'] = tren_penjualan_harian(PERIODE)
-    periode_kerja_sebelumnya = PeriodeKerja.objects.get(pk=PERIODE-1)
-    context['periode_kerja_sebelumnya'] = periode_kerja_sebelumnya
+
+    # -------------- BARU -------------- 
+    context['query_table_penjualan'] = logika_query_tren_penjualan.main(PERIODE)
+    context['tren_penjualan'] = logika_tren_penjualan.main(PERIODE)
+    context['tren_penjualan_sebelum'] = logika_tren_penjualan.main(PERIODE-1, kemarin = True)
+    context['selisih_tren_penjualan'] = logika_tren_penjualan.selisih_tren(PERIODE)
+    # -------------- BARU -------------- 
 
     sp_user = SuratPeringatan.objects.filter(user=User.objects.get(pk=request.user.id))
     if sp_user:

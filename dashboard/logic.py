@@ -13,6 +13,7 @@ def apamanager(user):
 
 def berselisih(variabel1, variabel2):
     hasil = variabel1 - variabel2
+    hasil = float("{:.2f}".format(hasil))
     if hasil > 0:
         return '+' + str(hasil)
     else:
@@ -20,6 +21,7 @@ def berselisih(variabel1, variabel2):
 
 def selisih_trend(variabel1, variabel2):
     hasil = variabel1 - variabel2
+    hasil = float("{:.2f}".format(hasil))
     if hasil > 0:
         return '+' + str(hasil) + '↑'
     elif hasil == 0:
@@ -112,75 +114,75 @@ def query_kepuasan_pelanggan_dashboard():
 
     hasil = [
         ["Antapani", 
-        sesudah.google_antapani, berselisih(sesudah.google_antapani, sebelum.google_antapani), 
-        sesudah.gofood_antapani, berselisih(sesudah.gofood_antapani, sebelum.gofood_antapani), 
-        sesudah.grabfood_antapani, berselisih(sesudah.grabfood_antapani, sebelum.grabfood_antapani), 
-        sesudah.survei_antapani, berselisih(sesudah.survei_antapani, sebelum.survei_antapani),
-        sesudah.dapat_average("Antapani"), berselisih(sesudah.dapat_average("Antapani"), sebelum.dapat_average("Antapani"))
+        "{:.2f}".format(sesudah.google_antapani), berselisih(sesudah.google_antapani, sebelum.google_antapani), 
+        "{:.2f}".format(sesudah.gofood_antapani), berselisih(sesudah.gofood_antapani, sebelum.gofood_antapani), 
+        "{:.2f}".format(sesudah.grabfood_antapani), berselisih(sesudah.grabfood_antapani, sebelum.grabfood_antapani), 
+        "{:.2f}".format(sesudah.survei_antapani), berselisih(sesudah.survei_antapani, sebelum.survei_antapani),
+        "{:.2f}".format(sesudah.dapat_average("Antapani")), berselisih(sesudah.dapat_average("Antapani"), sebelum.dapat_average("Antapani"))
         ],
 
         ["Cisitu", 
-        sesudah.google_cisitu, berselisih(sesudah.google_cisitu, sebelum.google_cisitu), 
-        sesudah.gofood_cisitu, berselisih(sesudah.gofood_cisitu, sebelum.gofood_cisitu), 
-        sesudah.grabfood_cisitu, berselisih(sesudah.grabfood_cisitu, sebelum.grabfood_cisitu), 
-        sesudah.survei_cisitu, berselisih(sesudah.survei_cisitu, sebelum.survei_cisitu),
-        sesudah.dapat_average("Cisitu"), berselisih(sesudah.dapat_average("Cisitu"), sebelum.dapat_average("Cisitu"))
+        "{:.2f}".format(sesudah.google_cisitu), berselisih(sesudah.google_cisitu, sebelum.google_cisitu), 
+        "{:.2f}".format(sesudah.gofood_cisitu), berselisih(sesudah.gofood_cisitu, sebelum.gofood_cisitu), 
+        "{:.2f}".format(sesudah.grabfood_cisitu), berselisih(sesudah.grabfood_cisitu, sebelum.grabfood_cisitu), 
+        "{:.2f}".format(sesudah.survei_cisitu), berselisih(sesudah.survei_cisitu, sebelum.survei_cisitu),
+        "{:.2f}".format(sesudah.dapat_average("Cisitu")), berselisih(sesudah.dapat_average("Cisitu"), sebelum.dapat_average("Cisitu"))
         ],
 
         ["Jatinangor", 
-        sesudah.google_jatinangor, berselisih(sesudah.google_jatinangor, sebelum.google_jatinangor), 
-        sesudah.gofood_jatinangor, berselisih(sesudah.gofood_jatinangor, sebelum.gofood_jatinangor), 
-        sesudah.grabfood_jatinangor, berselisih(sesudah.grabfood_jatinangor, sebelum.grabfood_jatinangor), 
-        sesudah.survei_jatinangor, berselisih(sesudah.survei_jatinangor, sebelum.survei_jatinangor),
-        sesudah.dapat_average("Jatinangor"), berselisih(sesudah.dapat_average("Jatinangor"), sebelum.dapat_average("Jatinangor"))
+        "{:.2f}".format(sesudah.google_jatinangor), berselisih(sesudah.google_jatinangor, sebelum.google_jatinangor), 
+        "{:.2f}".format(sesudah.gofood_jatinangor), berselisih(sesudah.gofood_jatinangor, sebelum.gofood_jatinangor), 
+        "{:.2f}".format(sesudah.grabfood_jatinangor), berselisih(sesudah.grabfood_jatinangor, sebelum.grabfood_jatinangor), 
+        "{:.2f}".format(sesudah.survei_jatinangor), berselisih(sesudah.survei_jatinangor, sebelum.survei_jatinangor),
+        "{:.2f}".format(sesudah.dapat_average("Jatinangor")), berselisih(sesudah.dapat_average("Jatinangor"), sebelum.dapat_average("Jatinangor"))
         ],
 
         ["Kopo",
-        sesudah.google_kopo, berselisih(sesudah.google_kopo, sebelum.google_kopo), 
-        sesudah.gofood_kopo, berselisih(sesudah.gofood_kopo, sebelum.gofood_kopo), 
-        sesudah.grabfood_kopo, berselisih(sesudah.grabfood_kopo, sebelum.grabfood_kopo), 
-        sesudah.survei_kopo, berselisih(sesudah.survei_kopo, sebelum.survei_kopo),
-        sesudah.dapat_average("Kopo"), berselisih(sesudah.dapat_average("Kopo"), sebelum.dapat_average("Kopo"))
+        "{:.2f}".format(sesudah.google_kopo), berselisih(sesudah.google_kopo, sebelum.google_kopo), 
+        "{:.2f}".format(sesudah.gofood_kopo), berselisih(sesudah.gofood_kopo, sebelum.gofood_kopo), 
+        "{:.2f}".format(sesudah.grabfood_kopo), berselisih(sesudah.grabfood_kopo, sebelum.grabfood_kopo), 
+        "{:.2f}".format(sesudah.survei_kopo), berselisih(sesudah.survei_kopo, sebelum.survei_kopo),
+        "{:.2f}".format(sesudah.dapat_average("Kopo")), berselisih(sesudah.dapat_average("Kopo"), sebelum.dapat_average("Kopo"))
         ],
 
         ["Metro", 
-        sesudah.google_metro, berselisih(sesudah.google_metro, sebelum.google_metro), 
-        sesudah.gofood_metro, berselisih(sesudah.gofood_metro, sebelum.gofood_metro), 
-        sesudah.grabfood_metro, berselisih(sesudah.grabfood_metro, sebelum.grabfood_metro), 
-        sesudah.survei_metro, berselisih(sesudah.survei_metro, sebelum.survei_metro),
-        sesudah.dapat_average("Metro"), berselisih(sesudah.dapat_average("Metro"), sebelum.dapat_average("Metro"))
+        "{:.2f}".format(sesudah.google_metro), berselisih(sesudah.google_metro, sebelum.google_metro), 
+        "{:.2f}".format(sesudah.gofood_metro), berselisih(sesudah.gofood_metro, sebelum.gofood_metro), 
+        "{:.2f}".format(sesudah.grabfood_metro), berselisih(sesudah.grabfood_metro, sebelum.grabfood_metro), 
+        "{:.2f}".format(sesudah.survei_metro), berselisih(sesudah.survei_metro, sebelum.survei_metro),
+        "{:.2f}".format(sesudah.dapat_average("Metro")), berselisih(sesudah.dapat_average("Metro"), sebelum.dapat_average("Metro"))
         ],
 
         ["Sukabirus", 
-        sesudah.google_sukabirus, berselisih(sesudah.google_sukabirus, sebelum.google_sukabirus), 
-        sesudah.gofood_sukabirus, berselisih(sesudah.gofood_sukabirus, sebelum.gofood_sukabirus), 
-        sesudah.grabfood_sukabirus, berselisih(sesudah.grabfood_sukabirus, sebelum.grabfood_sukabirus), 
-        sesudah.survei_sukabirus, berselisih(sesudah.survei_sukabirus, sebelum.survei_sukabirus),
-        sesudah.dapat_average("Sukabirus"), berselisih(sesudah.dapat_average("Sukabirus"), sebelum.dapat_average("Sukabirus"))
+        "{:.2f}".format(sesudah.google_sukabirus), berselisih(sesudah.google_sukabirus, sebelum.google_sukabirus), 
+        "{:.2f}".format(sesudah.gofood_sukabirus), berselisih(sesudah.gofood_sukabirus, sebelum.gofood_sukabirus), 
+        "{:.2f}".format(sesudah.grabfood_sukabirus), berselisih(sesudah.grabfood_sukabirus, sebelum.grabfood_sukabirus), 
+        "{:.2f}".format(sesudah.survei_sukabirus), berselisih(sesudah.survei_sukabirus, sebelum.survei_sukabirus),
+        "{:.2f}".format(sesudah.dapat_average("Sukabirus")), berselisih(sesudah.dapat_average("Sukabirus"), sebelum.dapat_average("Sukabirus"))
         ],
 
         ["Sukapura", 
-        sesudah.google_sukapura, berselisih(sesudah.google_sukapura, sebelum.google_sukapura), 
-        sesudah.gofood_sukapura, berselisih(sesudah.gofood_sukapura, sebelum.gofood_sukapura), 
-        sesudah.grabfood_sukapura, berselisih(sesudah.grabfood_sukapura, sebelum.grabfood_sukapura), 
-        sesudah.survei_sukapura, berselisih(sesudah.survei_sukapura, sebelum.survei_sukapura),
-        sesudah.dapat_average("Sukapura"), berselisih(sesudah.dapat_average("Sukapura"), sebelum.dapat_average("Sukapura"))
+        "{:.2f}".format(sesudah.google_sukapura), berselisih(sesudah.google_sukapura, sebelum.google_sukapura), 
+        "{:.2f}".format(sesudah.gofood_sukapura), berselisih(sesudah.gofood_sukapura, sebelum.gofood_sukapura), 
+        "{:.2f}".format(sesudah.grabfood_sukapura), berselisih(sesudah.grabfood_sukapura, sebelum.grabfood_sukapura), 
+        "{:.2f}".format(sesudah.survei_sukapura), berselisih(sesudah.survei_sukapura, sebelum.survei_sukapura),
+        "{:.2f}".format(sesudah.dapat_average("Sukapura")), berselisih(sesudah.dapat_average("Sukapura"), sebelum.dapat_average("Sukapura"))
         ],
 
         ["Sukajadi", 
-        sesudah.google_sukajadi, berselisih(sesudah.google_sukajadi, sebelum.google_sukajadi), 
-        sesudah.gofood_sukajadi, berselisih(sesudah.gofood_sukajadi, sebelum.gofood_sukajadi), 
-        sesudah.grabfood_sukajadi, berselisih(sesudah.grabfood_sukajadi, sebelum.grabfood_sukajadi), 
-        sesudah.survei_sukajadi, berselisih(sesudah.survei_sukajadi, sebelum.survei_sukajadi),
-        sesudah.dapat_average("Sukajadi"), berselisih(sesudah.dapat_average("Sukajadi"), sebelum.dapat_average("Sukajadi"))
+        "{:.2f}".format(sesudah.google_sukajadi), berselisih(sesudah.google_sukajadi, sebelum.google_sukajadi), 
+        "{:.2f}".format(sesudah.gofood_sukajadi), berselisih(sesudah.gofood_sukajadi, sebelum.gofood_sukajadi), 
+        "{:.2f}".format(sesudah.grabfood_sukajadi), berselisih(sesudah.grabfood_sukajadi, sebelum.grabfood_sukajadi), 
+        "{:.2f}".format(sesudah.survei_sukajadi), berselisih(sesudah.survei_sukajadi, sebelum.survei_sukajadi),
+        "{:.2f}".format(sesudah.dapat_average("Sukajadi")), berselisih(sesudah.dapat_average("Sukajadi"), sebelum.dapat_average("Sukajadi"))
         ],
 
         ["Unjani", 
-        sesudah.google_unjani, berselisih(sesudah.google_unjani, sebelum.google_unjani), 
-        sesudah.gofood_unjani, berselisih(sesudah.gofood_unjani, sebelum.gofood_unjani), 
-        sesudah.grabfood_unjani, berselisih(sesudah.grabfood_unjani, sebelum.grabfood_unjani), 
-        sesudah.survei_unjani, berselisih(sesudah.survei_unjani, sebelum.survei_unjani),
-        sesudah.dapat_average("Unjani"), berselisih(sesudah.dapat_average("Unjani"), sebelum.dapat_average("Unjani"))
+        "{:.2f}".format(sesudah.google_unjani), berselisih(sesudah.google_unjani, sebelum.google_unjani), 
+        "{:.2f}".format(sesudah.gofood_unjani), berselisih(sesudah.gofood_unjani, sebelum.gofood_unjani), 
+        "{:.2f}".format(sesudah.grabfood_unjani), berselisih(sesudah.grabfood_unjani, sebelum.grabfood_unjani), 
+        "{:.2f}".format(sesudah.survei_unjani), berselisih(sesudah.survei_unjani, sebelum.survei_unjani),
+        "{:.2f}".format(sesudah.dapat_average("Unjani")), berselisih(sesudah.dapat_average("Unjani"), sebelum.dapat_average("Unjani"))
         ],
     ]
 
