@@ -849,6 +849,34 @@
                       <br>
                       <!-- AKHIR ISI -->
 
+                      <h2 class="judul-sp">SP Pada Periode Juni 2 Tahun 2021</h2>
+                        <div class="table-responsive">
+                          <table class="table table-sm tablesp table-bordered table-hover">
+                              <thead>
+                                  <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Bagian</th>
+                                    <th scope="col">Mulai</th>
+                                    <th scope="col">Sampai</th>
+                                    <th scope="col">Berakhir dalam</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {% for isi in kenasp_periode_agustus1 %}
+                                  <tr>
+                                      <td scope="row">{{forloop.counter}}</td>
+                                      <td>{{isi.user.first_name}}</td>
+                                      <td>{{isi.user.last_name}}</td>
+                                      <td>{{isi.mulai_sp|date:"j M Y"}}</td>
+                                      <td>{{isi.berakhir_sp|date:"j M Y"}}</td>
+                                      <td>{{isi.berakhir_dalam}} Hari</td>
+                                  </tr>
+                                  {% endfor %}
+                                </tbody>
+                              </table>
+                          </div>
+
                     </div>
                   </div>
                 </div>
@@ -917,34 +945,6 @@
 
                       <br>
                       <!-- ISI -->
-
-                      <h2 class="judul-sp">SP Pada Periode Juni 2 Tahun 2021</h2>
-                        <div class="table-responsive">
-                          <table class="table table-sm tablesp table-bordered table-hover">
-                              <thead>
-                                  <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Nama</th>
-                                    <th scope="col">Bagian</th>
-                                    <th scope="col">Mulai</th>
-                                    <th scope="col">Sampai</th>
-                                    <th scope="col">Berakhir dalam</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                {% for isi in kenasp_periode_agustus1 %}
-                                  <tr>
-                                      <td scope="row">{{forloop.counter}}</td>
-                                      <td>{{isi.user.first_name}}</td>
-                                      <td>{{isi.user.last_name}}</td>
-                                      <td>{{isi.mulai_sp|date:"j M Y"}}</td>
-                                      <td>{{isi.berakhir_sp|date:"j M Y"}}</td>
-                                      <td>{{isi.berakhir_dalam}} Hari</td>
-                                  </tr>
-                                  {% endfor %}
-                                </tbody>
-                              </table>
-                          </div>
 
                     </div>
                   </div>
