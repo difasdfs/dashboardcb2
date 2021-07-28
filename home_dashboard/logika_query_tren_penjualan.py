@@ -41,15 +41,15 @@ def main(PERIODE):
     }
 
     query_kemarin = {
-        "antapani" : filter_channel_pembayaran("Crisbar Antapani", periode_saat_ini-1, diformat=False),
-        "cisitu" : filter_channel_pembayaran("Crisbar Cisitu", periode_saat_ini-1, diformat=False),
-        "jatinangor" : filter_channel_pembayaran("Crisbar Jatinangor", periode_saat_ini-1, diformat=False),
-        "kopo" : filter_channel_pembayaran("Crisbar Kopo", periode_saat_ini-1, diformat=False),
-        "metro" : filter_channel_pembayaran("Crisbar Metro Margahayu", periode_saat_ini-1, diformat=False),
-        "sukabirus" : filter_channel_pembayaran("Crisbar Sukabirus", periode_saat_ini-1, diformat=False),
-        "sukapura" : filter_channel_pembayaran("Crisbar Sukapura", periode_saat_ini-1, diformat=False),
-        "sukajadi" : filter_channel_pembayaran("Crisbar Sukajadi", periode_saat_ini-1, diformat=False),
-        "unjani" : filter_channel_pembayaran("Crisbar Unjani", periode_saat_ini-1, diformat=False),
+        "antapani" : filter_channel_pembayaran("Crisbar Antapani", periode_saat_ini-1, diformat=False, kemarin=True),
+        "cisitu" : filter_channel_pembayaran("Crisbar Cisitu", periode_saat_ini-1, diformat=False, kemarin=True),
+        "jatinangor" : filter_channel_pembayaran("Crisbar Jatinangor", periode_saat_ini-1, diformat=False, kemarin=True),
+        "kopo" : filter_channel_pembayaran("Crisbar Kopo", periode_saat_ini-1, diformat=False, kemarin=True),
+        "metro" : filter_channel_pembayaran("Crisbar Metro Margahayu", periode_saat_ini-1, diformat=False, kemarin=True),
+        "sukabirus" : filter_channel_pembayaran("Crisbar Sukabirus", periode_saat_ini-1, diformat=False, kemarin=True),
+        "sukapura" : filter_channel_pembayaran("Crisbar Sukapura", periode_saat_ini-1, diformat=False, kemarin=True),
+        "sukajadi" : filter_channel_pembayaran("Crisbar Sukajadi", periode_saat_ini-1, diformat=False, kemarin=True),
+        "unjani" : filter_channel_pembayaran("Crisbar Unjani", periode_saat_ini-1, diformat=False, kemarin=True),
     }
     
     selisih = {
@@ -79,19 +79,19 @@ def main(PERIODE):
 
     return querynya
 
-def filter_channel_pembayaran(cabang, periode, diformat=True):
+def filter_channel_pembayaran(cabang, periode, diformat=True, kemarin=False):
 
     channel_dine_in_takeaway = ["Kredit Bank Lain","Debit Bank Lain","Kredit BRI","Debit BRI","QR BRI","BCA","SHOPEE PAY","OVO","GOPAY","Cash"]
 
-    gofood = rata_rata_sales(filter_sales(cabang, "GO FOOD", periode), diformat)
-    grabfood = rata_rata_sales(filter_sales(cabang, "GRAB FOOD", periode), diformat)
-    shopeefood = rata_rata_sales(filter_sales(cabang, "SHOPEE FOOD", periode), diformat)
-    dinein_takeaway = rata_rata_sales(filter_sales(cabang, channel_dine_in_takeaway, periode), diformat)
+    gofood = rata_rata_sales(filter_sales(cabang, "GO FOOD", periode, kemarin), diformat)
+    grabfood = rata_rata_sales(filter_sales(cabang, "GRAB FOOD", periode, kemarin), diformat)
+    shopeefood = rata_rata_sales(filter_sales(cabang, "SHOPEE FOOD", periode, kemarin), diformat)
+    dinein_takeaway = rata_rata_sales(filter_sales(cabang, channel_dine_in_takeaway, periode, kemarin), diformat)
 
     return [gofood, grabfood, shopeefood, dinein_takeaway]
 
 
-def filter_sales(cabang, channel_pembayaran, periode):
+def filter_sales(cabang, channel_pembayaran, periode, kemarin):
 
     periodenya = PeriodeKerja.objects.get(pk=periode)
     # periodenya.awal_periode
@@ -103,9 +103,21 @@ def filter_sales(cabang, channel_pembayaran, periode):
     else:
         ds = DataStruk.objects.filter(store_id = cabang, payments = channel_pembayaran, created_at__range=[awal_periode, akhir_periode])
 
-    return ds
+    if not kemarin:
+        akhir_periode = pytz.utc.localize(datetime.utcnow())
 
-def rata_rata_sales(salesnya, diformat = False):
+    selisih_hari = akhir_periode - awal_periode
+    selisih_hari = selisih_hari.days
+
+    if selisih_hari == 0:
+        selisih_hari = 1
+
+    return ds, selisih_hari
+
+def rata_rata_sales(filter_sales, diformat = False):
+
+    salesnya = filter_sales[0]
+    selisih_hari = filter_sales[1]
 
     # ambil total sales
     total_sales = 0
@@ -115,14 +127,11 @@ def rata_rata_sales(salesnya, diformat = False):
         else:
             total_sales += s.total_money_filter()
 
-    # ambil banyaknya sales
-    banyaknya_sales = len(salesnya)
-
     # rata-rata = total sales / banyak sales
     if total_sales == 0:
         rata_rata = 0
     else:
-        rata_rata = total_sales / banyaknya_sales
+        rata_rata = total_sales / selisih_hari
 
     if diformat:
         return format_rupiah(rata_rata)
