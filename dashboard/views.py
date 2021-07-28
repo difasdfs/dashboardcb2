@@ -31,7 +31,7 @@ import django_excel
 
 from django.http import HttpResponse, request
 
-PERIODE = 7
+PERIODE = 8
 
 # Create your views here.
 
@@ -1529,7 +1529,7 @@ def eksekutif(request):
     periksa_hari_dalam_pemakaian_ayam()
 
     # -------------- BARU -------------- 
-    # logika_update_datastruk.main()
+    logika_update_datastruk.main()
     # print(logika_query_tren_pelanggan.main(PERIODE))
     # print(logika_query_tren_pelanggan.box_tren_pelanggan(PERIODE))
     # -------------- BARU -------------- 
