@@ -31,7 +31,7 @@ import django_excel
 
 from django.http import HttpResponse, request
 
-PERIODE = 7
+PERIODE = 8
 
 # Create your views here.
 
